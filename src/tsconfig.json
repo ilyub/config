@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "exactOptionalPropertyTypes": true,
+    "useUnknownInCatchVariables": true
+  },
+  "extends": "./api/tsconfig"
+}

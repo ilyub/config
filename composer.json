@@ -1,0 +1,13 @@
+{
+  "authors": [
+    {
+      "email": "admin.phpdev@gmail.com",
+      "name": "Ilya Lyubinskiy"
+    }
+  ],
+  "description": "Config for commitlint, eslint, jest, php-cs-fixer, stylelint, typedoc, and typescript",
+  "homepage": "https://github.com/ilyub/config",
+  "license": "ISC",
+  "name": "ilyub/config",
+  "type": "library"
+}

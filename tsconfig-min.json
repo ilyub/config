@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@skylib",
+      "node_modules/@types"
+    ],
+    "types": [
+      "jest"
+    ]
+  },
+  "exclude": [
+    "cache",
+    "dist",
+    "docs",
+    "es",
+    "lcov-report",
+    "node_modules"
+  ],
+  "extends": "./src/tsconfig-min",
+  "include": [
+    "*.js",
+    "*.ts",
+    ".eslintrc.js",
+    ".eslintrc.fast.js",
+    ".eslintrc.options.js",
+    ".postcssrc.js",
+    ".prettierrc.js",
+    ".stylelintrc.js",
+    ".stylelintrc-html.js",
+    "__mocks__/**/*.js",
+    "__mocks__/**/*.ts",
+    "__mocks__/**/*.vue",
+    "fixtures/*.ts",
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "tests/**/*.js",
+    "tests/**/*.ts",
+    "tests/**/*.vue"
+  ]
+}

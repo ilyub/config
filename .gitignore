@@ -1,0 +1,5 @@
+.php_cs.cache
+cache
+lcov.info
+lcov-report
+node_modules

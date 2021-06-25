@@ -1,0 +1,3 @@
+#!/bin/sh
+echo Running .git/hooks/pre-commit.php
+php .git/hooks/pre-commit.php

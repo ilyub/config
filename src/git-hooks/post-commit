@@ -1,0 +1,3 @@
+#!/bin/sh
+echo Running .git/hooks/post-commit.php
+php .git/hooks/post-commit.php

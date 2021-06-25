@@ -1,0 +1,14 @@
+{
+  "cleanOutputDir": false,
+  "disableSources": true,
+  "entryDocument": "index.md",
+  "entryPointStrategy": "expand",
+  "excludeExternals": true,
+  "externalPattern": "**/node_modules/**",
+  "githubPages": false,
+  "treatWarningsAsErrors": true,
+  "validation": {
+    "invalidLink": true,
+    "notExported": true
+  }
+}
