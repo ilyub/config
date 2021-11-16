@@ -49,7 +49,7 @@
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
     "@jest/test-sequencer": "^27.3.1",
-    "@skylib/eslint-plugin": "^0.1.0",
+    "@skylib/eslint-plugin": "^0.1.2",
     "@types/eslint": "^7.29.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^15.14.0",
