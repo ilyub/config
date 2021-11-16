@@ -86,6 +86,7 @@ module.exports = {
       "scale",
       "translateX",
       "translateY",
+      "v-bind",
       "var"
     ],
     "function-calc-no-unspaced-operator": true,
@@ -183,6 +184,7 @@ module.exports = {
     "selector-no-qualifying-type": true,
     "selector-no-vendor-prefix": true,
     "selector-pseudo-class-allowed-list": [
+      "deep",
       "disabled",
       "first-child",
       "focus",
@@ -191,16 +193,16 @@ module.exports = {
     ],
     "selector-pseudo-class-case": "lower",
     "selector-pseudo-class-disallowed-list": [],
-    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      { ignorePseudoClasses: ["deep"] }
+    ],
     "selector-pseudo-class-parentheses-space-inside": "never",
     "selector-pseudo-element-allowed-list": ["after", "before", "v-deep"],
     "selector-pseudo-element-case": "lower",
     "selector-pseudo-element-colon-notation": "double",
     "selector-pseudo-element-disallowed-list": [],
-    "selector-pseudo-element-no-unknown": [
-      true,
-      { ignorePseudoElements: ["v-deep"] }
-    ],
+    "selector-pseudo-element-no-unknown": true,
     "selector-type-case": "lower",
     "selector-type-no-unknown": true,
     "shorthand-property-no-redundant-values": true,
@@ -212,7 +214,10 @@ module.exports = {
     "unit-case": "lower",
     "unit-disallowed-list": [],
     "unit-no-unknown": true,
-    "value-keyword-case": "lower",
+    "value-keyword-case": [
+      "lower",
+      { ignoreFunctions: [/v-bind/u.source] }
+    ],
     "value-list-comma-newline-after": "always-multi-line",
     "value-list-comma-newline-before": "always-multi-line",
     "value-list-comma-space-after": "always",
@@ -238,7 +243,7 @@ module.exports = {
     "scss/at-else-empty-line-before": "never",
     "scss/at-else-if-parentheses-space-before": "always",
     "scss/at-extend-no-missing-placeholder": true,
-    "scss/at-function-named-arguments": "always",
+    "scss/at-function-named-arguments": undefined,
     "scss/at-function-parentheses-space-before": "always",
     "scss/at-function-pattern": "always",
     "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
