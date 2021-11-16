@@ -1,3 +1,1 @@
-module.exports = {
-  extends: ["./src/stylelintrc-html"]
-};
+module.exports = { extends: ["./src/stylelintrc-html"] };

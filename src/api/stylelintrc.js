@@ -214,10 +214,7 @@ module.exports = {
     "unit-case": "lower",
     "unit-disallowed-list": [],
     "unit-no-unknown": true,
-    "value-keyword-case": [
-      "lower",
-      { ignoreFunctions: [/v-bind/u.source] }
-    ],
+    "value-keyword-case": ["lower", { ignoreFunctions: [/v-bind/u.source] }],
     "value-list-comma-newline-after": "always-multi-line",
     "value-list-comma-newline-before": "always-multi-line",
     "value-list-comma-space-after": "always",

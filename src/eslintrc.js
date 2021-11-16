@@ -17,14 +17,10 @@ const packageName = fs.existsSync("./package.json")
   : undefined;
 
 const frameworkPrefix =
-  packageName === "@skylib/framework"
-    ? "@"
-    : `@skylib/framework/${distOrEs}`;
+  packageName === "@skylib/framework" ? "@" : `@skylib/framework/${distOrEs}`;
 
 const functionsPrefix =
-  packageName === "@skylib/functions"
-    ? "@"
-    : `@skylib/functions/${distOrEs}`;
+  packageName === "@skylib/functions" ? "@" : `@skylib/functions/${distOrEs}`;
 
 const jsdocContexts = [
   "ArrowFunctionExpression",
@@ -950,10 +946,7 @@ module.exports = {
     ],
     "@skylib/no-unnecessary-readonly": "warn",
     "@skylib/no-unnecessary-writable": "warn",
-    "@skylib/no-unsafe-object-assignment": [
-      "warn",
-      { filesToSkip: ["*.js"] }
-    ],
+    "@skylib/no-unsafe-object-assignment": ["warn", { filesToSkip: ["*.js"] }],
     "@skylib/no-unused-import": "warn",
     "@skylib/prefer-readonly": [
       "warn",
