@@ -11,6 +11,6 @@ foreach ($commits as $commit) {
 }
 
 foreach ($tags as $tag) {
-  executeWithKey('git push --delete origin '.$tag, 'Deleting tag '.$tag);
   execute('git tag -d '.$tag);
+  executeWithKey('git push --delete origin '.$tag, 'Deleting tag '.$tag);
 }
