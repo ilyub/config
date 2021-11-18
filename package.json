@@ -46,11 +46,11 @@
     "update-package-force-skylib": "ncu --dep peer --filter @skylib/* --upgrade"
   },
   "devDependencies": {
-    "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@jest/test-sequencer": "^27.3.1",
-    "@skylib/eslint-plugin": "^0.1.2",
-    "@types/eslint": "^7.29.0",
+    "@skylib/eslint-plugin": "^0.1.6",
+    "@types/eslint": "^8.2.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^15.14.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -67,7 +67,6 @@
     "eslint-plugin-regexp": "^1.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-sort-destructure-keys": "^1.4.0",
-    "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-switch-case": "^1.1.2",
     "eslint-plugin-typescript-sort-keys": "^2.0.0",
     "eslint-plugin-unicorn": "^38.0.1",
@@ -86,7 +85,7 @@
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.0.0",
     "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4",
+    "typescript": "^4.5.2",
     "vue-eslint-parser": "^8.0.1"
   },
   "engines": {
