@@ -17,8 +17,8 @@ module.exports = class extends Environment {
    */
   async setup() {
     await super.setup();
-    this.global.TEST_ENV = "node";
-    this.global.TEST_PATH = this.testPath;
+    this.global.JEST_ENV = "node";
+    this.global.JEST_PATH = this.testPath;
     this.global.clearImmediate =
       this.global.clearImmediate ?? (id => global.clearTimeout(id));
     this.global.fetch = () => {

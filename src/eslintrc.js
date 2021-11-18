@@ -1049,7 +1049,7 @@ module.exports = {
     "import/no-unassigned-import": [
       "warn",
       {
-        allow: ["**/*.css", "**/*.scss", "@skylib/config/src/jest-globals"]
+        allow: ["**/*.css", "**/*.scss"]
       }
     ],
     "import/no-unresolved": "off",
