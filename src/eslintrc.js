@@ -89,7 +89,6 @@ module.exports = {
     "regexp",
     "simple-import-sort",
     "sort-destructure-keys",
-    "sort-keys-fix",
     "switch-case",
     "typescript-sort-keys",
     "unicorn",
@@ -101,7 +100,7 @@ module.exports = {
       typescript: { project: "tsconfig.json" }
     }
   },
-  // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+  // @skylib/sort-keys break
   rules: {
     "accessor-pairs": "warn",
     "array-bracket-newline": "off",
@@ -405,7 +404,7 @@ module.exports = {
     "wrap-regex": "off",
     "yield-star-spacing": "off",
     "yoda": "warn",
-    // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+    // @skylib/sort-keys break
     "@skylib/class-member-typedef": "warn",
     "@skylib/consistent-empty-lines": [
       "warn",
@@ -1008,6 +1007,7 @@ module.exports = {
         ]
       }
     ],
+    "@skylib/sort-keys": "warn",
     "@skylib/template-literal-format": "warn",
     "import/first": "warn",
     "import/group-exports": "off",
@@ -1195,7 +1195,6 @@ module.exports = {
       "warn",
       { caseSensitive: true }
     ],
-    "sort-keys-fix/sort-keys-fix": "warn",
     "switch-case/newline-between-switch-case": [
       "warn",
       "always",
@@ -1288,7 +1287,7 @@ module.exports = {
     "unicorn/string-content": "warn",
     "unicorn/throw-new-error": "warn"
   },
-  // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+  // @skylib/sort-keys break
   overrides: [
     {
       files: ["*.ts", "*.vue"],
@@ -1759,6 +1758,7 @@ module.exports = {
     {
       files: ["*.vue"],
       rules: {
+        "@skylib/sort-keys": ["warn", { ignoreDefaultExport: true }],
         "import/prefer-default-export": "warn"
       }
     },

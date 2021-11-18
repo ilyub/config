@@ -19,7 +19,7 @@ module.exports = {
   ],
   rules: {
     "order/properties-order": order,
-    // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+    // @skylib/sort-keys break
     "alpha-value-notation": "number",
     "at-rule-allowed-list": ["import", "keyframes"],
     "at-rule-disallowed-list": [],
@@ -221,7 +221,7 @@ module.exports = {
     "value-list-comma-space-before": "never",
     "value-list-max-empty-lines": 0,
     "value-no-vendor-prefix": true,
-    // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+    // @skylib/sort-keys break
     "plugin/no-unsupported-browser-features": [
       true,
       {
