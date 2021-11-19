@@ -1595,7 +1595,39 @@ module.exports = {
         "vue/next-tick-style": "warn",
         "vue/no-arrow-functions-in-watch": "warn",
         "vue/no-async-in-computed-properties": "warn",
-        "vue/no-bare-strings-in-template": "warn",
+        "vue/no-bare-strings-in-template": [
+          "warn",
+          {
+            allowlist: [
+              "(",
+              ")",
+              ".",
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ],
+            attributes: {
+              "/.+/": [
+                "aria-label",
+                "aria-placeholder",
+                "aria-roledescription",
+                "aria-valuetext",
+                "label",
+                "title"
+              ],
+              "img": ["alt"],
+              "input": ["placeholder"]
+            },
+            directives: ["v-text"]
+          }
+        ],
         "vue/no-boolean-default": "warn",
         "vue/no-confusing-v-for-v-if": "warn",
         "vue/no-constant-condition": "warn",
