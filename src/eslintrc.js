@@ -5,12 +5,12 @@ const options = fs.existsSync("./.eslintrc.options.js")
   : {};
 
 const [distOrEs, typelibDisallow] = options.es
-  ? ["es", /^@skylib\/[^/]+\/dist\//u.source]
-  : ["dist", /^@skylib\/[^/]+\/es\//u.source];
+  ? ["es", "@skylib/*/dist/**"]
+  : ["dist", "@skylib/*/es/**"];
 
 const [lodash, lodashDisallow] = options.es
-  ? ["lodash-es", /^lodash$/u.source]
-  : ["lodash", /^lodash-es$/u.source];
+  ? ["lodash-es", "lodash"]
+  : ["lodash", "lodash-es"];
 
 const packageName = fs.existsSync("./package.json")
   ? JSON.parse(fs.readFileSync("./package.json")).name
@@ -927,7 +927,7 @@ module.exports = {
             filesToSkip: ["./tests/**"]
           },
           {
-            disallow: [lodashDisallow, typelibDisallow]
+            disallow: [lodashDisallow, typelibDisallow, "@skylib/*/src/**"]
           }
         ]
       }
