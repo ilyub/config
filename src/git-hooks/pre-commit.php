@@ -93,6 +93,7 @@ if (in_array($version, $tags)) {
 
   $versions = execute('npm view '.$name.' versions --json', 'Retrieving npm package versions');
   $versions = decodeJson(join("\n", $versions), 'versions');
+  $versions = is_array($versions) ? $versions : [$versions];
 
   if (in_array($version, $versions)) {
     // Already published
