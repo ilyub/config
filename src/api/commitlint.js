@@ -43,8 +43,7 @@ module.exports = function (scopesFile) {
       "style",
       "stylelint",
       "typedoc",
-      "typescript",
-      "vue"
+      "typescript"
     ];
 
     const fs = require("fs");
