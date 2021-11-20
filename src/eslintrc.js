@@ -633,12 +633,6 @@ module.exports = {
             type: "wildcard"
           },
           {
-            autoImportSource: `${frameworkPrefix}/facade-implementations/reactiveStorage/vueStorage`,
-            sourcePattern:
-              "@skylib/framework/*/facade-implementations/reactiveStorage/vueStorage",
-            type: "wildcard"
-          },
-          {
             autoImportSource: `${frameworkPrefix}/facade-implementations/showAlert/jsAlert`,
             sourcePattern:
               "@skylib/framework/*/facade-implementations/showAlert/jsAlert",
@@ -1590,7 +1584,7 @@ module.exports = {
         "vue/keyword-spacing": "warn",
         "vue/match-component-file-name": "warn",
         "vue/max-attributes-per-line": "off",
-        "vue/max-len": "warn",
+        "vue/max-len": "off",
         "vue/multi-word-component-names": "warn",
         "vue/multiline-html-element-content-newline": "warn",
         "vue/mustache-interpolation-spacing": "warn",
