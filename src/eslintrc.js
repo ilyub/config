@@ -1752,7 +1752,7 @@ module.exports = {
         "vue/require-valid-default-prop": "warn",
         "vue/return-in-computed-property": "warn",
         "vue/return-in-emits-validator": "warn",
-        "vue/script-indent": "warn",
+        "vue/script-indent": "off",
         "vue/script-setup-uses-vars": "warn",
         "vue/singleline-html-element-content-newline": "off",
         "vue/sort-keys": "warn",
