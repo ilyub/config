@@ -921,7 +921,7 @@ module.exports = {
             filesToSkip: ["./tests/**"]
           },
           {
-            disallow: [lodashDisallow, typelibDisallow, "@skylib/*/src/**"]
+            disallow: [lodashDisallow, typelibDisallow]
           }
         ]
       }
