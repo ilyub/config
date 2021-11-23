@@ -706,6 +706,8 @@ module.exports = {
               /(?<!function\s+)\bjestSetupDictionary\(/u.source,
               /(?<!function\s+)\bjestSetupDom\(/u.source,
               /(?<!function\s+)\bmountAsync\(/u.source,
+              /(?<!function\s+)\bpropOptionsDefault\(/u.source,
+              /(?<!function\s+)\bpropOptionsRequired\(/u.source,
               /\bProp\s*\.arrayFactory\(/u.source,
               /\bProp\s*\.arrayOf\(/u.source,
               /\bProp\s*\.arrayOfFiltered\(/u.source,
