@@ -1754,7 +1754,7 @@ module.exports = {
         "vue/require-toggle-inside-transition": "warn",
         "vue/require-v-for-key": "warn",
         "vue/require-valid-default-prop": "warn",
-        "vue/return-in-computed-property": "warn",
+        "vue/return-in-computed-property": "off",
         "vue/return-in-emits-validator": "warn",
         "vue/script-indent": "off",
         "vue/script-setup-uses-vars": "warn",
