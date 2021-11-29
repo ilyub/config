@@ -89,7 +89,6 @@ module.exports = {
     "regexp",
     "simple-import-sort",
     "sort-destructure-keys",
-    "switch-case",
     "typescript-sort-keys",
     "unicorn",
     "vue"
@@ -390,23 +389,18 @@ module.exports = {
         rules: [
           {
             emptyLine: "always",
-            next: ":statement, TSExportAssignment",
-            prev: ":statement, TSExportAssignment"
+            next: ":matches(BlockStatement, Program, TSModuleBlock) > :matches(:statement, TSExportAssignment)",
+            prev: ":matches(BlockStatement, Program, TSModuleBlock) > :matches(:statement, TSExportAssignment)"
           },
           {
             emptyLine: "any",
-            next: "ExpressionStatement",
-            prev: "ExpressionStatement"
+            next: ":matches(BlockStatement, Program, TSModuleBlock) > ExpressionStatement",
+            prev: ":matches(BlockStatement, Program, TSModuleBlock) > ExpressionStatement"
           },
           {
             emptyLine: "any",
-            next: "ImportDeclaration",
-            prev: "ImportDeclaration"
-          },
-          {
-            emptyLine: "any",
-            next: "SwitchCase",
-            prev: "SwitchCase"
+            next: ":matches(BlockStatement, Program, TSModuleBlock) > ImportDeclaration",
+            prev: ":matches(BlockStatement, Program, TSModuleBlock) > ImportDeclaration"
           }
         ]
       }
@@ -422,7 +416,8 @@ module.exports = {
           {
             averageLinesGte: 3,
             everyLinesGte: 2,
-            selector: "ExpressionStatement",
+            selector:
+              ":matches(BlockStatement, Program, TSModuleBlock) > ExpressionStatement",
             someHasDocComment: true,
             someLinesGte: 5
           }
@@ -1009,6 +1004,7 @@ module.exports = {
       }
     ],
     "@skylib/sort-keys": "warn",
+    "@skylib/switch-case-empty-lines": "warn",
     "@skylib/template-literal-format": "warn",
     "import/first": "warn",
     "import/group-exports": "off",
@@ -1196,12 +1192,6 @@ module.exports = {
       "warn",
       { caseSensitive: true }
     ],
-    "switch-case/newline-between-switch-case": [
-      "warn",
-      "always",
-      { fallthrough: "never" }
-    ],
-    "switch-case/no-case-curly": "off",
     "unicorn/better-regex": "warn",
     "unicorn/catch-error-name": ["warn", { name: "e" }],
     "unicorn/consistent-destructuring": "warn",
