@@ -334,29 +334,7 @@ module.exports = {
     "operator-assignment": "warn",
     "operator-linebreak": "off",
     "padded-blocks": "off",
-    "padding-line-between-statements": [
-      "warn",
-      {
-        blankLine: "always",
-        next: "*",
-        prev: "*"
-      },
-      {
-        blankLine: "any",
-        next: "case",
-        prev: "case"
-      },
-      {
-        blankLine: "any",
-        next: "expression",
-        prev: "expression"
-      },
-      {
-        blankLine: "any",
-        next: "import",
-        prev: "import"
-      }
-    ],
+    "padding-line-between-statements": "off",
     "prefer-arrow-callback": "warn",
     "prefer-const": "warn",
     "prefer-destructuring": "off",
@@ -411,13 +389,40 @@ module.exports = {
       {
         rules: [
           {
+            emptyLine: "always",
+            next: ":statement, TSExportAssignment",
+            prev: ":statement, TSExportAssignment"
+          },
+          {
+            emptyLine: "any",
+            next: "ExpressionStatement",
+            prev: "ExpressionStatement"
+          },
+          {
+            emptyLine: "any",
+            next: "ImportDeclaration",
+            prev: "ImportDeclaration"
+          },
+          {
+            emptyLine: "any",
+            next: "SwitchCase",
+            prev: "SwitchCase"
+          }
+        ]
+      }
+    ],
+    "@skylib/consistent-group-empty-lines": [
+      "warn",
+      {
+        rules: [
+          {
             selector:
               ":matches(ArrayExpression, ObjectExpression, TSInterfaceBody) > *"
           },
           {
             averageLinesGte: 3,
             everyLinesGte: 2,
-            selector: ":matches(BlockStatement, Program) > ExpressionStatement",
+            selector: "ExpressionStatement",
             someHasDocComment: true,
             someLinesGte: 5
           }
