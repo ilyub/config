@@ -22,6 +22,11 @@ const frameworkPrefix =
 const functionsPrefix =
   packageName === "@skylib/functions" ? "@" : `@skylib/functions/${distOrEs}`;
 
+const quasarFrameworkPrefix =
+  packageName === "@skylib/quasar-framework"
+    ? "@"
+    : `@skylib/quasar-framework/src`;
+
 const jsdocContexts = [
   "ArrowFunctionExpression",
   "FunctionDeclaration",
@@ -677,6 +682,18 @@ module.exports = {
             altLocalNames: ["tooltipsPlugin"],
             autoImportSource: `${frameworkPrefix}/vue-plugins/tooltips`,
             sourcePattern: "@skylib/framework/*/vue-plugins/tooltips",
+            type: "wildcard"
+          },
+          {
+            altLocalNames: ["quasarFrameworkTestUtils"],
+            autoImportSource: `${quasarFrameworkPrefix}/testUtils`,
+            sourcePattern: "@skylib/quasar-framework/*/testUtils",
+            type: "wildcard"
+          },
+          {
+            autoImportSource: `${quasarFrameworkPrefix}/facade-implementations/reactiveStorage/vueStorage`,
+            sourcePattern:
+              "@skylib/quasar-framework/*/facade-implementations/reactiveStorage/vueStorage",
             type: "wildcard"
           }
         ]
