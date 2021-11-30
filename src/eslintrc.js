@@ -876,8 +876,10 @@ module.exports = {
               /\bReadonly<\s*Set\b/u.source,
               /\bnull\s*\|\s*undefined\b/u.source,
               /\bundefined\s*\|\s*null\b/u.source,
-              /\b(?:boolean|number|object|string)\s*\|\s*empty\b/u.source,
-              /\b(?:boolean|number|object|string)\s*\|\s*undefined\b/u.source
+              /\b(?:NumStr|boolean|number|object|string)\s*\|\s*empty\b/u
+                .source,
+              /\b(?:NumStr|boolean|number|object|string)\s*\|\s*undefined\b/u
+                .source
             ],
             subOptionsId: "types.core"
           }
