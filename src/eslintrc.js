@@ -1568,7 +1568,7 @@ module.exports = {
         "vue/component-name-in-template-casing": "warn",
         "vue/component-tags-order": "warn",
         "vue/custom-event-name-casing": "warn",
-        "vue/dot-location": "warn",
+        "vue/dot-location": "off",
         "vue/dot-notation": "warn",
         "vue/eqeqeq": "warn",
         "vue/experimental-script-setup-vars": "warn",
