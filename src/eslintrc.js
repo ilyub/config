@@ -723,6 +723,8 @@ module.exports = {
               /(?<!function\s+)\bjestSetupDictionary\(/u.source,
               /(?<!function\s+)\bjestSetupDom\(/u.source,
               /(?<!function\s+)\bmountAsync\(/u.source,
+              /(?<!function\s+)\bpluralReduceRu\(/u.source,
+              /(?<!function\s+)\bpropOptionsBoolean\(/u.source,
               /(?<!function\s+)\bpropOptionsDefault\(/u.source,
               /(?<!function\s+)\bpropOptionsRequired\(/u.source,
               /\bProp\s*\.arrayFactory\(/u.source,
