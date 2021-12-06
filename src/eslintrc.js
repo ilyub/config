@@ -4,28 +4,19 @@ const options = fs.existsSync("./.eslintrc.options.js")
   ? require(fs.realpathSync("./.eslintrc.options.js"))
   : {};
 
-const [distOrEs, typelibDisallow] = options.es
-  ? ["es", "@skylib/*/dist/**"]
-  : ["dist", "@skylib/*/es/**"];
-
-const [lodash, lodashDisallow] = options.es
-  ? ["lodash-es", "lodash"]
-  : ["lodash", "lodash-es"];
-
 const packageName = fs.existsSync("./package.json")
   ? JSON.parse(fs.readFileSync("./package.json")).name
   : undefined;
+
+const distOrEs = options.es ? "es" : "dist";
+
+const extraChoreLocations = options.extraChoreLocations ?? [];
 
 const frameworkPrefix =
   packageName === "@skylib/framework" ? "@" : `@skylib/framework/${distOrEs}`;
 
 const functionsPrefix =
   packageName === "@skylib/functions" ? "@" : `@skylib/functions/${distOrEs}`;
-
-const quasarFrameworkPrefix =
-  packageName === "@skylib/quasar-framework"
-    ? "@"
-    : `@skylib/quasar-framework/src`;
 
 const jsdocContexts = [
   "ArrowFunctionExpression",
@@ -36,6 +27,27 @@ const jsdocContexts = [
   "TSDeclareFunction",
   "TSFunctionType",
   "TSMethodSignature"
+];
+
+const locations = {
+  chore: ["./*", "./__mocks__/**", ...extraChoreLocations],
+  testUtils: ["./src/**/__mocks__/**", "./src/testUtils/**"],
+  tests: ["./tests/**"]
+};
+
+const lodash = options.es ? "lodash-es" : "lodash";
+
+const lodashDisallow = options.es ? "lodash" : "lodash-es";
+
+const quasarFrameworkPrefix =
+  packageName === "@skylib/quasar-framework"
+    ? "@"
+    : `@skylib/quasar-framework/src`;
+
+const readonlyIgnoreIdentifiers = [
+  /^result$/u.source,
+  /^_?(?:cache|dynamic|mutable|pool|queue|stack|state|writable)/u.source,
+  /(?:Cache|Dynamic|Mutable|Pool|Queue|Stack|State|Writable)$/u.source
 ];
 
 const readonlyIgnoreTypes = [
@@ -55,11 +67,7 @@ const readonlyIgnoreTypes = [
   "Symbol"
 ];
 
-const readonlyIgnoreIdentifiers = [
-  /^result$/u.source,
-  /^_?(?:cache|dynamic|mutable|pool|queue|stack|state|writable)/u.source,
-  /(?:Cache|Dynamic|Mutable|Pool|Queue|Stack|State|Writable)$/u.source
-];
+const skylibDisallow = options.es ? "@skylib/*/dist/**" : "@skylib/*/es/**";
 
 module.exports = {
   env: {
@@ -944,7 +952,7 @@ module.exports = {
             filesToSkip: ["./tests/**"]
           },
           {
-            disallow: [lodashDisallow, typelibDisallow]
+            disallow: [lodashDisallow, skylibDisallow]
           }
         ]
       }
@@ -1041,7 +1049,7 @@ module.exports = {
     "import/no-default-export": "off",
     "import/no-deprecated": "warn",
     "import/no-duplicates": "warn",
-    "import/no-dynamic-require": "warn",
+    "import/no-dynamic-require": options.utility ? "off" : "warn",
     "import/no-extraneous-dependencies": [
       "warn",
       {
@@ -1059,7 +1067,7 @@ module.exports = {
     "import/no-named-default": "warn",
     "import/no-named-export": "off",
     "import/no-namespace": "off",
-    "import/no-nodejs-modules": "warn",
+    "import/no-nodejs-modules": options.utility ? "off" : "warn",
     "import/no-relative-packages": "warn",
     "import/no-relative-parent-imports": "warn",
     "import/no-restricted-paths": "warn",
@@ -1816,7 +1824,7 @@ module.exports = {
       files: ["*.ts", "*.vue"],
       rules: {
         "import/no-commonjs": "warn",
-        "unicorn/prefer-module": "warn"
+        "unicorn/prefer-module": options.utility ? "off" : "warn"
       }
     },
     {
@@ -1839,35 +1847,16 @@ module.exports = {
       }
     },
     {
-      files: options.utility
-        ? ["./**"]
-        : [
-            "./*",
-            "./__mocks__/**",
-            "./tests/**",
-            "./src/**/__mocks__/**",
-            "./src/testUtils/**"
-          ],
+      files: [...locations.tests, ...locations.chore, ...locations.testUtils],
       rules: {
         "import/no-dynamic-require": "off",
         "import/no-nodejs-modules": "off",
+        "import/no-relative-parent-imports": "off",
         "unicorn/prefer-module": "off"
       }
     },
     {
-      files: [
-        "./*",
-        "./__mocks__/**",
-        "./tests/**",
-        "./src/**/__mocks__/**",
-        "./src/testUtils/**"
-      ],
-      rules: {
-        "import/no-relative-parent-imports": "off"
-      }
-    },
-    {
-      files: ["./*", "./__mocks__/**", "./tests/**"],
+      files: [...locations.tests, ...locations.chore],
       rules: {
         "import/no-extraneous-dependencies": [
           "warn",
@@ -1881,7 +1870,7 @@ module.exports = {
       }
     },
     {
-      files: ["./tests/**"],
+      files: locations.tests,
       rules: {
         "jsdoc/require-jsdoc": "off",
         "no-await-in-loop": "off",
