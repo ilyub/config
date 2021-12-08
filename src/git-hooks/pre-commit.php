@@ -13,6 +13,7 @@ $buildDoc = is_array($config['scripts']) && array_key_exists('build-doc', $confi
 $tsc = is_array($config['scripts']) && array_key_exists('tsc', $config['scripts']);
 $lint = is_array($config['scripts']) && array_key_exists('lint-no-fix', $config['scripts']);
 $stylelint = is_array($config['scripts']) && array_key_exists('stylelint-no-fix', $config['scripts']);
+$stylelintHtml = is_array($config['scripts']) && array_key_exists('stylelint-html-no-fix', $config['scripts']);
 $test = is_array($config['scripts']) && array_key_exists('test', $config['scripts']);
 $dependencies = $config['dependencies'] ?? [];
 $devDependencies = $config['devDependencies'] ?? [];
@@ -73,6 +74,10 @@ if (in_array($version, $tags)) {
 
   if ($stylelint) {
     execute('npm run stylelint-no-fix', 'Linting with StyleLint');
+  }
+
+  if ($stylelintHtml) {
+    execute('npm run stylelint-html-no-fix', 'Linting with StyleLint (html)');
   }
 
   if ($test) {
