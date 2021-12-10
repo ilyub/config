@@ -1625,6 +1625,10 @@ module.exports = {
             allowlist: [
               "(",
               ")",
+              "*",
+              "+",
+              ",",
+              "-",
               ".",
               "0",
               "1",
@@ -1636,7 +1640,8 @@ module.exports = {
               "7",
               "8",
               "9",
-              ":"
+              ":",
+              "\u2013"
             ],
             attributes: {
               "/.+/": [
@@ -1866,7 +1871,8 @@ module.exports = {
             optionalDependencies: false,
             peerDependencies: true
           }
-        ]
+        ],
+        "vue/no-bare-strings-in-template": "off"
       }
     },
     {
