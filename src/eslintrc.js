@@ -442,6 +442,11 @@ module.exports = {
       {
         sources: [
           {
+            localName: "mdi",
+            sourcePattern: "@mdi/js-dynamic",
+            type: "wildcard"
+          },
+          {
             sourcePattern: "@sinonjs/fake-timers",
             type: "wildcard"
           },
