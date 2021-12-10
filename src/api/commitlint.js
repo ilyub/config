@@ -78,6 +78,8 @@ module.exports = function (scopesFile) {
 
     for (const scope of scopes)
       result.push(
+        `chore(refactor,${scope})`,
+        `chore(style,${scope})`,
         `refactor(${scope})`,
         `style(${scope})`,
         `test(refactor,${scope})`,
@@ -88,6 +90,8 @@ module.exports = function (scopesFile) {
       for (const scope2 of scopes)
         if (scope1 !== scope2)
           result.push(
+            `chore(refactor,${scope1},${scope2})`,
+            `chore(style,${scope1},${scope2})`,
             `refactor(${scope1},${scope2})`,
             `style(${scope1},${scope2})`,
             `test(refactor,${scope1},${scope2})`,
