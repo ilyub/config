@@ -25,7 +25,8 @@ module.exports = {
   moduleNameMapper: {
     [/^@\/(.*)/u.source]: "<rootDir>/src/$1",
     [/^@skylib\/([^/]+)\/es\/(.+)$/u.source]: "@skylib/$1/dist/$2",
-    [/^lodash-es$/u.source]: "lodash"
+    [/^lodash-es$/u.source]: "lodash",
+    [/^quasar$/u.source]: "quasar/dist/quasar.esm.prod.js"
   },
   modulePathIgnorePatterns: [
     "/(?:\\.git|\\.quasar|\\.scannerwork|\\.vscode|cache|dist|docs|es|lcov-report|node_modules)/"
@@ -42,5 +43,5 @@ module.exports = {
       "jest-transform-stub",
     [/\.(?:html|js|ts)$/u.source]: "ts-jest"
   },
-  transformIgnorePatterns: ["node_modules/"]
+  transformIgnorePatterns: ["node_modules/(?!lodash-es|quasar|quasar/lang)"]
 };
