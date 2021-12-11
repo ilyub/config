@@ -821,6 +821,7 @@ module.exports = {
               /\.toThrow\(\s*["'A-Z`]/u.source,
               /\bValidationObject<\s*\w+\s*>\s*=\s*createValidationObject\b/u
                 .source,
+              /\bcomputed\(/u.source,
               /\bcreateValidationObject\(/u.source,
               `\bReadonly<\\s*(?:${readonlyIgnoreTypes.join("|")})\\s*[<>]`
             ]
