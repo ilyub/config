@@ -827,6 +827,20 @@ module.exports = {
             ]
           },
           {
+            patterns: [
+              /\.classes\(\)\s*\.includes\(\s*("[^"]*")\s*\)\s*\)\s*\.toBeFalse\(\);/u
+                .source
+            ],
+            replacement: ").not.toHaveClass($1);"
+          },
+          {
+            patterns: [
+              /\.classes\(\)\s*\.includes\(\s*("[^"]*")\s*\)\s*\)\s*\.toBeTrue\(\);/u
+                .source
+            ],
+            replacement: ").toHaveClass($1);"
+          },
+          {
             patterns: [/\.exists\(\)\s*\)\s*\.toBeFalse\(\);/u.source],
             replacement: ").not.toExist();"
           },
@@ -839,6 +853,14 @@ module.exports = {
               /\.html\(\)\s*\)\s*.toStrictEqual\(\s*(?=["'`])/u.source
             ],
             replacement: ").htmlToEqual("
+          },
+          {
+            patterns: [/\.isVisible\(\)\s*\)\s*\.toBeFalse\(\);/u.source],
+            replacement: ").not.toBeVisible();"
+          },
+          {
+            patterns: [/\.isVisible\(\)\s*\)\s*\.toBeTrue\(\);/u.source],
+            replacement: ").toBeVisible();"
           },
           {
             patterns: [
