@@ -21,13 +21,13 @@ module.exports = {
     "order/properties-order": order,
     // @skylib/sort-keys break
     "alpha-value-notation": "number",
-    "at-rule-allowed-list": ["import", "keyframes"],
+    "at-rule-allowed-list": ["import", "keyframes", "use"],
     "at-rule-disallowed-list": [],
     "at-rule-empty-line-before": ["always", { except: "first-nested" }],
     "at-rule-name-case": "lower",
     "at-rule-name-newline-after": "always-multi-line",
     "at-rule-name-space-after": "always-single-line",
-    "at-rule-no-unknown": true,
+    "at-rule-no-unknown": [true, { ignoreAtRules: ["use"] }],
     "at-rule-no-vendor-prefix": true,
     "at-rule-property-required-list": {},
     "at-rule-semicolon-newline-after": "always",
@@ -82,6 +82,7 @@ module.exports = {
     "font-family-no-missing-generic-family-keyword": true,
     "font-weight-notation": "numeric",
     "function-allowed-list": [
+      "map.get",
       "rotate",
       "scale",
       "translateX",
