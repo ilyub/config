@@ -1785,7 +1785,7 @@ module.exports = {
         "vue/no-v-for-template-key": "warn",
         "vue/no-v-for-template-key-on-child": "warn",
         "vue/no-v-html": "warn",
-        "vue/no-v-model-argument": "warn",
+        "vue/no-v-model-argument": "off",
         "vue/no-v-text": "warn",
         "vue/no-watch-after-await": "warn",
         "vue/object-curly-newline": "warn",
