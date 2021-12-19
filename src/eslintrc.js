@@ -823,6 +823,7 @@ module.exports = {
                 .source,
               /\bcomputed\(/u.source,
               /\bcreateValidationObject\(/u.source,
+              /\bpropOptions\([^()]+(?<!U)\)/u.source,
               `\bReadonly<\\s*(?:${readonlyIgnoreTypes.join("|")})\\s*[<>]`
             ]
           },
