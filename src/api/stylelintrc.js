@@ -139,7 +139,7 @@ module.exports = {
     "no-eol-whitespace": true,
     "no-extra-semicolons": true,
     "no-invalid-double-slash-comments": true,
-    "no-invalid-position-at-import-rule": true,
+    "no-invalid-position-at-import-rule": [true, { ignoreAtRules: "use" }],
     "no-irregular-whitespace": true,
     "no-missing-end-of-source-newline": true,
     "no-unknown-animations": undefined,
@@ -267,8 +267,14 @@ module.exports = {
     "scss/dollar-variable-colon-space-after": "always",
     "scss/dollar-variable-colon-space-before": "always",
     "scss/dollar-variable-default": true,
-    "scss/dollar-variable-empty-line-after": "always",
-    "scss/dollar-variable-empty-line-before": "always",
+    "scss/dollar-variable-empty-line-after": [
+      "always",
+      { except: ["before-dollar-variable", "last-nested"] }
+    ],
+    "scss/dollar-variable-empty-line-before": [
+      "always",
+      { except: ["after-dollar-variable", "first-nested"] }
+    ],
     "scss/dollar-variable-first-in-block": [
       true,
       { ignore: ["comments", "imports"] }
