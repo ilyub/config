@@ -1789,7 +1789,7 @@ module.exports = {
         "vue/no-v-text": "warn",
         "vue/no-watch-after-await": "warn",
         "vue/object-curly-newline": "warn",
-        "vue/object-curly-spacing": "warn",
+        "vue/object-curly-spacing": "off",
         "vue/object-property-newline": "warn",
         "vue/one-component-per-file": "warn",
         "vue/operator-linebreak": "warn",
