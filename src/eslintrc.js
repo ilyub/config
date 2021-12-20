@@ -12,6 +12,10 @@ const distOrEs = options.es ? "es" : "dist";
 
 const extraChoreLocations = options.extraChoreLocations ?? [];
 
+const quasarDefaultImport = options.quasar
+  ? ["src/boot/*", "src/router/index.ts", "vue.d.ts"]
+  : [];
+
 const frameworkPrefix =
   packageName === "@skylib/framework" ? "@" : `@skylib/framework/${distOrEs}`;
 
@@ -31,6 +35,7 @@ const jsdocContexts = [
 
 const locations = {
   chore: ["./*", "./__mocks__/**", ...extraChoreLocations],
+  defaultImport: ["svg.d.ts", ...quasarDefaultImport],
   testUtils: ["./src/**/__mocks__/**", "./src/testUtils/**"],
   tests: ["./tests/**"]
 };
@@ -378,7 +383,7 @@ module.exports = {
     "space-in-parens": "off",
     "space-infix-ops": "off",
     "space-unary-ops": "off",
-    "spaced-comment": "warn",
+    "spaced-comment": ["warn", "always", { markers: ["/ <reference"] }],
     "strict": "warn",
     "switch-colon-spacing": "off",
     "symbol-description": "warn",
@@ -1910,6 +1915,12 @@ module.exports = {
         "jsdoc/require-jsdoc": "off",
         "no-await-in-loop": "off",
         "unicorn/no-null": "off"
+      }
+    },
+    {
+      files: locations.defaultImport,
+      rules: {
+        "import/no-default-export": "off"
       }
     }
   ]
