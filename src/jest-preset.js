@@ -9,6 +9,7 @@ const setupFilesAfterEnv = fs.existsSync("./jest.setup-after-env.ts")
 module.exports = {
   cacheDirectory: "./cache/jest",
   collectCoverage: true,
+  collectCoverageFrom: ["src/**"],
   coverageDirectory: ".",
   coverageReporters: ["lcov", "lcovonly"],
   globals: {
