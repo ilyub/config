@@ -44,5 +44,7 @@ module.exports = {
       "jest-transform-stub",
     [/\.(?:html|js|ts)$/u.source]: "ts-jest"
   },
-  transformIgnorePatterns: ["node_modules/(?!lodash-es|quasar|quasar/lang)"]
+  transformIgnorePatterns: [
+    "node_modules/(?!lodash-es|quasar|quasar/lang|@skylib/quasar-framework)"
+  ]
 };
