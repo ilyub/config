@@ -620,6 +620,12 @@ module.exports = {
             type: "wildcard"
           },
           {
+            autoImportSource: `${frameworkPrefix}/facade-implementations/compare/natural-compare-wrapper`,
+            sourcePattern:
+              "@skylib/framework/*/facade-implementations/compare/natural-compare-wrapper",
+            type: "wildcard"
+          },
+          {
             autoImportSource: `${frameworkPrefix}/facade-implementations/datetime/date-fns-wrapper`,
             sourcePattern:
               "@skylib/framework/*/facade-implementations/datetime/date-fns-wrapper",
@@ -635,6 +641,12 @@ module.exports = {
             autoImportSource: `${frameworkPrefix}/facade-implementations/httpRequest/axios-wrapper`,
             sourcePattern:
               "@skylib/framework/*/facade-implementations/httpRequest/axios-wrapper",
+            type: "wildcard"
+          },
+          {
+            autoImportSource: `${frameworkPrefix}/facade-implementations/inlineSearch/lunr-wrapper`,
+            sourcePattern:
+              "@skylib/framework/*/facade-implementations/inlineSearch/lunr-wrapper",
             type: "wildcard"
           },
           {
