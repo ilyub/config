@@ -1781,8 +1781,9 @@ module.exports = {
             ignorePatterns: [
               /^router-link$/u.source,
               /^router-view$/u.source,
+              /^p-/u.source,
               /^q-/u.source,
-              /^x-/u.source
+              /^s-/u.source
             ]
           }
         ],
