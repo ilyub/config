@@ -586,6 +586,11 @@ module.exports = {
             type: "wildcard"
           },
           {
+            autoImportSource: `${functionsPrefix}/map`,
+            sourcePattern: "@skylib/functions/*/map",
+            type: "wildcard"
+          },
+          {
             autoImportSource: `${functionsPrefix}/number`,
             localName: "num",
             sourcePattern: "@skylib/functions/*/number",
@@ -605,6 +610,11 @@ module.exports = {
           {
             autoImportSource: `${functionsPrefix}/regexp`,
             sourcePattern: "@skylib/functions/*/regexp",
+            type: "wildcard"
+          },
+          {
+            autoImportSource: `${functionsPrefix}/set`,
+            sourcePattern: "@skylib/functions/*/set",
             type: "wildcard"
           },
           {
@@ -1700,6 +1710,7 @@ module.exports = {
                 "aria-placeholder",
                 "aria-roledescription",
                 "aria-valuetext",
+                "caption",
                 "label",
                 "title"
               ],
