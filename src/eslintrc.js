@@ -677,9 +677,9 @@ module.exports = {
             type: "wildcard"
           },
           {
-            autoImportSource: `${frameworkPrefix}/facade-implementations/reactiveStorage/dummyStorage`,
+            autoImportSource: `${frameworkPrefix}/facade-implementations/reactiveStorage/reflectStorage`,
             sourcePattern:
-              "@skylib/framework/*/facade-implementations/reactiveStorage/dummyStorage",
+              "@skylib/framework/*/facade-implementations/reactiveStorage/reflectStorage",
             type: "wildcard"
           },
           {
