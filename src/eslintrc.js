@@ -1793,15 +1793,7 @@ module.exports = {
         "vue/no-undef-properties": "warn",
         "vue/no-unregistered-components": [
           "warn",
-          {
-            ignorePatterns: [
-              /^router-link$/u.source,
-              /^router-view$/u.source,
-              /^p-/u.source,
-              /^q-/u.source,
-              /^s-/u.source
-            ]
-          }
+          { ignorePatterns: [/^q-/u.source] }
         ],
         "vue/no-unsupported-features": "warn",
         "vue/no-unused-components": "warn",
