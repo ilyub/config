@@ -855,7 +855,9 @@ module.exports = {
                 .source,
               /\bcomputed\(/u.source,
               /\bcreateValidationObject\(/u.source,
+              /\bfn\s*.run\(\s*\(\):/u.source,
               /\bpropOptions\([^()]+(?<!U)\)/u.source,
+              /\bref\(\s*undefined\s*\)/u.source,
               `\bReadonly<\\s*(?:${readonlyIgnoreTypes.join("|")})\\s*[<>]`
             ]
           },
