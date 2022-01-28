@@ -407,18 +407,18 @@ module.exports = {
         rules: [
           {
             emptyLine: "always",
-            next: ":matches(BlockStatement, Program, TSModuleBlock) > :matches(:statement, TSExportAssignment)",
-            prev: ":matches(BlockStatement, Program, TSModuleBlock) > :matches(:statement, TSExportAssignment)"
+            next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSExportAssignment, TSDeclareFunction)",
+            prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSExportAssignment, TSDeclareFunction)"
           },
           {
             emptyLine: "any",
-            next: ":matches(BlockStatement, Program, TSModuleBlock) > ExpressionStatement",
-            prev: ":matches(BlockStatement, Program, TSModuleBlock) > ExpressionStatement"
+            next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement",
+            prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement"
           },
           {
             emptyLine: "any",
-            next: ":matches(BlockStatement, Program, TSModuleBlock) > ImportDeclaration",
-            prev: ":matches(BlockStatement, Program, TSModuleBlock) > ImportDeclaration"
+            next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ImportDeclaration",
+            prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ImportDeclaration"
           }
         ]
       }
@@ -435,7 +435,7 @@ module.exports = {
             averageLinesGte: 3,
             everyLinesGte: 2,
             selector:
-              ":matches(BlockStatement, Program, TSModuleBlock) > ExpressionStatement",
+              ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement",
             someHasDocComment: true,
             someLinesGte: 5
           }
