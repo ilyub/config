@@ -11,6 +11,7 @@ $build = is_array($config['scripts']) && array_key_exists('build', $config['scri
 $buildEs = is_array($config['scripts']) && array_key_exists('build-es', $config['scripts']);
 $buildDoc = is_array($config['scripts']) && array_key_exists('build-doc', $config['scripts']);
 $tsc = is_array($config['scripts']) && array_key_exists('tsc', $config['scripts']);
+$vueTsc = is_array($config['scripts']) && array_key_exists('vue-tsc', $config['scripts']);
 $lint = is_array($config['scripts']) && array_key_exists('lint-no-fix', $config['scripts']);
 $stylelint = is_array($config['scripts']) && array_key_exists('stylelint-no-fix', $config['scripts']);
 $stylelintHtml = is_array($config['scripts']) && array_key_exists('stylelint-html-no-fix', $config['scripts']);
@@ -66,6 +67,10 @@ if (in_array($version, $tags)) {
 
   if ($tsc) {
     execute('npm run tsc', 'Linting with typescript');
+  }
+
+  if ($vueTsc) {
+    execute('npm run vue-tsc', 'Linting with Volar');
   }
 
   if ($lint) {
