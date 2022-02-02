@@ -1671,7 +1671,13 @@ module.exports = {
         "vue/jsx-uses-vars": "warn",
         "vue/key-spacing": "warn",
         "vue/keyword-spacing": "warn",
-        "vue/match-component-file-name": "warn",
+        "vue/match-component-file-name": [
+          "warn",
+          {
+            extensions: ["vue"],
+            shouldMatchCase: false
+          }
+        ],
         "vue/max-attributes-per-line": "off",
         "vue/max-len": "off",
         "vue/multi-word-component-names": "warn",
