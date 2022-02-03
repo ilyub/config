@@ -1805,7 +1805,14 @@ module.exports = {
         ],
         "vue/no-unsupported-features": "warn",
         "vue/no-unused-components": "warn",
-        "vue/no-unused-properties": "warn",
+        "vue/no-unused-properties": [
+          "warn",
+          {
+            deepData: true,
+            groups: ["computed", "data", "methods", "props", "setup"],
+            ignorePublicMembers: false
+          }
+        ],
         "vue/no-unused-refs": "warn",
         "vue/no-unused-vars": [
           "warn",
