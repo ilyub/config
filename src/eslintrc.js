@@ -928,6 +928,46 @@ module.exports = {
             replacement: "catch (e)"
           },
           {
+            patterns: [/<q-btn[\s>]/u.source],
+            subOptionsId: "BaseButton"
+          },
+          {
+            patterns: [/<q-card[\s>]/u.source],
+            subOptionsId: "Card"
+          },
+          {
+            patterns: [/<q-card-actions[\s>]/u.source],
+            subOptionsId: "CardActions"
+          },
+          {
+            patterns: [/<q-card-section[\s>]/u.source],
+            subOptionsId: "CardSection"
+          },
+          {
+            patterns: [/<q-knob[\s>]/u.source],
+            subOptionsId: "Knob"
+          },
+          {
+            patterns: [/<q-item[\s>]/u.source],
+            subOptionsId: "MenuItem"
+          },
+          {
+            patterns: [/<q-menu[\s>]/u.source],
+            subOptionsId: "Menu"
+          },
+          {
+            patterns: [/<q-option-group[\s>]/u.source],
+            subOptionsId: "OptionGroup"
+          },
+          {
+            patterns: [/<q-toggle[\s>]/u.source],
+            subOptionsId: "Toggle"
+          },
+          {
+            patterns: [/<q-tooltip[\s>]/u.source],
+            subOptionsId: "Tooltip"
+          },
+          {
             patterns: [
               /\[\s*\.\.\.\w+\s*\]/u.source,
               /\[\s*\.\.\.\w+\s*\.\w+\s*\]/u.source,
@@ -965,6 +1005,8 @@ module.exports = {
               /\bReadonly<\s*Record\b/u.source,
               /\bReadonly<\s*Set\b/u.source,
               /\bnull\s*\|\s*undefined\b/u.source,
+              /\breadonly\s+(?:NumStr|boolean|number|objects|strings|unknowns)\[\]/u
+                .source,
               /\bundefined\s*\|\s*null\b/u.source,
               /\b(?:NumStr|boolean|number|object|string)\s*\|\s*empty\b/u
                 .source,
