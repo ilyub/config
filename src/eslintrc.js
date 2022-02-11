@@ -751,6 +751,10 @@ module.exports = {
         filesToSkip: ["*.js"],
         rules: [
           {
+            contexts: ["comment"],
+            patterns: [/\/\/ temp/u.source]
+          },
+          {
             patterns: [
               /(?<!function\s+)\bDelayedConfigure\(/u.source,
               /(?<!function\s+)\bDelayedGetConfiguration\(/u.source,
