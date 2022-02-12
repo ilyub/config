@@ -954,7 +954,7 @@ module.exports = {
           },
           {
             patterns: [/<q-item[\s>]/u.source],
-            subOptionsId: "MenuItem"
+            subOptionsId: "ListItem"
           },
           {
             patterns: [/<q-menu[\s>]/u.source],
