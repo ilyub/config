@@ -45,9 +45,9 @@ const lodash = options.es ? "lodash-es" : "lodash";
 const lodashDisallow = options.es ? "lodash" : "lodash-es";
 
 const quasarFrameworkPrefix =
-  packageName === "@skylib/quasar-framework"
+  packageName === "@skylib/quasar-extension"
     ? "@"
-    : `@skylib/quasar-framework/src`;
+    : `@skylib/quasar-extension/src`;
 
 const readonlyIgnoreIdentifiers = [
   /^result$/u.source,
@@ -733,13 +733,13 @@ module.exports = {
           {
             altLocalNames: ["quasarFrameworkTestUtils"],
             autoImportSource: `${quasarFrameworkPrefix}/testUtils`,
-            sourcePattern: "@skylib/quasar-framework/*/testUtils",
+            sourcePattern: "@skylib/quasar-extension/*/testUtils",
             type: "wildcard"
           },
           {
             autoImportSource: `${quasarFrameworkPrefix}/facade-implementations/reactiveStorage/vueStorage`,
             sourcePattern:
-              "@skylib/quasar-framework/*/facade-implementations/reactiveStorage/vueStorage",
+              "@skylib/quasar-extension/*/facade-implementations/reactiveStorage/vueStorage",
             type: "wildcard"
           }
         ]

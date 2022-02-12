@@ -45,6 +45,6 @@ module.exports = {
     [/\.(?:html|js|ts)$/u.source]: "ts-jest"
   },
   transformIgnorePatterns: [
-    "node_modules/(?!lodash-es|quasar|quasar/lang|@skylib/quasar-framework)"
+    "node_modules/(?!@skylib/quasar-extension|lodash-es|quasar|quasar/lang)"
   ]
 };
