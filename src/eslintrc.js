@@ -1075,6 +1075,8 @@ module.exports = {
       {
         ignoreClasses: true,
         ignoreIdentifiers: readonlyIgnoreIdentifiers,
+        ignoreInterfaces: true,
+        ignoreNumberSignature: true,
         ignoreTypes: readonlyIgnoreTypes
       }
     ],
@@ -1089,6 +1091,8 @@ module.exports = {
         filesToSkip: ["*.js", "./tests/**"],
         ignoreClasses: true,
         ignoreIdentifiers: readonlyIgnoreIdentifiers,
+        ignoreInferredTypes: true,
+        ignoreInterfaces: true,
         ignoreTypes: readonlyIgnoreTypes,
         includeSelectors: [
           ":matches(AssignmentExpression, VariableDeclarator) > ArrowFunctionExpression",
@@ -1996,6 +2000,8 @@ module.exports = {
     {
       files: locations.tests,
       rules: {
+        "@skylib/no-mutable-signature": "off",
+        "@skylib/prefer-readonly": "off",
         "jsdoc/require-jsdoc": "off",
         "no-await-in-loop": "off",
         "unicorn/no-null": "off"
