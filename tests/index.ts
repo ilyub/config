@@ -1,3 +1,6 @@
-export {};
+import { sample } from "@/api/sample";
 
-it("Sample test", () => {});
+test("sample test", () => {
+  expect.assertions(1);
+  expect(sample).toBeUndefined();
+});
