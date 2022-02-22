@@ -104,19 +104,19 @@ module.exports = {
     },
     {
       extends: [
-        "./api/eslint/core.ts-extension",
-        "./api/eslint/typescript-eslint"
+        "./api/eslint/typescript-eslint",
+        "./api/eslint/core.ts-extension"
       ],
       files: ["*.ts"]
     },
     {
       extends: [
-        "./api/eslint/core.ts-extension",
-        "./api/eslint/import.vue-extension",
-        "./api/eslint/skylib.vue-extension",
         "./api/eslint/typescript-eslint",
+        "./api/eslint/core.ts-extension",
         "./api/eslint/vue",
-        "./api/eslint/vue-scoped-css"
+        "./api/eslint/vue-scoped-css",
+        "./api/eslint/import.vue-extension",
+        "./api/eslint/skylib.vue-extension"
       ],
       files: ["*.vue"],
       overrides: [
@@ -150,14 +150,14 @@ module.exports = {
     },
     {
       extends: [
-        "./api/eslint/core.tests",
         "./api/eslint/jest",
+        "./api/eslint/core.tests",
         "./api/eslint/unicorn.tests"
       ],
       files: locations.tests
     },
     {
-      extends: ["./api/eslint/prettier"],
+      extends: ["./api/eslint/prettier", "./api/eslint/core.prettier"],
       files: ["**"]
     }
   ]

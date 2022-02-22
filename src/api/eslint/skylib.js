@@ -405,13 +405,13 @@ module.exports = {
       "warn",
       {
         contexts: ["code"],
-        filesToSkip: ["*.js"],
         rules: [
           {
             contexts: ["comment"],
             patterns: [/\/\/ temp/u.source]
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /(?<!function\s+)\bDelayedConfigure\(/u.source,
               /(?<!function\s+)\bDelayedGetConfiguration\(/u.source,
@@ -508,6 +508,7 @@ module.exports = {
             ]
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /\.fromPairs\(/u.source,
               /\.not\s*\.toThrow\((?!\))/u.source,
@@ -523,6 +524,7 @@ module.exports = {
             ]
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /\.classes\(\)\s*\.includes\(\s*("[^"]*")\s*\)\s*\)\s*\.toBeFalse\(\);/u
                 .source
@@ -530,6 +532,7 @@ module.exports = {
             replacement: ").not.toHaveClass($1);"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /\.classes\(\)\s*\.includes\(\s*("[^"]*")\s*\)\s*\)\s*\.toBeTrue\(\);/u
                 .source
@@ -537,98 +540,111 @@ module.exports = {
             replacement: ").toHaveClass($1);"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/\.exists\(\)\s*\)\s*\.toBeFalse\(\);/u.source],
             replacement: ").not.toExist();"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/\.exists\(\)\s*\)\s*\.toBeTrue\(\);/u.source],
             replacement: ").toExist();"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
-              /\.html\(\)\s*\)\s*.toStrictEqual\(\s*(?=["'`])/u.source
+              /\.html\(\)\s*\)\s*.(?:toBe|toStrictEqual)\(\s*(?=["'`])/u.source
             ],
             replacement: ").htmlToEqual("
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/\.isVisible\(\)\s*\)\s*\.toBeFalse\(\);/u.source],
             replacement: ").not.toBeVisible();"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/\.isVisible\(\)\s*\)\s*\.toBeTrue\(\);/u.source],
             replacement: ").toBeVisible();"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
-              /\.text\(\)\s*\)\s*.toStrictEqual\(\s*(?=["'`])/u.source
+              /\.text\(\)\s*\)\s*.(?:toBe|toStrictEqual)\(\s*(?=["'`])/u.source
             ],
             replacement: ").textToEqual("
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/\.toBeCalledTimes\(\s*0\s*\);/u.source],
             replacement: ".not.toBeCalled();"
           },
           {
-            patterns: [/\.toStrictEqual\(\s*false\s*\);/u.source],
+            filesToSkip: ["*.js"],
+            patterns: [/\.(?:toBe|toStrictEqual)\(\s*false\s*\);/u.source],
             replacement: ".toBeFalse();"
           },
           {
-            patterns: [/\.toStrictEqual\(\s*null\s*\);/u.source],
-            replacement: ".toBeNull();"
-          },
-          {
-            patterns: [/\.toStrictEqual\(\s*true\s*\);/u.source],
+            filesToSkip: ["*.js"],
+            patterns: [/\.(?:toBe|toStrictEqual)\(\s*true\s*\);/u.source],
             replacement: ".toBeTrue();"
           },
           {
-            patterns: [/\.toStrictEqual\(\s*undefined\s*\);/u.source],
-            replacement: ".toBeUndefined();"
-          },
-          {
+            filesToSkip: ["*.js"],
             patterns: [/catch\s*\(e:\s*unknown\)/u.source],
             replacement: "catch (e)"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-btn[\s>]/u.source],
             subOptionsId: "BaseButton"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-card[\s>]/u.source],
             subOptionsId: "Card"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-card-actions[\s>]/u.source],
             subOptionsId: "CardActions"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-card-section[\s>]/u.source],
             subOptionsId: "CardSection"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-knob[\s>]/u.source],
             subOptionsId: "Knob"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-item[\s>]/u.source],
             subOptionsId: "ListItem"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-menu[\s>]/u.source],
             subOptionsId: "Menu"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-option-group[\s>]/u.source],
             subOptionsId: "OptionGroup"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-toggle[\s>]/u.source],
             subOptionsId: "Toggle"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [/<q-tooltip[\s>]/u.source],
             subOptionsId: "Tooltip"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /\[\s*\.\.\.\w+\s*\]/u.source,
               /\[\s*\.\.\.\w+\s*\.\w+\s*\]/u.source,
@@ -637,6 +653,7 @@ module.exports = {
             subOptionsId: "array"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /[=]== null/u.source,
               /[=]== undefined/u.source,
@@ -646,6 +663,7 @@ module.exports = {
             subOptionsId: "guards"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /\{\s*\.\.\.\w+\s*\}/u.source,
               /\{\s*\.\.\.\w+\s*\.\w+\s*\}/u.source,
@@ -656,6 +674,7 @@ module.exports = {
             subOptionsId: "object"
           },
           {
+            filesToSkip: ["*.js"],
             patterns: [
               /\bPartial<Record\b/u.source,
               /\bReadonly<\s*Array\b/u.source,
