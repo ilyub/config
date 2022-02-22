@@ -1,4 +1,4 @@
-import { sample } from "@/api/sample";
+import { sample } from "@/api/tsconfig/sample";
 
 test("sample test", () => {
   expect.assertions(1);
