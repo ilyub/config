@@ -19,6 +19,7 @@ module.exports = {
         ]
       }
     ],
+    // eslint-disable-next-line @skylib/disallow-by-regexp
     // temp
     "eslint-comments/require-description": "off"
   }

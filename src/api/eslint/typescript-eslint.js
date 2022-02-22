@@ -79,6 +79,7 @@ module.exports = {
       }
     ],
     "@typescript-eslint/no-type-alias": "off",
+    // eslint-disable-next-line @skylib/disallow-by-regexp
     // temp
     "@typescript-eslint/no-unnecessary-type-arguments": "off",
     "@typescript-eslint/no-unused-vars": [
