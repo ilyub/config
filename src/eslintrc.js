@@ -1,29 +1,51 @@
-const locations = (() => {
+const { locations, quasarGlobalComponents } = (() => {
   const fs = require("fs");
 
+  const defaultOptions = {
+    extraChoreLocations: [],
+    extraDefaultExport: [],
+    extraNodeLocations: [],
+    extraTestsLocations: [],
+    quasar: false,
+    quasarGlobalComponents: []
+  };
+
   const options = fs.existsSync("./.eslintrc.options.js")
-    ? require(fs.realpathSync("./.eslintrc.options.js"))
-    : {};
+    ? {
+        ...defaultOptions,
+        ...require(fs.realpathSync("./.eslintrc.options.js"))
+      }
+    : defaultOptions;
 
-  const extraChoreLocations = options.extraChoreLocations ?? [];
+  if (options.quasar)
+    options.extraDefaultExport.push("**/boot/*", "**/router/index.ts");
 
-  const extraNodeLocations = options.extraNodeLocations ?? [];
+  const defaultExport = ["svg.d.ts", "vue.d.ts", ...options.extraDefaultExport];
 
-  const tests = ["./tests/**"];
+  const tests = ["./tests/**", ...options.extraTestsLocations];
 
-  const chore = ["./*", "./__mocks__/**", ...tests, ...extraChoreLocations];
+  const chore = [
+    "./*",
+    "./__mocks__/**",
+    ...tests,
+    ...options.extraChoreLocations
+  ];
 
   const node = [
     "./src/**/__mocks__/**",
     "./src/testUtils/**",
     ...chore,
-    ...extraNodeLocations
+    ...options.extraNodeLocations
   ];
 
   return {
-    chore,
-    node,
-    tests
+    locations: {
+      chore,
+      defaultExport,
+      node,
+      tests
+    },
+    quasarGlobalComponents: options.quasarGlobalComponents
   };
 })();
 
@@ -102,11 +124,21 @@ module.exports = {
           extends: ["./api/eslint/vue.node"],
           files: locations.node
         }
-      ]
+      ],
+      rules: {
+        "vue/no-unregistered-components": [
+          "warn",
+          { ignorePatterns: quasarGlobalComponents }
+        ]
+      }
     },
     {
       extends: ["./api/eslint/import.chore"],
       files: locations.chore
+    },
+    {
+      extends: ["./api/eslint/import.default-export"],
+      files: locations.defaultExport
     },
     {
       extends: [
@@ -117,7 +149,11 @@ module.exports = {
       files: locations.node
     },
     {
-      extends: ["./api/eslint/jest"],
+      extends: [
+        "./api/eslint/core.tests",
+        "./api/eslint/jest",
+        "./api/eslint/unicorn.tests"
+      ],
       files: locations.tests
     },
     {

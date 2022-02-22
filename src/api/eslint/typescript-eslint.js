@@ -95,6 +95,7 @@ module.exports = {
       "warn",
       { allowNumber: true }
     ],
+    "@typescript-eslint/switch-exhaustiveness-check": "off",
     "@typescript-eslint/unified-signatures": "off"
   }
 };

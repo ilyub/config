@@ -51,6 +51,7 @@ module.exports = {
     "one-var": ["warn", "never"],
     "prefer-destructuring": "off",
     "prefer-named-capture-group": "off",
+    "prefer-object-has-own": "off",
     "sort-imports": "off",
     "sort-keys": "off",
     "spaced-comment": ["warn", "always", { markers: ["/ <reference"] }]
