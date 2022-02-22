@@ -2,6 +2,7 @@ module.exports = {
   extends: ["plugin:vue/vue3-recommended"],
   plugins: ["vue"],
   rules: {
+    "vue-scoped-css/enforce-style-type": ["warn", { allows: ["module"] }],
     "vue/attributes-order": [
       "warn",
       {
