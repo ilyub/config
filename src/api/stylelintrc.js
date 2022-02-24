@@ -189,6 +189,7 @@ module.exports = {
       "disabled",
       "first-child",
       "focus",
+      "global",
       "hover",
       "not"
     ],
@@ -196,7 +197,7 @@ module.exports = {
     "selector-pseudo-class-disallowed-list": [],
     "selector-pseudo-class-no-unknown": [
       true,
-      { ignorePseudoClasses: ["deep"] }
+      { ignorePseudoClasses: ["deep", "global"] }
     ],
     "selector-pseudo-class-parentheses-space-inside": "never",
     "selector-pseudo-element-allowed-list": ["after", "before", "v-deep"],
