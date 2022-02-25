@@ -51,6 +51,7 @@ const { locations, quasarGlobalComponents } = (() => {
 
 module.exports = {
   extends: [
+    "./config",
     "./core",
     "./es",
     "./eslint-comments",
@@ -75,17 +76,22 @@ module.exports = {
   ],
   overrides: [
     {
-      extends: ["./import.js-extension"],
+      extends: ["./escompat.js-extension", "./import.js-extension"],
       files: ["*.js"]
     },
     {
-      extends: ["./typescript-eslint", "./core.ts-extension"],
+      extends: [
+        "./typescript-eslint",
+        "./core.ts-extension",
+        "./escompat.ts-extension"
+      ],
       files: ["*.ts"]
     },
     {
       extends: [
         "./typescript-eslint",
         "./core.ts-extension",
+        "./escompat.ts-extension",
         "./vue",
         "./vue-scoped-css",
         "./import.vue-extension",
