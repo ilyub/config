@@ -1,6 +1,7 @@
 module.exports = {
-  extends: ["plugin:jest/all"],
+  plugins: ["jest"],
   rules: {
+    ...require("./getAll")("eslint-plugin-jest"),
     "jest/no-hooks": "off",
     "jest/prefer-expect-assertions": [
       "warn",

@@ -1,6 +1,24 @@
 module.exports = {
+  env: {
+    browser: true,
+    commonjs: true,
+    es2022: true,
+    jest: true,
+    node: true
+  },
   extends: ["plugin:@typescript-eslint/all"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 2017,
+    project: "./tsconfig.json",
+    sourceType: "module"
+  },
+  plugins: ["@typescript-eslint"],
   rules: {
+    ...require("./getAll")("@typescript-eslint/eslint-plugin"),
     "@typescript-eslint/array-type": ["warn", { default: "array-simple" }],
     "@typescript-eslint/ban-types": [
       "warn",
@@ -56,17 +74,13 @@ module.exports = {
       }
     ],
     "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-implicit-any-catch": "off",
     "@typescript-eslint/no-invalid-void-type": [
       "warn",
       { allowAsThisParameter: true }
     ],
     "@typescript-eslint/no-magic-numbers": "off",
-    "@typescript-eslint/no-namespace": [
-      "warn",
-      {
-        allowDeclarations: true
-      }
-    ],
+    "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
     "@typescript-eslint/no-shadow": [
       "warn",
       {

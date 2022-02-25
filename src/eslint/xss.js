@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ["xss"],
   rules: {
-    "xss/no-location-href-assign": "warn",
+    ...require("./getAll")("eslint-plugin-xss"),
     "xss/no-mixed-html": "off"
   }
 };

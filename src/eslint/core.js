@@ -11,7 +11,6 @@ module.exports = {
     "capitalized-comments": "off",
     "class-methods-use-this": "off",
     "complexity": ["warn", 25],
-    "curly": ["error", "multi-or-nest"],
     "func-names": ["warn", "never"],
     "func-style": ["warn", "declaration", { allowArrowFunctions: true }],
     "id-length": "off",
@@ -26,8 +25,6 @@ module.exports = {
     "no-inline-comments": ["warn", { ignorePattern: "NOSONAR" }],
     "no-lone-blocks": "off",
     "no-magic-numbers": "off",
-    // eslint-disable-next-line @skylib/disallow-by-regexp
-    // temp
     "no-param-reassign": "off",
     "no-plusplus": "off",
     "no-shadow": [

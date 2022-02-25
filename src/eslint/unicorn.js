@@ -1,6 +1,7 @@
 module.exports = {
-  extends: ["plugin:unicorn/all"],
+  plugins: ["unicorn"],
   rules: {
+    ...require("./getAll")("eslint-plugin-unicorn"),
     "unicorn/catch-error-name": ["warn", { name: "e" }],
     "unicorn/consistent-function-scoping": "off",
     "unicorn/error-message": "off",
@@ -18,7 +19,6 @@ module.exports = {
     "unicorn/prefer-node-protocol": "off",
     "unicorn/prefer-object-has-own": "off",
     "unicorn/prefer-string-replace-all": "off",
-    "unicorn/prevent-abbreviations": "off",
-    "unicorn/throw-new-error": "warn"
+    "unicorn/prevent-abbreviations": "off"
   }
 };

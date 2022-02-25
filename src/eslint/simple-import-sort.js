@@ -1,6 +1,7 @@
 module.exports = {
   plugins: ["simple-import-sort"],
   rules: {
+    ...require("./getAll")("eslint-plugin-simple-import-sort"),
     "simple-import-sort/exports": "off",
     "simple-import-sort/imports": [
       "warn",

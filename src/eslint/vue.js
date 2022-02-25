@@ -1,8 +1,25 @@
 module.exports = {
-  extends: ["plugin:vue/vue3-recommended"],
+  env: {
+    browser: true,
+    commonjs: true,
+    es2022: true,
+    jest: true,
+    node: true
+  },
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 2017,
+    extraFileExtensions: [".vue"],
+    parser: "@typescript-eslint/parser",
+    project: "./tsconfig.json",
+    sourceType: "module"
+  },
   plugins: ["vue"],
   rules: {
-    "vue-scoped-css/enforce-style-type": ["warn", { allows: ["module"] }],
+    ...require("./getAll")("eslint-plugin-vue"),
     "vue/attributes-order": [
       "warn",
       {
@@ -23,12 +40,22 @@ module.exports = {
         ]
       }
     ],
+    "vue/block-lang": [
+      "error",
+      {
+        script: {
+          lang: "ts"
+        }
+      }
+    ],
     "vue/component-api-style": ["warn", ["composition"]],
     "vue/component-definition-name-casing": ["warn", "kebab-case"],
+    "vue/component-options-name-casing": ["warn", "kebab-case"],
     // eslint-disable-next-line @skylib/disallow-by-regexp
     // temp
     "vue/match-component-file-name": "off",
     "vue/name-property-casing": ["warn", "kebab-case"],
+    "vue/new-line-between-multi-line-property": "off",
     "vue/no-bare-strings-in-template": [
       "warn",
       {
@@ -70,6 +97,7 @@ module.exports = {
       }
     ],
     "vue/no-multiple-template-root": "off",
+    "vue/no-unregistered-components": "off",
     "vue/no-unused-properties": [
       "warn",
       {
@@ -79,6 +107,8 @@ module.exports = {
       }
     ],
     "vue/no-unused-vars": ["warn", { ignorePattern: /^(?:_|omit)/u.source }],
+    "vue/no-v-model-argument": "off",
+    "vue/require-expose": "off",
     "vue/return-in-computed-property": "off"
   }
 };

@@ -1,6 +1,7 @@
 module.exports = {
-  extends: ["plugin:sonarjs/recommended"],
+  plugins: ["sonarjs"],
   rules: {
+    ...require("./getAll")("eslint-plugin-sonarjs"),
     "sonarjs/cognitive-complexity": ["warn", 50],
     "sonarjs/no-duplicate-string": "off",
     "sonarjs/no-identical-functions": ["warn", 10],

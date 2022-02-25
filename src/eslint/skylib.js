@@ -53,7 +53,7 @@ const skylibDisallow = options.es ? "@skylib/*/dist/**" : "@skylib/*/es/**";
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
   rules: {
-    "@skylib/class-member-typedef": "warn",
+    ...require("./getAll")("@skylib/eslint-plugin"),
     "@skylib/consistent-empty-lines": [
       "warn",
       {
@@ -742,9 +742,6 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/empty-lines-around-comment": "warn",
-    "@skylib/exhaustive-switch": "warn",
-    "@skylib/no-inferrable-types": "warn",
     "@skylib/no-mutable-signature": [
       "warn",
       {
@@ -755,10 +752,7 @@ module.exports = {
         ignoreTypes: readonlyIgnoreTypes
       }
     ],
-    "@skylib/no-unnecessary-readonly": "warn",
-    "@skylib/no-unnecessary-writable": "warn",
     "@skylib/no-unsafe-object-assignment": ["warn", { filesToSkip: ["*.js"] }],
-    "@skylib/no-unused-import": "warn",
     "@skylib/prefer-readonly": [
       "warn",
       {
@@ -820,9 +814,6 @@ module.exports = {
           "private-dynamic-method"
         ]
       }
-    ],
-    "@skylib/sort-keys": "warn",
-    "@skylib/switch-case-empty-lines": "warn",
-    "@skylib/template-literal-format": "warn"
+    ]
   }
 };
