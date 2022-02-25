@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["plugin:escompat/recommended", "./config"]
+  extends: ["plugin:escompat/recommended"]
 };

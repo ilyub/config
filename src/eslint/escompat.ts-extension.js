@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["plugin:escompat/typescript", "./config"]
+  extends: ["plugin:escompat/typescript"]
 };

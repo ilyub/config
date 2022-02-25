@@ -1,5 +1,4 @@
 module.exports = {
-  extends: ["./config.vue"],
   plugins: ["vue"],
   rules: {
     ...require("./getAll")("eslint-plugin-vue"),

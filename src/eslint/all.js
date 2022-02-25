@@ -4,7 +4,7 @@ const { locations, quasarGlobalComponents } = (() => {
   const defaultOptions = {
     extraChoreLocations: [],
     extraDefaultExport: [],
-    extraNoneProductionLocations: [],
+    extraDevUtilsLocations: [],
     extraTestsLocations: [],
     quasar: false,
     quasarGlobalComponents: []
@@ -31,18 +31,18 @@ const { locations, quasarGlobalComponents } = (() => {
     ...options.extraChoreLocations
   ];
 
-  const noneProduction = [
+  const devUtils = [
     "./src/**/__mocks__/**",
     "./src/testUtils/**",
     ...chore,
-    ...options.extraNoneProductionLocations
+    ...options.extraDevUtilsLocations
   ];
 
   return {
     locations: {
       chore,
       defaultExport,
-      noneProduction,
+      devUtils,
       tests
     },
     quasarGlobalComponents: options.quasarGlobalComponents
@@ -51,7 +51,6 @@ const { locations, quasarGlobalComponents } = (() => {
 
 module.exports = {
   extends: [
-    "./config",
     "./core",
     "./es",
     "./eslint-comments",
@@ -102,8 +101,8 @@ module.exports = {
       files: ["*.vue"],
       overrides: [
         {
-          extends: ["./vue.none-production"],
-          files: locations.noneProduction
+          extends: ["./vue.dev-utils"],
+          files: locations.devUtils
         }
       ],
       rules: {
@@ -122,12 +121,8 @@ module.exports = {
       files: locations.defaultExport
     },
     {
-      extends: [
-        "./es.none-production",
-        "./import.none-production",
-        "./security.none-production"
-      ],
-      files: locations.noneProduction
+      extends: ["./es.dev-utils", "./import.dev-utils"],
+      files: locations.devUtils
     },
     {
       extends: ["./jest", "./core.tests", "./unicorn.tests"],

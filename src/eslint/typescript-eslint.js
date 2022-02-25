@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["plugin:@typescript-eslint/all", "./config"],
+  extends: ["plugin:@typescript-eslint/all"],
   plugins: ["@typescript-eslint"],
   rules: {
     ...require("./getAll")("@typescript-eslint/eslint-plugin"),
