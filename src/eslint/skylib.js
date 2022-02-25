@@ -408,7 +408,7 @@ module.exports = {
         rules: [
           {
             contexts: ["comment"],
-            patterns: [/\/\/ temp/u.source]
+            patterns: [/\/\/ temp/u.source, /\/\/ under-construction/u.source]
           },
           {
             filesToSkip: ["*.js"],
