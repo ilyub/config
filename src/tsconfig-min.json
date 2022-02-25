@@ -19,5 +19,5 @@
     "strictBindCallApply": false,
     "strictPropertyInitialization": false
   },
-  "extends": "./api/tsconfig"
+  "extends": "./typescript/tsconfig"
 }

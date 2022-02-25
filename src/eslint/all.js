@@ -1,26 +1,31 @@
 const { locations, quasarGlobalComponents } = (() => {
   const fs = require("fs");
 
-  const defaultOptions = {
+  const rawOptions = fs.existsSync("./.eslintrc.options.js")
+    ? require(fs.realpathSync("./.eslintrc.options.js"))
+    : {};
+
+  const options = {
     extraChoreLocations: [],
-    extraDefaultExport: [],
+    extraDefaultExportLocations: [],
     extraDevUtilsLocations: [],
     extraTestsLocations: [],
     quasar: false,
-    quasarGlobalComponents: []
+    quasarGlobalComponents: [],
+    utility: false,
+    ...rawOptions
   };
 
-  const options = fs.existsSync("./.eslintrc.options.js")
-    ? {
-        ...defaultOptions,
-        ...require(fs.realpathSync("./.eslintrc.options.js"))
-      }
-    : defaultOptions;
-
   if (options.quasar)
-    options.extraDefaultExport.push("**/boot/*", "**/router/index.ts");
+    options.extraDefaultExportLocations.push("**/boot/*", "**/router/index.ts");
 
-  const defaultExport = ["svg.d.ts", "vue.d.ts", ...options.extraDefaultExport];
+  if (options.utility) options.extraDevUtilsLocations.push("**");
+
+  const defaultExport = [
+    "svg.d.ts",
+    "vue.d.ts",
+    ...options.extraDefaultExportLocations
+  ];
 
   const tests = ["./tests/**", ...options.extraTestsLocations];
 
@@ -85,14 +90,10 @@ module.exports = {
         "./escompat.ts-extension",
         "./tsdoc"
       ],
-      files: ["*.ts"]
+      files: ["*.ts", "*.vue"]
     },
     {
       extends: [
-        "./typescript-eslint",
-        "./core.ts-extension",
-        "./escompat.ts-extension",
-        "./tsdoc",
         "./vue",
         "./vue-scoped-css",
         "./import.vue-extension",

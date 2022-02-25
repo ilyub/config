@@ -1,6 +1,5 @@
-import { sample } from "@/api/tsconfig/sample";
+import { sample } from "@/typescript/sample";
 
 test("sample test", () => {
-  expect.assertions(1);
-  expect(sample).toBeUndefined();
+  expect(sample).toBe(1);
 });

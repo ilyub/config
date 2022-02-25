@@ -1,25 +1,5 @@
-const smacss = require("css-property-sort-order-smacss");
-
-const order = Object.entries(smacss).map(([groupName, section]) => {
-  const properties = [];
-
-  for (const item of section)
-    if (Array.isArray(item)) properties.push(...item);
-    else properties.push(item);
-
-  return { groupName, properties };
-});
-
 module.exports = {
-  defaultSeverity: "warning",
-  plugins: [
-    "stylelint-no-unsupported-browser-features",
-    "stylelint-order",
-    "stylelint-scss"
-  ],
   rules: {
-    "order/properties-order": order,
-    // @skylib/sort-keys break
     "alpha-value-notation": "number",
     "at-rule-allowed-list": ["import", "keyframes", "use"],
     "at-rule-disallowed-list": [],
@@ -222,85 +202,6 @@ module.exports = {
     "value-list-comma-space-after": "always",
     "value-list-comma-space-before": "never",
     "value-list-max-empty-lines": 0,
-    "value-no-vendor-prefix": true,
-    // @skylib/sort-keys break
-    "plugin/no-unsupported-browser-features": [
-      true,
-      {
-        ignore: [
-          "css-filters",
-          "css-sticky",
-          "flexbox",
-          "outline",
-          "user-select-none",
-          "will-change"
-        ]
-      }
-    ],
-    "scss/at-each-key-value-single-line": true,
-    "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
-    "scss/at-else-closing-brace-space-after": "never-intermediate",
-    "scss/at-else-empty-line-before": "never",
-    "scss/at-else-if-parentheses-space-before": "always",
-    "scss/at-extend-no-missing-placeholder": true,
-    "scss/at-function-named-arguments": undefined,
-    "scss/at-function-parentheses-space-before": "always",
-    "scss/at-function-pattern": "always",
-    "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
-    "scss/at-if-closing-brace-space-after": "always-intermediate",
-    "scss/at-if-no-null": true,
-    "scss/at-import-no-partial-leading-underscore": true,
-    "scss/at-import-partial-extension": undefined,
-    "scss/at-import-partial-extension-blacklist": undefined,
-    "scss/at-import-partial-extension-whitelist": undefined,
-    "scss/at-mixin-argumentless-call-parentheses": "always",
-    "scss/at-mixin-named-arguments": "always",
-    "scss/at-mixin-parentheses-space-before": "always",
-    "scss/at-mixin-pattern": "always",
-    "scss/at-rule-conditional-no-parentheses": true,
-    "scss/at-rule-no-unknown": true,
-    "scss/comment-no-empty": true,
-    "scss/comment-no-loud": undefined,
-    "scss/declaration-nested-properties": "never",
-    "scss/declaration-nested-properties-no-divided-groups": true,
-    "scss/dimension-no-non-numeric-values": true,
-    "scss/dollar-variable-colon-newline-after": "always-multi-line",
-    "scss/dollar-variable-colon-space-after": "always",
-    "scss/dollar-variable-colon-space-before": "always",
-    "scss/dollar-variable-default": true,
-    "scss/dollar-variable-empty-line-after": [
-      "always",
-      { except: ["before-dollar-variable", "last-nested"] }
-    ],
-    "scss/dollar-variable-empty-line-before": [
-      "always",
-      { except: ["after-dollar-variable", "first-nested"] }
-    ],
-    "scss/dollar-variable-first-in-block": [
-      true,
-      { ignore: ["comments", "imports"] }
-    ],
-    "scss/dollar-variable-no-missing-interpolation": true,
-    "scss/dollar-variable-pattern": undefined,
-    "scss/double-slash-comment-empty-line-before": "always",
-    "scss/double-slash-comment-inline": "always",
-    "scss/double-slash-comment-whitespace-inside": "always",
-    "scss/function-color-relative": true,
-    "scss/function-quote-no-quoted-strings-inside": true,
-    "scss/function-unquote-no-unquoted-strings-inside": true,
-    "scss/map-keys-quotes": "always",
-    "scss/media-feature-value-dollar-variable": "always",
-    "scss/no-dollar-variables": undefined,
-    "scss/no-duplicate-dollar-variables": true,
-    "scss/no-duplicate-mixins": true,
-    "scss/no-global-function-names": true,
-    "scss/operator-no-newline-after": true,
-    "scss/operator-no-newline-before": true,
-    "scss/operator-no-unspaced": true,
-    "scss/partial-no-import": true,
-    "scss/percent-placeholder-pattern": "always",
-    "scss/selector-nest-combinators": undefined,
-    "scss/selector-no-redundant-nesting-selector": true,
-    "scss/selector-no-union-class-name": true
+    "value-no-vendor-prefix": true
   }
 };

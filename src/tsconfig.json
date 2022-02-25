@@ -3,5 +3,5 @@
     "exactOptionalPropertyTypes": true,
     "useUnknownInCatchVariables": true
   },
-  "extends": "./api/tsconfig"
+  "extends": "./typescript/tsconfig"
 }

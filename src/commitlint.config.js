@@ -1,3 +1,1 @@
-const commitlint = require("./api/commitlint");
-
-module.exports = commitlint("./commitlint.scopes.js");
+module.exports = require("./commitlint/factory")("./commitlint.scopes.js");
