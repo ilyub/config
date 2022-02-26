@@ -88,6 +88,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/prefer-function-type": "off",
+    "@typescript-eslint/prefer-optional-chain": "off",
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/restrict-template-expressions": [
       "warn",
