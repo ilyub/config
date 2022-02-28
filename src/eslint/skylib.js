@@ -408,7 +408,11 @@ module.exports = {
         rules: [
           {
             contexts: ["comment"],
-            patterns: [/\/\/ temp/u.source, /\/\/ under-construction/u.source]
+            patterns: [
+              /\/\/ temp/u.source,
+              /\/\/ under-construction/u.source,
+              /\/\* webpackChunkName:(?!\s*"dynamic\/)/u.source
+            ]
           },
           {
             filesToSkip: ["*.js"],
