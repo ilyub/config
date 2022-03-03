@@ -747,7 +747,7 @@ module.exports = {
       }
     ],
     "@skylib/no-mutable-signature": [
-      "warn",
+      "off",
       {
         ignoreClasses: true,
         ignoreIdentifiers: readonlyIgnoreIdentifiers,
