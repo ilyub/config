@@ -619,6 +619,11 @@ module.exports = {
           },
           {
             filesToSkip: ["*.js"],
+            patterns: [/<q-input[\s>]/u.source],
+            subOptionsId: "Input"
+          },
+          {
+            filesToSkip: ["*.js"],
             patterns: [/<q-knob[\s>]/u.source],
             subOptionsId: "Knob"
           },
@@ -689,7 +694,7 @@ module.exports = {
               /\bReadonly<\s*Record\b/u.source,
               /\bReadonly<\s*Set\b/u.source,
               /\bnull\s*\|\s*undefined\b/u.source,
-              /\breadonly\s+(?:NumStr|boolean|number|objects|strings|unknowns)\[\]/u
+              /\breadonly\s+(?:NumStr|boolean|number|object|string|unknown)\[\]/u
                 .source,
               /\bundefined\s*\|\s*null\b/u.source,
               /\b(?:NumStr|boolean|number|object|string)\s*\|\s*empty\b/u
