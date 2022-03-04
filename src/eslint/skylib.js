@@ -184,7 +184,7 @@ module.exports = {
             type: "default"
           },
           {
-            localName: "Draggable",
+            localName: "VueDraggable",
             sourcePattern: "vuedraggable",
             type: "default"
           },
