@@ -192,7 +192,7 @@ module.exports = {
     "string-quotes": "double",
     "time-min-milliseconds": 0,
     "unicode-bom": "never",
-    "unit-allowed-list": ["%", "deg", "em", "ms", "px", "s"],
+    "unit-allowed-list": ["%", "deg", "em", "ms", "px", "rem", "s"],
     "unit-case": "lower",
     "unit-disallowed-list": [],
     "unit-no-unknown": true,
