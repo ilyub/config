@@ -751,6 +751,8 @@ module.exports = {
         ]
       }
     ],
+    // eslint-disable-next-line @skylib/disallow-by-regexp
+    // temp
     "@skylib/no-mutable-signature": [
       "off",
       {

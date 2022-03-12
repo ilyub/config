@@ -54,6 +54,20 @@ module.exports = {
       {
         // eslint-disable-next-line unicorn/no-null
         format: null,
+        modifiers: ["requiresQuotes"],
+        selector: [
+          "function",
+          "method",
+          "parameter",
+          "property",
+          "typeLike",
+          "typeProperty",
+          "variable"
+        ]
+      },
+      {
+        // eslint-disable-next-line unicorn/no-null
+        format: null,
         selector: ["objectLiteralMethod", "objectLiteralProperty"]
       }
     ],

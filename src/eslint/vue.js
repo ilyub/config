@@ -33,6 +33,7 @@ module.exports = {
     "vue/component-api-style": ["warn", ["composition"]],
     "vue/component-definition-name-casing": ["warn", "kebab-case"],
     "vue/component-options-name-casing": ["warn", "kebab-case"],
+    "vue/custom-event-name-casing": ["warn", "camelCase"],
     // eslint-disable-next-line @skylib/disallow-by-regexp
     // temp
     "vue/match-component-file-name": "off",
