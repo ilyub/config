@@ -408,11 +408,7 @@ module.exports = {
         rules: [
           {
             contexts: ["comment"],
-            patterns: [
-              /\/\/ temp/u.source,
-              /\/\/ under-construction/u.source,
-              /\/\* webpackChunkName:(?!\s*"dynamic\/)/u.source
-            ]
+            patterns: [/\/\* webpackChunkName:(?!\s*"dynamic\/)/u.source]
           },
           {
             filesToSkip: ["*.js"],
@@ -751,7 +747,7 @@ module.exports = {
         ]
       }
     ],
-    // eslint-disable-next-line @skylib/disallow-by-regexp
+    // eslint-disable-next-line no-warning-comments
     // temp
     "@skylib/no-mutable-signature": [
       "off",
