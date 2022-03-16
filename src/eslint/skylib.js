@@ -748,7 +748,7 @@ module.exports = {
       }
     ],
     // eslint-disable-next-line no-warning-comments
-    // temp
+    // fixme
     "@skylib/no-mutable-signature": [
       "off",
       {
@@ -761,7 +761,7 @@ module.exports = {
     ],
     "@skylib/no-unsafe-object-assignment": ["warn", { filesToSkip: ["*.js"] }],
     "@skylib/prefer-readonly": [
-      "warn",
+      "off",
       {
         excludeSelectors: ["ArrowFunctionExpression"],
         filesToSkip: ["*.js", "./tests/**"],
