@@ -91,7 +91,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-type-alias": "off",
     // eslint-disable-next-line no-warning-comments
-    // temp
+    // fixme
     "@typescript-eslint/no-unnecessary-type-arguments": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",

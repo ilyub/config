@@ -35,7 +35,7 @@ module.exports = {
     "vue/component-options-name-casing": ["warn", "kebab-case"],
     "vue/custom-event-name-casing": ["warn", "camelCase"],
     // eslint-disable-next-line no-warning-comments
-    // temp
+    // fixme
     "vue/match-component-file-name": "off",
     "vue/name-property-casing": ["warn", "kebab-case"],
     "vue/new-line-between-multi-line-property": "off",

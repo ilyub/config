@@ -15,7 +15,7 @@ module.exports = {
       }
     ],
     // eslint-disable-next-line no-warning-comments
-    // temp
+    // fixme
     "eslint-comments/require-description": "off"
   }
 };
