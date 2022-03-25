@@ -10,6 +10,7 @@ module.exports = {
         onlyFunctionsWithExpectInLoop: true
       }
     ],
+    "jest/prefer-lowercase-title": "off",
     "jest/require-hook": "off",
     "jest/require-top-level-describe": "off"
   }
