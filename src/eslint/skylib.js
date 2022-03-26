@@ -104,27 +104,15 @@ module.exports = {
             sourcePattern: "@mdi/js-dynamic",
             type: "wildcard"
           },
-          {
-            sourcePattern: "@sinonjs/fake-timers",
-            type: "wildcard"
-          },
+          { sourcePattern: "@sinonjs/fake-timers", type: "wildcard" },
           {
             altLocalNames: ["vueTestUtils"],
             sourcePattern: "@vue/test-utils",
             type: "wildcard"
           },
-          {
-            sourcePattern: "eslint",
-            type: "wildcard"
-          },
-          {
-            sourcePattern: "estree",
-            type: "wildcard"
-          },
-          {
-            sourcePattern: "fs",
-            type: "default"
-          },
+          { sourcePattern: "eslint", type: "wildcard" },
+          { sourcePattern: "estree", type: "wildcard" },
+          { sourcePattern: "fs", type: "default" },
           {
             localName: "matchers",
             sourcePattern: "jest-extended/all",
@@ -150,23 +138,14 @@ module.exports = {
             sourcePattern: "path",
             type: "default"
           },
-          {
-            sourcePattern: "ts-morph",
-            type: "wildcard"
-          },
-          {
-            sourcePattern: "tsutils",
-            type: "wildcard"
-          },
+          { sourcePattern: "ts-morph", type: "wildcard" },
+          { sourcePattern: "tsutils", type: "wildcard" },
           {
             localName: "ts",
             sourcePattern: "typescript",
             type: "wildcard"
           },
-          {
-            sourcePattern: "vscode",
-            type: "wildcard"
-          },
+          { sourcePattern: "vscode", type: "wildcard" },
           {
             localName: "Vue",
             sourcePattern: "vue",
@@ -708,21 +687,10 @@ module.exports = {
       {
         filesToSkip: ["*.js"],
         rules: [
-          {
-            ids: ["describe", "toThrowError"]
-          },
-          {
-            filesToSkip: ["./tests/**"],
-            ids: ["JQuery"]
-          },
-          {
-            ids: ["JSON"],
-            subOptionsId: "json"
-          },
-          {
-            ids: ["Reflect"],
-            subOptionsId: "reflect"
-          },
+          { ids: ["describe", "toThrowError"] },
+          { filesToSkip: ["./tests/**"], ids: ["JQuery"] },
+          { ids: ["JSON"], subOptionsId: "json" },
+          { ids: ["Reflect"], subOptionsId: "reflect" },
           {
             ids: ["clearInterval", "clearTimeout", "setInterval", "setTimeout"],
             subOptionsId: "timer"
@@ -734,16 +702,9 @@ module.exports = {
       "warn",
       {
         rules: [
-          {
-            disallow: ["../src/**"]
-          },
-          {
-            disallow: ["@/**"],
-            filesToSkip: ["./tests/**"]
-          },
-          {
-            disallow: [lodashDisallow, skylibDisallow]
-          }
+          { disallow: ["../src/**"] },
+          { disallow: ["@/**"], filesToSkip: ["./tests/**"] },
+          { disallow: [lodashDisallow, skylibDisallow] }
         ]
       }
     ],

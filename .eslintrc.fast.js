@@ -1,6 +1,4 @@
 module.exports = {
   extends: [".eslintrc"],
-  rules: {
-    "prettier/prettier": "off"
-  }
+  rules: { "prettier/prettier": "off" }
 };

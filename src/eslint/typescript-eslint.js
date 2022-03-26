@@ -18,20 +18,14 @@ module.exports = {
     ],
     "@typescript-eslint/consistent-type-imports": [
       "warn",
-      {
-        disallowTypeAnnotations: true,
-        prefer: "type-imports"
-      }
+      { disallowTypeAnnotations: true, prefer: "type-imports" }
     ],
     "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/method-signature-style": ["warn", "property"],
     "@typescript-eslint/naming-convention": [
       "warn",
-      {
-        format: ["camelCase"],
-        selector: ["default"]
-      },
+      { format: ["camelCase"], selector: ["default"] },
       {
         format: ["camelCase"],
         leadingUnderscore: "allow",

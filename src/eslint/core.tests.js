@@ -1,5 +1,1 @@
-module.exports = {
-  rules: {
-    "max-classes-per-file": "off"
-  }
-};
+module.exports = { rules: { "max-classes-per-file": "off" } };

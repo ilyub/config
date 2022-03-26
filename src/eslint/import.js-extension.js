@@ -1,5 +1,1 @@
-module.exports = {
-  rules: {
-    "import/no-commonjs": "off"
-  }
-};
+module.exports = { rules: { "import/no-commonjs": "off" } };

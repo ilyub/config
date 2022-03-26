@@ -100,12 +100,7 @@ module.exports = {
         "./skylib.vue-extension"
       ],
       files: ["*.vue"],
-      overrides: [
-        {
-          extends: ["./vue.dev-utils"],
-          files: locations.devUtils
-        }
-      ],
+      overrides: [{ extends: ["./vue.dev-utils"], files: locations.devUtils }],
       rules: {
         "vue/no-undef-components": [
           "warn",
@@ -113,14 +108,8 @@ module.exports = {
         ]
       }
     },
-    {
-      extends: ["./import.chore"],
-      files: locations.chore
-    },
-    {
-      extends: ["./import.default-export"],
-      files: locations.defaultExport
-    },
+    { extends: ["./import.chore"], files: locations.chore },
+    { extends: ["./import.default-export"], files: locations.defaultExport },
     {
       extends: ["./es.dev-utils", "./import.dev-utils"],
       files: locations.devUtils

@@ -9,9 +9,7 @@ module.exports = {
   extends: ["./eslint/all"],
   parser: "vue-eslint-parser",
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
+    ecmaFeatures: { jsx: true },
     ecmaVersion: 2017,
     extraFileExtensions: [".vue"],
     parser: "@typescript-eslint/parser",

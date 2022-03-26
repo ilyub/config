@@ -12,7 +12,5 @@ const order = Object.entries(smacss).map(([groupName, section]) => {
 
 module.exports = {
   plugins: ["stylelint-order"],
-  rules: {
-    "order/properties-order": order
-  }
+  rules: { "order/properties-order": order }
 };

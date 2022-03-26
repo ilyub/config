@@ -1,5 +1,1 @@
-module.exports = {
-  rules: {
-    "unicorn/no-null": "off"
-  }
-};
+module.exports = { rules: { "unicorn/no-null": "off" } };

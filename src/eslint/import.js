@@ -21,17 +21,11 @@ module.exports = {
     "import/no-namespace": "off",
     "import/no-unassigned-import": [
       "warn",
-      {
-        allow: ["**/*.css", "**/*.scss"]
-      }
+      { allow: ["**/*.css", "**/*.scss"] }
     ],
     "import/order": "off",
     "import/prefer-default-export": "off",
     "import/unambiguous": "off"
   },
-  settings: {
-    "import/resolver": {
-      typescript: { project: "tsconfig.json" }
-    }
-  }
+  settings: { "import/resolver": { typescript: { project: "tsconfig.json" } } }
 };

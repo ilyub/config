@@ -1,3 +1,1 @@
-module.exports = {
-  extends: ["plugin:escompat/recommended"]
-};
+module.exports = { extends: ["plugin:escompat/recommended"] };

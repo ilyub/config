@@ -13,14 +13,9 @@ module.exports = {
   coverageDirectory: ".",
   coverageReporters: ["lcov", "lcovonly"],
   globals: {
-    "ts-jest": {
-      isolatedModules: true,
-      tsconfig: "./tsconfig-min.json"
-    }
+    "ts-jest": { isolatedModules: true, tsconfig: "./tsconfig-min.json" }
   },
-  haste: {
-    throwOnModuleCollision: true
-  },
+  haste: { throwOnModuleCollision: true },
   maxWorkers: 1,
   moduleFileExtensions: ["vue", "js", "json", "jsx", "ts", "tsx"],
   moduleNameMapper: {

@@ -1,3 +1,1 @@
-module.exports = {
-  extends: ["./src/eslintrc"]
-};
+module.exports = { extends: ["./src/eslintrc"] };

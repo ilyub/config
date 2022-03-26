@@ -22,14 +22,7 @@ module.exports = {
         ]
       }
     ],
-    "vue/block-lang": [
-      "error",
-      {
-        script: {
-          lang: "ts"
-        }
-      }
-    ],
+    "vue/block-lang": ["error", { script: { lang: "ts" } }],
     "vue/component-api-style": ["warn", ["composition"]],
     "vue/component-definition-name-casing": ["warn", "kebab-case"],
     "vue/component-options-name-casing": ["warn", "kebab-case"],
