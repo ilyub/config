@@ -167,6 +167,7 @@ module.exports = {
     "selector-pseudo-class-allowed-list": [
       "deep",
       "disabled",
+      "empty",
       "first-child",
       "focus",
       "global",
