@@ -10,7 +10,7 @@ const slow = fs.existsSync("./jest.slow.js")
 
 module.exports = class extends Sequencer {
   /**
-   * Determines execution order for the tests.
+   * Determines tests execution order.
    *
    * @param tests - Tests.
    * @returns Comparison result.

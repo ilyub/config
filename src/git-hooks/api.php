@@ -4,8 +4,11 @@ set_error_handler('errorHandler');
 
 /**
  * Clears directory.
+ *
+ * @param mixed $exists
  */
-function clearDir(string $dir, array $ignore = [], $exists = false): void {
+function clearDir(string $dir, array $ignore = [], $exists = false): void
+{
   if ($exists || file_exists($dir)) {
     foreach (getDir($dir, $ignore) as $basename) {
       $filename = $dir.DIRECTORY_SEPARATOR.$basename;
@@ -22,7 +25,8 @@ function clearDir(string $dir, array $ignore = [], $exists = false): void {
 /**
  * Decodes JSON.
  */
-function decodeJson(string $json, string $source) {
+function decodeJson(string $json, string $source)
+{
   $result = json_decode($json, true);
 
   if ($result === null) {
@@ -35,7 +39,8 @@ function decodeJson(string $json, string $source) {
 /**
  * Echos and flushes string.
  */
-function echoFlush(string $str): void {
+function echoFlush(string $str): void
+{
   echo $str.PHP_EOL;
 
   if (ob_get_level() > 0) {
@@ -48,14 +53,16 @@ function echoFlush(string $str): void {
 /**
  * Handles error.
  */
-function errorHandler(int $errno, string $errstr): void {
+function errorHandler(int $errno, string $errstr): void
+{
   throw new Exception('Error '.$errno.': '.$errstr);
 }
 
 /**
  * Executes command.
  */
-function execute(string $command, string $description = null): array {
+function execute(string $command, string $description = null): array
+{
   if ($description !== null) {
     echoFlush($description);
   }
@@ -72,7 +79,8 @@ function execute(string $command, string $description = null): array {
 /**
  * Executes command.
  */
-function executeWithKey(string $command, string $description = null): void {
+function executeWithKey(string $command, string $description = null): void
+{
   if ($description !== null) {
     echoFlush($description);
   }
@@ -98,14 +106,16 @@ function executeWithKey(string $command, string $description = null): void {
 /**
  * Scans directory.
  */
-function getDir(string $dir, array $ignore = []): array {
+function getDir(string $dir, array $ignore = []): array
+{
   return array_diff(scandir($dir), ['.', '..', ...$ignore]);
 }
 
 /**
  * Searches for keys folder.
  */
-function getKeysPath(): string {
+function getKeysPath(): string
+{
   $dirBackup = null;
   $dir = realpath(__DIR__);
 
@@ -126,14 +136,16 @@ function getKeysPath(): string {
 /**
  * Splits string into lines.
  */
-function lines(string $str): array {
+function lines(string $str): array
+{
   return preg_split('`\\r\\n|\\n`isuxDX', $str);
 }
 
 /**
  * Concatenates paths.
  */
-function pathConcat(...$parts): string {
+function pathConcat(...$parts): string
+{
   return preg_replace(
     '`[/\\\\]+`isuxDX',
     DIRECTORY_SEPARATOR,

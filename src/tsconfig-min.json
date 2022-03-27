@@ -1,23 +1,14 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "allowUmdGlobalAccess": true,
-    "allowUnreachableCode": true,
-    "allowUnusedLabels": true,
-    "alwaysStrict": false,
-    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "noImplicitAny": false,
     "noImplicitOverride": false,
     "noImplicitReturns": false,
-    "noImplicitThis": false,
     "noPropertyAccessFromIndexSignature": false,
+    "noResolve": false,
     "noUncheckedIndexedAccess": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "strict": false,
-    "strictBindCallApply": false,
-    "strictPropertyInitialization": false
+    "strict": false
   },
   "extends": "./typescript/tsconfig"
 }

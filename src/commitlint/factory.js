@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 module.exports = function (scopesFile) {
   const types = [
     "build",
@@ -15,6 +17,8 @@ module.exports = function (scopesFile) {
   const scopes = (() => {
     const result = [
       "auto-eslint",
+      "auto-json",
+      "auto-linebreaks",
       "auto-php-cs",
       "auto-stylelint",
       "babel",
@@ -30,7 +34,6 @@ module.exports = function (scopesFile) {
       "git",
       "jest",
       "package",
-      "package-scripts",
       "perf",
       "php-cs",
       "readme",
@@ -45,8 +48,6 @@ module.exports = function (scopesFile) {
       "typedoc",
       "typescript"
     ];
-
-    const fs = require("fs");
 
     if (fs.existsSync(scopesFile))
       result.push(...require(fs.realpathSync(scopesFile)));
@@ -63,15 +64,7 @@ module.exports = function (scopesFile) {
       "initial commit",
       "next",
       "refactor",
-      "refactor(recommended-eslint)",
-      "refactor(recommended-stylelint)",
-      "refactor(recommended-sonar)",
       "style",
-      "style(auto-eslint)",
-      "style(auto-json)",
-      "style(auto-linebreaks)",
-      "style(auto-php-cs)",
-      "style(auto-stylelint)",
       "test(refactor)",
       "test(style)"
     ];

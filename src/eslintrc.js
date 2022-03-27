@@ -15,6 +15,5 @@ module.exports = {
     parser: "@typescript-eslint/parser",
     project: "./tsconfig.json",
     sourceType: "module"
-  },
-  plugins: ["boundaries", "only-warn"]
+  }
 };

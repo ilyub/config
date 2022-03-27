@@ -1,4 +1,9 @@
 module.exports = {
-  defaultSeverity: "warning",
-  extends: ["./core", "./no-unsupported-browser-features", "./order", "./scss"]
+  extends: [
+    "stylelint-config-standard-scss",
+    "./core",
+    "./no-unsupported-browser-features",
+    "./order",
+    "./scss"
+  ]
 };

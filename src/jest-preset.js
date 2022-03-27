@@ -1,11 +1,5 @@
 const fs = require("fs");
 
-const setupFiles = fs.existsSync("./jest.setup.ts") ? ["./jest.setup.ts"] : [];
-
-const setupFilesAfterEnv = fs.existsSync("./jest.setup-after-env.ts")
-  ? ["./jest.setup-after-env.ts"]
-  : [];
-
 module.exports = {
   cacheDirectory: "./cache/jest",
   collectCoverage: true,
@@ -17,7 +11,7 @@ module.exports = {
   },
   haste: { throwOnModuleCollision: true },
   maxWorkers: 1,
-  moduleFileExtensions: ["vue", "js", "json", "jsx", "ts", "tsx"],
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx", "vue"],
   moduleNameMapper: {
     [/^@\/(.*)/u.source]: "<rootDir>/src/$1",
     [/^@skylib\/([^/]+)\/es\/(.+)$/u.source]: "@skylib/$1/dist/$2",
@@ -28,14 +22,16 @@ module.exports = {
     "/(?:\\.git|\\.quasar|\\.scannerwork|\\.vscode|cache|dist|docs|es|lcov-report|node_modules)/"
   ],
   resolver: "@skylib/config/src/jest-resolver",
-  setupFiles,
-  setupFilesAfterEnv,
+  setupFiles: fs.existsSync("./jest.setup.ts") ? ["./jest.setup.ts"] : [],
+  setupFilesAfterEnv: fs.existsSync("./jest.setup-after-env.ts")
+    ? ["./jest.setup-after-env.ts"]
+    : [],
   testEnvironment: "@skylib/config/src/jest-env-node",
   testMatch: ["<rootDir>/tests/**/*.ts"],
   testSequencer: "@skylib/config/src/jest-sequencer",
   testTimeout: 10_000,
   transform: {
-    [/\.(?:css|jpg|less|png|sass|scss|styl|svg|ttf|woff|woff2)$/u.source]:
+    [/\.(?:css|gif|jpg|less|png|sass|scss|styl|svg|ttf|woff|woff2)$/u.source]:
       "jest-transform-stub",
     [/\.(?:html|js|ts)$/u.source]: "ts-jest"
   },

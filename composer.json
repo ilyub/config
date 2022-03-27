@@ -2,7 +2,7 @@
   "authors": [
     {
       "email": "admin.phpdev@gmail.com",
-      "name": "Ilya Lyubinskiy"
+      "name": "Ilia Liubinskii"
     }
   ],
   "description": "Config for commitlint, eslint, jest, php-cs-fixer, stylelint, typedoc, and typescript",

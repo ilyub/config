@@ -3,17 +3,19 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = function (request, options) {
-  const resolved = options.defaultResolver(request, options);
+  const result = options.defaultResolver(request, options);
 
-  if (options.basedir && !options.basedir.includes("__mocks__")) {
+  if (options.basedir) {
+    if (options.basedir.includes("__mocks__")) return result;
+
     const mock = path.join(
-      path.dirname(resolved),
+      path.dirname(result),
       "__mocks__",
-      path.basename(resolved)
+      path.basename(result)
     );
 
     if (fs.existsSync(mock)) return mock;
   }
 
-  return resolved;
+  return result;
 };

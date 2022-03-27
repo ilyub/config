@@ -56,7 +56,7 @@ if (in_array($version, $tags)) {
     execute('npm run build-doc', 'Building documentation');
   }
 
-  if (file_exists('.php_cs')) {
+  if (file_exists('.php-cs-fixer.php')) {
     execute('php-cs-fixer fix --verbose', 'Linting with php-cs-fixer');
   }
 

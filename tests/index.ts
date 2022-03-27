@@ -1,5 +1,5 @@
-import { sample } from "@/typescript/sample";
+import { sample } from "@/typescript/samples/sample";
 
-test("sample test", () => {
+test("sample", () => {
   expect(sample).toBe(1);
 });

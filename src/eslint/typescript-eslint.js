@@ -25,14 +25,14 @@ module.exports = {
     "@typescript-eslint/method-signature-style": ["warn", "property"],
     "@typescript-eslint/naming-convention": [
       "warn",
-      { format: ["camelCase"], selector: ["default"] },
       {
         format: ["camelCase"],
         leadingUnderscore: "allow",
-        selector: ["method", "parameter", "property"]
+        selector: ["default"]
       },
       {
         format: ["camelCase", "PascalCase"],
+        leadingUnderscore: "allow",
         selector: ["function", "typeLike"]
       },
       {
@@ -41,28 +41,15 @@ module.exports = {
         selector: ["variable"]
       },
       {
-        format: ["camelCase", "PascalCase", "UPPER_CASE", "snake_case"],
-        leadingUnderscore: "allow",
-        selector: ["typeProperty"]
+        // eslint-disable-next-line unicorn/no-null
+        format: null,
+        selector: ["objectLiteralProperty", "typeProperty"]
       },
       {
         // eslint-disable-next-line unicorn/no-null
         format: null,
         modifiers: ["requiresQuotes"],
-        selector: [
-          "function",
-          "method",
-          "parameter",
-          "property",
-          "typeLike",
-          "typeProperty",
-          "variable"
-        ]
-      },
-      {
-        // eslint-disable-next-line unicorn/no-null
-        format: null,
-        selector: ["objectLiteralMethod", "objectLiteralProperty"]
+        selector: ["default"]
       }
     ],
     "@typescript-eslint/no-empty-interface": "off",
@@ -84,9 +71,6 @@ module.exports = {
       }
     ],
     "@typescript-eslint/no-type-alias": "off",
-    // eslint-disable-next-line no-warning-comments
-    // fixme
-    "@typescript-eslint/no-unnecessary-type-arguments": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
@@ -102,7 +86,6 @@ module.exports = {
       "warn",
       { allowNumber: true }
     ],
-    "@typescript-eslint/switch-exhaustiveness-check": "off",
-    "@typescript-eslint/unified-signatures": "off"
+    "@typescript-eslint/switch-exhaustiveness-check": "off"
   }
 };

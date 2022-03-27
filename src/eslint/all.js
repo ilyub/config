@@ -1,6 +1,6 @@
-const { locations, quasarGlobalComponents } = (() => {
-  const fs = require("fs");
+const fs = require("fs");
 
+const { locations, quasarGlobalComponents } = (() => {
   const rawOptions = fs.existsSync("./.eslintrc.options.js")
     ? require(fs.realpathSync("./.eslintrc.options.js"))
     : {};
@@ -8,26 +8,23 @@ const { locations, quasarGlobalComponents } = (() => {
   const options = {
     extraChoreLocations: [],
     extraDefaultExportLocations: [],
-    extraDevUtilsLocations: [],
-    extraTestsLocations: [],
     quasar: false,
     quasarGlobalComponents: [],
     utility: false,
     ...rawOptions
   };
 
-  if (options.quasar)
-    options.extraDefaultExportLocations.push("**/boot/*", "**/router/index.ts");
+  const defaultExport = (() => {
+    const result = ["svg.d.ts", "vue.d.ts"];
 
-  if (options.utility) options.extraDevUtilsLocations.push("**");
+    if (options.quasar) result.push("**/boot/*", "**/router/index.ts");
 
-  const defaultExport = [
-    "svg.d.ts",
-    "vue.d.ts",
-    ...options.extraDefaultExportLocations
-  ];
+    result.push(...options.extraDefaultExportLocations);
 
-  const tests = ["./tests/**", ...options.extraTestsLocations];
+    return result;
+  })();
+
+  const tests = ["./tests/**"];
 
   const chore = [
     "./*",
@@ -36,12 +33,9 @@ const { locations, quasarGlobalComponents } = (() => {
     ...options.extraChoreLocations
   ];
 
-  const devUtils = [
-    "./src/**/__mocks__/**",
-    "./src/testUtils/**",
-    ...chore,
-    ...options.extraDevUtilsLocations
-  ];
+  const devUtils = options.utility
+    ? ["**"]
+    : ["./src/**/__mocks__/**", "./src/testUtils/**", ...chore];
 
   return {
     locations: {
@@ -57,6 +51,7 @@ const { locations, quasarGlobalComponents } = (() => {
 module.exports = {
   extends: [
     "./core",
+    "./boundaries",
     "./es",
     "./eslint-comments",
     "./etc",
@@ -65,6 +60,7 @@ module.exports = {
     "./jsdoc",
     "./no-type-assertion",
     "./no-use-extend-native",
+    "./only-warn",
     "./pii",
     "./promise",
     "./regexp",
@@ -87,8 +83,7 @@ module.exports = {
       extends: [
         "./typescript-eslint",
         "./core.ts-extension",
-        "./escompat.ts-extension",
-        "./tsdoc"
+        "./escompat.ts-extension"
       ],
       files: ["*.ts", "*.vue"]
     },
@@ -115,7 +110,7 @@ module.exports = {
       files: locations.devUtils
     },
     {
-      extends: ["./jest", "./core.tests", "./unicorn.tests"],
+      extends: ["./core.tests", "./jest.tests", "./unicorn.tests"],
       files: locations.tests
     },
     {

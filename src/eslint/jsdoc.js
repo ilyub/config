@@ -12,6 +12,8 @@ const contexts = [
 module.exports = {
   plugins: ["jsdoc"],
   rules: {
+    // eslint-disable-next-line no-warning-comments
+    // fixme: https://github.com/gajus/eslint-plugin-jsdoc/issues/857
     "jsdoc/check-access": ["warn", { contexts }],
     "jsdoc/check-alignment": ["warn", { contexts }],
     "jsdoc/check-examples": "off",

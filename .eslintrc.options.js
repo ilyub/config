@@ -1,1 +1,1 @@
-module.exports = { extraChoreLocations: ["**"] };
+module.exports = { utility: true };

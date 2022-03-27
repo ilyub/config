@@ -721,6 +721,7 @@ module.exports = {
       }
     ],
     "@skylib/no-unsafe-object-assignment": ["warn", { filesToSkip: ["*.js"] }],
+    "@skylib/object-format": "off",
     "@skylib/prefer-readonly": [
       "off",
       {
