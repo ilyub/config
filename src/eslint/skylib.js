@@ -109,7 +109,6 @@ module.exports = {
       }
     ],
     "@skylib/no-mutable-signature": "off",
-    "@skylib/object-format": "off",
     "@skylib/prefer-readonly": "off",
     "@skylib/require-jsdoc": [
       "warn",
