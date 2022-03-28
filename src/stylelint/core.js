@@ -1,6 +1,9 @@
 module.exports = {
   rules: {
-    "selector-class-pattern": undefined,
+    "selector-class-pattern": [
+      /^[\w-]+$/u.source,
+      { resolveNestedSelectors: true }
+    ],
     "selector-pseudo-class-no-unknown": [
       true,
       { ignorePseudoClasses: ["deep", "global"] }
