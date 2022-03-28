@@ -76,7 +76,11 @@ module.exports = {
   ],
   overrides: [
     {
-      extends: ["./escompat.js-extension", "./import.js-extension"],
+      extends: [
+        "./escompat.js-extension",
+        "./import.js-extension",
+        "./skylib.js-extension"
+      ],
       files: ["*.js"]
     },
     {
@@ -109,7 +113,7 @@ module.exports = {
         ]
       }
     },
-    { extends: ["./import.chore"], files: locations.chore },
+    { extends: ["./import.chore", "./skylib.chore"], files: locations.chore },
     { extends: ["./import.default-export"], files: locations.defaultExport },
     {
       extends: ["./es.dev-utils", "./import.dev-utils"],
