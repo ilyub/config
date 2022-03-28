@@ -1,8 +1,6 @@
 const fs = require("fs");
 
-const options = fs.existsSync("./.eslintrc.options.js")
-  ? require(fs.realpathSync("./.eslintrc.options.js"))
-  : {};
+const options = loadOptions(fs.realpathSync("./.eslintrc.options.js"));
 
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
@@ -72,7 +70,8 @@ module.exports = {
             altLocalNames: ["nodePath"],
             sourcePattern: "path",
             type: "default"
-          }
+          },
+          ...options.consistentImport
         ]
       }
     ],
@@ -83,12 +82,16 @@ module.exports = {
           {
             contexts: ["comment"],
             patterns: [/\/\* webpackChunkName:(?! "dynamic\/)/u.source]
-          }
+          },
+          ...options.disallowByRegexp
         ],
         subOptionsId: "webpackChunkName"
       }
     ],
-    "@skylib/disallow-identifier": ["warn", { rules: [] }],
+    "@skylib/disallow-identifier": [
+      "warn",
+      { rules: options.disallowIdentifier }
+    ],
     "@skylib/disallow-import": [
       "warn",
       {
@@ -100,7 +103,8 @@ module.exports = {
               options.es ? "lodash" : "lodash-es",
               options.es ? "@skylib/*/dist/**" : "@skylib/*/es/**"
             ]
-          }
+          },
+          ...options.disallowImport
         ]
       }
     ],
@@ -160,3 +164,69 @@ module.exports = {
     ]
   }
 };
+
+/**
+ * Assigns raw options.
+ *
+ * @param dest - Options.
+ * @param source - Raw options.
+ */
+function assignRawOptions(dest, source) {
+  if ("consistentImport" in source)
+    dest.consistentImport.push(...source.consistentImport);
+
+  if ("disallowByRegexp" in source)
+    dest.disallowByRegexp.push(...source.disallowByRegexp);
+
+  if ("disallowIdentifier" in source)
+    dest.disallowIdentifier.push(...source.disallowIdentifier);
+
+  if ("disallowImport" in source)
+    dest.disallowImport.push(...source.disallowImport);
+
+  if ("es" in source) dest.es = source.es;
+}
+
+/**
+ * Loads options.
+ *
+ * @param source - Source.
+ * @returns Options.
+ */
+function loadOptions(source) {
+  const result = {
+    consistentImport: [],
+    disallowByRegexp: [],
+    disallowIdentifier: [],
+    disallowImport: [],
+    es: false
+  };
+
+  const rawOptions = loadRawOptions(source);
+
+  for (const extend of rawOptions.extends ?? [])
+    assignRawOptions(result, loadRawOptions(extend));
+
+  assignRawOptions(result, rawOptions);
+
+  return result;
+}
+
+/**
+ * Loads raw options.
+ *
+ * @param source - Source.
+ * @returns Raw options.
+ */
+function loadRawOptions(source) {
+  switch (typeof source) {
+    case "object":
+      return source;
+
+    case "string":
+      return fs.existsSync(source) ? require(source) : {};
+
+    default:
+      throw new Error("Invalid source");
+  }
+}
