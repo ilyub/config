@@ -85,7 +85,13 @@ module.exports = {
         "./core.ts-extension",
         "./escompat.ts-extension"
       ],
-      files: ["*.ts", "*.vue"]
+      files: ["*.ts", "*.vue"],
+      overrides: [
+        {
+          extends: ["./typescript-eslint.d-ts-extension"],
+          files: ["*.d.ts"]
+        }
+      ]
     },
     {
       extends: [
