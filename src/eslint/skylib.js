@@ -116,17 +116,10 @@ module.exports = {
         excludeSelectors: ["ClassDeclaration", "FunctionDeclaration"],
         includeSelectors: [
           ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > ExpressionStatement > AssignmentExpression > ArrowFunctionExpression",
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
-          // eslint-disable-next-line no-warning-comments
-          // fixme: Wait for @skylib/eslint-plugin update
-          "TSAbstractMethodDefinition"
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration"
         ],
-        // eslint-disable-next-line no-warning-comments
-        // fixme: Wait for @skylib/eslint-plugin update
-        interfaceOptions: ["callSignatures", "constructSignatures"],
-        // eslint-disable-next-line no-warning-comments
-        // fixme: Wait for @skylib/eslint-plugin update
-        propertyOptions: ["function"]
+        interfaces: ["callSignatures", "constructSignatures"],
+        properties: ["function"]
       }
     ],
     "@skylib/sort-class-members": [
