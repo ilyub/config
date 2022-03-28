@@ -46,6 +46,7 @@ module.exports = {
         varsIgnorePattern: /^(?:_|omit)/u.source
       }
     ],
+    "no-use-before-define": "off",
     "object-shorthand": ["warn", "always", { avoidExplicitReturnArrows: true }],
     "one-var": ["warn", "never"],
     "prefer-destructuring": "off",
