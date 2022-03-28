@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
-    "noFallthroughCasesInSwitch": false,
-    "noImplicitOverride": false,
-    "noImplicitReturns": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "noResolve": false,
-    "noUncheckedIndexedAccess": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "strict": false
-  },
-  "extends": "./typescript/tsconfig"
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "newLine": "lf",
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "ES2017",
+    "types": [],
+    "useDefineForClassFields": true
+  }
 }
