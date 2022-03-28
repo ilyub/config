@@ -746,7 +746,10 @@ module.exports = {
         filesToSkip: ["*.js", "./tests/**"],
         includeSelectors: [
           ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > ExpressionStatement > AssignmentExpression > ArrowFunctionExpression",
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration"
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
+          // eslint-disable-next-line no-warning-comments
+          // fixme: Wait for @skylib/eslint-plugin update
+          "TSAbstractMethodDefinition"
         ],
         interfaceOptions: ["callSignatures", "constructSignatures"],
         propertyOptions: ["function"]
