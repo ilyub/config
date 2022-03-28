@@ -1,5 +1,1 @@
-module.exports = {
-  rules: {
-    "@typescript-eslint/no-unused-vars": "off"
-  }
-};
+module.exports = { rules: { "@typescript-eslint/no-unused-vars": "off" } };

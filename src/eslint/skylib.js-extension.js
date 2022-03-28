@@ -1,5 +1,1 @@
-module.exports = {
-  rules: {
-    "@skylib/no-unsafe-object-assignment": "off"
-  }
-};
+module.exports = { rules: { "@skylib/no-unsafe-object-assignment": "off" } };

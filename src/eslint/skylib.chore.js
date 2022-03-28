@@ -1,3 +1,1 @@
-module.exports = {
-  rules: { "@skylib/require-jsdoc": "off" }
-};
+module.exports = { rules: { "@skylib/require-jsdoc": "off" } };
