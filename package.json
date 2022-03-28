@@ -40,10 +40,10 @@
     "tsc": "tsc --noEmit",
     "update-package-check": "ncu --dep dev,prod --reject @types/node",
     "update-package-check-peer": "ncu --dep peer --minimal --reject @types/node",
-    "update-package-check-skylib": "ncu --minimal --filter @skylib/*",
+    "update-package-check-skylib": "ncu  --dep peer --filter @skylib/*",
     "update-package-force": "ncu --dep dev,prod --reject @types/node --upgrade",
     "update-package-force-peer": "ncu --dep peer --minimal --reject @types/node --upgrade",
-    "update-package-force-skylib": "ncu --minimal --filter @skylib/* --upgrade"
+    "update-package-force-skylib": "ncu  --dep peer --filter @skylib/* --upgrade"
   },
   "peerDependencies": {
     "@commitlint/cli": "^16.0.0",
