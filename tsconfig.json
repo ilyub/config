@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "cache/typescript",
     "paths": {
       "@/*": [
         "src/*"
