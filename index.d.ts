@@ -1,7 +1,3 @@
-export {};
+const JEST_ENV: string;
 
-declare global {
-  const JEST_ENV: string;
-
-  const JEST_PATH: string;
-}
+const JEST_PATH: string;
