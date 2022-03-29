@@ -23,7 +23,7 @@
     "lcov-report",
     "node_modules"
   ],
-  "extends": "./src/tsconfig-base",
+  "extends": "./src/tsconfig-min",
   "include": [
     "*.js",
     "*.ts",

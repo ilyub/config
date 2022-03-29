@@ -11,5 +11,5 @@
     "strict": true,
     "useUnknownInCatchVariables": true
   },
-  "extends": "./tsconfig-base"
+  "extends": "./tsconfig-min"
 }
