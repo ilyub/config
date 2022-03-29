@@ -8,41 +8,30 @@ const { locations, quasarGlobalComponents } = (() => {
   const options = {
     extraChoreLocations: [],
     extraDefaultExportLocations: [],
+    extraTestsLocations: [],
+    extraUtilsLocations: [],
     quasar: false,
     quasarGlobalComponents: [],
     utility: false,
     ...rawOptions
   };
 
-  const defaultExport = (() => {
-    const result = ["svg.d.ts", "vue.d.ts"];
-
-    if (options.quasar) result.push("**/boot/*", "**/router/index.ts");
-
-    result.push(...options.extraDefaultExportLocations);
-
-    return result;
-  })();
-
-  const tests = ["./tests/**"];
-
-  const chore = [
-    "./*",
-    "./__mocks__/**",
-    ...tests,
-    ...options.extraChoreLocations
-  ];
-
-  const devUtils = options.utility
-    ? ["**"]
-    : ["./src/**/__mocks__/**", "./src/testUtils/**", ...chore];
-
   return {
     locations: {
-      chore,
-      defaultExport,
-      devUtils,
-      tests
+      chore: ["./*", "./__mocks__/**", ...options.extraChoreLocations],
+      defaultExport: [
+        "svg.d.ts",
+        "vue.d.ts",
+        ...options.extraDefaultExportLocations,
+        ...(options.quasar ? ["**/boot/*", "**/router/index.ts"] : [])
+      ],
+      tests: ["./tests/**", ...options.extraTestsLocations],
+      utils: [
+        "./src/**/__mocks__/**",
+        "./src/testUtils/**",
+        ...options.extraUtilsLocations,
+        ...(options.utility ? ["**"] : [])
+      ]
     },
     quasarGlobalComponents: options.quasarGlobalComponents
   };
@@ -77,32 +66,29 @@ module.exports = {
   overrides: [
     {
       extends: [
-        "./escompat.js-extension",
-        "./import.js-extension",
-        "./skylib.js-extension"
+        "./escompat.javascript",
+        "./import.javascript",
+        "./skylib.javascript"
       ],
       files: ["*.js"]
     },
     {
       extends: [
         "./typescript-eslint",
-        "./core.ts-extension",
-        "./escompat.ts-extension"
+        "./core.typescript",
+        "./escompat.typescript"
       ],
       files: ["*.ts", "*.vue"],
-      overrides: [
-        { extends: ["./typescript-eslint.d-ts-extension"], files: ["*.d.ts"] }
-      ]
+      overrides: [{ extends: ["./typescript-eslint.dts"], files: ["*.d.ts"] }]
     },
     {
-      extends: [
-        "./vue",
-        "./vue-scoped-css",
-        "./import.vue-extension",
-        "./skylib.vue-extension"
-      ],
+      extends: ["./vue", "./vue-scoped-css", "./import.vue", "./skylib.vue"],
       files: ["*.vue"],
-      overrides: [{ extends: ["./vue.dev-utils"], files: locations.devUtils }],
+      overrides: [
+        { extends: ["./vue.chore-tests-utils"], files: locations.chore },
+        { extends: ["./vue.chore-tests-utils"], files: locations.tests },
+        { extends: ["./vue.chore-tests-utils"], files: locations.utils }
+      ],
       rules: {
         "vue/no-undef-components": [
           "warn",
@@ -110,15 +96,31 @@ module.exports = {
         ]
       }
     },
-    { extends: ["./import.chore", "./skylib.chore"], files: locations.chore },
+    {
+      extends: [
+        "./es.chore-tests-utils",
+        "./import.chore-tests",
+        "./import.chore-tests-utils",
+        "./skylib.chore-tests"
+      ],
+      files: locations.chore
+    },
     { extends: ["./import.default-export"], files: locations.defaultExport },
     {
-      extends: ["./es.dev-utils", "./import.dev-utils"],
-      files: locations.devUtils
+      extends: [
+        "./core.tests",
+        "./es.chore-tests-utils",
+        "./import.chore-tests",
+        "./import.chore-tests-utils",
+        "./jest.tests",
+        "./skylib.chore-tests",
+        "./unicorn.tests"
+      ],
+      files: locations.tests
     },
     {
-      extends: ["./core.tests", "./jest.tests", "./unicorn.tests"],
-      files: locations.tests
+      extends: ["./es.chore-tests-utils", "./import.chore-tests-utils"],
+      files: locations.utils
     },
     {
       extends: [
