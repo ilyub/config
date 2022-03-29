@@ -4,10 +4,8 @@ set_error_handler('errorHandler');
 
 /**
  * Clears directory.
- *
- * @param mixed $exists
  */
-function clearDir(string $dir, array $ignore = [], $exists = false): void
+function clearDir(string $dir, array $ignore = [], bool $exists = false): void
 {
   if ($exists || file_exists($dir)) {
     foreach (getDir($dir, $ignore) as $basename) {
@@ -25,7 +23,7 @@ function clearDir(string $dir, array $ignore = [], $exists = false): void
 /**
  * Decodes JSON.
  */
-function decodeJson(string $json, string $source)
+function decodeJson(string $json, string $source): mixed
 {
   $result = json_decode($json, true);
 
@@ -34,20 +32,6 @@ function decodeJson(string $json, string $source)
   }
 
   return $result;
-}
-
-/**
- * Echos and flushes string.
- */
-function echoFlush(string $str): void
-{
-  echo $str.PHP_EOL;
-
-  if (ob_get_level() > 0) {
-    ob_flush();
-  }
-
-  flush();
 }
 
 /**
@@ -63,13 +47,11 @@ function errorHandler(int $errno, string $errstr): void
  */
 function execute(string $command, string $description = null): array
 {
-  if ($description !== null) {
-    echoFlush($description);
-  }
+  flushString($description);
 
   $result = exec($command, $output, $code);
 
-  if ($result === false || $code !== 0) {
+  if ($result === false || $code) {
     throw new Exception('Command failed: '.$command);
   }
 
@@ -81,9 +63,7 @@ function execute(string $command, string $description = null): array
  */
 function executeWithKey(string $command, string $description = null): void
 {
-  if ($description !== null) {
-    echoFlush($description);
-  }
+  flushString($description);
 
   $keyPath = pathConcat(getKeysPath(), 'id_rsa');
 
@@ -98,8 +78,24 @@ function executeWithKey(string $command, string $description = null): void
 
   $code = proc_close($process);
 
-  if ($code !== 0) {
+  if ($code) {
     throw new Exception('Command failed: '.$command);
+  }
+}
+
+/**
+ * Flushes string.
+ */
+function flushString(string $str = null): void
+{
+  if ($str !== null) {
+    echo $str.PHP_EOL;
+
+    if (ob_get_level() > 0) {
+      ob_flush();
+    }
+
+    flush();
   }
 }
 
@@ -134,11 +130,11 @@ function getKeysPath(): string
 }
 
 /**
- * Splits string into lines.
+ * Checks if package.json has script.
  */
-function lines(string $str): array
+function hasScript(array $config, string $script): bool
 {
-  return preg_split('`\\r\\n|\\n`isuxDX', $str);
+  return is_array($config['scripts']) && array_key_exists($script, $config['scripts']);
 }
 
 /**

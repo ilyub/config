@@ -7,15 +7,17 @@ $config = decodeJson(file_get_contents('package.json'), 'package.json');
 $name = $config['name'];
 $private = $config['private'];
 $version = $config['version'];
-$build = is_array($config['scripts']) && array_key_exists('build', $config['scripts']);
-$buildEs = is_array($config['scripts']) && array_key_exists('build-es', $config['scripts']);
-$buildDoc = is_array($config['scripts']) && array_key_exists('build-doc', $config['scripts']);
-$tsc = is_array($config['scripts']) && array_key_exists('tsc', $config['scripts']);
-$vueTsc = is_array($config['scripts']) && array_key_exists('vue-tsc', $config['scripts']);
-$lint = is_array($config['scripts']) && array_key_exists('lint-no-fix', $config['scripts']);
-$stylelint = is_array($config['scripts']) && array_key_exists('stylelint-no-fix', $config['scripts']);
-$stylelintHtml = is_array($config['scripts']) && array_key_exists('stylelint-html-no-fix', $config['scripts']);
-$test = is_array($config['scripts']) && array_key_exists('test', $config['scripts']);
+
+$build = hasScript($config, 'build');
+$buildEs = hasScript($config, 'build-es');
+$buildDoc = hasScript($config, 'build-doc');
+$tsc = hasScript($config, 'tsc');
+$vueTsc = hasScript($config, 'vue-tsc');
+$lint = hasScript($config, 'lint-no-fix');
+$stylelint = hasScript($config, 'stylelint-no-fix');
+$stylelintHtml = hasScript($config, 'stylelint-html-no-fix');
+$test = hasScript($config, 'test');
+
 $dependencies = $config['dependencies'] ?? [];
 $devDependencies = $config['devDependencies'] ?? [];
 $peerDependencies = $config['peerDependencies'] ?? [];
@@ -31,7 +33,7 @@ foreach ([$dependencies, $devDependencies, $peerDependencies] as $deps) {
 $branches = execute('git branch');
 
 if (in_array('* master', $branches)) {
-  throw new Exception('Trying to commit master branch');
+  throw new Exception('Committing master branch is not allowed');
 }
 
 $tags = execute('git tag');
@@ -66,23 +68,23 @@ if (in_array($version, $tags)) {
   }
 
   if ($tsc) {
-    execute('npm run tsc', 'Linting with typescript');
+    execute('npm run tsc', 'Linting with tsc');
   }
 
   if ($vueTsc) {
-    execute('npm run vue-tsc', 'Linting with Volar');
+    execute('npm run vue-tsc', 'Linting with vue-tsc');
   }
 
   if ($lint) {
-    execute('npm run lint-no-fix', 'Linting with ESLint');
+    execute('npm run lint-no-fix', 'Linting with eslint');
   }
 
   if ($stylelint) {
-    execute('npm run stylelint-no-fix', 'Linting with StyleLint');
+    execute('npm run stylelint-no-fix', 'Linting with stylelint');
   }
 
   if ($stylelintHtml) {
-    execute('npm run stylelint-html-no-fix', 'Linting with StyleLint (html)');
+    execute('npm run stylelint-html-no-fix', 'Linting with stylelint (html)');
   }
 
   if ($test) {
@@ -101,13 +103,16 @@ if (in_array($version, $tags)) {
     }
   }
 
-  $versions = execute('npm view '.$name.' versions --json', 'Retrieving npm package versions');
-  $versions = decodeJson(join("\n", $versions), 'versions');
-  $versions = is_array($versions) ? $versions : [$versions];
+  if ($private === false) {
+    $versions = execute('npm view '.$name.' versions --json', 'Retrieving npm package versions');
+    $versions = join("\n", $versions);
+    $versions = decodeJson($versions, 'versions');
+    $versions = is_array($versions) ? $versions : [$versions];
 
-  if (in_array($version, $versions)) {
-    // Already published
-  } elseif ($private === false) {
-    execute('npm publish --access=public', 'Publishing npm package');
+    if (in_array($version, $versions)) {
+      // Already published
+    } else {
+      execute('npm publish --access=public', 'Publishing npm package');
+    }
   }
 }
