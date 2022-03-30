@@ -27,7 +27,6 @@ module.exports = function (scopesFile) {
       "composer",
       "deps-major-update",
       "deps-update",
-      "docs",
       "env",
       "eslint",
       "fix",

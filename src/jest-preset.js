@@ -13,7 +13,7 @@ module.exports = {
   maxWorkers: 1,
   moduleFileExtensions: ["js", "jsx", "ts", "tsx", "vue"],
   moduleNameMapper: {
-    [/^@\/(.*)/u.source]: "<rootDir>/src/$1",
+    [/^@\/(.+)/u.source]: "<rootDir>/src/$1",
     [/^@skylib\/([^/]+)\/es\/(.+)$/u.source]: "@skylib/$1/dist/$2",
     [/^lodash-es$/u.source]: "lodash",
     [/^quasar$/u.source]: "quasar/dist/quasar.esm.prod.js"
@@ -35,7 +35,5 @@ module.exports = {
       "jest-transform-stub",
     [/\.(?:html|js|ts)$/u.source]: "ts-jest"
   },
-  transformIgnorePatterns: [
-    "node_modules/(?!@skylib/quasar-extension|lodash-es|quasar|quasar/lang)"
-  ]
+  transformIgnorePatterns: ["node_modules/(?!@skylib/quasar-extension|quasar)"]
 };

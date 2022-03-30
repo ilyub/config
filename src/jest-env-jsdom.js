@@ -19,12 +19,20 @@ module.exports = class extends Environment {
     await super.setup();
     this.global.JEST_ENV = "jsdom";
     this.global.JEST_PATH = this.testPath;
-    this.global.clearImmediate =
-      this.global.clearImmediate ?? (id => global.clearTimeout(id));
-    this.global.fetch = () => {
+    this.global.clearImmediate = this.global.clearImmediate ?? _clearImmediate;
+    this.global.fetch = this.global.fetch ?? _fetch;
+    this.global.setImmediate = this.global.setImmediate ?? _setImmediate;
+
+    function _clearImmediate(id) {
+      return global.clearTimeout(id);
+    }
+
+    function _fetch() {
       throw new Error("Not implemented");
-    };
-    this.global.setImmediate =
-      this.global.setImmediate ?? (callback => global.setTimeout(callback, 0));
+    }
+
+    function _setImmediate(callback) {
+      return global.setTimeout(callback, 0);
+    }
   }
 };

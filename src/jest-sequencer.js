@@ -10,7 +10,7 @@ const slow = fs.existsSync("./jest.slow.js")
 
 module.exports = class extends Sequencer {
   /**
-   * Determines tests execution order.
+   * Sorts tests according to their execution order.
    *
    * @param tests - Tests.
    * @returns Comparison result.
@@ -21,9 +21,9 @@ module.exports = class extends Sequencer {
 
       const slow2 = slow.includes(path.basename(test2.path));
 
-      if (!slow1 && slow2) return 1;
+      if (slow2 && !slow1) return 1;
 
-      if (!slow2 && slow1) return -1;
+      if (slow1 && !slow2) return -1;
 
       return test1.path.localeCompare(test2.path);
     });

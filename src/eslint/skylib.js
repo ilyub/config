@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const options = loadOptions(fs.realpathSync("./.eslintrc.options.js"));
+const options = loadOptions(fs.realpathSync(".eslintrc.options.js"));
 
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
@@ -12,8 +12,8 @@ module.exports = {
         rules: [
           {
             emptyLine: "always",
-            next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSExportAssignment, TSDeclareFunction)",
-            prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSExportAssignment, TSDeclareFunction)"
+            next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSDeclareFunction, TSExportAssignment)",
+            prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSDeclareFunction, TSExportAssignment)"
           },
           {
             emptyLine: "any",
@@ -81,11 +81,11 @@ module.exports = {
         rules: [
           {
             contexts: ["comment"],
-            patterns: [/\/\* webpackChunkName:(?! "dynamic\/)/u.source]
+            patterns: [/\/\* webpackChunkName:(?! "dynamic\/)/u.source],
+            subOptionsId: "webpackChunkName"
           },
           ...options.disallowByRegexp
-        ],
-        subOptionsId: "webpackChunkName"
+        ]
       }
     ],
     "@skylib/disallow-identifier": [
@@ -182,7 +182,7 @@ function assignRawOptions(dest, source) {
 /**
  * Loads options.
  *
- * @param source - Source.
+ * @param source - Source file or raw options object.
  * @returns Options.
  */
 function loadOptions(source) {
@@ -196,8 +196,9 @@ function loadOptions(source) {
 
   const rawOptions = loadRawOptions(source);
 
-  for (const extend of rawOptions.extends ?? [])
-    assignRawOptions(result, loadRawOptions(extend));
+  if (rawOptions.extends)
+    for (const extend of rawOptions.extends)
+      assignRawOptions(result, loadRawOptions(extend));
 
   assignRawOptions(result, rawOptions);
 
@@ -207,7 +208,7 @@ function loadOptions(source) {
 /**
  * Loads raw options.
  *
- * @param source - Source.
+ * @param source - Source file or raw options object.
  * @returns Raw options.
  */
 function loadRawOptions(source) {

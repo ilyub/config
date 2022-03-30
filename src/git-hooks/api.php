@@ -51,7 +51,7 @@ function execute(string $command, string $description = null): array
 
   $result = exec($command, $output, $code);
 
-  if ($result === false || $code) {
+  if ($code || $result === false) {
     throw new Exception('Command failed: '.$command);
   }
 

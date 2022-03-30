@@ -1,8 +1,8 @@
 const fs = require("fs");
 
 const { locations, quasarGlobalComponents } = (() => {
-  const rawOptions = fs.existsSync("./.eslintrc.options.js")
-    ? require(fs.realpathSync("./.eslintrc.options.js"))
+  const rawOptions = fs.existsSync(".eslintrc.options.js")
+    ? require(fs.realpathSync(".eslintrc.options.js"))
     : {};
 
   const options = {
@@ -23,7 +23,7 @@ const { locations, quasarGlobalComponents } = (() => {
         "svg.d.ts",
         "vue.d.ts",
         ...options.extraDefaultExportLocations,
-        ...(options.quasar ? ["**/boot/*", "**/router/index.ts"] : [])
+        ...(options.quasar ? ["./src/boot/*", "./src/router/index.ts"] : [])
       ],
       tests: ["./tests/**", ...options.extraTestsLocations],
       utils: [
@@ -105,7 +105,7 @@ module.exports = {
       ],
       files: locations.chore
     },
-    { extends: ["./import.default-export"], files: locations.defaultExport },
+    { extends: ["./import.defaultExport"], files: locations.defaultExport },
     {
       extends: [
         "./core.tests",

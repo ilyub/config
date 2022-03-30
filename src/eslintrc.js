@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: 2017,
     extraFileExtensions: [".vue"],
     parser: "@typescript-eslint/parser",
-    project: "./tsconfig.json",
+    project: "tsconfig.json",
     sourceType: "module"
   }
 };
