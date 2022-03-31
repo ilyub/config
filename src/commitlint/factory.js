@@ -60,6 +60,8 @@ module.exports = function (scopesFile) {
       "chore(deps-update)",
       "chore(refactor)",
       "chore(style)",
+      "docs(refactor)",
+      "docs(style)",
       "initial commit",
       "next",
       "refactor",
@@ -72,6 +74,8 @@ module.exports = function (scopesFile) {
       result.push(
         `chore(refactor,${scope})`,
         `chore(style,${scope})`,
+        `docs(refactor,${scope})`,
+        `docs(style,${scope})`,
         `refactor(${scope})`,
         `style(${scope})`,
         `test(refactor,${scope})`,
@@ -84,6 +88,8 @@ module.exports = function (scopesFile) {
           result.push(
             `chore(refactor,${scope1},${scope2})`,
             `chore(style,${scope1},${scope2})`,
+            `docs(refactor,${scope1},${scope2})`,
+            `docs(style,${scope1},${scope2})`,
             `refactor(${scope1},${scope2})`,
             `style(${scope1},${scope2})`,
             `test(refactor,${scope1},${scope2})`,
