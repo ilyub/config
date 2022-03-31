@@ -130,7 +130,7 @@ function getKeysPath(): string
 }
 
 /**
- * Checks if package.json has script.
+ * Checks that package.json has script.
  */
 function hasScript(array $config, string $script): bool
 {
