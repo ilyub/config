@@ -79,7 +79,10 @@ module.exports = {
         "./escompat.typescript"
       ],
       files: ["*.ts", "*.vue"],
-      overrides: [{ extends: ["./typescript-eslint.dts"], files: ["*.d.ts"] }]
+      overrides: [
+        { extends: ["./typescript-eslint.dts"], files: ["*.d.ts"] },
+        { extends: ["./typescript-eslint.tests"], files: locations.tests }
+      ]
     },
     {
       extends: ["./vue", "./vue-scoped-css", "./import.vue", "./skylib.vue"],
