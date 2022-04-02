@@ -81,8 +81,13 @@ module.exports = {
         rules: [
           {
             contexts: ["comment"],
+            patterns: [/(?<!\\)[<>]/u.source],
+            subOptionsId: "comment.escape"
+          },
+          {
+            contexts: ["comment"],
             patterns: [/\/\* webpackChunkName:(?! "dynamic\/)/u.source],
-            subOptionsId: "webpackChunkName"
+            subOptionsId: "comment.webpackChunkName"
           },
           ...options.disallowByRegexp
         ]
