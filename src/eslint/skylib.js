@@ -79,6 +79,16 @@ module.exports = {
       "warn",
       {
         rules: [
+          // eslint-disable-next-line no-warning-comments -- Wait for https://github.com/typescript-eslint/typescript-eslint/issues/4779
+          // fixme
+          {
+            contexts: ["code"],
+            patterns: [
+              /\b(?!extraChoreLocations)(?!extraDefaultExportLocations)(?!extraTestsLocations)(?!extraUtilsLocations)(?!ignoreFunctionTypeParameterNameValueShadow)(?!requireReturnForObjectLiteral)(?!onlyFunctionsWithExpectInCallback)(?!onlyFunctionsWithExpectInLoop)\w{26,}/u
+                .source
+            ],
+            subOptionsId: "id-length"
+          },
           {
             contexts: ["comment"],
             patterns: [/(?<!\\)[<>]/u.source],

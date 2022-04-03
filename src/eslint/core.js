@@ -13,7 +13,16 @@ module.exports = {
     "complexity": ["warn", 25],
     "func-names": ["warn", "never"],
     "func-style": ["warn", "declaration", { allowArrowFunctions: true }],
-    "id-length": "off",
+    "id-length": [
+      "warn",
+      {
+        exceptionPatterns: [],
+        exceptions: [],
+        max: 25,
+        min: 1,
+        properties: "always"
+      }
+    ],
     "line-comment-position": ["warn", { ignorePattern: "NOSONAR" }],
     "max-depth": ["warn", 10],
     "max-lines": ["warn", 5000],

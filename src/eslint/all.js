@@ -66,6 +66,7 @@ module.exports = {
   overrides: [
     {
       extends: [
+        "./core.javascript",
         "./escompat.javascript",
         "./import.javascript",
         "./skylib.javascript"
