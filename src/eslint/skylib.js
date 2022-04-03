@@ -89,6 +89,15 @@ module.exports = {
             ],
             subOptionsId: "id-length"
           },
+          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
+          // fixme
+          {
+            contexts: ["code"],
+            patterns: [
+              /\bexport (async function|const|function|var) _\w+/u.source
+            ],
+            subOptionsId: "no-underscore-export"
+          },
           {
             contexts: ["comment"],
             patterns: [/(?<!\\)[<>]/u.source],
