@@ -14,8 +14,6 @@ module.exports = {
         ]
       }
     ],
-    // eslint-disable-next-line no-warning-comments
-    // fixme: Postponed until the number of ESLint comments is reduced
-    "eslint-comments/require-description": "off"
+    "eslint-comments/require-description": "warn"
   }
 };
