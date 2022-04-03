@@ -41,12 +41,12 @@ module.exports = {
         selector: ["variable"]
       },
       {
-        // eslint-disable-next-line unicorn/no-null
+        // eslint-disable-next-line unicorn/no-null -- Ok
         format: null,
         selector: ["objectLiteralProperty", "typeProperty"]
       },
       {
-        // eslint-disable-next-line unicorn/no-null
+        // eslint-disable-next-line unicorn/no-null -- Ok
         format: null,
         modifiers: ["requiresQuotes"],
         selector: ["default"]
