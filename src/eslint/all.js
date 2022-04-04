@@ -1,41 +1,28 @@
-const fs = require("fs");
+const {
+  extraChoreLocations,
+  extraDefaultExportLocations,
+  extraTestsLocations,
+  extraUtilsLocations,
+  quasar,
+  utility
+} = require("./getOptions");
 
-const { locations, quasarGlobalComponents } = (() => {
-  const rawOptions = fs.existsSync(".eslintrc.options.js")
-    ? require(fs.realpathSync(".eslintrc.options.js"))
-    : {};
+const chore = ["./*", "./__mocks__/**"];
 
-  const options = {
-    extraChoreLocations: [],
-    extraDefaultExportLocations: [],
-    extraTestsLocations: [],
-    extraUtilsLocations: [],
-    quasar: false,
-    quasarGlobalComponents: [],
-    utility: false,
-    ...rawOptions
-  };
+const defaultExport = ["svg.d.ts", "vue.d.ts"];
 
-  return {
-    locations: {
-      chore: ["./*", "./__mocks__/**", ...options.extraChoreLocations],
-      defaultExport: [
-        "svg.d.ts",
-        "vue.d.ts",
-        ...options.extraDefaultExportLocations,
-        ...(options.quasar ? ["./src/boot/*", "./src/router/index.ts"] : [])
-      ],
-      tests: ["./tests/**", ...options.extraTestsLocations],
-      utils: [
-        "./src/**/__mocks__/**",
-        "./src/testUtils/**",
-        ...options.extraUtilsLocations,
-        ...(options.utility ? ["**"] : [])
-      ]
-    },
-    quasarGlobalComponents: options.quasarGlobalComponents
-  };
-})();
+const tests = ["./tests/**"];
+
+const utils = ["./src/**/__mocks__/**", "./src/testUtils/**"];
+
+chore.push(...extraChoreLocations);
+defaultExport.push(...extraDefaultExportLocations);
+tests.push(...extraTestsLocations);
+utils.push(...extraUtilsLocations);
+
+if (quasar) defaultExport.push("./src/boot/*", "./src/router/index.ts");
+
+if (utility) utils.push("**");
 
 module.exports = {
   extends: [
@@ -82,23 +69,17 @@ module.exports = {
       files: ["*.ts", "*.vue"],
       overrides: [
         { extends: ["./typescript-eslint.dts"], files: ["*.d.ts"] },
-        { extends: ["./typescript-eslint.tests"], files: locations.tests }
+        { extends: ["./typescript-eslint.tests"], files: tests }
       ]
     },
     {
       extends: ["./vue", "./vue-scoped-css", "./import.vue", "./skylib.vue"],
       files: ["*.vue"],
       overrides: [
-        { extends: ["./vue.chore-tests-utils"], files: locations.chore },
-        { extends: ["./vue.chore-tests-utils"], files: locations.tests },
-        { extends: ["./vue.chore-tests-utils"], files: locations.utils }
-      ],
-      rules: {
-        "vue/no-undef-components": [
-          "warn",
-          { ignorePatterns: quasarGlobalComponents }
-        ]
-      }
+        { extends: ["./vue.chore-tests-utils"], files: chore },
+        { extends: ["./vue.chore-tests-utils"], files: tests },
+        { extends: ["./vue.chore-tests-utils"], files: utils }
+      ]
     },
     {
       extends: [
@@ -107,9 +88,9 @@ module.exports = {
         "./import.chore-tests-utils",
         "./skylib.chore-tests"
       ],
-      files: locations.chore
+      files: chore
     },
-    { extends: ["./import.defaultExport"], files: locations.defaultExport },
+    { extends: ["./import.defaultExport"], files: defaultExport },
     {
       extends: [
         "./core.tests",
@@ -120,11 +101,11 @@ module.exports = {
         "./skylib.chore-tests",
         "./unicorn.tests"
       ],
-      files: locations.tests
+      files: tests
     },
     {
       extends: ["./es.chore-tests-utils", "./import.chore-tests-utils"],
-      files: locations.utils
+      files: utils
     },
     {
       extends: [

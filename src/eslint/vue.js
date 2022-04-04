@@ -1,3 +1,5 @@
+const { quasarGlobalComponents } = require("./getOptions");
+
 module.exports = {
   plugins: ["vue"],
   rules: {
@@ -97,6 +99,10 @@ module.exports = {
       }
     ],
     "vue/no-multiple-template-root": "off",
+    "vue/no-undef-components": [
+      "warn",
+      { ignorePatterns: quasarGlobalComponents }
+    ],
     "vue/no-unregistered-components": "off",
     "vue/no-unused-properties": [
       "warn",

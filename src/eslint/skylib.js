@@ -1,6 +1,10 @@
-const fs = require("fs");
-
-const options = loadOptions(fs.realpathSync(".eslintrc.options.js"));
+const {
+  consistentImport,
+  disallowByRegexp,
+  disallowIdentifier,
+  disallowImport,
+  es
+} = require("./getOptions");
 
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
@@ -63,7 +67,7 @@ module.exports = {
           },
           {
             localName: "_",
-            sourcePattern: options.es ? "lodash-es" : "lodash",
+            sourcePattern: es ? "lodash-es" : "lodash",
             type: "wildcard"
           },
           {
@@ -71,7 +75,7 @@ module.exports = {
             sourcePattern: "path",
             type: "default"
           },
-          ...options.consistentImport
+          ...consistentImport
         ]
       }
     ],
@@ -108,14 +112,11 @@ module.exports = {
             patterns: [/\/\* webpackChunkName:(?! "dynamic\/)/u.source],
             subOptionsId: "comment.webpackChunkName"
           },
-          ...options.disallowByRegexp
+          ...disallowByRegexp
         ]
       }
     ],
-    "@skylib/disallow-identifier": [
-      "warn",
-      { rules: options.disallowIdentifier }
-    ],
+    "@skylib/disallow-identifier": ["warn", { rules: disallowIdentifier }],
     "@skylib/disallow-import": [
       "warn",
       {
@@ -124,11 +125,11 @@ module.exports = {
           { disallow: ["@/**"], filesToSkip: ["./tests/**"] },
           {
             disallow: [
-              options.es ? "lodash" : "lodash-es",
-              options.es ? "@skylib/*/dist/**" : "@skylib/*/es/**"
+              es ? "lodash" : "lodash-es",
+              es ? "@skylib/*/dist/**" : "@skylib/*/es/**"
             ]
           },
-          ...options.disallowImport
+          ...disallowImport
         ]
       }
     ],
@@ -180,70 +181,3 @@ module.exports = {
     ]
   }
 };
-
-/**
- * Assigns raw options.
- *
- * @param dest - Options.
- * @param source - Raw options.
- */
-function assignRawOptions(dest, source) {
-  if ("consistentImport" in source)
-    dest.consistentImport.push(...source.consistentImport);
-
-  if ("disallowByRegexp" in source)
-    dest.disallowByRegexp.push(...source.disallowByRegexp);
-
-  if ("disallowIdentifier" in source)
-    dest.disallowIdentifier.push(...source.disallowIdentifier);
-
-  if ("disallowImport" in source)
-    dest.disallowImport.push(...source.disallowImport);
-
-  if ("es" in source) dest.es = source.es;
-}
-
-/**
- * Loads options.
- *
- * @param source - Source file or raw options object.
- * @returns Options.
- */
-function loadOptions(source) {
-  const result = {
-    consistentImport: [],
-    disallowByRegexp: [],
-    disallowIdentifier: [],
-    disallowImport: [],
-    es: false
-  };
-
-  const rawOptions = loadRawOptions(source);
-
-  if (rawOptions.extends)
-    for (const extend of rawOptions.extends)
-      assignRawOptions(result, loadRawOptions(extend));
-
-  assignRawOptions(result, rawOptions);
-
-  return result;
-}
-
-/**
- * Loads raw options.
- *
- * @param source - Source file or raw options object.
- * @returns Raw options.
- */
-function loadRawOptions(source) {
-  switch (typeof source) {
-    case "object":
-      return source;
-
-    case "string":
-      return fs.existsSync(source) ? require(source) : {};
-
-    default:
-      throw new Error("Invalid source");
-  }
-}
