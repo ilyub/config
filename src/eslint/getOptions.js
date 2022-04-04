@@ -9,6 +9,7 @@ module.exports = {
   extraChoreLocations: [],
   extraDefaultExportLocations: [],
   extraTestsLocations: [],
+  extraUnassignedImportLocations: [],
   extraUtilsLocations: [],
   quasar: false,
   quasarGlobalComponents: [],

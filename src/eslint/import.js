@@ -1,3 +1,9 @@
+const { extraUnassignedImportLocations } = require("./getOptions");
+
+const unassignedImport = ["**/*.css", "**/*.scss"];
+
+unassignedImport.push(...extraUnassignedImportLocations);
+
 module.exports = {
   plugins: ["import"],
   rules: {
@@ -19,10 +25,7 @@ module.exports = {
     "import/no-internal-modules": "off",
     "import/no-named-export": "off",
     "import/no-namespace": "off",
-    "import/no-unassigned-import": [
-      "warn",
-      { allow: ["**/*.css", "**/*.scss"] }
-    ],
+    "import/no-unassigned-import": ["warn", { allow: unassignedImport }],
     "import/order": "off",
     "import/prefer-default-export": "off",
     "import/unambiguous": "off"

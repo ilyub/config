@@ -88,7 +88,7 @@ module.exports = {
           {
             contexts: ["code"],
             patterns: [
-              /\b(?!extraChoreLocations)(?!extraDefaultExportLocations)(?!extraTestsLocations)(?!extraUtilsLocations)(?!ignoreFunctionTypeParameterNameValueShadow)(?!requireReturnForObjectLiteral)(?!onlyFunctionsWithExpectInCallback)(?!onlyFunctionsWithExpectInLoop)\w{26,}/u
+              /\b(?!extraChoreLocations)(?!extraDefaultExportLocations)(?!extraTestsLocations)(?!extraUnassignedImportLocations)(?!extraUtilsLocations)(?!ignoreFunctionTypeParameterNameValueShadow)(?!requireReturnForObjectLiteral)(?!onlyFunctionsWithExpectInCallback)(?!onlyFunctionsWithExpectInLoop)\w{26,}/u
                 .source
             ],
             subOptionsId: "id-length"

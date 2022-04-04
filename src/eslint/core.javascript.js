@@ -8,6 +8,7 @@ module.exports = {
           "extraChoreLocations",
           "extraDefaultExportLocations",
           "extraTestsLocations",
+          "extraUnassignedImportLocations",
           "extraUtilsLocations",
           "ignoreFunctionTypeParameterNameValueShadow",
           "requireReturnForObjectLiteral",
