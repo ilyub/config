@@ -18,7 +18,7 @@ module.exports = {
       {
         exceptionPatterns: [],
         exceptions: [],
-        max: 25,
+        max: 50,
         min: 1,
         properties: "always"
       }

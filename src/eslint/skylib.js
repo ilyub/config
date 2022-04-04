@@ -87,10 +87,7 @@ module.exports = {
           // fixme
           {
             contexts: ["code"],
-            patterns: [
-              /\b(?!extraChoreLocations)(?!extraDefaultExportLocations)(?!extraTestsLocations)(?!extraUnassignedImportLocations)(?!extraUtilsLocations)(?!ignoreFunctionTypeParameterNameValueShadow)(?!requireReturnForObjectLiteral)(?!onlyFunctionsWithExpectInCallback)(?!onlyFunctionsWithExpectInLoop)\w{26,}/u
-                .source
-            ],
+            patterns: [/\b\w{51,}/u.source],
             subOptionsId: "id-length"
           },
           // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
