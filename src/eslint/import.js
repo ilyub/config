@@ -8,6 +8,15 @@ module.exports = {
   plugins: ["import"],
   rules: {
     ...require("./getAll")("eslint-plugin-import"),
+    "import/dynamic-import-chunkname": [
+      "warn",
+      {
+        importFunctions: ["dynamicImport"],
+        // eslint-disable-next-line no-warning-comments -- https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1790
+        // fixme
+        webpackChunknameFormat: /dynamic\/[\w/]+/u.source
+      }
+    ],
     "import/exports-last": "off",
     "import/group-exports": "off",
     "import/max-dependencies": "off",

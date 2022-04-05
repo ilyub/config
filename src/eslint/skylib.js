@@ -83,31 +83,12 @@ module.exports = {
       "warn",
       {
         rules: [
-          // eslint-disable-next-line no-warning-comments -- Wait for https://github.com/typescript-eslint/typescript-eslint/issues/4779
+          // eslint-disable-next-line no-warning-comments -- https://github.com/gajus/eslint-plugin-jsdoc/issues/864
           // fixme
-          {
-            contexts: ["code"],
-            patterns: [/\b\w{51,}/u.source],
-            subOptionsId: "id-length"
-          },
-          // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
-          // fixme
-          {
-            contexts: ["code"],
-            patterns: [
-              /\bexport (async function|const|function|var) _\w+/u.source
-            ],
-            subOptionsId: "no-underscore-export"
-          },
           {
             contexts: ["comment"],
             patterns: [/(?<!\\)[<>]/u.source],
             subOptionsId: "comment.escape"
-          },
-          {
-            contexts: ["comment"],
-            patterns: [/\/\* webpackChunkName:(?! "dynamic\/)/u.source],
-            subOptionsId: "comment.webpackChunkName"
           },
           ...disallowByRegexp
         ]
