@@ -16,6 +16,10 @@ module.exports = {
         }
       }
     ],
+    "@typescript-eslint/consistent-indexed-object-style": [
+      "warn",
+      "index-signature"
+    ],
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       { disallowTypeAnnotations: true, prefer: "type-imports" }
