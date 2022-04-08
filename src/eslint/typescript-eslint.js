@@ -79,7 +79,10 @@ module.exports = {
         selector: ["default"]
       }
     ],
-    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-empty-interface": [
+      "warn",
+      { allowSingleExtends: false }
+    ],
     "@typescript-eslint/no-implicit-any-catch": "off",
     "@typescript-eslint/no-invalid-void-type": [
       "warn",
