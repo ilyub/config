@@ -1,3 +1,3 @@
 <script lang="ts">
-export {};
+export default { name: "sample-component" };
 </script>

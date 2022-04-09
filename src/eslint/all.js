@@ -72,7 +72,13 @@ module.exports = {
       ]
     },
     {
-      extends: ["./vue", "./vue-scoped-css", "./import.vue", "./skylib.vue"],
+      extends: [
+        "./vue",
+        "./vue-scoped-css",
+        "./core.vue",
+        "./import.vue",
+        "./skylib.vue"
+      ],
       files: ["*.vue"],
       overrides: [
         { extends: ["./vue.chore-tests-utils"], files: chore },
