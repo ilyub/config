@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const path = require("path");
 
-module.exports = function (scopesFile) {
+module.exports = function (config) {
   const types = [
     "build",
     "chore",
@@ -16,7 +16,7 @@ module.exports = function (scopesFile) {
     "test"
   ];
 
-  const scopes = [
+  const scopes = unique([
     "auto-eslint",
     "auto-json",
     "auto-linebreaks",
@@ -47,53 +47,83 @@ module.exports = function (scopesFile) {
     "stylelint",
     "typedoc",
     "typescript",
-    ...scopesFromDir("./src"),
-    ...scopesFromFilename(scopesFile)
-  ];
-
-  const ignoreList = (() => {
-    const result = [
-      "build(deps-update)",
-      "chore(deps-update)",
-      "chore(refactor)",
-      "chore(style)",
-      "docs(refactor)",
-      "docs(style)",
-      "initial commit",
-      "next",
-      "refactor",
-      "style",
-      "test(refactor)",
-      "test(style)"
-    ];
-
-    for (const scope of scopes)
-      result.push(
-        `chore(refactor,${scope})`,
-        `chore(style,${scope})`,
-        `docs(refactor,${scope})`,
-        `docs(style,${scope})`,
-        `refactor(${scope})`,
-        `style(${scope})`,
-        `test(refactor,${scope})`,
-        `test(style,${scope})`
-      );
-
-    result.push(...result.map(message => `${message}!`));
-
-    return result;
-  })();
+    ...scopesFromConfig(config),
+    ...scopesFromDir("./src")
+  ]);
 
   return {
     extends: ["@commitlint/config-conventional"],
-    ignores: [commit => ignoreList.includes(commit.trimEnd())],
+    ignores: [commit => ignore(commit, scopes)],
     rules: {
-      "scope-enum": [2, "always", scopes],
+      "scope-enum": [2, "always", [...scopes]],
       "subject-case": [2, "always", ["sentence-case"]],
       "type-enum": [2, "always", types]
     }
   };
 };
+
+/**
+ * Ignores commit.
+ *
+ * @param commit - Commit.
+ * @param scopes - Scopes.
+ * @returns _True_ to ignore, _false_ otherwise.
+ */
+function ignore(commit, scopes) {
+  commit = commit.trimEnd();
+
+  if (/^(?:initial commit|next|refactor|style)$/u.test(commit)) return true;
+
+  if (/^(?:build|chore)\(deps-update\)$/u.test(commit)) return true;
+
+  if (/^(?:chore|docs|test)\((?:refactor|style)\)$/u.test(commit)) return true;
+
+  {
+    const re = /^(?:refactor|style)\(([^),]+)\)$/u;
+
+    const matches = commit.match(re);
+
+    if (matches && scopes.includes(matches[1])) return true;
+  }
+
+  {
+    const re = /^(?:chore|docs|test)\((?:refactor|style),([^),]+)\)$/u;
+
+    const matches = commit.match(re);
+
+    if (matches && scopes.includes(matches[1])) return true;
+  }
+
+  {
+    const re = /^(?:refactor|style)\(([^),]+),([^),]+)\)$/u;
+
+    const matches = commit.match(re);
+
+    if (matches && scopes.includes(matches[1]) && scopes.includes(matches[2]))
+      return true;
+  }
+
+  {
+    const re = /^(?:chore|docs|test)\((?:refactor|style),([^),]+),([^),]+)\)$/u;
+
+    const matches = commit.match(re);
+
+    if (matches && scopes.includes(matches[1]) && scopes.includes(matches[2]))
+      return true;
+  }
+
+  return false;
+}
+
+/**
+ * Generates scopes from config.
+ *
+ * @param config - Config.
+ * @returns Scopes.
+ */
+function scopesFromConfig(config) {
+  return fs.existsSync(config) ? require(fs.realpathSync(config)) : [];
+}
 
 /**
  * Generates scopes from directory.
@@ -104,7 +134,7 @@ module.exports = function (scopesFile) {
 function scopesFromDir(dir) {
   const result = [];
 
-  recurs(dir);
+  if (fs.existsSync(dir)) recurs(dir);
 
   return result;
 
@@ -122,11 +152,11 @@ function scopesFromDir(dir) {
 }
 
 /**
- * Generates scopes from scopes file.
+ * Creates unique array.
  *
- * @param scopesFile - Scopes file.
- * @returns Scopes.
+ * @param arr - Array.
+ * @returns Unique array.
  */
-function scopesFromFilename(scopesFile) {
-  return fs.existsSync(scopesFile) ? require(fs.realpathSync(scopesFile)) : [];
+function unique(arr) {
+  return [...new Set(arr).values()];
 }
