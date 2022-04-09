@@ -79,20 +79,6 @@ module.exports = function (scopesFile) {
         `test(style,${scope})`
       );
 
-    for (const scope1 of scopes)
-      for (const scope2 of scopes)
-        if (scope1 !== scope2)
-          result.push(
-            `chore(refactor,${scope1},${scope2})`,
-            `chore(style,${scope1},${scope2})`,
-            `docs(refactor,${scope1},${scope2})`,
-            `docs(style,${scope1},${scope2})`,
-            `refactor(${scope1},${scope2})`,
-            `style(${scope1},${scope2})`,
-            `test(refactor,${scope1},${scope2})`,
-            `test(style,${scope1},${scope2})`
-          );
-
     result.push(...result.map(message => `${message}!`));
 
     return result;
@@ -108,16 +94,6 @@ module.exports = function (scopesFile) {
     }
   };
 };
-
-/**
- * Generates scopes from scopes file.
- *
- * @param scopesFile - Scopes file.
- * @returns Scopes.
- */
-function scopesFromFilename(scopesFile) {
-  return fs.existsSync(scopesFile) ? require(fs.realpathSync(scopesFile)) : [];
-}
 
 /**
  * Generates scopes from directory.
@@ -143,4 +119,14 @@ function scopesFromDir(dir) {
       if (fs.lstatSync(filename).isDirectory()) recurs(filename);
     }
   }
+}
+
+/**
+ * Generates scopes from scopes file.
+ *
+ * @param scopesFile - Scopes file.
+ * @returns Scopes.
+ */
+function scopesFromFilename(scopesFile) {
+  return fs.existsSync(scopesFile) ? require(fs.realpathSync(scopesFile)) : [];
 }
