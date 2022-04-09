@@ -112,8 +112,25 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/no-mutable-signature": "off",
-    "@skylib/prefer-readonly": "off",
+    "@skylib/no-mutable-signature": [
+      "warn",
+      {
+        ignoreClasses: true,
+        ignoreIdentifiers: [/^mutable/u.source],
+        ignoreInterfaces: true,
+        ignoreNumberSignature: true,
+        ignoreTypes: ["Promise", "ReadonlyMap", "ReadonlySet"]
+      }
+    ],
+    "@skylib/prefer-readonly": [
+      "warn",
+      {
+        ignoreClasses: true,
+        ignoreIdentifiers: [/^mutable/u.source],
+        ignoreInterfaces: true,
+        ignoreTypes: ["Promise", "ReadonlyMap", "ReadonlySet"]
+      }
+    ],
     "@skylib/require-jsdoc": [
       "warn",
       {
