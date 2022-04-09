@@ -11,6 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "isolatedModules": true,
+    "jsx": "preserve",
     "module": "CommonJS",
     "moduleResolution": "Node",
     "newLine": "lf",
