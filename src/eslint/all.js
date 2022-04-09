@@ -81,39 +81,25 @@ module.exports = {
         "./skylib.vue"
       ],
       files: ["*.vue"],
-      overrides: [
-        { extends: ["./vue.chore-tests-utils"], files: chore },
-        { extends: ["./vue.chore-tests-utils"], files: tests },
-        { extends: ["./vue.chore-tests-utils"], files: utils }
-      ]
+      overrides: [{ extends: ["./vue.chore"], files: chore }]
     },
     {
-      extends: [
-        "./es.chore-tests-utils",
-        "./import.chore-tests-utils",
-        "./import.chore-tests",
-        "./skylib.chore-tests"
-      ],
+      extends: ["./es.chore", "./import.chore", "./skylib.chore"],
       files: chore
     },
     { extends: ["./import.defaultExport"], files: defaultExport },
     {
       extends: [
         "./core.tests",
-        "./es.chore-tests-utils",
-        "./import.chore-tests-utils",
-        "./import.chore-tests",
+        "./es.tests",
+        "./import.tests",
         "./jest.tests",
-        "./skylib.chore-tests",
         "./skylib.tests",
         "./unicorn.tests"
       ],
       files: tests
     },
-    {
-      extends: ["./es.chore-tests-utils", "./import.chore-tests-utils"],
-      files: utils
-    },
+    { extends: ["./es.utils", "./import.utils"], files: utils },
     {
       extends: [
         "./prettier",
