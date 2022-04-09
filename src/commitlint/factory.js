@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+const path = require("path");
+
 module.exports = function (scopesFile) {
   const types = [
     "build",
@@ -14,45 +16,40 @@ module.exports = function (scopesFile) {
     "test"
   ];
 
-  const scopes = (() => {
-    const result = [
-      "auto-eslint",
-      "auto-json",
-      "auto-linebreaks",
-      "auto-php-cs",
-      "auto-stylelint",
-      "babel",
-      "browserlist",
-      "commitlint",
-      "composer",
-      "deps-major-update",
-      "deps-update",
-      "env",
-      "eslint",
-      "fix",
-      "git",
-      "jest",
-      "package",
-      "perf",
-      "php-cs",
-      "readme",
-      "recommended-eslint",
-      "recommended-stylelint",
-      "recommended-sonar",
-      "refactor",
-      "revert",
-      "sonar",
-      "style",
-      "stylelint",
-      "typedoc",
-      "typescript"
-    ];
-
-    if (fs.existsSync(scopesFile))
-      result.push(...require(fs.realpathSync(scopesFile)));
-
-    return result;
-  })();
+  const scopes = [
+    "auto-eslint",
+    "auto-json",
+    "auto-linebreaks",
+    "auto-php-cs",
+    "auto-stylelint",
+    "babel",
+    "browserlist",
+    "commitlint",
+    "composer",
+    "deps-major-update",
+    "deps-update",
+    "env",
+    "eslint",
+    "fix",
+    "git",
+    "jest",
+    "package",
+    "perf",
+    "php-cs",
+    "readme",
+    "recommended-eslint",
+    "recommended-stylelint",
+    "recommended-sonar",
+    "refactor",
+    "revert",
+    "sonar",
+    "style",
+    "stylelint",
+    "typedoc",
+    "typescript",
+    ...scopesFromDir("./src"),
+    ...scopesFromFilename(scopesFile)
+  ];
 
   const ignoreList = (() => {
     const result = [
@@ -111,3 +108,39 @@ module.exports = function (scopesFile) {
     }
   };
 };
+
+/**
+ * Generates scopes from scopes file.
+ *
+ * @param scopesFile - Scopes file.
+ * @returns Scopes.
+ */
+function scopesFromFilename(scopesFile) {
+  return fs.existsSync(scopesFile) ? require(fs.realpathSync(scopesFile)) : [];
+}
+
+/**
+ * Generates scopes from directory.
+ *
+ * @param dir - Directory.
+ * @returns Scopes.
+ */
+function scopesFromDir(dir) {
+  const result = [];
+
+  recurs(dir);
+
+  return result;
+
+  function recurs(subdir) {
+    for (const base of fs.readdirSync(subdir)) {
+      const name = path.parse(base).name;
+
+      const filename = path.join(subdir, base);
+
+      result.push(name);
+
+      if (fs.lstatSync(filename).isDirectory()) recurs(filename);
+    }
+  }
+}
