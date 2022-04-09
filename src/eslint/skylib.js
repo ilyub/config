@@ -36,6 +36,7 @@ module.exports = {
       "warn",
       {
         rules: [
+          { selector: "CallExpression > *" },
           {
             selector:
               ":matches(ArrayExpression, ObjectExpression, TSInterfaceBody) > *"
@@ -118,26 +119,9 @@ module.exports = {
       {
         excludeSelectors: ["ClassDeclaration", "FunctionDeclaration"],
         includeSelectors: [
-          [
-            ":matches(ExportNamedDeclaration, Program, TSModuleBlock)",
-            "> FunctionDeclaration"
-          ].join(" "),
-          [
-            ":matches(ExportNamedDeclaration, Program, TSModuleBlock)",
-            "> VariableDeclaration",
-            "> VariableDeclarator",
-            "> :matches(CallExpression[callee.name='assign'], CallExpression[callee.property.name='assign'])",
-            "> :matches(ArrowFunctionExpression,FunctionExpression)"
-          ].join(" "),
-          [
-            ":matches(ExportNamedDeclaration, Program, TSModuleBlock)",
-            "> VariableDeclaration",
-            "> VariableDeclarator",
-            "> :matches(CallExpression[callee.name='assign'], CallExpression[callee.property.name='assign'])",
-            "> ObjectExpression",
-            "> Property",
-            "> :matches(ArrowFunctionExpression,FunctionExpression)"
-          ].join(" ")
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > :matches(CallExpression[callee.name='assign'], CallExpression[callee.property.name='assign']) > :matches(ArrowFunctionExpression,FunctionExpression)",
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > :matches(CallExpression[callee.name='assign'], CallExpression[callee.property.name='assign']) > ObjectExpression > Property > :matches(ArrowFunctionExpression,FunctionExpression)"
         ],
         interfaces: ["callSignatures", "constructSignatures"],
         properties: ["function"]
