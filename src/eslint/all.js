@@ -28,6 +28,7 @@ module.exports = {
   extends: [
     "./core",
     "./boundaries",
+    "./deprecation",
     "./es",
     "./eslint-comments",
     "./etc",
