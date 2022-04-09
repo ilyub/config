@@ -90,8 +90,8 @@ module.exports = {
     {
       extends: [
         "./es.chore-tests-utils",
-        "./import.chore-tests",
         "./import.chore-tests-utils",
+        "./import.chore-tests",
         "./skylib.chore-tests"
       ],
       files: chore
@@ -101,10 +101,11 @@ module.exports = {
       extends: [
         "./core.tests",
         "./es.chore-tests-utils",
-        "./import.chore-tests",
         "./import.chore-tests-utils",
+        "./import.chore-tests",
         "./jest.tests",
         "./skylib.chore-tests",
+        "./skylib.tests",
         "./unicorn.tests"
       ],
       files: tests
