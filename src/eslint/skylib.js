@@ -36,11 +36,12 @@ module.exports = {
       "warn",
       {
         rules: [
-          { selector: "CallExpression > *" },
-          {
-            selector:
-              ":matches(ArrayExpression, ObjectExpression, TSInterfaceBody) > *"
-          },
+          { selector: "ArrayExpression > *" },
+          { selector: "CallExpression > *.arguments" },
+          { selector: "FunctionDeclaration > *.params" },
+          { selector: "ObjectExpression > *" },
+          { selector: "TSDeclareFunction > *.params" },
+          { selector: "TSInterfaceBody > *" },
           {
             averageLinesGte: 3,
             everyLinesGte: 2,

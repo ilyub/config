@@ -5,8 +5,18 @@ module.exports = {
     "no-restricted-syntax": [
       "error",
       {
-        message: "No named export in .vue files",
+        message: "Named export in .vue files is disallowed",
         selector: "ExportNamedDeclaration"
+      },
+      {
+        message: "Underscore export is disallowed",
+        selector:
+          "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: "Underscore export is disallowed",
+        selector:
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
       }
     ]
   }

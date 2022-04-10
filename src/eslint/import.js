@@ -14,7 +14,7 @@ module.exports = {
         importFunctions: ["dynamicImport"],
         // eslint-disable-next-line no-warning-comments -- https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1790
         // fixme
-        webpackChunknameFormat: /dynamic\/[\w/]+/u.source
+        webpackChunknameFormat: /dynamic\/[\w\-/]+/u.source
       }
     ],
     "import/exports-last": "off",

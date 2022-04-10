@@ -37,32 +37,14 @@ module.exports = {
       },
       {
         custom: { match: true, regex: "^.{1,50}$" },
-        format: ["camelCase"],
-        modifiers: ["exported"],
-        selector: ["default"]
-      },
-      {
-        custom: { match: true, regex: "^.{1,50}$" },
         format: ["camelCase", "PascalCase"],
         leadingUnderscore: "allow",
         selector: ["function", "typeLike"]
       },
       {
         custom: { match: true, regex: "^.{1,50}$" },
-        format: ["camelCase", "PascalCase"],
-        modifiers: ["exported"],
-        selector: ["function", "typeLike"]
-      },
-      {
-        custom: { match: true, regex: "^.{1,50}$" },
         format: ["camelCase", "PascalCase", "UPPER_CASE"],
         leadingUnderscore: "allow",
-        selector: ["variable"]
-      },
-      {
-        custom: { match: true, regex: "^.{1,50}$" },
-        format: ["camelCase", "PascalCase", "UPPER_CASE"],
-        modifiers: ["exported"],
         selector: ["variable"]
       },
       {
@@ -72,7 +54,6 @@ module.exports = {
         selector: ["objectLiteralProperty", "typeProperty"]
       },
       {
-        custom: { match: true, regex: "^.{1,50}$" },
         // eslint-disable-next-line unicorn/no-null -- Ok
         format: null,
         modifiers: ["requiresQuotes"],

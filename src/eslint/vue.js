@@ -114,6 +114,7 @@ module.exports = {
     ],
     "vue/no-unused-vars": ["warn", { ignorePattern: /^(?:_|omit)/u.source }],
     "vue/no-v-model-argument": "off",
+    "vue/object-shorthand": ["warn", "never"],
     "vue/require-expose": "off",
     "vue/return-in-computed-property": "off",
     "vue/v-on-function-call": ["warn", "never"]

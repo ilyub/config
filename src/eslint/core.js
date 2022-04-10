@@ -36,6 +36,21 @@ module.exports = {
     "no-magic-numbers": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
+    // fixme
+    "no-restricted-syntax": [
+      "error",
+      {
+        message: "Underscore export is disallowed",
+        selector:
+          "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: "Underscore export is disallowed",
+        selector:
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
+      }
+    ],
     "no-shadow": [
       "warn",
       {
