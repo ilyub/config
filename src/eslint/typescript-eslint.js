@@ -81,7 +81,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-empty-interface": [
       "warn",
-      { allowSingleExtends: false }
+      { allowSingleExtends: true }
     ],
     "@typescript-eslint/no-implicit-any-catch": "off",
     "@typescript-eslint/no-invalid-void-type": [
