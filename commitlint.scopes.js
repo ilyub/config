@@ -1,1 +1,1 @@
-module.exports = ["git-hooks"];
+module.exports = [];
