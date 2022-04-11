@@ -2,6 +2,8 @@
 
 include_once __DIR__.DIRECTORY_SEPARATOR.'api.php';
 
+set_error_handler('errorHandler');
+
 $config = decodeJson(file_get_contents('package.json'), 'package.json');
 
 $name = $config['name'];
@@ -105,7 +107,7 @@ if (in_array($version, $tags)) {
 
   if ($private === false) {
     $versions = execute('npm view '.$name.' versions --json', 'Retrieving npm package versions');
-    $versions = join("\n", $versions);
+    $versions = implode("\n", $versions);
     $versions = decodeJson($versions, 'versions');
     $versions = is_array($versions) ? $versions : [$versions];
 

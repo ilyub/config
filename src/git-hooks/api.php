@@ -1,7 +1,5 @@
 <?php
 
-set_error_handler('errorHandler');
-
 /**
  * Clears directory.
  */
@@ -145,6 +143,6 @@ function pathConcat(...$parts): string
   return preg_replace(
     '`[/\\\\]+`isuxDX',
     DIRECTORY_SEPARATOR,
-    join(DIRECTORY_SEPARATOR, $parts)
+    implode(DIRECTORY_SEPARATOR, $parts)
   );
 }

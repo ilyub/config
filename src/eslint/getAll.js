@@ -1,14 +1,14 @@
-module.exports = function (package) {
+module.exports = function (source) {
   const prefix = (() => {
-    if (package.endsWith("/eslint-plugin")) return package.slice(0, -14);
+    if (source.endsWith("/eslint-plugin")) return source.slice(0, -14);
 
-    if (package.startsWith("eslint-plugin-")) return package.slice(14);
+    if (source.startsWith("eslint-plugin-")) return source.slice(14);
 
-    throw new Error(`Unexpected package name: ${package}`);
+    throw new Error(`Unexpected source name: ${source}`);
   })();
 
   return Object.fromEntries(
-    Object.keys(require(package).rules).map(rule => [
+    Object.keys(require(source).rules).map(rule => [
       `${prefix}/${rule}`,
       "warn"
     ])

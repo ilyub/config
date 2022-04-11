@@ -2,6 +2,8 @@
 
 include_once __DIR__.DIRECTORY_SEPARATOR.'api.php';
 
+set_error_handler('errorHandler');
+
 $tags = execute('git tag');
 
 $commits = execute('git --no-pager log --grep="^initial\\scommit$" --pretty=format:%H');

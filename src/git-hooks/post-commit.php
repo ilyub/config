@@ -2,6 +2,8 @@
 
 include_once __DIR__.DIRECTORY_SEPARATOR.'api.php';
 
+set_error_handler('errorHandler');
+
 $commits = execute('git --no-pager log --pretty=format:%s -n1');
 
 if ($commits[0] === 'next') {
