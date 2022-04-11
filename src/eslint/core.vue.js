@@ -17,6 +17,10 @@ module.exports = {
         message: "Underscore export is disallowed",
         selector:
           "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: 'Use "Extends" type from "ts-toolbelt" package instead',
+        selector: "TSConditionalType"
       }
     ]
   }
