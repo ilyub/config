@@ -61,9 +61,15 @@ module.exports = {
       {
         ignoreClasses: true,
         ignoreIdentifiers: [/^mutable/u.source],
+        ignoreInferredTypes: true,
         ignoreInterfaces: true,
         ignoreNumberSignature: true,
-        ignoreTypes: ["Promise", "ReadonlyMap", "ReadonlySet"]
+        ignoreTypes: [
+          "^Promise$",
+          "^ReadonlyMap$",
+          "^ReadonlySet$",
+          "^Writable"
+        ]
       }
     ],
     "@skylib/prefer-readonly": [
@@ -71,8 +77,14 @@ module.exports = {
       {
         ignoreClasses: true,
         ignoreIdentifiers: [/^mutable/u.source],
+        ignoreInferredTypes: true,
         ignoreInterfaces: true,
-        ignoreTypes: ["Promise", "ReadonlyMap", "ReadonlySet"]
+        ignoreTypes: [
+          "^Promise$",
+          "^ReadonlyMap$",
+          "^ReadonlySet$",
+          "^Writable"
+        ]
       }
     ],
     "@skylib/require-jsdoc": [
