@@ -1,96 +1,98 @@
-const fs = require("fs");
+module.exports = (() => {
+  const fs = require("fs");
 
-module.exports = {
-  consistentImport: [],
-  disallowByRegexp: [],
-  disallowIdentifier: [],
-  disallowImport: [],
-  es: false,
-  extraChoreLocations: [],
-  extraDefaultExportLocations: [],
-  extraTestsLocations: [],
-  extraUnassignedImportLocations: [],
-  extraUtilsLocations: [],
-  quasar: false,
-  quasarGlobalComponents: [],
-  utility: false,
-  ...loadDeep(fs.realpathSync(".eslintrc.options.js"))
-};
-
-/**
- * Assigns options.
- *
- * @param dest - Dest.
- * @param source - Source.
- */
-function assign(dest, source) {
-  const {
-    consistentImport,
-    disallowByRegexp,
-    disallowIdentifier,
-    disallowImport,
-    ...rest
-  } = source;
-
-  Object.assign(dest, rest);
-  dest.consistentImport.push(...consistentImport);
-  dest.disallowByRegexp.push(...disallowByRegexp);
-  dest.disallowIdentifier.push(...disallowIdentifier);
-  dest.disallowImport.push(...disallowImport);
-}
-
-/**
- * Create defaults object.
- *
- * @returns Defaults objec.
- */
-function createDefaults() {
   return {
     consistentImport: [],
     disallowByRegexp: [],
     disallowIdentifier: [],
-    disallowImport: []
+    disallowImport: [],
+    es: false,
+    extraChoreLocations: [],
+    extraDefaultExportLocations: [],
+    extraTestsLocations: [],
+    extraUnassignedImportLocations: [],
+    extraUtilsLocations: [],
+    quasar: false,
+    quasarGlobalComponents: [],
+    utility: false,
+    ...loadDeep(fs.realpathSync(".eslintrc.options.js"))
   };
-}
 
-/**
- * Loads options.
- *
- * @param source - Source file or options object.
- * @returns Options.
- */
-function load(source) {
-  const result = (() => {
-    switch (typeof source) {
-      case "object":
-        return source;
+  /**
+   * Assigns options.
+   *
+   * @param dest - Dest.
+   * @param source - Source.
+   */
+  function assign(dest, source) {
+    const {
+      consistentImport,
+      disallowByRegexp,
+      disallowIdentifier,
+      disallowImport,
+      ...rest
+    } = source;
 
-      case "string":
-        return fs.existsSync(source) ? require(source) : {};
+    Object.assign(dest, rest);
+    dest.consistentImport.push(...consistentImport);
+    dest.disallowByRegexp.push(...disallowByRegexp);
+    dest.disallowIdentifier.push(...disallowIdentifier);
+    dest.disallowImport.push(...disallowImport);
+  }
 
-      default:
-        throw new Error("Invalid source");
-    }
-  })();
+  /**
+   * Create defaults object.
+   *
+   * @returns Defaults objec.
+   */
+  function createDefaults() {
+    return {
+      consistentImport: [],
+      disallowByRegexp: [],
+      disallowIdentifier: [],
+      disallowImport: []
+    };
+  }
 
-  return { ...createDefaults(), ...result };
-}
+  /**
+   * Loads options.
+   *
+   * @param source - Source file or options object.
+   * @returns Options.
+   */
+  function load(source) {
+    const result = (() => {
+      switch (typeof source) {
+        case "object":
+          return source;
 
-/**
- * Loads options.
- *
- * @param source - Source file or options object.
- * @returns Options.
- */
-function loadDeep(source) {
-  const result = createDefaults();
+        case "string":
+          return fs.existsSync(source) ? require(source) : {};
 
-  const options = load(source);
+        default:
+          throw new Error("Invalid source");
+      }
+    })();
 
-  if (options.extends)
-    for (const extend of options.extends) assign(result, loadDeep(extend));
+    return { ...createDefaults(), ...result };
+  }
 
-  assign(result, options);
+  /**
+   * Loads options.
+   *
+   * @param source - Source file or options object.
+   * @returns Options.
+   */
+  function loadDeep(source) {
+    const result = createDefaults();
 
-  return result;
-}
+    const options = load(source);
+
+    if (options.extends)
+      for (const extend of options.extends) assign(result, loadDeep(extend));
+
+    assign(result, options);
+
+    return result;
+  }
+})();
