@@ -2,8 +2,7 @@ const {
   consistentImport,
   disallowByRegexp,
   disallowIdentifier,
-  disallowImport,
-  es
+  disallowImport
 } = require("./getOptions");
 
 module.exports = {
@@ -53,66 +52,10 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/consistent-import": [
-      "warn",
-      {
-        sources: [
-          {
-            altLocalNames: ["nodeFs"],
-            sourcePattern: "fs",
-            type: "default"
-          },
-          {
-            localName: "$",
-            sourcePattern: "jquery",
-            type: "default"
-          },
-          {
-            localName: "_",
-            sourcePattern: es ? "lodash-es" : "lodash",
-            type: "wildcard"
-          },
-          {
-            altLocalNames: ["nodePath"],
-            sourcePattern: "path",
-            type: "default"
-          },
-          ...consistentImport
-        ]
-      }
-    ],
-    "@skylib/disallow-by-regexp": [
-      "warn",
-      {
-        rules: [
-          // eslint-disable-next-line no-warning-comments -- https://github.com/gajus/eslint-plugin-jsdoc/issues/864
-          // fixme
-          {
-            contexts: ["comment"],
-            patterns: [/(?<!\\)[<>]/u.source],
-            subOptionsId: "comment.escape"
-          },
-          ...disallowByRegexp
-        ]
-      }
-    ],
+    "@skylib/consistent-import": ["warn", { sources: consistentImport }],
+    "@skylib/disallow-by-regexp": ["warn", { rules: disallowByRegexp }],
     "@skylib/disallow-identifier": ["warn", { rules: disallowIdentifier }],
-    "@skylib/disallow-import": [
-      "warn",
-      {
-        rules: [
-          { disallow: ["../src/**"] },
-          { disallow: ["@/**"], filesToSkip: ["./tests/**"] },
-          {
-            disallow: [
-              es ? "lodash" : "lodash-es",
-              es ? "@skylib/*/dist/**" : "@skylib/*/es/**"
-            ]
-          },
-          ...disallowImport
-        ]
-      }
-    ],
+    "@skylib/disallow-import": ["warn", { rules: disallowImport }],
     "@skylib/no-mutable-signature": [
       "warn",
       {

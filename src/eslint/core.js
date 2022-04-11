@@ -1,3 +1,5 @@
+const { noRestrictedSyntax } = require("./getOptions");
+
 module.exports = {
   extends: ["eslint:all"],
   rules: {
@@ -36,25 +38,7 @@ module.exports = {
     "no-magic-numbers": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
-    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
-    // fixme
-    "no-restricted-syntax": [
-      "error",
-      {
-        message: "Underscore export is disallowed",
-        selector:
-          "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]"
-      },
-      {
-        message: "Underscore export is disallowed",
-        selector:
-          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
-      },
-      {
-        message: 'Use "Extends" type from "ts-toolbelt" package instead',
-        selector: "TSConditionalType"
-      }
-    ],
+    "no-restricted-syntax": ["error", ...noRestrictedSyntax],
     "no-shadow": [
       "warn",
       {

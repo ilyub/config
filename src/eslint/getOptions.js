@@ -1,22 +1,7 @@
 module.exports = (() => {
   const fs = require("fs");
 
-  return {
-    consistentImport: [],
-    disallowByRegexp: [],
-    disallowIdentifier: [],
-    disallowImport: [],
-    es: false,
-    extraChoreLocations: [],
-    extraDefaultExportLocations: [],
-    extraTestsLocations: [],
-    extraUnassignedImportLocations: [],
-    extraUtilsLocations: [],
-    quasar: false,
-    quasarGlobalComponents: [],
-    utility: false,
-    ...loadDeep(fs.realpathSync(".eslintrc.options.js"))
-  };
+  return loadDeep(fs.realpathSync(".eslintrc.options.js"));
 
   /**
    * Assigns options.
@@ -30,6 +15,7 @@ module.exports = (() => {
       disallowByRegexp,
       disallowIdentifier,
       disallowImport,
+      noRestrictedSyntax,
       ...rest
     } = source;
 
@@ -38,20 +24,7 @@ module.exports = (() => {
     dest.disallowByRegexp.push(...disallowByRegexp);
     dest.disallowIdentifier.push(...disallowIdentifier);
     dest.disallowImport.push(...disallowImport);
-  }
-
-  /**
-   * Create defaults object.
-   *
-   * @returns Defaults objec.
-   */
-  function createDefaults() {
-    return {
-      consistentImport: [],
-      disallowByRegexp: [],
-      disallowIdentifier: [],
-      disallowImport: []
-    };
+    dest.noRestrictedSyntax.push(...noRestrictedSyntax);
   }
 
   /**
@@ -74,7 +47,14 @@ module.exports = (() => {
       }
     })();
 
-    return { ...createDefaults(), ...result };
+    return {
+      consistentImport: [],
+      disallowByRegexp: [],
+      disallowIdentifier: [],
+      disallowImport: [],
+      noRestrictedSyntax: [],
+      ...result
+    };
   }
 
   /**
@@ -84,7 +64,22 @@ module.exports = (() => {
    * @returns Options.
    */
   function loadDeep(source) {
-    const result = createDefaults();
+    const result = {
+      consistentImport: [],
+      disallowByRegexp: [],
+      disallowIdentifier: [],
+      disallowImport: [],
+      es: false,
+      extraChoreLocations: [],
+      extraDefaultExportLocations: [],
+      extraTestsLocations: [],
+      extraUnassignedImportLocations: [],
+      extraUtilsLocations: [],
+      noRestrictedSyntax: [],
+      quasar: false,
+      quasarGlobalComponents: [],
+      utility: false
+    };
 
     const options = load(source);
 
@@ -92,6 +87,67 @@ module.exports = (() => {
       for (const extend of options.extends) assign(result, loadDeep(extend));
 
     assign(result, options);
+
+    result.consistentImport.push(
+      {
+        altLocalNames: ["nodeFs"],
+        sourcePattern: "fs",
+        type: "default"
+      },
+      {
+        localName: "$",
+        sourcePattern: "jquery",
+        type: "default"
+      },
+      {
+        localName: "_",
+        sourcePattern: result.es ? "lodash-es" : "lodash",
+        type: "wildcard"
+      },
+      {
+        altLocalNames: ["nodePath"],
+        sourcePattern: "path",
+        type: "default"
+      }
+    );
+
+    result.disallowByRegexp.push(
+      // eslint-disable-next-line no-warning-comments -- https://github.com/gajus/eslint-plugin-jsdoc/issues/864
+      // fixme
+      {
+        contexts: ["comment"],
+        patterns: [/(?<!\\)[<>]/u.source],
+        subOptionsId: "comment.escape"
+      }
+    );
+
+    result.disallowImport.push(
+      { disallow: ["../src/**"] },
+      { disallow: ["@/**"], filesToSkip: ["./tests/**"] },
+      {
+        disallow: [
+          result.es ? "lodash" : "lodash-es",
+          result.es ? "@skylib/*/dist/**" : "@skylib/*/es/**"
+        ]
+      }
+    );
+
+    result.noRestrictedSyntax.push(
+      {
+        message: "Underscore export is disallowed",
+        selector:
+          "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: "Underscore export is disallowed",
+        selector:
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: 'Use "Extends" type from "ts-toolbelt" package instead',
+        selector: "TSConditionalType"
+      }
+    );
 
     return result;
   }
