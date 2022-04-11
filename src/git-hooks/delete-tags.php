@@ -1,18 +1,5 @@
 <?php
 
-include_once __DIR__.DIRECTORY_SEPARATOR.'api.php';
+include_once __DIR__.DIRECTORY_SEPARATOR.'init.php';
 
-set_error_handler('errorHandler');
-
-$tags = execute('git tag');
-
-$commits = execute('git --no-pager log --grep="^initial\\scommit$" --pretty=format:%H');
-
-foreach ($commits as $commit) {
-  $tags = array_diff($tags, execute('git tag --points-at '.$commit));
-}
-
-foreach ($tags as $tag) {
-  execute('git tag -d '.$tag);
-  executeWithKey('git push --delete origin '.$tag, 'Deleting tag '.$tag);
-}
+Action::deleteTags();
