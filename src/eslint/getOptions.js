@@ -18,20 +18,6 @@ module.exports = {
 };
 
 /**
- * Returns accumulators.
- *
- * @returns Accumulators.
- */
-function accumulators() {
-  return {
-    consistentImport: [],
-    disallowByRegexp: [],
-    disallowIdentifier: [],
-    disallowImport: []
-  };
-}
-
-/**
  * Assigns options.
  *
  * @param dest - Dest.
@@ -54,6 +40,20 @@ function assign(dest, source) {
 }
 
 /**
+ * Create defaults object.
+ *
+ * @returns Defaults objec.
+ */
+function createDefaults() {
+  return {
+    consistentImport: [],
+    disallowByRegexp: [],
+    disallowIdentifier: [],
+    disallowImport: []
+  };
+}
+
+/**
  * Loads options.
  *
  * @param source - Source file or options object.
@@ -73,7 +73,7 @@ function load(source) {
     }
   })();
 
-  return { ...accumulators(), ...result };
+  return { ...createDefaults(), ...result };
 }
 
 /**
@@ -83,7 +83,7 @@ function load(source) {
  * @returns Options.
  */
 function loadDeep(source) {
-  const result = accumulators();
+  const result = createDefaults();
 
   const options = load(source);
 
