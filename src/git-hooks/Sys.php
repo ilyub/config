@@ -9,12 +9,12 @@ class Sys
   {
     if ($exists || file_exists($dir)) {
       foreach (static::scanDir($dir, $ignore) as $basename) {
-        $filename = $dir.DIRECTORY_SEPARATOR.$basename;
+        $filename = $dir.'/'.$basename;
         if (is_dir($filename)) {
           static::clearDir($filename, [], true);
           rmdir($filename);
         } else {
-          unlink($dir.DIRECTORY_SEPARATOR.$basename);
+          unlink($filename);
         }
       }
     }
@@ -114,11 +114,7 @@ class Sys
    */
   protected static function pathConcat(...$parts): string
   {
-    return preg_replace(
-      '`[/\\\\]+`isuxDX',
-      DIRECTORY_SEPARATOR,
-      implode(DIRECTORY_SEPARATOR, $parts)
-    );
+    return preg_replace('`[/\\\\]+`isuxDX', '/', implode('/', $parts));
   }
 
   /**
