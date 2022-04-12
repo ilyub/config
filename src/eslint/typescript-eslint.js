@@ -97,6 +97,7 @@ module.exports = {
       "warn",
       { allowNumber: true }
     ],
+    "@typescript-eslint/return-await": ["warn", "always"],
     "@typescript-eslint/switch-exhaustiveness-check": "off"
   }
 };
