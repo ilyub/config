@@ -1,93 +1,29 @@
 module.exports = (() => {
   const fs = require("fs");
 
-  return loadDeep(fs.realpathSync(".eslintrc.options.js"));
+  const result = {
+    consistentImport: [],
+    disallowByRegexp: [],
+    disallowIdentifier: [],
+    disallowImport: [],
+    es: false,
+    extraChoreLocations: [],
+    extraDefaultExportLocations: [],
+    extraTestsLocations: [],
+    extraUnassignedImportLocations: [],
+    extraUtilsLocations: [],
+    noRestrictedSyntax: [],
+    quasar: false,
+    quasarGlobalComponents: [],
+    utility: false
+  };
 
-  /**
-   * Assigns options.
-   *
-   * @param dest - Dest.
-   * @param source - Source.
-   */
-  function assign(dest, source) {
-    const {
-      consistentImport,
-      disallowByRegexp,
-      disallowIdentifier,
-      disallowImport,
-      noRestrictedSyntax,
-      ...rest
-    } = source;
+  load(fs.realpathSync(".eslintrc.options.js"));
+  addDefaults();
 
-    Object.assign(dest, rest);
-    dest.consistentImport.push(...consistentImport);
-    dest.disallowByRegexp.push(...disallowByRegexp);
-    dest.disallowIdentifier.push(...disallowIdentifier);
-    dest.disallowImport.push(...disallowImport);
-    dest.noRestrictedSyntax.push(...noRestrictedSyntax);
-  }
+  return result;
 
-  /**
-   * Loads options.
-   *
-   * @param source - Source file or options object.
-   * @returns Options.
-   */
-  function load(source) {
-    const result = (() => {
-      switch (typeof source) {
-        case "object":
-          return source;
-
-        case "string":
-          return fs.existsSync(source) ? require(source) : {};
-
-        default:
-          throw new Error("Invalid source");
-      }
-    })();
-
-    return {
-      consistentImport: [],
-      disallowByRegexp: [],
-      disallowIdentifier: [],
-      disallowImport: [],
-      noRestrictedSyntax: [],
-      ...result
-    };
-  }
-
-  /**
-   * Loads options.
-   *
-   * @param source - Source file or options object.
-   * @returns Options.
-   */
-  function loadDeep(source) {
-    const result = {
-      consistentImport: [],
-      disallowByRegexp: [],
-      disallowIdentifier: [],
-      disallowImport: [],
-      es: false,
-      extraChoreLocations: [],
-      extraDefaultExportLocations: [],
-      extraTestsLocations: [],
-      extraUnassignedImportLocations: [],
-      extraUtilsLocations: [],
-      noRestrictedSyntax: [],
-      quasar: false,
-      quasarGlobalComponents: [],
-      utility: false
-    };
-
-    const options = load(source);
-
-    if (options.extends)
-      for (const extend of options.extends) assign(result, loadDeep(extend));
-
-    assign(result, options);
-
+  function addDefaults() {
     result.consistentImport.push(
       {
         altLocalNames: ["nodeFs"],
@@ -142,13 +78,40 @@ module.exports = (() => {
         message: "Underscore export is disallowed",
         selector:
           "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
-      },
-      {
-        message: 'Use "Extends" type from "ts-toolbelt" package instead',
-        selector: "TSConditionalType"
       }
     );
+  }
 
-    return result;
+  function load(source) {
+    const options = (() => {
+      switch (typeof source) {
+        case "object":
+          return source;
+
+        case "string":
+          return fs.existsSync(source) ? require(source) : {};
+
+        default:
+          throw new Error("Invalid source");
+      }
+    })();
+
+    if (options.extends) for (const extend of options.extends) load(extend);
+
+    const {
+      consistentImport,
+      disallowByRegexp,
+      disallowIdentifier,
+      disallowImport,
+      noRestrictedSyntax,
+      ...rest
+    } = options;
+
+    Object.assign(result, rest);
+    result.consistentImport.push(...(consistentImport ?? []));
+    result.disallowByRegexp.push(...(disallowByRegexp ?? []));
+    result.disallowIdentifier.push(...(disallowIdentifier ?? []));
+    result.disallowImport.push(...(disallowImport ?? []));
+    result.noRestrictedSyntax.push(...(noRestrictedSyntax ?? []));
   }
 })();

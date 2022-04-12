@@ -63,13 +63,6 @@ module.exports = (() => {
     };
   };
 
-  /**
-   * Ignores commit.
-   *
-   * @param commit - Commit.
-   * @param scopes - Scopes.
-   * @returns _True_ to ignore, _false_ otherwise.
-   */
   function ignore(commit, scopes) {
     commit = commit.trimEnd();
 
@@ -118,22 +111,10 @@ module.exports = (() => {
     return false;
   }
 
-  /**
-   * Generates scopes from config.
-   *
-   * @param config - Config.
-   * @returns Scopes.
-   */
   function scopesFromConfig(config) {
     return fs.existsSync(config) ? require(fs.realpathSync(config)) : [];
   }
 
-  /**
-   * Generates scopes from directory.
-   *
-   * @param dir - Directory.
-   * @returns Scopes.
-   */
   function scopesFromDir(dir) {
     const result = [];
 
@@ -154,12 +135,6 @@ module.exports = (() => {
     }
   }
 
-  /**
-   * Creates unique array.
-   *
-   * @param arr - Array.
-   * @returns Unique array.
-   */
   function unique(arr) {
     return [...new Set(arr).values()];
   }
