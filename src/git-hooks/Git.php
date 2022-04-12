@@ -72,7 +72,7 @@ class Git
   public static function noMasterBranch(): void
   {
     if (in_array('* master', Sys::execute('git branch'))) {
-      throw new BaseException('Master branch is not allowed');
+      throw new BaseException('No master branch');
     }
   }
 
@@ -82,7 +82,7 @@ class Git
   public static function noPartialCommit(): void
   {
     if (Sys::execute('git ls-files --exclude-standard -m -o')) {
-      throw new BaseException('Partial commit is not allowed');
+      throw new BaseException('No partial commit');
     }
   }
 

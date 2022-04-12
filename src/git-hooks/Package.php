@@ -40,7 +40,7 @@ class Package
     foreach ([$dependencies, $devDependencies, $peerDependencies] as $deps) {
       foreach ($deps as $dep) {
         if (str_starts_with($dep, 'file:')) {
-          throw new BaseException('File dependencies are not allowed');
+          throw new BaseException('No file dependencies');
         }
       }
     }

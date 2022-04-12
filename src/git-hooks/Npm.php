@@ -17,6 +17,16 @@ class Npm
   }
 
   /**
+   * Asserts no vulnerabilities.
+   */
+  public static function noVulnerabilities(): void
+  {
+    if (Npm::audit()['vulnerabilities']) {
+      throw new BaseException('No vulnerabilities');
+    }
+  }
+
+  /**
    * Publishes npm package.
    */
   public static function publish(Package $package): void
@@ -137,5 +147,13 @@ class Npm
     if ($package->hasScript('vue-tsc')) {
       Sys::execute('npm run vue-tsc', 'Linting with vue-tsc');
     }
+  }
+
+  /**
+   * Retrieves npm package versions.
+   */
+  protected static function audit(): array
+  {
+    return Util::decodeJson(implode("\n", Sys::execute('npm audit --json')), 'audit');
   }
 }
