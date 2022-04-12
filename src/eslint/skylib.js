@@ -38,6 +38,7 @@ module.exports = {
           { selector: "ArrayExpression > *" },
           { selector: "CallExpression > *.arguments" },
           { selector: "FunctionDeclaration > *.params" },
+          { selector: "ImportDeclaration" },
           { selector: "ObjectExpression > *" },
           { selector: "TSDeclareFunction > *.params" },
           { selector: "TSInterfaceBody > *" },

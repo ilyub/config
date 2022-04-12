@@ -42,7 +42,6 @@ module.exports = {
     "./promise",
     "./regexp",
     "./security",
-    "./simple-import-sort",
     "./skylib",
     "./sonarjs",
     "./sort-destructure-keys",

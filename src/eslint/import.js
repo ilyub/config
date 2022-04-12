@@ -35,7 +35,14 @@ module.exports = {
     "import/no-named-export": "off",
     "import/no-namespace": "off",
     "import/no-unassigned-import": ["warn", { allow: unassignedImport }],
-    "import/order": "off",
+    "import/order": [
+      "warn",
+      {
+        alphabetize: { caseInsensitive: false, order: "asc" },
+        groups: ["builtin", "external", "parent", "sibling", "index"],
+        warnOnUnassignedImports: true
+      }
+    ],
     "import/prefer-default-export": "off",
     "import/unambiguous": "off"
   },
