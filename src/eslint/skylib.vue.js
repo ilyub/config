@@ -7,15 +7,18 @@ module.exports = {
       {
         rootOrder: [
           "ImportDeclaration",
-          "ModuleDeclaration",
+          "GlobalModuleDeclaration",
           "ExportDeclaration",
           "ExportTypeDeclaration",
           "ExportFunctionDeclaration",
+          "ExportModuleDeclaration",
           "ExportUnknown",
           "TypeDeclaration",
           "FunctionDeclaration",
+          "ModuleDeclaration",
           "Unknown",
-          "ExportDefaultDeclaration"
+          "ExportDefaultDeclaration",
+          "JestTest"
         ]
       }
     ]
