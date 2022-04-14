@@ -62,6 +62,23 @@ class Sys
   }
 
   /**
+   * No deprecated.
+   */
+  public static function noDeprecated(Package $package): void
+  {
+    if (preg_match('`^\d+\.0\.0$`isuxDX', $package->version)) {
+      foreach (static::scanDirDeep('src') as $path) {
+        if (is_file($path)) {
+          $contents = file_get_contents($path);
+          if (preg_match('`\*\s+@deprecated`isuxDX', $contents)) {
+            throw new BaseException('No deprecated');
+          }
+        }
+      }
+    }
+  }
+
+  /**
    * Runs php-cs-fixer.
    */
   public static function runPhpCsFixer(): void
@@ -123,5 +140,23 @@ class Sys
   protected static function scanDir(string $dir, array $ignore = []): array
   {
     return array_diff(scandir($dir), ['.', '..', ...$ignore]);
+  }
+
+  /**
+   * Scans directory.
+   */
+  protected static function scanDirDeep(string $dir, array $ignore = []): array
+  {
+    $result = [];
+
+    foreach (static::scanDir($dir, $ignore) as $basename) {
+      array_push($result, $dir.'/'.$basename);
+
+      if (is_dir($dir.'/'.$basename)) {
+        array_push($result, ...static::scanDirDeep($dir.'/'.$basename));
+      }
+    }
+
+    return $result;
   }
 }

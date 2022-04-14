@@ -77,6 +77,7 @@ class Action
     if (Git::hasTag($package->version)) {
       // Tag already exists
     } else {
+      Sys::noDeprecated($package);
       Npm::regenerateLockFile();
       Npm::runBuild($package);
       Npm::runBuildEs($package);
