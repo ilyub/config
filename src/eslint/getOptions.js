@@ -6,7 +6,6 @@ module.exports = (() => {
     disallowByRegexp: [],
     disallowIdentifier: [],
     disallowImport: [],
-    es: false,
     extraChoreLocations: [],
     extraDefaultExportLocations: [],
     extraTestsLocations: [],
@@ -37,7 +36,7 @@ module.exports = (() => {
       },
       {
         localName: "_",
-        sourcePattern: result.es ? "lodash-es" : "lodash",
+        sourcePattern: "lodash-es",
         type: "wildcard"
       },
       {
@@ -58,14 +57,16 @@ module.exports = (() => {
     );
 
     result.disallowImport.push(
-      { disallow: ["../src/**"] },
-      { disallow: ["@/**"], filesToSkip: ["./tests/**"] },
       {
         disallow: [
-          result.es ? "lodash" : "lodash-es",
-          result.es ? "@skylib/*/dist/**" : "@skylib/*/es/**"
+          ".",
+          "../src/**",
+          "../../src/**",
+          "../../../src/**",
+          "lodash"
         ]
-      }
+      },
+      { disallow: ["@/**"], filesToSkip: ["./tests/**"] }
     );
 
     result.noRestrictedSyntax.push(
