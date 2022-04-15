@@ -31,7 +31,10 @@ module.exports = {
         peerDependencies: true
       }
     ],
-    "import/no-internal-modules": "off",
+    "import/no-internal-modules": [
+      "warn",
+      { allow: ["jest-extended/all", "ts-toolbelt/**"] }
+    ],
     "import/no-named-export": "off",
     "import/no-namespace": "off",
     "import/no-unassigned-import": ["warn", { allow: unassignedImport }],
