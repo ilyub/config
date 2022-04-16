@@ -13,7 +13,7 @@ const defaultExport = ["svg.d.ts", "vue.d.ts"];
 
 const tests = ["./tests/**"];
 
-const utils = ["./src/**/__mocks__/**", "./src/testUtils/**"];
+const utils = ["./configs/**", "./src/**/__mocks__/**", "./src/testUtils/**"];
 
 chore.push(...extraChoreLocations);
 defaultExport.push(...extraDefaultExportLocations);
