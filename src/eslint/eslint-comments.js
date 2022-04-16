@@ -13,7 +13,6 @@ module.exports = {
           "eslint-disable-next-line"
         ]
       }
-    ],
-    "eslint-comments/require-description": "warn"
+    ]
   }
 };

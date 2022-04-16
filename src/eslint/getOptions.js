@@ -36,7 +36,7 @@ module.exports = (() => {
       },
       {
         localName: "_",
-        sourcePattern: "lodash-es",
+        sourcePattern: "@skylib/lodash-commonjs-es",
         type: "wildcard"
       },
       {
@@ -57,15 +57,7 @@ module.exports = (() => {
     );
 
     result.disallowImport.push(
-      {
-        disallow: [
-          ".",
-          "../src/**",
-          "../../src/**",
-          "../../../src/**",
-          "lodash"
-        ]
-      },
+      { disallow: [".", "../src/**", "../../src/**", "../../../src/**"] },
       { disallow: ["@/**"], filesToSkip: ["./tests/**"] }
     );
 

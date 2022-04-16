@@ -9,7 +9,7 @@ const {
 
 const chore = ["./*", "./__mocks__/**"];
 
-const defaultExport = ["svg.d.ts", "vue.d.ts"];
+const defaultExport = ["*.vue", "svg.d.ts", "vue.d.ts"];
 
 const tests = ["./tests/**"];
 
@@ -63,7 +63,8 @@ module.exports = {
       extends: [
         "./typescript-eslint",
         "./core.typescript",
-        "./escompat.typescript"
+        "./escompat.typescript",
+        "./import.typescript"
       ],
       files: ["*.ts", "*.vue"],
       overrides: [
@@ -72,13 +73,7 @@ module.exports = {
       ]
     },
     {
-      extends: [
-        "./vue",
-        "./vue-scoped-css",
-        "./core.vue",
-        "./import.vue",
-        "./skylib.vue"
-      ],
+      extends: ["./vue", "./vue-scoped-css", "./core.vue", "./skylib.vue"],
       files: ["*.vue"],
       overrides: [{ extends: ["./vue.chore"], files: chore }]
     },

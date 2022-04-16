@@ -33,7 +33,15 @@ module.exports = {
     ],
     "import/no-internal-modules": [
       "warn",
-      { allow: ["jest-extended/all", "ts-toolbelt/**"] }
+      {
+        allow: [
+          "@skylib/*/configs/*",
+          "@skylib/config/src/*",
+          "date-fns/locale/*",
+          "jest-extended/all",
+          "ts-toolbelt/**"
+        ]
+      }
     ],
     "import/no-named-export": "off",
     "import/no-namespace": "off",

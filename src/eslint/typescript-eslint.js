@@ -39,7 +39,7 @@ module.exports = {
         custom: { match: true, regex: "^.{1,50}$" },
         format: ["camelCase", "PascalCase"],
         leadingUnderscore: "allow",
-        selector: ["function", "typeLike"]
+        selector: ["classProperty", "function", "typeLike"]
       },
       {
         custom: { match: true, regex: "^.{1,50}$" },
@@ -70,7 +70,7 @@ module.exports = {
       { allowAsThisParameter: true }
     ],
     "@typescript-eslint/no-magic-numbers": "off",
-    "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
+    "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-shadow": [
       "warn",
       {
