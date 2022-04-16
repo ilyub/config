@@ -3,6 +3,9 @@
     "baseUrl": ".",
     "outDir": "cache/typescript",
     "paths": {
+      "@": [
+        "src"
+      ],
       "@/*": [
         "src/*"
       ]
