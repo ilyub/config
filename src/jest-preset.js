@@ -13,6 +13,7 @@ module.exports = {
   maxWorkers: 1,
   moduleFileExtensions: ["js", "jsx", "ts", "tsx", "vue"],
   moduleNameMapper: {
+    [/^@$/u.source]: "<rootDir>/src",
     [/^@\/(.+)/u.source]: "<rootDir>/src/$1",
     [/^quasar$/u.source]: "quasar/dist/quasar.esm.prod.js"
   },
