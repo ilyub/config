@@ -14,7 +14,6 @@ module.exports = {
   moduleFileExtensions: ["js", "jsx", "ts", "tsx", "vue"],
   moduleNameMapper: {
     [/^@\/(.+)/u.source]: "<rootDir>/src/$1",
-    [/^lodash-es$/u.source]: "lodash",
     [/^quasar$/u.source]: "quasar/dist/quasar.esm.prod.js"
   },
   modulePathIgnorePatterns: [
