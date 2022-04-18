@@ -82,7 +82,7 @@ module.exports = (() => {
           return source;
 
         case "string":
-          return fs.existsSync(source) ? require(source) : {};
+          return fs.existsSync(source) ? require(fs.realpathSync(source)) : {};
 
         default:
           throw new Error("Invalid source");
