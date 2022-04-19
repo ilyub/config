@@ -36,10 +36,16 @@ module.exports = {
       {
         allow: [
           "@skylib/*/configs/*",
+          "@skylib/*/dist/testUtils",
           "@skylib/config/src/*",
+          "@vue/test-utils/dist/types",
           "date-fns/locale/*",
+          "flag-icon-css/flags/1x1/*.svg",
           "jest-extended/all",
-          "ts-toolbelt/**"
+          "quasar/wrappers",
+          "ts-toolbelt/**",
+          "typeface-roboto-multilang/*.css",
+          "src/testUtils"
         ]
       }
     ],
