@@ -15,6 +15,61 @@ class Git
   }
 
   /**
+   * Checks version.
+   */
+  public static function checkVersion(Package $package): void
+  {
+    $type = 'fix';
+
+    foreach (static::getCommits('.*', '%H:%s') as $commit) {
+      $commit = explode(':', $commit, 2);
+
+      if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1])) {
+        $type = 'minor';
+      }
+
+      if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1])) {
+        $type = 'major';
+      }
+
+      if ($commit[1] === 'next' || $commit[1] === 'initial commit') {
+        foreach (static::getTags($commit[0]) as $tag) {
+          if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches)) {
+            $num1 = (int) $matches[1];
+            $num2 = (int) $matches[2];
+            $num3 = (int) $matches[3];
+
+            switch ($type) {
+              case 'fix':
+                $num1++;
+
+                break;
+
+              case 'minor':
+                $num2++;
+
+                break;
+
+              case 'major':
+                $num3++;
+            }
+
+            $expected = $num1.'.'.$num2.'.'.$num3;
+
+            if ($package->version === $expected) {
+              // Valid
+            } else {
+              throw new BaseException('Expecting version to be '.$expected);
+            }
+          }
+        }
+
+        break;
+      }
+    }
+  }
+
+  /**
    * Deletes tag.
    */
   public static function deleteTag(string $tag): void

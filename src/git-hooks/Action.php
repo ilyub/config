@@ -84,6 +84,7 @@ class Action
       Npm::runBuildDoc($package);
       Sys::runPhpCsFixer();
       Git::noPartialCommit();
+      Git::checkVersion($package);
       Npm::noVulnerabilities();
       Npm::runTsc($package);
       Npm::runVueTsc($package);
