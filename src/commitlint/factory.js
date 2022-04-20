@@ -34,6 +34,7 @@ module.exports = (() => {
       "fix",
       "git",
       "jest",
+      "npm",
       "package",
       "perf",
       "php-cs",
