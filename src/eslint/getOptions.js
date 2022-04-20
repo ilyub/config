@@ -46,29 +46,36 @@ module.exports = (() => {
       }
     );
 
-    result.disallowByRegexp.push(
-      // eslint-disable-next-line no-warning-comments -- https://github.com/gajus/eslint-plugin-jsdoc/issues/864
-      // fixme
-      {
-        contexts: ["comment"],
-        patterns: [/(?<!\\)[<>]/u.source],
-        subOptionsId: "comment.escape"
-      }
-    );
+    // eslint-disable-next-line no-warning-comments -- https://github.com/gajus/eslint-plugin-jsdoc/issues/864
+    // fixme
+    result.disallowByRegexp.push({
+      contexts: ["comment"],
+      patterns: [/(?<!\\)[<>]/u.source],
+      subOptionsId: "comment.escape"
+    });
 
     result.disallowImport.push(
-      { disallow: [".", "../src/**", "../../src/**", "../../../src/**"] },
+      {
+        disallow: [
+          ".",
+          "../src/**",
+          "../../src/**",
+          "../../../src/**",
+          "../../../../src/**",
+          "../../../../../src/**"
+        ]
+      },
       { disallow: ["@/**"], filesToSkip: ["./tests/**"] }
     );
 
     result.noRestrictedSyntax.push(
       {
-        message: "Underscore export is disallowed",
+        message: "Underscore export is not allowed",
         selector:
           "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]"
       },
       {
-        message: "Underscore export is disallowed",
+        message: "Underscore export is not allowed",
         selector:
           "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
       }
@@ -82,7 +89,7 @@ module.exports = (() => {
           return source;
 
         case "string":
-          return fs.existsSync(source) ? require(fs.realpathSync(source)) : {};
+          return require(source);
 
         default:
           throw new Error("Invalid source");
