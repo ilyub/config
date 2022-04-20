@@ -38,7 +38,7 @@ module.exports = {
     "no-magic-numbers": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
-    "no-restricted-syntax": ["error", ...noRestrictedSyntax],
+    "no-restricted-syntax": ["warn", ...noRestrictedSyntax],
     "no-shadow": [
       "warn",
       {
