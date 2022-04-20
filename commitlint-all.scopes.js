@@ -1,1 +1,1 @@
-module.exports = require("./commitlint.scopes");
+module.exports = {};

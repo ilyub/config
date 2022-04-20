@@ -1,70 +1,86 @@
-module.exports = (() => {
+module.exports = configFiles => {
   const fs = require("fs");
 
   const path = require("path");
 
-  return config => {
-    const types = [
-      "build",
-      "chore",
-      "docs",
-      "feat",
-      "fix",
-      "perf",
-      "refactor",
-      "revert",
-      "style",
-      "test"
-    ];
+  const config = (() => {
+    const result = { dirs: [], scopes: [] };
 
-    const scopes = unique([
-      "auto-eslint",
-      "auto-json",
-      "auto-linebreaks",
-      "auto-php-cs",
-      "auto-stylelint",
-      "babel",
-      "browserlist",
-      "commitlint",
-      "composer",
-      "deps-major-update",
-      "deps-update",
-      "env",
-      "eslint",
-      "fix",
-      "git",
-      "jest",
-      "npm",
-      "package",
-      "perf",
-      "php-cs",
-      "readme",
-      "recommended-eslint",
-      "recommended-stylelint",
-      "recommended-sonar",
-      "refactor",
-      "revert",
-      "sonar",
-      "style",
-      "stylelint",
-      "typedoc",
-      "typescript",
-      ...scopesFromConfig(config),
-      ...scopesFromDir("./src")
-    ]);
+    for (const configFile of configFiles)
+      if (fs.existsSync(configFile)) {
+        const part = {
+          dirs: [],
+          scopes: [],
+          ...require(fs.realpathSync(configFile))
+        };
 
-    return {
-      extends: ["@commitlint/config-conventional"],
-      ignores: [commit => ignore(commit, scopes)],
-      rules: {
-        "scope-enum": [2, "always", [...scopes]],
-        "subject-case": [2, "always", ["sentence-case"]],
-        "type-enum": [2, "always", types]
+        result.scopes.push(...part.scopes);
+        result.dirs.push(...part.dirs);
       }
-    };
+
+    return result;
+  })();
+
+  const types = [
+    "build",
+    "chore",
+    "docs",
+    "feat",
+    "fix",
+    "perf",
+    "refactor",
+    "revert",
+    "style",
+    "test"
+  ];
+
+  const scopes = unique([
+    "auto-eslint",
+    "auto-json",
+    "auto-linebreaks",
+    "auto-php-cs",
+    "auto-stylelint",
+    "babel",
+    "browserlist",
+    "commitlint",
+    "composer",
+    "deps-major-update",
+    "deps-update",
+    "env",
+    "eslint",
+    "fix",
+    "git",
+    "jest",
+    "npm",
+    "package",
+    "perf",
+    "php-cs",
+    "readme",
+    "recommended-eslint",
+    "recommended-stylelint",
+    "recommended-sonar",
+    "refactor",
+    "revert",
+    "sonar",
+    "style",
+    "stylelint",
+    "typedoc",
+    "typescript",
+    ...config.scopes,
+    ...scopesFromDirs(config.dirs)
+  ]);
+
+  return {
+    extends: ["@commitlint/config-conventional"],
+    ignores: [commit => ignore(commit)],
+    rules: {
+      "scope-enum": [2, "always", [...scopes]],
+      "subject-case": [2, "always", ["sentence-case"]],
+      "type-enum": [2, "always", types]
+    }
   };
 
-  function ignore(commit, scopes) {
+  function ignore(commit) {
     commit = commit.trimEnd();
 
     if (/^(?:initial commit|next|refactor|style)$/u.test(commit)) return true;
@@ -112,14 +128,10 @@ module.exports = (() => {
     return false;
   }
 
-  function scopesFromConfig(config) {
-    return fs.existsSync(config) ? require(fs.realpathSync(config)) : [];
-  }
-
-  function scopesFromDir(dir) {
+  function scopesFromDirs(dirs) {
     const result = [];
 
-    if (fs.existsSync(dir)) recurs(dir);
+    for (const dir of dirs) if (fs.existsSync(dir)) recurs(dir);
 
     return result;
 
@@ -139,4 +151,4 @@ module.exports = (() => {
   function unique(arr) {
     return [...new Set(arr).values()];
   }
-})();
+};
