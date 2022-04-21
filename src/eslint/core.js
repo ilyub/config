@@ -12,7 +12,7 @@ module.exports = {
     "camelcase": "off",
     "capitalized-comments": "off",
     "class-methods-use-this": "off",
-    "complexity": ["warn", 25],
+    "complexity": ["warn", 30],
     "func-names": ["warn", "never"],
     "func-style": ["warn", "declaration", { allowArrowFunctions: true }],
     "id-length": [
