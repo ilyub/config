@@ -45,7 +45,6 @@ module.exports = {
     "./skylib",
     "./sonarjs",
     "./sort-destructure-keys",
-    "./sort-export-all",
     "./typescript-sort-keys",
     "./unicorn",
     "./xss"

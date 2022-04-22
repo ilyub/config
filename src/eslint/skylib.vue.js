@@ -8,6 +8,7 @@ module.exports = {
         rootOrder: [
           "ImportDeclaration",
           "GlobalModuleDeclaration",
+          "ExportAllDeclaration",
           "ExportDeclaration",
           "ExportTypeDeclaration",
           "ExportFunctionDeclaration",
