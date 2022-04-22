@@ -41,7 +41,7 @@ class Git
 
             switch ($type) {
               case 'fix':
-                $num1++;
+                $num3++;
 
                 break;
 
@@ -51,7 +51,7 @@ class Git
                 break;
 
               case 'major':
-                $num3++;
+                $num1++;
             }
 
             $expected = $num1.'.'.$num2.'.'.$num3;
