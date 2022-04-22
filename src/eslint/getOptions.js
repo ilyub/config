@@ -89,7 +89,9 @@ module.exports = (() => {
           return source;
 
         case "string":
-          return require(source);
+          return require(source.startsWith("./")
+            ? fs.realpathSync(source)
+            : source);
 
         default:
           throw new Error("Invalid source");
