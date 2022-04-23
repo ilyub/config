@@ -19,52 +19,64 @@ class Git
    */
   public static function checkVersion(Package $package): void
   {
-    $type = 'fix';
+    if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $package->version, $matches)) {
+      $got1 = (int) $matches[1];
+      $got2 = (int) $matches[2];
+      $got3 = (int) $matches[3];
 
-    foreach (static::getCommits('.*', '%H:%s') as $commit) {
-      $commit = explode(':', $commit, 2);
+      $type = 'fix';
 
-      if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1])) {
-        $type = 'minor';
-      }
+      foreach (static::getCommits('.*', '%H:%s') as $commit) {
+        $commit = explode(':', $commit, 2);
 
-      if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1])) {
-        $type = 'major';
-      }
-
-      if ($commit[1] === 'next' || $commit[1] === 'initial commit') {
-        foreach (static::getTags($commit[0]) as $tag) {
-          if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches)) {
-            $num1 = (int) $matches[1];
-            $num2 = (int) $matches[2];
-            $num3 = (int) $matches[3];
-
-            switch ($type) {
-              case 'fix':
-                $num3++;
-
-                break;
-
-              case 'minor':
-                $num2++;
-
-                break;
-
-              case 'major':
-                $num1++;
-            }
-
-            $expected = $num1.'.'.$num2.'.'.$num3;
-
-            if ($package->version === $expected) {
-              // Valid
-            } else {
-              throw new BaseException('Expecting version to be '.$expected);
-            }
-          }
+        if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1])) {
+          $type = 'minor';
         }
 
-        break;
+        if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1])) {
+          $type = 'major';
+        }
+
+        if ($commit[1] === 'next' || $commit[1] === 'initial commit') {
+          foreach (static::getTags($commit[0]) as $tag) {
+            if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches)) {
+              $expected1 = (int) $matches[1];
+              $expected2 = (int) $matches[2];
+              $expected3 = (int) $matches[3];
+
+              if ($got1 !== 0 && $expected1 !== 0) {
+                switch ($type) {
+                  case 'fix':
+                    ++$expected3;
+
+                    break;
+
+                  case 'minor':
+                    ++$expected2;
+
+                    break;
+
+                  case 'major':
+                    ++$expected1;
+                }
+              } elseif ($got1 === 0 && $expected1 === 0) {
+                ++$expected3;
+              } else {
+                $expected1 = $got1;
+                $expected2 = $got2;
+                $expected3 = $got3;
+              }
+
+              if ($expected1 === $got1 && $expected2 === $got2 && $expected3 === $got3) {
+                // Valid
+              } else {
+                throw new BaseException('Expecting version to be '.$expected1.'.'.$expected2.'.'.$expected3);
+              }
+            }
+          }
+
+          break;
+        }
       }
     }
   }
