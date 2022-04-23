@@ -77,6 +77,7 @@ class Action
     if (Git::hasTag($package->version)) {
       // Tag already exists
     } else {
+      Git::checkVersion($package);
       Sys::noDeprecated($package);
       Npm::regenerateLockFile();
       Npm::runBuild($package);
@@ -84,7 +85,6 @@ class Action
       Npm::runBuildDoc($package);
       Sys::runPhpCsFixer();
       Git::noPartialCommit();
-      Git::checkVersion($package);
       Npm::noVulnerabilities();
       Npm::runTsc($package);
       Npm::runVueTsc($package);
