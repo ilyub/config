@@ -56,7 +56,19 @@ module.exports = {
       "warn",
       {
         alphabetize: { caseInsensitive: false, order: "asc" },
-        groups: ["builtin", "external", "parent", "sibling", "index"],
+        groups: [
+          [
+            "builtin",
+            "external",
+            "index",
+            "internal",
+            "object",
+            "parent",
+            "sibling",
+            "unknown"
+          ],
+          "type"
+        ],
         warnOnUnassignedImports: true
       }
     ],
