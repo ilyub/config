@@ -41,6 +41,7 @@ module.exports = {
           { selector: "ImportDeclaration" },
           { selector: "ObjectExpression > *" },
           { selector: "TSDeclareFunction > *.params" },
+          { selector: "TSFunctionType > *.params" },
           { selector: "TSInterfaceBody > *" },
           {
             averageLinesGte: 3,
