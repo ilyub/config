@@ -1,8 +1,8 @@
+const Sequencer = require("@jest/test-sequencer").default;
+
 const fs = require("fs");
 
 const path = require("path");
-
-const Sequencer = require("@jest/test-sequencer").default;
 
 const slow = fs.existsSync("./jest.slow.js")
   ? require(fs.realpathSync("./jest.slow.js"))
