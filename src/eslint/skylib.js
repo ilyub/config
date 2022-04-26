@@ -74,6 +74,10 @@ module.exports = {
         ]
       }
     ],
+    "@skylib/optional-property-style": [
+      "warn",
+      { classes: "undefined", interfaces: "optional" }
+    ],
     "@skylib/prefer-readonly": [
       "warn",
       {
