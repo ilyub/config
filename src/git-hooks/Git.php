@@ -53,11 +53,14 @@ class Git
 
                   case 'minor':
                     ++$expected2;
+                    $expected3 = 0;
 
                     break;
 
                   case 'major':
                     ++$expected1;
+                    $expected2 = 0;
+                    $expected3 = 0;
                 }
               } elseif ($got1 === 0 && $expected1 === 0) {
                 ++$expected3;
