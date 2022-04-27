@@ -24,17 +24,17 @@ class Git
       $got2 = (int) $matches[2];
       $got3 = (int) $matches[3];
 
-      $type = 'fix';
+      $level = 0;
 
       foreach (static::getCommits('.*', '%H:%s') as $commit) {
         $commit = explode(':', $commit, 2);
 
         if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1])) {
-          $type = 'minor';
+          $level = max($level, 1);
         }
 
         if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1])) {
-          $type = 'major';
+          $level = max($level, 2);
         }
 
         if ($commit[1] === 'next' || $commit[1] === 'initial commit') {
@@ -45,19 +45,19 @@ class Git
               $expected3 = (int) $matches[3];
 
               if ($got1 !== 0 && $expected1 !== 0) {
-                switch ($type) {
-                  case 'fix':
+                switch ($level) {
+                  case 0:
                     ++$expected3;
 
                     break;
 
-                  case 'minor':
+                  case 1:
                     ++$expected2;
                     $expected3 = 0;
 
                     break;
 
-                  case 'major':
+                  case 2:
                     ++$expected1;
                     $expected2 = 0;
                     $expected3 = 0;
