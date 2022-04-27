@@ -17,6 +17,7 @@ module.exports = {
         webpackChunknameFormat: /dynamic\/[\w\-/]+/u.source
       }
     ],
+    "import/export": "off",
     "import/exports-last": "off",
     "import/group-exports": "off",
     "import/max-dependencies": "off",

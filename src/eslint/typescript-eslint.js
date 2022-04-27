@@ -71,6 +71,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-magic-numbers": "off",
     "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-redeclare": "off",
     "@typescript-eslint/no-shadow": [
       "warn",
       {
