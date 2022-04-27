@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ["unicorn"],
   rules: {
-    ...require("./getAll")("eslint-plugin-unicorn"),
+    ...require("./get-all")("eslint-plugin-unicorn"),
     "unicorn/catch-error-name": ["warn", { name: "e" }],
     "unicorn/consistent-function-scoping": "off",
     "unicorn/error-message": "off",

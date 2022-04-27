@@ -1,4 +1,4 @@
-const { extraUnassignedImportLocations } = require("./getOptions");
+const { extraUnassignedImportLocations } = require("./get-options");
 
 const unassignedImport = ["**/*.css", "**/*.scss"];
 
@@ -7,7 +7,7 @@ unassignedImport.push(...extraUnassignedImportLocations);
 module.exports = {
   plugins: ["import"],
   rules: {
-    ...require("./getAll")("eslint-plugin-import"),
+    ...require("./get-all")("eslint-plugin-import"),
     "import/dynamic-import-chunkname": [
       "warn",
       {
@@ -36,7 +36,7 @@ module.exports = {
       {
         allow: [
           "@skylib/*/configs/*",
-          "@skylib/*/dist/testUtils",
+          "@skylib/*/dist/test-utils",
           "@skylib/config/src/*",
           "@vue/test-utils/dist/types",
           "date-fns/locale/*",
@@ -45,7 +45,7 @@ module.exports = {
           "quasar/wrappers",
           "ts-toolbelt/**",
           "typeface-roboto-multilang/*.css",
-          "src/testUtils"
+          "src/test-utils"
         ]
       }
     ],

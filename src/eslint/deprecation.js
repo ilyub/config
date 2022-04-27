@@ -1,4 +1,4 @@
 module.exports = {
   plugins: ["deprecation"],
-  rules: require("./getAll")("eslint-plugin-deprecation")
+  rules: require("./get-all")("eslint-plugin-deprecation")
 };

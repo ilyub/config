@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ["promise"],
   rules: {
-    ...require("./getAll")("eslint-plugin-promise"),
+    ...require("./get-all")("eslint-plugin-promise"),
     "promise/always-return": "off",
     "promise/avoid-new": "off",
     "promise/catch-or-return": "off",

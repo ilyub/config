@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ["eslint-comments"],
   rules: {
-    ...require("./getAll")("eslint-plugin-eslint-comments"),
+    ...require("./get-all")("eslint-plugin-eslint-comments"),
     "eslint-comments/disable-enable-pair": ["warn", { allowWholeFile: true }],
     "eslint-comments/no-use": [
       "warn",

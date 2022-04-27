@@ -1,9 +1,9 @@
-const { quasarGlobalComponents } = require("./getOptions");
+const { quasarGlobalComponents } = require("./get-options");
 
 module.exports = {
   plugins: ["vue"],
   rules: {
-    ...require("./getAll")("eslint-plugin-vue"),
+    ...require("./get-all")("eslint-plugin-vue"),
     "vue/attributes-order": [
       "warn",
       {

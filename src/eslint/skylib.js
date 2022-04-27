@@ -3,12 +3,12 @@ const {
   disallowByRegexp,
   disallowIdentifier,
   disallowImport
-} = require("./getOptions");
+} = require("./get-options");
 
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
   rules: {
-    ...require("./getAll")("@skylib/eslint-plugin"),
+    ...require("./get-all")("@skylib/eslint-plugin"),
     "@skylib/consistent-empty-lines": [
       "warn",
       {

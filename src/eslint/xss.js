@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ["xss"],
   rules: {
-    ...require("./getAll")("eslint-plugin-xss"),
+    ...require("./get-all")("eslint-plugin-xss"),
     "xss/no-mixed-html": "off"
   }
 };

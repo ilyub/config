@@ -5,7 +5,7 @@ const {
   extraUtilsLocations,
   quasar,
   utility
-} = require("./getOptions");
+} = require("./get-options");
 
 const chore = ["./*", "./__mocks__/**"];
 
@@ -13,7 +13,7 @@ const defaultExport = ["*.vue", "svg.d.ts", "vue.d.ts"];
 
 const tests = ["./tests/**"];
 
-const utils = ["./configs/**", "./src/**/__mocks__/**", "./src/testUtils/**"];
+const utils = ["./configs/**", "./src/**/__mocks__/**", "./src/test-utils/**"];
 
 chore.push(...extraChoreLocations);
 defaultExport.push(...extraDefaultExportLocations);
@@ -80,7 +80,7 @@ module.exports = {
       extends: ["./es.chore", "./import.chore", "./skylib.chore"],
       files: chore
     },
-    { extends: ["./import.defaultExport"], files: defaultExport },
+    { extends: ["./import.default-export"], files: defaultExport },
     {
       extends: [
         "./core.tests",

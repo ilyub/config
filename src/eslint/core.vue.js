@@ -1,4 +1,4 @@
-const { noRestrictedSyntax } = require("./getOptions");
+const { noRestrictedSyntax } = require("./get-options");
 
 module.exports = {
   rules: {

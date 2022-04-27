@@ -2,7 +2,7 @@ module.exports = {
   extends: ["plugin:@typescript-eslint/all"],
   plugins: ["@typescript-eslint"],
   rules: {
-    ...require("./getAll")("@typescript-eslint/eslint-plugin"),
+    ...require("./get-all")("@typescript-eslint/eslint-plugin"),
     "@typescript-eslint/array-type": ["warn", { default: "array-simple" }],
     "@typescript-eslint/ban-types": [
       "warn",

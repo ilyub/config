@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ["jest"],
   rules: {
-    ...require("./getAll")("eslint-plugin-jest"),
+    ...require("./get-all")("eslint-plugin-jest"),
     "jest/no-hooks": "off",
     "jest/prefer-expect-assertions": [
       "warn",
