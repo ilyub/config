@@ -91,6 +91,7 @@ class Action
       Npm::runLint($package);
       Npm::runStyleLint($package);
       Npm::runStyleLintHtml($package);
+      Npm::runCommitLint($package);
       Npm::runTest($package);
 
       if ($package->private) {

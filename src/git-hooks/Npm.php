@@ -78,6 +78,16 @@ class Npm
   }
 
   /**
+   * Runs "commitlint" script.
+   */
+  public static function runCommitLint(Package $package): void
+  {
+    if ($package->hasScript('commitlint-all')) {
+      Sys::execute('npm run commitlint-all', 'Linting with commitlint');
+    }
+  }
+
+  /**
    * Runs "lint" script.
    */
   public static function runLint(Package $package): void
