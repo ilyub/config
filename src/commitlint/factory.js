@@ -137,7 +137,7 @@ module.exports = configFiles => {
 
     function recurs(subdir) {
       for (const base of fs.readdirSync(subdir)) {
-        const name = path.parse(base).name;
+        const { name } = path.parse(base);
 
         const filename = path.join(subdir, base);
 
