@@ -99,8 +99,8 @@ module.exports = {
         excludeSelectors: ["ClassDeclaration", "FunctionDeclaration"],
         includeSelectors: [
           ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > :matches(CallExpression[callee.name='assign'], CallExpression[callee.property.name='assign']) > :matches(ArrowFunctionExpression,FunctionExpression)",
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > :matches(CallExpression[callee.name='assign'], CallExpression[callee.property.name='assign']) > ObjectExpression > Property > :matches(ArrowFunctionExpression,FunctionExpression)"
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > CallExpression[callee.name=defineFn] > :matches(ArrowFunctionExpression, FunctionExpression)",
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > CallExpression[callee.name=defineFn] > ObjectExpression > Property > :matches(ArrowFunctionExpression, FunctionExpression)"
         ],
         interfaces: ["callSignatures", "constructSignatures"],
         properties: ["function"]

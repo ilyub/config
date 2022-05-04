@@ -22,7 +22,7 @@ module.exports = {
     ],
     "@typescript-eslint/consistent-type-imports": [
       "warn",
-      { disallowTypeAnnotations: true, prefer: "type-imports" }
+      { disallowTypeAnnotations: false, prefer: "type-imports" }
     ],
     "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/member-ordering": "off",

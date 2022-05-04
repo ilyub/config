@@ -61,7 +61,14 @@ module.exports = {
     "no-use-before-define": "off",
     "object-shorthand": ["warn", "always", { avoidExplicitReturnArrows: true }],
     "one-var": ["warn", "never"],
-    "prefer-destructuring": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        AssignmentExpression: { array: false, object: true },
+        VariableDeclarator: { array: false, object: true }
+      },
+      { enforceForRenamedProperties: false }
+    ],
     "prefer-named-capture-group": "off",
     "prefer-object-has-own": "off",
     "sort-imports": "off",

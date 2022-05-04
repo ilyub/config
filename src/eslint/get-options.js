@@ -65,10 +65,15 @@ module.exports = (() => {
           "../../../../../src/**"
         ]
       },
-      { disallow: ["@/**"], filesToSkip: ["./tests/**"] }
+      { disallow: ["@", "@/**"], filesToSkip: ["./tests/**"] }
     );
 
     result.noRestrictedSyntax.push(
+      {
+        message: 'Use "defineFn" instead',
+        selector:
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > CallExpression > :matches(.callee[name=assign], .callee[property.name=assign])"
+      },
       {
         message: "Underscore export is not allowed",
         selector:
@@ -78,6 +83,22 @@ module.exports = (() => {
         message: "Underscore export is not allowed",
         selector:
           "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: 'Use "toStrictEqual" instead',
+        selector: "Identifier[name=toBe]"
+      },
+      {
+        message: "Unnecessary initialization",
+        selector: "PropertyDefinition > Identifier.value[name=undefined]"
+      },
+      {
+        message: 'Unnecessary "break" statement',
+        selector: "SwitchCase:last-child > BreakStatement"
+      },
+      {
+        message: "Unnecessary initialization",
+        selector: "VariableDeclarator > Identifier.init[name=undefined]"
       }
     );
   }

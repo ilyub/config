@@ -7,7 +7,7 @@ const {
   utility
 } = require("./get-options");
 
-const chore = ["./*", "./__mocks__/**"];
+const chore = ["./*", "./__mocks__/**", "./src/dev"];
 
 const defaultExport = ["*.vue", "svg.d.ts", "vue.d.ts"];
 
@@ -67,7 +67,7 @@ module.exports = {
       ],
       files: ["*.ts", "*.vue"],
       overrides: [
-        { extends: ["./typescript-eslint.dts"], files: ["*.d.ts"] },
+        { extends: ["./typescript-eslint.definitions"], files: ["*.d.ts"] },
         { extends: ["./typescript-eslint.tests"], files: tests }
       ]
     },
@@ -83,10 +83,13 @@ module.exports = {
     { extends: ["./import.default-export"], files: defaultExport },
     {
       extends: [
+        "./jest",
         "./core.tests",
         "./es.tests",
+        "./etc.tests",
+        "./github.tests",
         "./import.tests",
-        "./jest.tests",
+        "./no-type-assertion.tests",
         "./skylib.tests",
         "./unicorn.tests"
       ],
