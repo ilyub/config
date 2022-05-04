@@ -28,7 +28,7 @@
     "commitlint": "commitlint --edit",
     "commitlint-all": "commitlint --config commitlint-all.config.js --from=",
     "lint": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
-    "lint-fast": "eslint --config .eslintrc.fast.js --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,fixtures,configs,src,tests}/**/*.{js,ts,vue}",
+    "lint-fast": "eslint --config .eslintrc.fast.js --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
     "lint-no-fix": "eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
     "prepare": "cpy src/git-hooks/* .git/hooks",
     "stylelint": "stylelint --fix --max-warnings 0 src/**/*.{css,scss}",
