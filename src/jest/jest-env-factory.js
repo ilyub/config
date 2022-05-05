@@ -1,7 +1,9 @@
 module.exports = env => {
-  const Environment = require(`jest-environment-${env}`);
+  const jestEnvironment = require(`jest-environment-${env}`);
 
-  return class extends Environment {
+  const BaseEnvironment = jestEnvironment.TestEnvironment ?? jestEnvironment;
+
+  return class Environment extends BaseEnvironment {
     /**
      * Creates class instance.
      *
@@ -9,7 +11,7 @@ module.exports = env => {
      * @param context - Context.
      */
     constructor(config, context) {
-      super(config);
+      super(config, context);
       this.testPath = context.testPath;
     }
 
