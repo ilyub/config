@@ -14,6 +14,7 @@ module.exports = (() => {
     noRestrictedSyntax: [],
     quasar: false,
     quasarGlobalComponents: [],
+    requireJsdoc: [],
     utility: false
   };
 
@@ -70,11 +71,6 @@ module.exports = (() => {
 
     result.noRestrictedSyntax.push(
       {
-        message: 'Use "defineFn" instead',
-        selector:
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > CallExpression > :matches(.callee[name=assign], .callee[property.name=assign])"
-      },
-      {
         message: "Underscore export is not allowed",
         selector:
           "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]"
@@ -107,6 +103,10 @@ module.exports = (() => {
         selector: "VariableDeclarator > Identifier.init[name=undefined]"
       }
     );
+
+    result.requireJsdoc.push(
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration"
+    );
   }
 
   function load(source) {
@@ -133,6 +133,7 @@ module.exports = (() => {
       disallowIdentifier,
       disallowImport,
       noRestrictedSyntax,
+      requireJsdoc,
       ...rest
     } = options;
 
@@ -142,5 +143,6 @@ module.exports = (() => {
     result.disallowIdentifier.push(...(disallowIdentifier ?? []));
     result.disallowImport.push(...(disallowImport ?? []));
     result.noRestrictedSyntax.push(...(noRestrictedSyntax ?? []));
+    result.requireJsdoc.push(...(requireJsdoc ?? []));
   }
 })();

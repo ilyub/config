@@ -2,7 +2,8 @@ const {
   consistentImport,
   disallowByRegexp,
   disallowIdentifier,
-  disallowImport
+  disallowImport,
+  requireJsdoc
 } = require("./get-options");
 
 module.exports = {
@@ -97,11 +98,7 @@ module.exports = {
       "warn",
       {
         excludeSelectors: ["ClassDeclaration", "FunctionDeclaration"],
-        includeSelectors: [
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > CallExpression[callee.name=defineFn] > :matches(ArrowFunctionExpression, FunctionExpression)",
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > CallExpression[callee.name=defineFn] > ObjectExpression > Property > :matches(ArrowFunctionExpression, FunctionExpression)"
-        ],
+        includeSelectors: requireJsdoc,
         interfaces: ["callSignatures", "constructSignatures"],
         properties: ["function"]
       }
