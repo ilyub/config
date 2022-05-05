@@ -36,14 +36,15 @@ module.exports = {
       "warn",
       {
         rules: [
-          { selector: "ArrayExpression > *" },
-          { selector: "CallExpression > *.arguments" },
-          { selector: "FunctionDeclaration > *.params" },
+          { selector: "ArrayExpression > .elements" },
+          { selector: "CallExpression > .arguments" },
+          { selector: "FunctionDeclaration > .params" },
+          { selector: "FunctionExpression > .params" },
           { selector: "ImportDeclaration" },
-          { selector: "ObjectExpression > *" },
-          { selector: "TSDeclareFunction > *.params" },
-          { selector: "TSFunctionType > *.params" },
-          { selector: "TSInterfaceBody > *" },
+          { selector: "ObjectExpression > .properties" },
+          { selector: "TSDeclareFunction > .params" },
+          { selector: "TSFunctionType > .params" },
+          { selector: "TSInterfaceBody > .body" },
           {
             averageLinesGte: 3,
             everyLinesGte: 2,

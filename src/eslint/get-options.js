@@ -71,14 +71,9 @@ module.exports = (() => {
 
     result.noRestrictedSyntax.push(
       {
-        message: "Underscore export is not allowed",
+        message: "Prefer kebab-case ID",
         selector:
-          "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]"
-      },
-      {
-        message: "Underscore export is not allowed",
-        selector:
-          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
+          "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
       },
       {
         message: 'Use "toStrictEqual" instead',
@@ -91,12 +86,27 @@ module.exports = (() => {
           "CallExpression[callee.property.name=toStrictEqual] > Literal.arguments"
       },
       {
+        message: 'Prefer "Error" instead of "new Error()"',
+        selector:
+          "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]"
+      },
+      {
+        message: "Underscore export is not allowed",
+        selector:
+          "ExportNamedDeclaration > FunctionDeclaration.declaration > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: "Underscore export is not allowed",
+        selector:
+          "ExportNamedDeclaration > VariableDeclaration.declaration > VariableDeclarator.declarations > Identifier.id[name=/^_/u]"
+      },
+      {
         message: "Unnecessary initialization",
         selector: "PropertyDefinition > Identifier.value[name=undefined]"
       },
       {
         message: 'Unnecessary "break" statement',
-        selector: "SwitchCase:last-child > BreakStatement"
+        selector: "SwitchCase:last-child > BreakStatement.consequent"
       },
       {
         message: "Unnecessary initialization",
@@ -105,7 +115,9 @@ module.exports = (() => {
     );
 
     result.requireJsdoc.push(
-      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration"
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations > ObjectExpression.init > Property.properties > FunctionExpression",
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations > TSAsExpression.init > ObjectExpression.expression > Property.properties > FunctionExpression"
     );
   }
 
