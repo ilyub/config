@@ -86,7 +86,13 @@ module.exports = (() => {
       },
       {
         message: 'Use "toStrictEqual" instead',
-        selector: "Identifier[name=toBe]"
+        selector:
+          "CallExpression[callee.property.name=toBe] > .arguments:not(Literal)"
+      },
+      {
+        message: 'Use "toBe" instead',
+        selector:
+          "CallExpression[callee.property.name=toStrictEqual] > Literal.arguments"
       },
       {
         message: "Unnecessary initialization",
