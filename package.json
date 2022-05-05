@@ -87,7 +87,6 @@
     "eslint-plugin-xss": ">=0.1.0",
     "jest": ">=27.0.0",
     "jest-environment-jsdom": ">=27.0.0",
-    "jest-environment-jsdom-fifteen": ">=1.0.0",
     "jest-environment-node": ">=27.0.0",
     "jest-transform-stub": ">=2.0.0",
     "npm-check-updates": ">=12.0.0",
