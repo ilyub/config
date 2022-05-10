@@ -11,7 +11,7 @@ module.exports = {
       }
     ],
     "jest/prefer-lowercase-title": "off",
-    "jest/prefer-to-be": "off",
+    "jest/prefer-to-be": "warn",
     "jest/require-hook": "off",
     "jest/require-top-level-describe": "off"
   }
