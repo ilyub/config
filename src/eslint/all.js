@@ -84,6 +84,7 @@ module.exports = {
     {
       extends: [
         "./jest",
+        "./jest-extended",
         "./core.tests",
         "./es.tests",
         "./etc.tests",
