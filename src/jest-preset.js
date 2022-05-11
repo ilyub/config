@@ -32,7 +32,8 @@ module.exports = {
   transform: {
     [/\.(?:css|gif|jpg|less|png|sass|scss|styl|svg|ttf|woff|woff2)$/u.source]:
       "jest-transform-stub",
-    [/\.(?:html|js|ts)$/u.source]: "ts-jest"
+    [/\.(?:html|js|ts)$/u.source]: "ts-jest",
+    [/\.vue$/u.source]: "@vue/vue3-jest"
   },
   transformIgnorePatterns: ["node_modules/(?!@skylib/quasar-extension|quasar)"]
 };
