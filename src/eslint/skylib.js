@@ -51,7 +51,7 @@ module.exports = {
             selector:
               ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement",
             someHasDocComment: true,
-            someLinesGte: 5
+            someLinesGte: 6
           }
         ]
       }
