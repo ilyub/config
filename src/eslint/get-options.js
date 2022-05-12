@@ -78,12 +78,12 @@ module.exports = (() => {
       {
         message: 'Use "toStrictEqual" instead',
         selector:
-          "CallExpression[callee.property.name=toBe] > .arguments:not(Literal)"
+          "CallExpression[callee.property.name=toBe] > :not(Literal, TemplateElement).arguments"
       },
       {
         message: 'Use "toBe" instead',
         selector:
-          "CallExpression[callee.property.name=toStrictEqual] > Literal.arguments"
+          "CallExpression[callee.property.name=toStrictEqual] > :matches(Literal, TemplateElement).arguments"
       },
       {
         message: 'Prefer "Error" instead of "new Error()"',
