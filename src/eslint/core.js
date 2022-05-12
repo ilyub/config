@@ -59,7 +59,7 @@ module.exports = {
       }
     ],
     "no-use-before-define": "off",
-    "object-shorthand": ["warn", "always", { avoidExplicitReturnArrows: true }],
+    "object-shorthand": ["warn", "properties"],
     "one-var": ["warn", "never"],
     // eslint-disable-next-line no-warning-comments -- Wait for https://github.com/typescript-eslint/typescript-eslint/issues/1931
     // fixme

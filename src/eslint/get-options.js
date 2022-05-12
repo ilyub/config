@@ -26,6 +26,16 @@ module.exports = (() => {
   function addDefaults() {
     result.consistentImport.push(
       {
+        localName: "_",
+        sourcePattern: "@skylib/lodash-commonjs-es",
+        type: "wildcard"
+      },
+      {
+        altLocalNames: ["vueTestUtils"],
+        sourcePattern: "@vue/test-utils",
+        type: "wildcard"
+      },
+      {
         altLocalNames: ["nodeFs"],
         sourcePattern: "fs",
         type: "default"
@@ -36,13 +46,18 @@ module.exports = (() => {
         type: "default"
       },
       {
-        localName: "_",
-        sourcePattern: "@skylib/lodash-commonjs-es",
-        type: "wildcard"
-      },
-      {
         altLocalNames: ["nodePath"],
         sourcePattern: "path",
+        type: "default"
+      },
+      {
+        localName: "Vue",
+        sourcePattern: "vue",
+        type: "default"
+      },
+      {
+        localName: "VueRouter",
+        sourcePattern: "vue-router",
         type: "default"
       }
     );
@@ -94,6 +109,10 @@ module.exports = (() => {
         message: "Underscore export is not allowed",
         selector:
           "ExportNamedDeclaration > FunctionDeclaration.declaration > Identifier.id[name=/^_/u]"
+      },
+      {
+        message: "Prefer arrow function",
+        selector: "Property > FunctionExpression.value"
       },
       {
         message: "Underscore export is not allowed",
