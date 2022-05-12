@@ -11,10 +11,11 @@ module.exports = {
   },
   haste: { throwOnModuleCollision: true },
   maxWorkers: 1,
-  moduleFileExtensions: ["js", "jsx", "ts", "tsx", "vue"],
+  moduleFileExtensions: ["js", "ts", "vue"],
   moduleNameMapper: {
     [/^@$/u.source]: "<rootDir>/src",
     [/^@\/(.+)/u.source]: "<rootDir>/src/$1",
+    [/^lodash-es$/u.source]: "lodash",
     [/^quasar$/u.source]: "quasar/dist/quasar.esm.prod.js"
   },
   modulePathIgnorePatterns: [
