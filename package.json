@@ -38,11 +38,11 @@
     "test": "jest",
     "test-fast": "jest --config=jest.config.fast.js",
     "tsc": "tsc --noEmit",
-    "update-package-check": "ncu --dep dev,prod --reject @types/node",
-    "update-package-check-peer": "ncu --dep peer --minimal --reject @types/node",
+    "update-package-check": "ncu --dep dev,prod",
+    "update-package-check-peer": "ncu --dep peer --minimal",
     "update-package-check-skylib": "ncu --dep peer --filter @skylib/*",
-    "update-package-force": "ncu --dep dev,prod --reject @types/node --upgrade",
-    "update-package-force-peer": "ncu --dep peer --minimal --reject @types/node --upgrade",
+    "update-package-force": "ncu --dep dev,prod --upgrade",
+    "update-package-force-peer": "ncu --dep peer --minimal --upgrade",
     "update-package-force-skylib": "ncu --dep peer --filter @skylib/* --upgrade"
   },
   "peerDependencies": {
