@@ -15,8 +15,8 @@ module.exports = class extends Sequencer {
    * @param tests - Tests.
    * @returns Comparison result.
    */
-  sort(tests) {
-    return [...tests].sort((test1, test2) => {
+  sort = tests =>
+    [...tests].sort((test1, test2) => {
       const slow1 = slow.includes(path.basename(test1.path));
 
       const slow2 = slow.includes(path.basename(test2.path));
@@ -27,5 +27,4 @@ module.exports = class extends Sequencer {
 
       return test1.path.localeCompare(test2.path);
     });
-  }
 };
