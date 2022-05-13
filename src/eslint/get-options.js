@@ -136,7 +136,8 @@ module.exports = (() => {
     result.requireJsdoc.push(
       ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
       ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations > ObjectExpression.init > Property.properties > FunctionExpression",
-      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations > TSAsExpression.init > ObjectExpression.expression > Property.properties > FunctionExpression"
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations > TSAsExpression.init > ObjectExpression.expression > Property.properties > FunctionExpression",
+      "PropertyDefinition > ArrowFunctionExpression.value"
     );
   }
 
