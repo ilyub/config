@@ -1,5 +1,6 @@
 module.exports = {
   rules: {
+    "@skylib/consistent-filename": "off",
     "@skylib/require-jsdoc": "off",
     "@skylib/sort-keys": "off",
     "@skylib/statements-order": [
@@ -8,17 +9,17 @@ module.exports = {
         rootOrder: [
           "ImportDeclaration",
           "GlobalModuleDeclaration",
+          "Unknown",
+          "TypeDeclaration",
+          "FunctionDeclaration",
+          "ModuleDeclaration",
           "ExportAllDeclaration",
           "ExportDeclaration",
+          "ExportDefaultDeclaration",
           "ExportTypeDeclaration",
           "ExportFunctionDeclaration",
           "ExportModuleDeclaration",
           "ExportUnknown",
-          "TypeDeclaration",
-          "FunctionDeclaration",
-          "ModuleDeclaration",
-          "Unknown",
-          "ExportDefaultDeclaration",
           "JestTest"
         ]
       }

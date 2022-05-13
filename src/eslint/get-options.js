@@ -12,8 +12,8 @@ module.exports = (() => {
     extraUnassignedImportLocations: [],
     extraUtilsLocations: [],
     noRestrictedSyntax: [],
-    quasar: false,
     quasarGlobalComponents: [],
+    readonlyTypes: [],
     requireJsdoc: [],
     utility: false
   };
@@ -120,6 +120,11 @@ module.exports = (() => {
           "ExportNamedDeclaration > VariableDeclaration.declaration > VariableDeclarator.declarations > Identifier.id[name=/^_/u]"
       },
       {
+        message: "Use arrow function instead",
+        selector:
+          "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]"
+      },
+      {
         message: "Unnecessary initialization",
         selector: "PropertyDefinition > Identifier.value[name=undefined]"
       },
@@ -131,6 +136,13 @@ module.exports = (() => {
         message: "Unnecessary initialization",
         selector: "VariableDeclarator > Identifier.init[name=undefined]"
       }
+    );
+
+    result.readonlyTypes.push(
+      "^Promise$",
+      "^ReadonlyMap$",
+      "^ReadonlySet$",
+      "^Writable"
     );
 
     result.requireJsdoc.push(
@@ -165,6 +177,7 @@ module.exports = (() => {
       disallowIdentifier,
       disallowImport,
       noRestrictedSyntax,
+      readonlyTypes,
       requireJsdoc,
       ...rest
     } = options;
@@ -175,6 +188,7 @@ module.exports = (() => {
     result.disallowIdentifier.push(...(disallowIdentifier ?? []));
     result.disallowImport.push(...(disallowImport ?? []));
     result.noRestrictedSyntax.push(...(noRestrictedSyntax ?? []));
+    result.readonlyTypes.push(...(readonlyTypes ?? []));
     result.requireJsdoc.push(...(requireJsdoc ?? []));
   }
 })();

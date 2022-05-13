@@ -79,7 +79,7 @@ module.exports = {
         builtinGlobals: true,
         hoist: "all",
         ignoreFunctionTypeParameterNameValueShadow: false,
-        ignoreTypeValueShadow: false
+        ignoreTypeValueShadow: true
       }
     ],
     "@typescript-eslint/no-type-alias": "off",

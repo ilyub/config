@@ -3,7 +3,6 @@ const {
   extraDefaultExportLocations,
   extraTestsLocations,
   extraUtilsLocations,
-  quasar,
   utility
 } = require("./get-options");
 
@@ -19,8 +18,6 @@ chore.push(...extraChoreLocations);
 defaultExport.push(...extraDefaultExportLocations);
 tests.push(...extraTestsLocations);
 utils.push(...extraUtilsLocations);
-
-if (quasar) defaultExport.push("./src/boot/*", "./src/router/index.ts");
 
 if (utility) utils.push("**");
 

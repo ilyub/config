@@ -15,6 +15,7 @@ module.exports = {
     "unicorn/no-useless-undefined": "off",
     "unicorn/prefer-array-flat": "off",
     "unicorn/prefer-array-flat-map": "off",
+    "unicorn/prefer-dom-node-dataset": "off",
     "unicorn/prefer-module": "off",
     "unicorn/prefer-node-protocol": "off",
     "unicorn/prefer-object-has-own": "off",

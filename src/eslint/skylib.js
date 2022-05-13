@@ -3,6 +3,7 @@ const {
   disallowByRegexp,
   disallowIdentifier,
   disallowImport,
+  readonlyTypes,
   requireJsdoc
 } = require("./get-options");
 
@@ -68,12 +69,7 @@ module.exports = {
         ignoreInferredTypes: true,
         ignoreInterfaces: true,
         ignoreNumberSignature: true,
-        ignoreTypes: [
-          "^Promise$",
-          "^ReadonlyMap$",
-          "^ReadonlySet$",
-          "^Writable"
-        ]
+        ignoreTypes: readonlyTypes
       }
     ],
     "@skylib/optional-property-style": [
@@ -87,12 +83,7 @@ module.exports = {
         ignoreIdentifiers: [/^mutable/u.source],
         ignoreInferredTypes: true,
         ignoreInterfaces: true,
-        ignoreTypes: [
-          "^Promise$",
-          "^ReadonlyMap$",
-          "^ReadonlySet$",
-          "^Writable"
-        ]
+        ignoreTypes: readonlyTypes
       }
     ],
     "@skylib/require-jsdoc": [
@@ -133,6 +124,27 @@ module.exports = {
           "private-dynamic-accessor",
           "private-dynamic-constructor",
           "private-dynamic-method"
+        ]
+      }
+    ],
+    "@skylib/statements-order": [
+      "warn",
+      {
+        rootOrder: [
+          "ImportDeclaration",
+          "GlobalModuleDeclaration",
+          "ExportAllDeclaration",
+          "ExportDeclaration",
+          "ExportDefaultDeclaration",
+          "ExportUnknown",
+          "ExportTypeDeclaration",
+          "ExportFunctionDeclaration",
+          "ExportModuleDeclaration",
+          "Unknown",
+          "TypeDeclaration",
+          "FunctionDeclaration",
+          "ModuleDeclaration",
+          "JestTest"
         ]
       }
     ]
