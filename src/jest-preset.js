@@ -16,7 +16,9 @@ module.exports = {
     [/^@$/u.source]: "<rootDir>/src",
     [/^@\/(.+)/u.source]: "<rootDir>/src/$1",
     [/^lodash-es$/u.source]: "lodash",
-    [/^quasar$/u.source]: "quasar/dist/quasar.esm.prod.js"
+    [/^quasar$/u.source]:
+      "<rootDir>/node_modules/quasar/dist/quasar.esm.prod.js",
+    [/^uuid$/u.source]: "<rootDir>/node_modules/uuid/dist/index.js"
   },
   modulePathIgnorePatterns: [
     "/(?:\\.git|\\.quasar|\\.scannerwork|\\.vscode|cache|dist|docs|es|lcov-report|node_modules)/"
