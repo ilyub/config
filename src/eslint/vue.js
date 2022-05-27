@@ -32,7 +32,6 @@ module.exports = {
     // eslint-disable-next-line no-warning-comments -- Wait for https://github.com/vuejs/eslint-plugin-vue/issues/1791
     // fixme
     "vue/match-component-file-name": "off",
-    "vue/name-property-casing": ["warn", "kebab-case"],
     "vue/new-line-between-multi-line-property": "off",
     "vue/no-bare-strings-in-template": [
       "warn",
