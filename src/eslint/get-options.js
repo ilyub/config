@@ -171,24 +171,8 @@ module.exports = (() => {
 
     if (options.extends) for (const extend of options.extends) load(extend);
 
-    const {
-      consistentImport,
-      disallowByRegexp,
-      disallowIdentifier,
-      disallowImport,
-      noRestrictedSyntax,
-      readonlyTypes,
-      requireJsdoc,
-      ...rest
-    } = options;
-
-    Object.assign(result, rest);
-    result.consistentImport.push(...(consistentImport ?? []));
-    result.disallowByRegexp.push(...(disallowByRegexp ?? []));
-    result.disallowIdentifier.push(...(disallowIdentifier ?? []));
-    result.disallowImport.push(...(disallowImport ?? []));
-    result.noRestrictedSyntax.push(...(noRestrictedSyntax ?? []));
-    result.readonlyTypes.push(...(readonlyTypes ?? []));
-    result.requireJsdoc.push(...(requireJsdoc ?? []));
+    for (const [index, option] of Object.entries(options))
+      if (Array.isArray(result[index])) result[index].push(...option);
+      else result[index] = option;
   }
 })();
