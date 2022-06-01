@@ -74,7 +74,12 @@ module.exports = {
       overrides: [{ extends: ["./vue.chore"], files: chore }]
     },
     {
-      extends: ["./es.chore", "./import.chore", "./skylib.chore"],
+      extends: [
+        "./boundaries.chore",
+        "./es.chore",
+        "./import.chore",
+        "./skylib.chore"
+      ],
       files: chore
     },
     { extends: ["./import.default-export"], files: defaultExport },
