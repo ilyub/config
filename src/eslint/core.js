@@ -73,7 +73,7 @@ module.exports = {
     ],
     "prefer-named-capture-group": "off",
     "prefer-object-has-own": "off",
-    "sort-imports": "off",
+    "sort-imports": ["warn", { ignoreDeclarationSort: true }],
     "sort-keys": "off",
     "spaced-comment": ["warn", "always", { markers: ["/ <reference"] }]
   }

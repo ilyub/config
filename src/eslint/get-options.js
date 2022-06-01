@@ -115,14 +115,26 @@ module.exports = (() => {
         selector: "Property > FunctionExpression.value"
       },
       {
+        message: "Prefer named export all declaration",
+        selector: "ExportAllDeclaration[exported=null]"
+      },
+      {
         message: "Underscore export is not allowed",
         selector:
           "ExportNamedDeclaration > VariableDeclaration.declaration > VariableDeclarator.declarations > Identifier.id[name=/^_/u]"
       },
       {
+        message: "Either re-export single item or use star re-export",
+        selector: "ExportNamedDeclaration[source][specifiers.length>1]"
+      },
+      {
         message: "Use arrow function instead",
         selector:
           "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]"
+      },
+      {
+        message: "Prefer conditional expression",
+        selector: "LogicalExpression[operator=??][left.type=ChainExpression]"
       },
       {
         message: "Unnecessary initialization",
@@ -131,6 +143,15 @@ module.exports = (() => {
       {
         message: 'Unnecessary "break" statement',
         selector: "SwitchCase:last-child > BreakStatement.consequent"
+      },
+      {
+        message: 'Prefer "true" type',
+        selector:
+          "TSPropertySignature[optional=true][typeAnnotation.typeAnnotation.type=TSBooleanKeyword]"
+      },
+      {
+        message: "Prefer readonly property",
+        selector: "TSPropertySignature[readonly!=true]"
       },
       {
         message: "Unnecessary initialization",
@@ -147,9 +168,10 @@ module.exports = (() => {
 
     result.requireJsdoc.push(
       ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > FunctionDeclaration",
-      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations > ObjectExpression.init > Property.properties > FunctionExpression",
-      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations > TSAsExpression.init > ObjectExpression.expression > Property.properties > FunctionExpression",
-      "PropertyDefinition > ArrowFunctionExpression.value"
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration>  VariableDeclarator.declarations > Identifier.id > TSTypeAnnotation.typeAnnotation > TSFunctionType.typeAnnotation",
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations[id.typeAnnotation=undefined] > ObjectExpression.init > Property.properties > :matches(ArrowFunctionExpression, FunctionExpression)",
+      ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator.declarations[id.typeAnnotation=undefined] > TSAsExpression.init > ObjectExpression.expression > Property.properties > :matches(ArrowFunctionExpression, FunctionExpression)",
+      "PropertyDefinition > :matches(ArrowFunctionExpression, FunctionExpression).value"
     );
   }
 

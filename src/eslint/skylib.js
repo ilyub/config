@@ -46,6 +46,7 @@ module.exports = {
           { selector: "TSDeclareFunction > .params" },
           { selector: "TSFunctionType > .params" },
           { selector: "TSInterfaceBody > .body" },
+          { selector: "TSTypeLiteral > .members" },
           {
             averageLinesGte: 3,
             everyLinesGte: 2,
@@ -86,6 +87,7 @@ module.exports = {
         ignoreTypes: readonlyTypes
       }
     ],
+    "@skylib/prefer-readonly-props": "off",
     "@skylib/require-jsdoc": [
       "warn",
       {
