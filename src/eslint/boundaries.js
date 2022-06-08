@@ -11,10 +11,18 @@ module.exports = {
           { allow: ["src3"], from: ["src2"] },
           { allow: ["src4"], from: ["src3"] },
           { allow: ["src5"], from: ["src4"] },
-          { allow: ["src1", "src2", "src3", "src4", "src5"], from: ["mocks"] },
-          { allow: ["src1", "src2", "src3", "src4", "src5"], from: ["tests"] },
+          { allow: ["src6"], from: ["src5"] },
+          { allow: ["src7"], from: ["src6"] },
           {
-            allow: ["src1", "src2", "src3", "src4", "src5"],
+            allow: ["src1", "src2", "src3", "src4", "src5", "src6", "src7"],
+            from: ["mocks"]
+          },
+          {
+            allow: ["src1", "src2", "src3", "src4", "src5", "src6", "src7"],
+            from: ["tests"]
+          },
+          {
+            allow: ["src1", "src2", "src3", "src4", "src5", "src6", "src7"],
             from: [["src2", { part1: "test-utils" }]]
           }
         ]
@@ -62,6 +70,26 @@ module.exports = {
         mode: "file",
         pattern: "./src/*/*/*/*/*",
         type: "src5"
+      },
+      {
+        capture: ["part1", "part2", "part3", "part4", "part5", "part6"],
+        mode: "file",
+        pattern: "./src/*/*/*/*/*/*",
+        type: "src6"
+      },
+      {
+        capture: [
+          "part1",
+          "part2",
+          "part3",
+          "part4",
+          "part5",
+          "part6",
+          "part7"
+        ],
+        mode: "file",
+        pattern: "./src/*/*/*/*/*/*/*",
+        type: "src7"
       },
       {
         mode: "file",
