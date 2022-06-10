@@ -33,71 +33,15 @@ module.exports = {
     // fixme
     "vue/match-component-file-name": "off",
     "vue/new-line-between-multi-line-property": "off",
-    "vue/no-bare-strings-in-template": [
+    "vue/no-bare-strings-in-template": "off",
+    "vue/no-multiple-template-root": "off",
+    "vue/no-restricted-syntax": [
       "warn",
       {
-        allowlist: [
-          "!",
-          '"',
-          "#",
-          "$",
-          "%",
-          "&",
-          "'",
-          "(",
-          ")",
-          "*",
-          "+",
-          ",",
-          "-",
-          ".",
-          "/",
-          "0",
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          ":",
-          ";",
-          "<",
-          "=",
-          ">",
-          "?",
-          "@",
-          "[",
-          "\\",
-          "]",
-          "^",
-          "_",
-          "`",
-          "{",
-          "|",
-          "}",
-          "~",
-          "\u2013"
-        ],
-        attributes: {
-          "/.+/": [
-            "aria-label",
-            "aria-placeholder",
-            "aria-roledescription",
-            "aria-valuetext",
-            "caption",
-            "label",
-            "title"
-          ],
-          "img": ["alt"],
-          "input": ["placeholder"]
-        },
-        directives: ["v-text"]
+        message: "Unexpected empty line",
+        selector: "VElement[name=template] VText[value=/^\n\n/u]"
       }
     ],
-    "vue/no-multiple-template-root": "off",
     "vue/no-undef-components": [
       "warn",
       { ignorePatterns: quasarGlobalComponents }

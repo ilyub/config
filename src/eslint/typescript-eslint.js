@@ -24,6 +24,10 @@ module.exports = {
       "warn",
       { disallowTypeAnnotations: false, prefer: "type-imports" }
     ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      { allowExpressions: true }
+    ],
     "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/method-signature-style": ["warn", "property"],
