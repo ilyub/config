@@ -5,6 +5,12 @@ const unassignedImport = ["**/*.css", "**/*.scss"];
 unassignedImport.push(...extraUnassignedImportLocations);
 
 module.exports = {
+  overrides: [
+    {
+      files: ["*.d.ts", "**/__mocks__/**"],
+      rules: { "import/no-default-export": "off" }
+    }
+  ],
   plugins: ["import"],
   rules: {
     ...require("./get-all")("eslint-plugin-import"),

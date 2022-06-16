@@ -86,6 +86,20 @@ module.exports = (() => {
 
     result.noRestrictedSyntax.push(
       {
+        message: "Identifier contains disallowed character(s)",
+        selector: "Identifier[name=/\\W/u]"
+      },
+      {
+        message: "String literal contains disallowed character(s)",
+        selector:
+          "Literal[value=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
+      },
+      {
+        message: "Template literal contains disallowed character(s)",
+        selector:
+          "TemplateElement[value.raw=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
+      },
+      {
         message: "Prefer kebab-case ID",
         selector:
           "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
@@ -145,9 +159,9 @@ module.exports = (() => {
         selector: "SwitchCase:last-child > BreakStatement.consequent"
       },
       {
-        message: 'Prefer "true" type',
+        message: 'Prefer "boolean" type',
         selector:
-          "TSPropertySignature[optional=true][typeAnnotation.typeAnnotation.type=TSBooleanKeyword]"
+          "TSPropertySignature[optional=true] > TSTypeAnnotation.typeAnnotation > TSLiteralType.typeAnnotation > Literal.literal[value=true]"
       },
       {
         message: "Prefer readonly property",

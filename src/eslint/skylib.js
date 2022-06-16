@@ -8,6 +8,12 @@ const {
 } = require("./get-options");
 
 module.exports = {
+  overrides: [
+    {
+      files: ["*.d.ts", "*.internal.ts", "**/__mocks__/**"],
+      rules: { "@skylib/only-export-name": "off" }
+    }
+  ],
   plugins: ["@skylib/eslint-plugin"],
   rules: {
     ...require("./get-all")("@skylib/eslint-plugin"),
