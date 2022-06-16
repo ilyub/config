@@ -87,7 +87,7 @@ module.exports = (() => {
     result.noRestrictedSyntax.push(
       {
         message: "Identifier contains disallowed character(s)",
-        selector: "Identifier[name=/\\W/u]"
+        selector: "Identifier[name=/[^$\\w]/u]"
       },
       {
         message: "String literal contains disallowed character(s)",
