@@ -1,4 +1,4 @@
-module.exports = configFiles => {
+module.exports = sources => {
   const fs = require("fs");
 
   const path = require("path");
@@ -6,12 +6,12 @@ module.exports = configFiles => {
   const config = (() => {
     const result = { dirs: [], scopes: [] };
 
-    for (const configFile of configFiles)
-      if (fs.existsSync(configFile)) {
+    for (const source of sources)
+      if (fs.existsSync(source)) {
         const part = {
           dirs: [],
           scopes: [],
-          ...require(fs.realpathSync(configFile))
+          ...require(fs.realpathSync(source))
         };
 
         result.scopes.push(...part.scopes);
