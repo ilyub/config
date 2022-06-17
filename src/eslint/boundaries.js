@@ -1,6 +1,9 @@
 /* eslint-disable no-template-curly-in-string -- Ok */
 
 module.exports = {
+  overrides: [
+    { files: "./*", rules: { "boundaries/no-unknown-files": "off" } }
+  ],
   plugins: ["boundaries"],
   rules: {
     ...require("./get-all")("eslint-plugin-boundaries"),
