@@ -1,1 +1,1 @@
-module.exports = { scopes: ["getOptions"] };
+module.exports = { scopes: ["api", "getOptions"] };

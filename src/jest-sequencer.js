@@ -1,12 +1,15 @@
-const Sequencer = require("@jest/test-sequencer").default;
+const { default: Sequencer } = require("@jest/test-sequencer");
 
 const fs = require("fs");
 
 const path = require("path");
 
-const slow = fs.existsSync("./jest.slow.js")
-  ? require(fs.realpathSync("./jest.slow.js"))
-  : [];
+const slow = (() => {
+  if (fs.existsSync("./jest.slow.js"))
+    return require(fs.realpathSync("./jest.slow.js"));
+
+  return [];
+})();
 
 module.exports = class extends Sequencer {
   /**

@@ -32,7 +32,6 @@
     "*.ts",
     ".eslintrc.js",
     ".eslintrc.fast.js",
-    ".eslintrc.options.js",
     ".eslintrc.overrides.js",
     ".eslintrc.temp.js",
     ".postcssrc.js",

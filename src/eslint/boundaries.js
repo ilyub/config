@@ -1,4 +1,4 @@
-/* eslint-disable no-template-curly-in-string -- Ok */
+const { eslint } = require("..");
 
 module.exports = {
   overrides: [
@@ -6,77 +6,15 @@ module.exports = {
   ],
   plugins: ["boundaries"],
   rules: {
-    ...require("./get-all")("eslint-plugin-boundaries"),
+    ...eslint.getAllRules("eslint-plugin-boundaries"),
     "boundaries/element-types": [
       "warn",
-      {
-        default: "disallow",
-        rules: [
-          {
-            allow: [
-              [
-                "{src1,src2,src3,src4,src5,src6,src7}",
-                { filename: "${filename}" }
-              ]
-            ],
-            from: "{src1,src2,src3,src4,src5,src6,src7}"
-          },
-          {
-            allow: "{src1,src2,src3,src4,src5,src6,src7}",
-            from: [
-              "mocks",
-              "tests",
-              ["{src1,src2,src3,src4,src5,src6,src7}", { filename: "index" }],
-              [
-                "{src2,src3,src4,src5,src6,src7}",
-                { dir1: "{boot,samples,test-utils}" }
-              ]
-            ]
-          },
-          { allow: ["src2"], from: ["src1"] },
-          { allow: ["src3"], from: ["src2"] },
-          { allow: ["src4"], from: ["src3"] },
-          { allow: ["src5"], from: ["src4"] },
-          { allow: ["src6"], from: ["src5"] },
-          { allow: ["src7"], from: ["src6"] }
-        ]
-      }
-    ]
+      { default: "disallow", rules: eslint.boundaries.elementTypes.rules }
+    ],
+    "boundaries/no-private": "off"
   },
   settings: {
     "boundaries/elements": [
-      ...(() => {
-        const capture = [];
-
-        let dirs = "";
-
-        const part = "([a-zA-Z0-9-]+)";
-
-        const result = [];
-
-        for (let i = 1; i <= 7; i++) {
-          result.push(
-            {
-              capture: [...capture, "filename", "suffix", "ext"],
-              mode: "file",
-              pattern: [`./src/${dirs}${part}().${part}`],
-              type: `src${i}`
-            },
-            {
-              capture: [...capture, "filename", "suffix", "ext"],
-              mode: "file",
-              pattern: [`./src/${dirs}${part}.${part}.${part}`],
-              type: `src${i}`
-            }
-          );
-
-          capture.push(`dir${i}`);
-
-          dirs = `${dirs}*/`;
-        }
-
-        return result;
-      })(),
       {
         mode: "file",
         pattern: "./configs/**",
@@ -96,7 +34,39 @@ module.exports = {
         mode: "file",
         pattern: "./tests/**",
         type: "tests"
-      }
+      },
+      ...(() => {
+        const capture = [];
+
+        let directories = "";
+
+        const part = "([a-zA-Z0-9-]+)";
+
+        const result = [];
+
+        for (let index = 1; index <= 7; index++) {
+          result.push(
+            {
+              capture: [...capture, "filename", "suffix", "ext"],
+              mode: "file",
+              pattern: [`./src/${directories}${part}().${part}`],
+              type: `src${index}`
+            },
+            {
+              capture: [...capture, "filename", "suffix", "ext"],
+              mode: "file",
+              pattern: [`./src/${directories}${part}.${part}.${part}`],
+              type: `src${index}`
+            }
+          );
+
+          capture.push(`dir${index}`);
+
+          directories = `${directories}*/`;
+        }
+
+        return result;
+      })()
     ]
   }
 };

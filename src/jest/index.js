@@ -1,1 +1,3 @@
-module.exports = { jestEnvFactory: require("./jest-env-factory") };
+const jestEnvFactory = require("./jest-env-factory");
+
+module.exports = { jestEnvFactory };

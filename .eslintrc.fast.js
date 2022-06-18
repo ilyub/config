@@ -1,4 +1,4 @@
 module.exports = {
-  extends: [".eslintrc"],
+  extends: ".eslintrc",
   rules: { "prettier/prettier": "off" }
 };

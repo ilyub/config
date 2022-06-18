@@ -6,17 +6,13 @@ module.exports = sources => {
   const config = (() => {
     const result = { dirs: [], scopes: [] };
 
-    for (const source of sources)
-      if (fs.existsSync(source)) {
-        const part = {
-          dirs: [],
-          scopes: [],
-          ...require(fs.realpathSync(source))
-        };
+    for (const source of sources) {
+      const part = require(fs.realpathSync(source));
 
-        result.scopes.push(...part.scopes);
-        result.dirs.push(...part.dirs);
-      }
+      if (part.scopes) result.scopes.push(...part.scopes);
+
+      if (part.dirs) result.dirs.push(...part.dirs);
+    }
 
     return result;
   })();
@@ -67,7 +63,7 @@ module.exports = sources => {
     "typedoc",
     "typescript",
     ...config.scopes,
-    ...scopesFromDirs(config.dirs)
+    ...scopesFromDirectories(config.dirs)
   ]);
 
   return {
@@ -128,10 +124,10 @@ module.exports = sources => {
     return false;
   }
 
-  function scopesFromDirs(dirs) {
+  function scopesFromDirectories(directories) {
     const result = [];
 
-    for (const dir of dirs) if (fs.existsSync(dir)) recurs(dir);
+    for (const dir of directories) if (fs.existsSync(dir)) recurs(dir);
 
     return result;
 
@@ -147,8 +143,14 @@ module.exports = sources => {
       }
     }
   }
-
-  function unique(arr) {
-    return [...new Set(arr).values()];
-  }
 };
+
+/**
+ * Creates unique array.
+ *
+ * @param array - Array.
+ * @returns Unique array.
+ */
+function unique(array) {
+  return [...new Set(array).values()];
+}

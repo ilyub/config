@@ -1,7 +1,9 @@
+const { eslint } = require("..");
+
 module.exports = {
   plugins: ["sonarjs"],
   rules: {
-    ...require("./get-all")("eslint-plugin-sonarjs"),
+    ...eslint.getAllRules("eslint-plugin-sonarjs"),
     "sonarjs/cognitive-complexity": ["warn", 50],
     "sonarjs/no-duplicate-string": "off",
     "sonarjs/no-identical-functions": ["warn", 10],

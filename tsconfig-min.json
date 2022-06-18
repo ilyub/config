@@ -1,38 +1,9 @@
 {
-  "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "cache/typescript",
-    "paths": {
-      "@": [
-        "src"
-      ],
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "typeRoots": [
-      "node_modules/@skylib",
-      "node_modules/@types"
-    ],
-    "types": [
-      "jest"
-    ]
-  },
-  "exclude": [
-    "cache",
-    "dist",
-    "docs",
-    "es",
-    "lcov-report",
-    "node_modules"
-  ],
-  "extends": "./src/tsconfig-min",
   "include": [
     "*.js",
     "*.ts",
     ".eslintrc.js",
     ".eslintrc.fast.js",
-    ".eslintrc.options.js",
     ".eslintrc.overrides.js",
     ".eslintrc.temp.js",
     ".postcssrc.js",
@@ -54,5 +25,33 @@
     "tests/**/*.js",
     "tests/**/*.ts",
     "tests/**/*.vue"
-  ]
+  ],
+  "extends": "./src/tsconfig-min",
+  "exclude": [
+    "cache",
+    "dist",
+    "docs",
+    "es",
+    "lcov-report",
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "types": [
+      "jest"
+    ],
+    "typeRoots": [
+      "node_modules/@skylib",
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@": [
+        "src"
+      ]
+    },
+    "outDir": "cache/typescript",
+    "baseUrl": "."
+  }
 }

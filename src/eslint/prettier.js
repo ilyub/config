@@ -1,5 +1,7 @@
+const { eslint } = require("..");
+
 module.exports = {
-  extends: ["prettier"],
+  extends: "prettier",
   plugins: ["prettier"],
-  rules: require("./get-all")("eslint-plugin-prettier")
+  rules: { ...eslint.getAllRules("eslint-plugin-prettier") }
 };

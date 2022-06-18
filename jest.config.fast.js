@@ -1,1 +1,3 @@
-module.exports = { ...require("./jest.config"), maxWorkers: 4 };
+const config = require("./jest.config");
+
+module.exports = { ...config, maxWorkers: 4 };

@@ -1,9 +1,9 @@
 export const a = import(
   /* webpackChunkName: "dynamic/a" */
-  "buffer"
+  "node:buffer"
 );
 
 export const b = import(
   /* webpackChunkName: "dynamic/a/b" */
-  "buffer"
+  "node:buffer"
 );

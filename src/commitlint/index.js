@@ -1,1 +1,3 @@
-module.exports = { factory: require("./factory") };
+const factory = require("./factory");
+
+module.exports = { factory };

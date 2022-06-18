@@ -1,7 +1,6 @@
+const { eslint } = require("..");
+
 module.exports = {
   plugins: ["xss"],
-  rules: {
-    ...require("./get-all")("eslint-plugin-xss"),
-    "xss/no-mixed-html": "off"
-  }
+  rules: eslint.getAllRules("eslint-plugin-xss")
 };

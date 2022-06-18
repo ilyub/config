@@ -1,1 +1,3 @@
-module.exports = require("./jest").jestEnvFactory("node");
+const { jestEnvFactory } = require("./jest");
+
+module.exports = jestEnvFactory("node");

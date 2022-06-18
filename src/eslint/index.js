@@ -1,0 +1,33 @@
+module.exports = {
+  extends: [
+    "./core",
+    "./boundaries",
+    "./deprecation",
+    "./es",
+    "./escompat",
+    "./eslint-comments",
+    "./etc",
+    "./github",
+    "./import",
+    "./jest",
+    "./jest-extended",
+    "./jsdoc",
+    "./no-type-assertion",
+    "./no-use-extend-native",
+    "./only-warn",
+    "./pii",
+    "./promise",
+    "./regexp",
+    "./security",
+    "./skylib",
+    "./sonarjs",
+    "./sort-destructure-keys",
+    "./typescript-sort-keys",
+    "./unicorn",
+    "./vue",
+    "./vue-scoped-css",
+    "./xss",
+    "./typescript-eslint",
+    "./prettier"
+  ]
+};

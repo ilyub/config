@@ -1,3 +1,5 @@
+const { eslint } = require("..");
+
 const contexts = [
   "ArrowFunctionExpression",
   "FunctionDeclaration",
@@ -9,41 +11,29 @@ const contexts = [
   "TSMethodSignature"
 ];
 
+const definedTags = ["jest-environment"];
+
 module.exports = {
   plugins: ["jsdoc"],
-  // eslint-disable-next-line no-warning-comments -- Wait for https://github.com/gajus/eslint-plugin-jsdoc/issues/857
-  // fixme
   rules: {
+    ...eslint.getAllRules("eslint-plugin-jsdoc"),
     "jsdoc/check-access": ["warn", { contexts }],
     "jsdoc/check-alignment": ["warn", { contexts }],
     "jsdoc/check-examples": "off",
-    "jsdoc/check-indentation": "warn",
-    "jsdoc/check-line-alignment": "warn",
-    "jsdoc/check-param-names": "warn",
-    "jsdoc/check-property-names": "warn",
     "jsdoc/check-syntax": ["warn", { contexts }],
-    "jsdoc/check-tag-names": ["warn", { definedTags: ["jest-environment"] }],
-    "jsdoc/check-types": "warn",
-    "jsdoc/check-values": "warn",
-    "jsdoc/empty-tags": "warn",
+    "jsdoc/check-tag-names": ["warn", { definedTags }],
     "jsdoc/implements-on-classes": ["warn", { contexts }],
     "jsdoc/match-description": ["warn", { contexts }],
     "jsdoc/match-name": "off",
     "jsdoc/multiline-blocks": ["warn", { contexts }],
-    "jsdoc/newline-after-description": "warn",
-    "jsdoc/no-bad-blocks": "warn",
     "jsdoc/no-defaults": ["warn", { contexts }],
     "jsdoc/no-missing-syntax": "off",
     "jsdoc/no-multi-asterisks": ["warn", { contexts }],
     "jsdoc/no-restricted-syntax": "off",
     "jsdoc/no-types": ["warn", { contexts }],
-    "jsdoc/no-undefined-types": "warn",
-    "jsdoc/require-asterisk-prefix": "warn",
     "jsdoc/require-description": ["warn", { contexts }],
-    "jsdoc/require-description-complete-sentence": "warn",
     "jsdoc/require-example": "off",
     "jsdoc/require-file-overview": "off",
-    "jsdoc/require-hyphen-before-param-description": "warn",
     "jsdoc/require-jsdoc": "off",
     "jsdoc/require-param": ["warn", { contexts }],
     "jsdoc/require-param-description": ["warn", { contexts }],
@@ -54,14 +44,12 @@ module.exports = {
     "jsdoc/require-property-name": ["warn", { contexts }],
     "jsdoc/require-property-type": ["warn", { contexts }],
     "jsdoc/require-returns": ["warn", { checkGetters: false, contexts }],
-    "jsdoc/require-returns-check": "warn",
     "jsdoc/require-returns-description": ["warn", { contexts }],
     "jsdoc/require-returns-type": "off",
     "jsdoc/require-throws": "off",
     "jsdoc/require-yields": "off",
     "jsdoc/require-yields-check": ["warn", { contexts }],
     "jsdoc/sort-tags": ["warn", { contexts }],
-    "jsdoc/tag-lines": "warn",
     "jsdoc/valid-types": ["warn", { contexts }]
   }
 };

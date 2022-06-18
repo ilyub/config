@@ -1,7 +1,6 @@
+const { eslint } = require("..");
+
 module.exports = {
   plugins: ["github"],
-  rules: {
-    ...require("./get-all")("eslint-plugin-github"),
-    "github/unescaped-html-literal": "off"
-  }
+  rules: eslint.getAllRules("eslint-plugin-github")
 };

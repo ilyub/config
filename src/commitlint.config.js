@@ -1,1 +1,3 @@
-module.exports = require("./commitlint").factory(["./commitlint.scopes.js"]);
+const { factory } = require("./commitlint");
+
+module.exports = factory(["./commitlint.scopes.js"]);

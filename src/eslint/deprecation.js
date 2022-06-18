@@ -1,4 +1,6 @@
+const { eslint } = require("..");
+
 module.exports = {
   plugins: ["deprecation"],
-  rules: require("./get-all")("eslint-plugin-deprecation")
+  rules: eslint.getAllRules("eslint-plugin-deprecation")
 };

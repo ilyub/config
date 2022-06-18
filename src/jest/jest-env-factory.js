@@ -1,5 +1,5 @@
-module.exports = env => {
-  const jestEnvironment = require(`jest-environment-${env}`);
+module.exports = environment => {
+  const jestEnvironment = require(`jest-environment-${environment}`);
 
   const BaseEnvironment = jestEnvironment.TestEnvironment ?? jestEnvironment;
 
@@ -20,24 +20,38 @@ module.exports = env => {
      */
     async setup() {
       await super.setup();
-      this.global.JEST_ENV = env;
+      this.global.JEST_ENV = environment;
       this.global.JEST_PATH = this.testPath;
       this.global.clearImmediate =
         this.global.clearImmediate ?? _clearImmediate;
       this.global.fetch = this.global.fetch ?? _fetch;
       this.global.setImmediate = this.global.setImmediate ?? _setImmediate;
-
-      function _clearImmediate(id) {
-        return global.clearTimeout(id);
-      }
-
-      function _fetch() {
-        throw new Error("Not implemented");
-      }
-
-      function _setImmediate(callback) {
-        return global.setTimeout(callback, 0);
-      }
     }
   };
 };
+
+/**
+ * Implements "clearTimeout" function.
+ *
+ * @param id - Id.
+ */
+function _clearImmediate(id) {
+  global.clearTimeout(id);
+}
+
+/**
+ * Implements "fetch" function.
+ */
+function _fetch() {
+  throw new Error("Not implemented");
+}
+
+/**
+ * Implements "setImmediate" function.
+ *
+ * @param callback - Callback.
+ * @returns Id.
+ */
+function _setImmediate(callback) {
+  return global.setTimeout(callback, 0);
+}
