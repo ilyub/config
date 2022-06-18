@@ -1,0 +1,246 @@
+{
+  "rules": {
+    "bin-type": "error",
+    "bundledDependencies-type": "error",
+    "config-type": "error",
+    "cpu-type": "error",
+    "dependencies-type": "error",
+    "description-format": [
+      "error",
+      {
+        "forbidEndingPeriod": true,
+        "requireCapitalFirstLetter": true
+      }
+    ],
+    "description-type": "error",
+    "devDependencies-type": "error",
+    "directories-type": "error",
+    "engines-type": "error",
+    "files-type": "error",
+    "homepage-type": "error",
+    "keywords-type": "error",
+    "license-type": "error",
+    "main-type": "error",
+    "man-type": "error",
+    "name-format": "error",
+    "name-type": "error",
+    "no-absolute-version-dependencies": "error",
+    "no-absolute-version-devDependencies": "error",
+    "no-archive-dependencies": "error",
+    "no-archive-devDependencies": "error",
+    "no-caret-version-dependencies": "error",
+    "no-caret-version-devDependencies": "error",
+    "no-duplicate-properties": "error",
+    "no-file-dependencies": "error",
+    "no-file-devDependencies": "error",
+    "no-git-dependencies": "error",
+    "no-git-devDependencies": "error",
+    "no-repeated-dependencies": "error",
+    "no-restricted-dependencies": [
+      "error",
+      [
+        "lodash",
+        "lodash-es"
+      ]
+    ],
+    "no-restricted-devDependencies": [
+      "error",
+      [
+        "lodash",
+        "lodash-es"
+      ]
+    ],
+    "no-restricted-pre-release-dependencies": [
+      "error",
+      [
+        "lodash",
+        "lodash-es"
+      ]
+    ],
+    "no-restricted-pre-release-devDependencies": [
+      "error",
+      [
+        "lodash",
+        "lodash-es"
+      ]
+    ],
+    "no-tilde-version-dependencies": "error",
+    "no-tilde-version-devDependencies": "error",
+    "optionalDependencies-type": "error",
+    "os-type": "error",
+    "peerDependencies-type": "error",
+    "prefer-absolute-version-dependencies": "error",
+    "prefer-absolute-version-devDependencies": "error",
+    "prefer-alphabetical-bundledDependencies": "error",
+    "prefer-alphabetical-dependencies": "error",
+    "prefer-alphabetical-devDependencies": "error",
+    "prefer-alphabetical-optionalDependencies": "error",
+    "prefer-alphabetical-peerDependencies": "error",
+    "prefer-alphabetical-scripts": "error",
+    "prefer-caret-version-dependencies": "error",
+    "prefer-caret-version-devDependencies": "error",
+    "prefer-no-contributors": "error",
+    "prefer-no-dependencies": "off",
+    "prefer-no-devDependencies": "off",
+    "prefer-no-engineStrict": "error",
+    "prefer-no-optionalDependencies": "error",
+    "prefer-no-peerDependencies": "off",
+    "prefer-no-version-zero-dependencies": "error",
+    "prefer-no-version-zero-devDependencies": "error",
+    "prefer-property-order": [
+      "error",
+      [
+        "name",
+        "version",
+        "private",
+        "main",
+        "description",
+        "keywords",
+        "homepage",
+        "bugs",
+        "repository",
+        "license",
+        "author",
+        "contributors",
+        "files",
+        "module",
+        "jsnext:main",
+        "types",
+        "typings",
+        "style",
+        "example",
+        "examplestyle",
+        "assets",
+        "bin",
+        "man",
+        "directories",
+        "scripts",
+        "config",
+        "pre-commit",
+        "browser",
+        "browserify",
+        "babel",
+        "eslintConfig",
+        "stylelint",
+        "npmpackagejsonlint",
+        "dependencies",
+        "devDependencies",
+        "peerDependencies",
+        "bundledDependencies",
+        "bundleDependencies",
+        "optionalDependencies",
+        "publishConfig",
+        "engines",
+        "engineStrict",
+        "os",
+        "cpu",
+        "preferGlobal"
+      ]
+    ],
+    "prefer-scripts": [
+      "error",
+      [
+        "commitlint",
+        "commitlint-all",
+        "lint",
+        "lint-fast",
+        "lint-no-fix",
+        "package-json-lint",
+        "prepare",
+        "stylelint",
+        "stylelint-html",
+        "stylelint-html-no-fix",
+        "stylelint-no-fix",
+        "test",
+        "test-fast",
+        "tsc",
+        "update-package-check",
+        "update-package-force"
+      ]
+    ],
+    "prefer-tilde-version-dependencies": "error",
+    "prefer-tilde-version-devDependencies": "error",
+    "preferGlobal-type": "error",
+    "private-type": "error",
+    "repository-type": "error",
+    "require-author": "error",
+    "require-bin": "off",
+    "require-bugs": "error",
+    "require-bundledDependencies": "off",
+    "require-config": "off",
+    "require-contributors": "off",
+    "require-cpu": "off",
+    "require-dependencies": "off",
+    "require-description": "error",
+    "require-devDependencies": "off",
+    "require-directories": "off",
+    "require-engines": "error",
+    "require-files": "off",
+    "require-funding": "off",
+    "require-homepage": "error",
+    "require-keywords": "error",
+    "require-license": "error",
+    "require-main": "error",
+    "require-man": "off",
+    "require-module": "off",
+    "require-name": "error",
+    "require-optionalDependencies": "off",
+    "require-os": "off",
+    "require-peerDependencies": "off",
+    "require-preferGlobal": "off",
+    "require-private": "error",
+    "require-publishConfig": "error",
+    "require-repository": "error",
+    "require-repository-directory": "off",
+    "require-scripts": "error",
+    "require-types": "off",
+    "require-typings": "error",
+    "require-version": "error",
+    "scripts-type": "error",
+    "valid-values-author": [
+      "error",
+      [
+        "Ilia Liubinskii <admin.phpdev@gmail.com> (https://github.com/ilyub)"
+      ]
+    ],
+    "valid-values-engines": [
+      "error",
+      [
+        {
+          "node": ">=14.0.0",
+          "npm": ">=7.0.0"
+        }
+      ]
+    ],
+    "valid-values-license": [
+      "error",
+      [
+        "ISC",
+        "You may not use this package"
+      ]
+    ],
+    "valid-values-name-scope": [
+      "error",
+      [
+        "@skylib"
+      ]
+    ],
+    "valid-values-private": [
+      "error",
+      [
+        false,
+        true
+      ]
+    ],
+    "valid-values-publishConfig": [
+      "error",
+      [
+        {
+          "access": "public"
+        }
+      ]
+    ],
+    "version-format": "error",
+    "version-type": "error"
+  }
+}

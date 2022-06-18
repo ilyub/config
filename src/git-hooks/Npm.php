@@ -98,6 +98,16 @@ class Npm
   }
 
   /**
+   * Runs "package-json-lint" script.
+   */
+  public static function runNpmPkgJsonLint(Package $package): void
+  {
+    if ($package->hasScript('package-json-lint')) {
+      Sys::execute('npm run package-json-lint', 'Linting with package-json-lint');
+    }
+  }
+
+  /**
    * Runs "stylelint" script.
    */
   public static function runStyleLint(Package $package): void

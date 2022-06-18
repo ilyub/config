@@ -2,6 +2,7 @@
   "name": "@skylib/config",
   "version": "1.18.0",
   "private": false,
+  "main": "src/index.js",
   "description": "Config for commitlint, eslint, jest, php-cs-fixer, stylelint, typedoc, and typescript",
   "keywords": [
     "commitlint",
@@ -30,6 +31,7 @@
     "lint": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
     "lint-fast": "eslint --config .eslintrc.fast.js --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
     "lint-no-fix": "eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
+    "package-json-lint": "npmPkgJsonLint .",
     "prepare": "cpy src/git-hooks/* .git/hooks",
     "stylelint": "stylelint --fix --max-warnings 0 src/**/*.{css,scss}",
     "stylelint-html": "stylelint --config .stylelintrc-html.js --fix --max-warnings 0 src/**/*.{html,php,vue}",
@@ -88,6 +90,7 @@
     "jest-environment-node": ">=28",
     "jest-transform-stub": ">=2",
     "npm-check-updates": ">=14",
+    "npm-package-json-lint": ">=6",
     "postcss-html": ">=1",
     "postcss-scss": ">=4",
     "prettier": ">=2",
@@ -102,6 +105,9 @@
     "typedoc-plugin-markdown": ">=3",
     "typescript": ">=4",
     "vue-eslint-parser": ">=9"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": ">=14.0.0",

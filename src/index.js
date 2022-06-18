@@ -8,9 +8,7 @@ module.exports = {
          * @param generator - Creates element matcher from filename.
          * @param blocks - Blocks.
          * @returns Rules.
-         * @deprecated
          */
-        // eslint-disable-next-line deprecation/deprecation -- Ok
         createRules: (generator, ...blocks) => {
           const result = [];
 
