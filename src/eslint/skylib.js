@@ -8,15 +8,14 @@ const {
 } = require("./get-options");
 
 module.exports = {
+  extends: ["plugin:@skylib/eslint-plugin/all"],
   overrides: [
     {
       files: ["*.d.ts", "*.internal.ts", "**/__mocks__/**"],
       rules: { "@skylib/only-export-name": "off" }
     }
   ],
-  plugins: ["@skylib/eslint-plugin"],
   rules: {
-    ...require("./get-all")("@skylib/eslint-plugin"),
     "@skylib/consistent-empty-lines": [
       "warn",
       {
