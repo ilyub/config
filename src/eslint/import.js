@@ -1,6 +1,11 @@
 const { extraUnassignedImportLocations } = require("./get-options");
 
-const unassignedImport = ["**/*.css", "**/*.scss"];
+const unassignedImport = [
+  "**/*.css",
+  "**/*.scss",
+  "jest-extended",
+  "reflect-metadata"
+];
 
 unassignedImport.push(...extraUnassignedImportLocations);
 

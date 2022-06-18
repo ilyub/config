@@ -1,8 +1,5 @@
 const {
-  consistentImport,
-  disallowByRegexp,
   disallowIdentifier,
-  disallowImport,
   readonlyTypes,
   requireJsdoc
 } = require("./get-options");
@@ -63,10 +60,76 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/consistent-import": ["warn", { sources: consistentImport }],
-    "@skylib/disallow-by-regexp": ["warn", { rules: disallowByRegexp }],
+    "@skylib/consistent-import": [
+      "warn",
+      {
+        sources: [
+          { sourcePattern: "@sinonjs/fake-timers", type: "wildcard" },
+          {
+            localName: "_",
+            sourcePattern: "@skylib/lodash-commonjs-es",
+            type: "wildcard"
+          },
+          {
+            altLocalNames: ["vueTestUtils"],
+            sourcePattern: "@vue/test-utils",
+            type: "wildcard"
+          },
+          {
+            altLocalNames: ["nodeFs"],
+            sourcePattern: "fs",
+            type: "default"
+          },
+          {
+            altLocalNames: ["jestExtendedMatchers"],
+            localName: "matchers",
+            sourcePattern: "jest-extended/all",
+            type: "default"
+          },
+          {
+            localName: "$",
+            sourcePattern: "jquery",
+            type: "default"
+          },
+          {
+            altLocalNames: ["nodePath"],
+            sourcePattern: "path",
+            type: "default"
+          },
+          {
+            localName: "Vue",
+            sourcePattern: "vue",
+            type: "default"
+          },
+          {
+            localName: "VueRouter",
+            sourcePattern: "vue-router",
+            type: "default"
+          },
+          { sourcePattern: "!@skylib/**", type: "default" }
+        ]
+      }
+    ],
+    "@skylib/disallow-by-regexp": "off",
     "@skylib/disallow-identifier": ["warn", { rules: disallowIdentifier }],
-    "@skylib/disallow-import": ["warn", { rules: disallowImport }],
+    "@skylib/disallow-import": [
+      "warn",
+      {
+        rules: [
+          {
+            disallow: [
+              ".",
+              "../src/**",
+              "../../src/**",
+              "../../../src/**",
+              "../../../../src/**",
+              "../../../../../src/**"
+            ]
+          },
+          { disallow: ["@", "@/**"], filesToSkip: ["./tests/**"] }
+        ]
+      }
+    ],
     "@skylib/no-mutable-signature": [
       "warn",
       {
@@ -76,6 +139,100 @@ module.exports = {
         ignoreInterfaces: true,
         ignoreNumberSignature: true,
         ignoreTypes: readonlyTypes
+      }
+    ],
+    "@skylib/no-restricted-syntax": [
+      "warn",
+      {
+        rules: [
+          {
+            message: "Identifier contains disallowed character(s)",
+            selector: "Identifier[name=/[^$\\w]/u]"
+          },
+          {
+            message: "String literal contains disallowed character(s)",
+            selector:
+              "Literal[value=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
+          },
+          {
+            message: "Template literal contains disallowed character(s)",
+            selector:
+              "TemplateElement[value.raw=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
+          },
+          {
+            message: "Prefer kebab-case ID",
+            selector:
+              "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
+          },
+          {
+            message: 'Use "toStrictEqual" instead',
+            selector:
+              "CallExpression[callee.property.name=toBe] > :not(Literal, TemplateElement).arguments"
+          },
+          {
+            message: 'Use "toBe" instead',
+            selector:
+              "CallExpression[callee.property.name=toStrictEqual] > :matches(Literal, TemplateElement).arguments"
+          },
+          {
+            message: 'Prefer "Error" instead of "new Error()"',
+            selector:
+              "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]"
+          },
+          {
+            message: "Underscore export is not allowed",
+            selector:
+              "ExportNamedDeclaration > FunctionDeclaration.declaration > Identifier.id[name=/^_/u]"
+          },
+          {
+            message: "Prefer arrow function",
+            selector: "Property > FunctionExpression.value"
+          },
+          {
+            message: "Prefer named export all declaration",
+            selector: "ExportAllDeclaration[exported=null]"
+          },
+          {
+            message: "Underscore export is not allowed",
+            selector:
+              "ExportNamedDeclaration > VariableDeclaration.declaration > VariableDeclarator.declarations > Identifier.id[name=/^_/u]"
+          },
+          {
+            message: "Either re-export single item or use star re-export",
+            selector: "ExportNamedDeclaration[source][specifiers.length>1]"
+          },
+          {
+            message: "Use arrow function instead",
+            selector:
+              "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]"
+          },
+          {
+            message: "Prefer conditional expression",
+            selector:
+              "LogicalExpression[operator=??][left.type=ChainExpression]"
+          },
+          {
+            message: "Unnecessary initialization",
+            selector: "PropertyDefinition > Identifier.value[name=undefined]"
+          },
+          {
+            message: 'Unnecessary "break" statement',
+            selector: "SwitchCase:last-child > BreakStatement.consequent"
+          },
+          {
+            message: 'Prefer "boolean" type',
+            selector:
+              "TSPropertySignature[optional=true] > TSTypeAnnotation.typeAnnotation > TSLiteralType.typeAnnotation > Literal.literal[value=true]"
+          },
+          {
+            message: "Prefer readonly property",
+            selector: "TSPropertySignature[readonly!=true]"
+          },
+          {
+            message: "Unnecessary initialization",
+            selector: "VariableDeclarator > Identifier.init[name=undefined]"
+          }
+        ]
       }
     ],
     "@skylib/optional-property-style": [

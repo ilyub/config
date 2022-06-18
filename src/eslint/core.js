@@ -1,5 +1,3 @@
-const { noRestrictedSyntax } = require("./get-options");
-
 module.exports = {
   extends: ["eslint:all"],
   rules: {
@@ -38,7 +36,6 @@ module.exports = {
     "no-magic-numbers": "off",
     "no-param-reassign": "off",
     "no-plusplus": "off",
-    "no-restricted-syntax": ["warn", ...noRestrictedSyntax],
     "no-shadow": [
       "warn",
       {

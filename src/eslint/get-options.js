@@ -2,177 +2,26 @@ module.exports = (() => {
   const fs = require("fs");
 
   const result = {
-    consistentImport: [],
-    disallowByRegexp: [],
     disallowIdentifier: [],
-    disallowImport: [],
     extraChoreLocations: [],
     extraDefaultExportLocations: [],
     extraTestsLocations: [],
     extraUnassignedImportLocations: [],
     extraUtilsLocations: [],
-    noRestrictedSyntax: [],
     quasarGlobalComponents: [],
     readonlyTypes: [],
     requireJsdoc: [],
     utility: false
   };
 
-  load(fs.realpathSync(".eslintrc.options.js"));
+  if (fs.existsSync(".eslintrc.options.js"))
+    load(fs.realpathSync(".eslintrc.options.js"));
+
   addDefaults();
 
   return result;
 
   function addDefaults() {
-    result.consistentImport.push(
-      {
-        localName: "_",
-        sourcePattern: "@skylib/lodash-commonjs-es",
-        type: "wildcard"
-      },
-      {
-        altLocalNames: ["vueTestUtils"],
-        sourcePattern: "@vue/test-utils",
-        type: "wildcard"
-      },
-      {
-        altLocalNames: ["nodeFs"],
-        sourcePattern: "fs",
-        type: "default"
-      },
-      {
-        localName: "$",
-        sourcePattern: "jquery",
-        type: "default"
-      },
-      {
-        altLocalNames: ["nodePath"],
-        sourcePattern: "path",
-        type: "default"
-      },
-      {
-        localName: "Vue",
-        sourcePattern: "vue",
-        type: "default"
-      },
-      {
-        localName: "VueRouter",
-        sourcePattern: "vue-router",
-        type: "default"
-      }
-    );
-
-    // eslint-disable-next-line no-warning-comments -- https://github.com/gajus/eslint-plugin-jsdoc/issues/864
-    // fixme
-    result.disallowByRegexp.push({
-      contexts: ["comment"],
-      patterns: [/(?<!\\)[<>]/u.source],
-      subOptionsId: "comment.escape"
-    });
-
-    result.disallowImport.push(
-      {
-        disallow: [
-          ".",
-          "../src/**",
-          "../../src/**",
-          "../../../src/**",
-          "../../../../src/**",
-          "../../../../../src/**"
-        ]
-      },
-      { disallow: ["@", "@/**"], filesToSkip: ["./tests/**"] }
-    );
-
-    result.noRestrictedSyntax.push(
-      {
-        message: "Identifier contains disallowed character(s)",
-        selector: "Identifier[name=/[^$\\w]/u]"
-      },
-      {
-        message: "String literal contains disallowed character(s)",
-        selector:
-          "Literal[value=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
-      },
-      {
-        message: "Template literal contains disallowed character(s)",
-        selector:
-          "TemplateElement[value.raw=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
-      },
-      {
-        message: "Prefer kebab-case ID",
-        selector:
-          "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
-      },
-      {
-        message: 'Use "toStrictEqual" instead',
-        selector:
-          "CallExpression[callee.property.name=toBe] > :not(Literal, TemplateElement).arguments"
-      },
-      {
-        message: 'Use "toBe" instead',
-        selector:
-          "CallExpression[callee.property.name=toStrictEqual] > :matches(Literal, TemplateElement).arguments"
-      },
-      {
-        message: 'Prefer "Error" instead of "new Error()"',
-        selector:
-          "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]"
-      },
-      {
-        message: "Underscore export is not allowed",
-        selector:
-          "ExportNamedDeclaration > FunctionDeclaration.declaration > Identifier.id[name=/^_/u]"
-      },
-      {
-        message: "Prefer arrow function",
-        selector: "Property > FunctionExpression.value"
-      },
-      {
-        message: "Prefer named export all declaration",
-        selector: "ExportAllDeclaration[exported=null]"
-      },
-      {
-        message: "Underscore export is not allowed",
-        selector:
-          "ExportNamedDeclaration > VariableDeclaration.declaration > VariableDeclarator.declarations > Identifier.id[name=/^_/u]"
-      },
-      {
-        message: "Either re-export single item or use star re-export",
-        selector: "ExportNamedDeclaration[source][specifiers.length>1]"
-      },
-      {
-        message: "Use arrow function instead",
-        selector:
-          "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]"
-      },
-      {
-        message: "Prefer conditional expression",
-        selector: "LogicalExpression[operator=??][left.type=ChainExpression]"
-      },
-      {
-        message: "Unnecessary initialization",
-        selector: "PropertyDefinition > Identifier.value[name=undefined]"
-      },
-      {
-        message: 'Unnecessary "break" statement',
-        selector: "SwitchCase:last-child > BreakStatement.consequent"
-      },
-      {
-        message: 'Prefer "boolean" type',
-        selector:
-          "TSPropertySignature[optional=true] > TSTypeAnnotation.typeAnnotation > TSLiteralType.typeAnnotation > Literal.literal[value=true]"
-      },
-      {
-        message: "Prefer readonly property",
-        selector: "TSPropertySignature[readonly!=true]"
-      },
-      {
-        message: "Unnecessary initialization",
-        selector: "VariableDeclarator > Identifier.init[name=undefined]"
-      }
-    );
-
     result.readonlyTypes.push(
       "^Promise$",
       "^ReadonlyMap$",
