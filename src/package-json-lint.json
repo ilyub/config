@@ -28,8 +28,8 @@
     "no-absolute-version-devDependencies": "error",
     "no-archive-dependencies": "error",
     "no-archive-devDependencies": "error",
-    "no-caret-version-dependencies": "error",
-    "no-caret-version-devDependencies": "error",
+    "no-caret-version-dependencies": "off",
+    "no-caret-version-devDependencies": "off",
     "no-duplicate-properties": "error",
     "no-file-dependencies": "error",
     "no-file-devDependencies": "error",
@@ -69,8 +69,8 @@
     "optionalDependencies-type": "error",
     "os-type": "error",
     "peerDependencies-type": "error",
-    "prefer-absolute-version-dependencies": "error",
-    "prefer-absolute-version-devDependencies": "error",
+    "prefer-absolute-version-dependencies": "off",
+    "prefer-absolute-version-devDependencies": "off",
     "prefer-alphabetical-bundledDependencies": "error",
     "prefer-alphabetical-dependencies": "error",
     "prefer-alphabetical-devDependencies": "error",
@@ -85,8 +85,8 @@
     "prefer-no-engineStrict": "error",
     "prefer-no-optionalDependencies": "error",
     "prefer-no-peerDependencies": "off",
-    "prefer-no-version-zero-dependencies": "error",
-    "prefer-no-version-zero-devDependencies": "error",
+    "prefer-no-version-zero-dependencies": "off",
+    "prefer-no-version-zero-devDependencies": "off",
     "prefer-property-order": [
       "error",
       [
@@ -102,13 +102,40 @@
         "author",
         "publisher",
         "main",
+        "module",
         "files",
         "scripts",
         "dependencies",
         "devDependencies",
         "peerDependencies",
         "engines",
-        "publishConfig"
+        "publishConfig",
+        "assets",
+        "babel",
+        "bin",
+        "browser",
+        "browserify",
+        "bundleDependencies",
+        "bundledDependencies",
+        "config",
+        "contributors",
+        "cpu",
+        "directories",
+        "engineStrict",
+        "eslintConfig",
+        "example",
+        "examplestyle",
+        "jsnext:main",
+        "man",
+        "npmpackagejsonlint",
+        "optionalDependencies",
+        "os",
+        "pre-commit",
+        "preferGlobal",
+        "style",
+        "stylelint",
+        "types",
+        "typings"
       ]
     ],
     "prefer-scripts": [
@@ -139,8 +166,8 @@
         "vue-tsc"
       ]
     ],
-    "prefer-tilde-version-dependencies": "error",
-    "prefer-tilde-version-devDependencies": "error",
+    "prefer-tilde-version-dependencies": "off",
+    "prefer-tilde-version-devDependencies": "off",
     "preferGlobal-type": "error",
     "private-type": "error",
     "repository-type": "error",
@@ -161,7 +188,7 @@
     "require-homepage": "error",
     "require-keywords": "error",
     "require-license": "error",
-    "require-main": "error",
+    "require-main": "off",
     "require-man": "off",
     "require-module": "off",
     "require-name": "error",
@@ -184,15 +211,7 @@
         "Ilia Liubinskii <admin.phpdev@gmail.com> (https://github.com/ilyub)"
       ]
     ],
-    "valid-values-engines": [
-      "error",
-      [
-        {
-          "node": ">=14.0.0",
-          "npm": ">=7.0.0"
-        }
-      ]
-    ],
+    "valid-values-engines": "off",
     "valid-values-license": [
       "error",
       [
@@ -200,12 +219,7 @@
         "You may not use this package"
       ]
     ],
-    "valid-values-name-scope": [
-      "error",
-      [
-        "@skylib"
-      ]
-    ],
+    "valid-values-name-scope": "off",
     "valid-values-private": [
       "error",
       [
@@ -218,6 +232,9 @@
       [
         {
           "access": "public"
+        },
+        {
+          "access": "restricted"
         }
       ]
     ],
