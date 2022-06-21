@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "extends": {
+      "const": "./tsconfig"
+    },
+    "include": {
+      "items": {
+        "enum": [
+          "src/**/*.js",
+          "src/**/*.ts",
+          "src/**/*.vue"
+        ]
+      }
+    }
+  },
+  "required": [
+    "extends",
+    "include"
+  ]
+}

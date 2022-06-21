@@ -1,0 +1,91 @@
+{
+  "properties": {
+    "compilerOptions": {
+      "properties": {
+        "baseUrl": {
+          "const": "."
+        },
+        "outDir": {
+          "const": "cache/typescript"
+        },
+        "paths": {
+          "properties": {
+            "@": {
+              "items": {
+                "const": "src"
+              }
+            },
+            "@/*": {
+              "items": {
+                "const": "src/*"
+              }
+            }
+          },
+          "required": [
+            "@",
+            "@/*"
+          ]
+        },
+        "typeRoots": {
+          "items": {
+            "enum": [
+              "node_modules/@skylib",
+              "node_modules/@types"
+            ]
+          }
+        }
+      },
+      "required": [
+        "baseUrl",
+        "outDir",
+        "paths",
+        "typeRoots"
+      ]
+    },
+    "extends": {
+      "enum": [
+        "./src/tsconfig-min",
+        "./src/tsconfig-strict",
+        "@skylib/config/src/tsconfig-min",
+        "@skylib/config/src/tsconfig-strict"
+      ]
+    },
+    "include": {
+      "items": {
+        "enum": [
+          "*.js",
+          "*.ts",
+          ".eslintrc.js",
+          ".eslintrc.fast.js",
+          ".eslintrc.overrides.js",
+          ".eslintrc.temp.js",
+          ".postcssrc.js",
+          ".prettierrc.js",
+          ".stylelintrc.js",
+          ".stylelintrc-html.js",
+          "__mocks__/**/*.js",
+          "__mocks__/**/*.ts",
+          "__mocks__/**/*.vue",
+          "configs/**/*.js",
+          "configs/**/*.ts",
+          "configs/**/*.vue",
+          "fixtures/**/*.js",
+          "fixtures/**/*.ts",
+          "fixtures/**/*.vue",
+          "src/**/*.js",
+          "src/**/*.ts",
+          "src/**/*.vue",
+          "tests/**/*.js",
+          "tests/**/*.ts",
+          "tests/**/*.vue"
+        ]
+      }
+    }
+  },
+  "required": [
+    "compilerOptions",
+    "exclude",
+    "extends",
+    "include"
+  ]
+}

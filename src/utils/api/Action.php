@@ -87,6 +87,7 @@ class Action
       Git::stageAll();
       Npm::noVulnerabilities($package);
       Npm::commitlint($package);
+      Npm::configLint($package);
       Npm::packageJsonLint($package);
       Npm::tsc($package);
       Npm::vueTsc($package);

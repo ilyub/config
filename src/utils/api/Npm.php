@@ -43,6 +43,16 @@ class Npm
   }
 
   /**
+   * Runs "config-lint" script.
+   */
+  public static function configLint(Package $package): void
+  {
+    if ($package->hasScript('config-lint')) {
+      Sys::execute('npm run config-lint', 'Linting with config-lint');
+    }
+  }
+
+  /**
    * Retrieves npm package versions.
    */
   public static function getVersions(Package $package): array

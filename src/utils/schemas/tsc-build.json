@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "compilerOptions": {
+      "properties": {
+        "module": {
+          "const": "CommonJS"
+        },
+        "outDir": {
+          "enum": [
+            "dist",
+            "out"
+          ]
+        }
+      },
+      "required": [
+        "module",
+        "outDir"
+      ]
+    },
+    "extends": {
+      "const": "./tsconfig"
+    },
+    "include": {
+      "items": {
+        "const": "src/**/*.ts"
+      }
+    }
+  },
+  "required": [
+    "compilerOptions",
+    "extends",
+    "include"
+  ]
+}
