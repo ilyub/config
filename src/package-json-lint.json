@@ -205,39 +205,12 @@
     "require-typings": "off",
     "require-version": "error",
     "scripts-type": "error",
-    "valid-values-author": [
-      "error",
-      [
-        "Ilia Liubinskii <admin.phpdev@gmail.com> (https://github.com/ilyub)"
-      ]
-    ],
+    "valid-values-author": "off",
     "valid-values-engines": "off",
-    "valid-values-license": [
-      "error",
-      [
-        "ISC",
-        "You may not use this package"
-      ]
-    ],
+    "valid-values-license": "off",
     "valid-values-name-scope": "off",
-    "valid-values-private": [
-      "error",
-      [
-        false,
-        true
-      ]
-    ],
-    "valid-values-publishConfig": [
-      "error",
-      [
-        {
-          "access": "public"
-        },
-        {
-          "access": "restricted"
-        }
-      ]
-    ],
+    "valid-values-private": "off",
+    "valid-values-publishConfig": "off",
     "version-format": "error",
     "version-type": "error"
   }

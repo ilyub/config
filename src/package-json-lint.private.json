@@ -1,0 +1,31 @@
+{
+  "extends": "./src/package-json-lint.json",
+  "rules": {
+    "valid-values-author": [
+      "error",
+      [
+        "Ilia Liubinskii <admin.phpdev@gmail.com> (https://github.com/ilyub)"
+      ]
+    ],
+    "valid-values-license": [
+      "error",
+      [
+        "You may not use this package"
+      ]
+    ],
+    "valid-values-private": [
+      "error",
+      [
+        true
+      ]
+    ],
+    "valid-values-publishConfig": [
+      "error",
+      [
+        {
+          "access": "restricted"
+        }
+      ]
+    ]
+  }
+}
