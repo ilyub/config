@@ -91,7 +91,7 @@ class Sys
   /**
    * Flushes string.
    */
-  protected static function flushString(string $str = null): void
+  public static function flushString(string $str = null): void
   {
     if ($str !== null) {
       echo $str.PHP_EOL;
