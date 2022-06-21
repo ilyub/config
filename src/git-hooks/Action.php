@@ -71,7 +71,6 @@ class Action
   {
     $package = new Package();
 
-    $package->noFileDependencies($package);
     Git::noMasterBranch();
 
     if (Git::hasTag($package->version)) {
