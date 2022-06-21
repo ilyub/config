@@ -66,6 +66,7 @@
     "@typescript-eslint/eslint-plugin": ">=5",
     "@typescript-eslint/parser": ">=5",
     "@vue/vue3-jest": ">=28",
+    "clear-folder": ">=3",
     "cpy-cli": ">=4",
     "css-property-sort-order-smacss": ">=2",
     "eslint": ">=8",
