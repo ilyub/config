@@ -1,5 +1,5 @@
 {
-  "cleanOutputDir": false,
+  "cleanOutputDir": true,
   "disableSources": true,
   "entryDocument": "index.md",
   "entryPointStrategy": "expand",
