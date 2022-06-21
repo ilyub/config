@@ -182,4 +182,12 @@ class Git
     Sys::executeWithKey('git push', 'Pushing master');
     Sys::execute('git checkout develop');
   }
+
+  /**
+   * Stages all changes.
+   */
+  public static function stageAll(): void
+  {
+    Sys::execute('git add --all');
+  }
 }

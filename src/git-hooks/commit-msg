@@ -1,2 +1,4 @@
-#!/bin/sh
-npm run commitlint
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run commit-msg

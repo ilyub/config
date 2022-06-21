@@ -3,24 +3,6 @@
 class Sys
 {
   /**
-   * Clears directory.
-   */
-  public static function clearDir(string $dir, array $ignore = [], bool $exists = false): void
-  {
-    if ($exists || file_exists($dir)) {
-      foreach (static::scanDir($dir, $ignore) as $basename) {
-        $filename = $dir.'/'.$basename;
-        if (is_dir($filename)) {
-          static::clearDir($filename, [], true);
-          rmdir($filename);
-        } else {
-          unlink($filename);
-        }
-      }
-    }
-  }
-
-  /**
    * Executes command.
    */
   public static function execute(string $command, string $description = null): array
@@ -62,33 +44,6 @@ class Sys
   }
 
   /**
-   * No deprecated.
-   */
-  public static function noDeprecated(Package $package): void
-  {
-    if (preg_match('`^\d+\.0\.0$`isuxDX', $package->version)) {
-      foreach (static::scanDirDeep('src') as $path) {
-        if (is_file($path)) {
-          $contents = file_get_contents($path);
-          if (preg_match('`\*\s+@deprecated`isuxDX', $contents)) {
-            throw new BaseException('No deprecated');
-          }
-        }
-      }
-    }
-  }
-
-  /**
-   * Runs php-cs-fixer.
-   */
-  public static function runPhpCsFixer(): void
-  {
-    if (file_exists('.php-cs-fixer.php')) {
-      static::execute('php-cs-fixer fix --verbose', 'Linting with php-cs-fixer');
-    }
-  }
-
-  /**
    * Flushes string.
    */
   public static function flushString(string $str = null): void
@@ -102,6 +57,24 @@ class Sys
 
       flush();
     }
+  }
+
+  /**
+   * Scans directory.
+   */
+  public static function scanDirDeep(string $dir, array $ignore = []): array
+  {
+    $result = [];
+
+    foreach (static::scanDir($dir, $ignore) as $basename) {
+      array_push($result, $dir.'/'.$basename);
+
+      if (is_dir($dir.'/'.$basename)) {
+        array_push($result, ...static::scanDirDeep($dir.'/'.$basename));
+      }
+    }
+
+    return $result;
   }
 
   /**
@@ -140,23 +113,5 @@ class Sys
   protected static function scanDir(string $dir, array $ignore = []): array
   {
     return array_diff(scandir($dir), ['.', '..', ...$ignore]);
-  }
-
-  /**
-   * Scans directory.
-   */
-  protected static function scanDirDeep(string $dir, array $ignore = []): array
-  {
-    $result = [];
-
-    foreach (static::scanDir($dir, $ignore) as $basename) {
-      array_push($result, $dir.'/'.$basename);
-
-      if (is_dir($dir.'/'.$basename)) {
-        array_push($result, ...static::scanDirDeep($dir.'/'.$basename));
-      }
-    }
-
-    return $result;
   }
 }

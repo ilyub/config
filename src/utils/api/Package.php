@@ -4,7 +4,6 @@ class Package
 {
   public $config;
   public $name;
-  public $private;
   public $version;
 
   /**
@@ -14,7 +13,6 @@ class Package
   {
     $this->config = Util::decodeJson(file_get_contents('package.json'), 'package.json');
     $this->name = (string) $this->config['name'];
-    $this->private = (bool) $this->config['private'];
     $this->version = (string) $this->config['version'];
   }
 

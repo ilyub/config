@@ -77,32 +77,24 @@ class Action
       // Tag already exists
     } else {
       Git::checkVersion($package);
-      Sys::noDeprecated($package);
-      Npm::regenerateLockFile();
-      Npm::runBuild($package);
-      Npm::runBuildEs($package);
-      Npm::runBuildDoc($package);
-      Sys::runPhpCsFixer();
       Git::noPartialCommit();
-      Npm::noVulnerabilities();
-      Npm::runNpmPkgJsonLint($package);
-      Npm::runTsc($package);
-      Npm::runVueTsc($package);
-      Npm::runLint($package);
-      Npm::runStyleLint($package);
-      Npm::runStyleLintHtml($package);
-      Npm::runCommitLint($package);
-      Npm::runTest($package);
-
-      if ($package->private) {
-        // Do not publish
-      } else {
-        if (in_array($package->version, Npm::getVersions($package))) {
-          // Already published
-        } else {
-          Npm::publish($package);
-        }
-      }
+      Npm::noDeprecated($package);
+      Npm::regenerateLockFile($package);
+      Npm::build($package);
+      Npm::buildEs($package);
+      Npm::buildDoc($package);
+      Npm::phpCsFixer($package);
+      Git::stageAll();
+      Npm::noVulnerabilities($package);
+      Npm::commitlint($package);
+      Npm::packageJsonLint($package);
+      Npm::tsc($package);
+      Npm::vueTsc($package);
+      Npm::lint($package);
+      Npm::stylelint($package);
+      Npm::stylelintHtml($package);
+      Npm::test($package);
+      Npm::publish($package);
     }
   }
 }
