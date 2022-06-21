@@ -49,6 +49,7 @@ module.exports = sources => {
     "jest",
     "npm",
     "package",
+    "package-json-lint",
     "perf",
     "php-cs",
     "readme",
