@@ -1,5 +1,4 @@
 {
-  "extends": "./src/package-json-lint.json",
   "rules": {
     "valid-values-author": [
       "error",

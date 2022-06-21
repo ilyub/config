@@ -1,3 +1,6 @@
 {
-  "extends": "./src/package-json-lint.public.json"
+  "extends": [
+    "./src/package-json-lint.json",
+    "./src/package-json-lint.public.json"
+  ]
 }
