@@ -99,13 +99,7 @@ class Npm
   public static function noVulnerabilities(Package $package): void
   {
     if ($package->hasScript('audit')) {
-      $audit = Sys::execute('npm run audit --json', 'Checking for vulnerablilties');
-      $audit = implode("\n", $audit);
-      $audit = Util::decodeJson($audit, 'audit');
-
-      if ($audit['vulnerabilities']) {
-        throw new BaseException('No vulnerabilities');
-      }
+      Sys::execute('npm run audit', 'Checking for vulnerablilties');
     }
   }
 
