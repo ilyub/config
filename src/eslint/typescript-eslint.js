@@ -4,8 +4,25 @@ module.exports = {
   overrides: [
     {
       extends: "plugin:@typescript-eslint/all",
-      files: "*.{ts,vue}",
+      files: "*.{js,ts,vue}",
       overrides: [
+        {
+          files: "*.js",
+          rules: {
+            "@typescript-eslint/explicit-function-return-type": "off",
+            "@typescript-eslint/explicit-member-accessibility": "off",
+            "@typescript-eslint/no-implied-eval": "off",
+            "@typescript-eslint/no-require-imports": "off",
+            "@typescript-eslint/no-unsafe-argument": "off",
+            "@typescript-eslint/no-unsafe-assignment": "off",
+            "@typescript-eslint/no-unsafe-call": "off",
+            "@typescript-eslint/no-unsafe-member-access": "off",
+            "@typescript-eslint/no-unsafe-return": "off",
+            "@typescript-eslint/no-var-requires": "off",
+            "@typescript-eslint/restrict-template-expressions": "off",
+            "@typescript-eslint/strict-boolean-expressions": "off"
+          }
+        },
         {
           files: "*.d.ts",
           rules: { "@typescript-eslint/no-unused-vars": "off" }
