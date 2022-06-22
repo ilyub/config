@@ -46,6 +46,25 @@ class Action
   }
 
   /**
+   * Performs full check.
+   */
+  public static function fullCheck(): void
+  {
+    $package = new Package();
+
+    Npm::noVulnerabilities($package);
+    Npm::commitlint($package);
+    Npm::configLint($package);
+    Npm::packageJsonLint($package);
+    Npm::tsc($package);
+    Npm::vueTsc($package);
+    Npm::lint($package);
+    Npm::stylelint($package);
+    Npm::stylelintHtml($package);
+    Npm::test($package);
+  }
+
+  /**
    * Post-commit hook.
    */
   public static function postCommit(): void
@@ -85,16 +104,7 @@ class Action
       Npm::buildDoc($package);
       Npm::phpCsFixer($package);
       Git::stageAll();
-      Npm::noVulnerabilities($package);
-      Npm::commitlint($package);
-      Npm::configLint($package);
-      Npm::packageJsonLint($package);
-      Npm::tsc($package);
-      Npm::vueTsc($package);
-      Npm::lint($package);
-      Npm::stylelint($package);
-      Npm::stylelintHtml($package);
-      Npm::test($package);
+      static::fullCheck();
       Npm::publish($package);
     }
   }
