@@ -44,6 +44,7 @@
     "compile": "echo Not implemented",
     "config-lint": "node src/utils/config-lint.js",
     "delete-tags": "php src/utils/delete-tags.php",
+    "full-check": "php src/utils/full-check.php",
     "install-clean": "npm clean-install --no-audit --strict-peer-deps",
     "install-diff": "npm install --no-audit --strict-peer-deps",
     "lint": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
@@ -144,5 +145,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "overrides": {
+    "package-json": "8.1.0"
   }
 }
