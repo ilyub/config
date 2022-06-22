@@ -62,15 +62,14 @@ class Action
     $package = new Package();
 
     Npm::noVulnerabilities($package, $interactive);
-    Npm::packageJsonLint($package, $interactive);
-    Npm::configLint($package, $interactive);
     Npm::commitlint($package, $interactive);
+    Npm::configLint($package, $interactive);
+    Npm::packageJsonLint($package, $interactive);
     Npm::tsc($package, $interactive);
     Npm::vueTsc($package, $interactive);
     Npm::lint($package, $interactive);
     Npm::stylelint($package, $interactive);
     Npm::stylelintHtml($package, $interactive);
-    Npm::test($package, $interactive);
   }
 
   /**
@@ -121,6 +120,7 @@ class Action
       Npm::phpCsFixer($package);
       Git::stageAll();
       static::fullCheck();
+      Npm::test($package);
       Npm::publish($package);
     }
   }

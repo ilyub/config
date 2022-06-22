@@ -37,6 +37,7 @@
     "build": "echo Skip build",
     "build-doc": "echo Skip build-doc",
     "build-es": "echo Skip build-es",
+    "clean-install": "npm clean-install --no-audit --strict-peer-deps",
     "clear-cache": "cf cache node_modules/.cache",
     "commit-msg": "npm run commitlint",
     "commitlint": "commitlint --edit",
@@ -45,8 +46,7 @@
     "config-lint": "node src/utils/config-lint.js",
     "delete-tags": "php src/utils/delete-tags.php",
     "full-check": "php src/utils/full-check.php",
-    "install-clean": "npm clean-install --no-audit --strict-peer-deps",
-    "install-diff": "npm install --no-audit --strict-peer-deps",
+    "install-deps": "npm install --no-audit --strict-peer-deps",
     "lint": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
     "lint-fast": "npm run lint --config .eslintrc.fast.js",
     "lint-no-fix": "set TIMING=1 & npm run lint --fix",
@@ -69,7 +69,7 @@
     "update": "npm update --no-audit --strict-peer-deps",
     "update-package-check": "ncu --dep dev,peer,prod",
     "update-package-force": "ncu --dep dev,peer,prod --upgrade",
-    "upgrade": "npm run update-package-force & npm run install-diff",
+    "upgrade": "npm run update-package-force & npm run install-deps",
     "vue-tsc": "echo Skip vue-tsc"
   },
   "peerDependencies": {

@@ -183,11 +183,11 @@ class Npm
   /**
    * Runs "test" script.
    */
-  public static function test(Package $package, bool $interactive = false): void
+  public static function test(Package $package): void
   {
     if ($package->hasScript('test'))
     {
-      Sys::execute('npm run test', 'Testing', $interactive);
+      Sys::execute('npm run test', 'Testing');
 
       if (file_exists('lcov-report/index.html'))
       {

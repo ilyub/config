@@ -35,6 +35,9 @@
             "echo Skip build-es"
           ]
         },
+        "clean-install": {
+          "const": "npm clean-install --no-audit --strict-peer-deps"
+        },
         "clear-cache": {
           "const": "cf cache node_modules/.cache"
         },
@@ -66,10 +69,7 @@
             "php node_modules/@skylib/config/src/utils/delete-tags.php"
           ]
         },
-        "install-clean": {
-          "const": "npm clean-install --no-audit --strict-peer-deps"
-        },
-        "install-diff": {
+        "install-deps": {
           "const": "npm install --no-audit --strict-peer-deps"
         },
         "lint": {
@@ -190,7 +190,7 @@
           "const": "ncu --dep dev,peer,prod --upgrade"
         },
         "upgrade": {
-          "const": "npm run update-package-force & npm run install-diff"
+          "const": "npm run update-package-force & npm run install-deps"
         },
         "vue-tsc": {
           "enum": [
