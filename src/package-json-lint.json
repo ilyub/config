@@ -179,6 +179,7 @@
         "update",
         "update-package-check",
         "update-package-force",
+        "upgrade",
         "vue-tsc"
       ]
     ],

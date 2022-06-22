@@ -69,6 +69,7 @@
     "update": "npm update --no-audit --strict-peer-deps",
     "update-package-check": "ncu --dep dev,peer,prod",
     "update-package-force": "ncu --dep dev,peer,prod --upgrade",
+    "upgrade": "npm run update-package-force & npm run install-diff",
     "vue-tsc": "echo Skip vue-tsc"
   },
   "peerDependencies": {

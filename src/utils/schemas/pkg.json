@@ -189,6 +189,9 @@
         "update-package-force": {
           "const": "ncu --dep dev,peer,prod --upgrade"
         },
+        "upgrade": {
+          "const": "npm run update-package-force & npm run install-diff"
+        },
         "vue-tsc": {
           "enum": [
             "vue-tsc --noEmit",
