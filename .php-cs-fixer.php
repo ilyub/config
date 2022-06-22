@@ -2,7 +2,7 @@
 
 include_once 'src/php-cs-config.php';
 
-$finder = PhpCsFixer\Finder::create()->in(['src']);
+$finder = PhpCsFixer\Finder::create()->in([__DIR__.'/src']);
 
 $config = new PhpCsFixer\Config();
 
