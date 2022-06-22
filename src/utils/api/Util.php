@@ -9,7 +9,8 @@ class Util
   {
     $result = json_decode($json, true);
 
-    if ($result === null) {
+    if ($result === null)
+    {
       throw new BaseException('Failed to decode: '.$sourceName);
     }
 

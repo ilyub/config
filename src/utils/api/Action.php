@@ -9,18 +9,25 @@ class Action
   {
     $commits = Git::getCommits('^next$', '%H');
 
-    foreach ($commits as $commit) {
+    foreach ($commits as $commit)
+    {
       $info = Git::getCommitInfo($commit);
 
-      if (preg_match('`^\\+\\s{2}"version":\\s"([^"]+)"`imsuxDX', $info, $matches) === 1) {
+      if (preg_match('`^\\+\\s{2}"version":\\s"([^"]+)"`imsuxDX', $info, $matches) === 1)
+      {
         $version = $matches[1];
 
-        if (Git::hasTag($version)) {
+        if (Git::hasTag($version))
+        {
           // Tag already exists
-        } else {
+        }
+        else
+        {
           Git::addTag($version, $commit);
         }
-      } else {
+      }
+      else
+      {
         throw new BaseException('Unexpected commit '.$commit);
       }
     }
@@ -35,11 +42,13 @@ class Action
   {
     $tags = Git::getTags();
 
-    foreach (Git::getCommits('^initial\\scommit$', '%H') as $commit) {
+    foreach (Git::getCommits('^initial\\scommit$', '%H') as $commit)
+    {
       $tags = array_diff($tags, Git::getTags($commit));
     }
 
-    foreach ($tags as $tag) {
+    foreach ($tags as $tag)
+    {
       Git::deleteTag($tag);
       Git::pushDeleteTag($tag);
     }
@@ -48,20 +57,20 @@ class Action
   /**
    * Performs full check.
    */
-  public static function fullCheck(): void
+  public static function fullCheck(bool $interactive = false): void
   {
     $package = new Package();
 
-    Npm::noVulnerabilities($package);
-    Npm::commitlint($package);
-    Npm::configLint($package);
-    Npm::packageJsonLint($package);
-    Npm::tsc($package);
-    Npm::vueTsc($package);
-    Npm::lint($package);
-    Npm::stylelint($package);
-    Npm::stylelintHtml($package);
-    Npm::test($package);
+    Npm::noVulnerabilities($package, $interactive);
+    Npm::packageJsonLint($package, $interactive);
+    Npm::configLint($package, $interactive);
+    Npm::commitlint($package, $interactive);
+    Npm::tsc($package, $interactive);
+    Npm::vueTsc($package, $interactive);
+    Npm::lint($package, $interactive);
+    Npm::stylelint($package, $interactive);
+    Npm::stylelintHtml($package, $interactive);
+    Npm::test($package, $interactive);
   }
 
   /**
@@ -69,12 +78,16 @@ class Action
    */
   public static function postCommit(): void
   {
-    if (Git::getLastCommit('%s') === 'next') {
+    if (Git::getLastCommit('%s') === 'next')
+    {
       $package = new Package();
 
-      if (Git::hasTag($package->version)) {
+      if (Git::hasTag($package->version))
+      {
         // Tag already exists
-      } else {
+      }
+      else
+      {
         Git::addTag($package->version);
       }
 
@@ -92,9 +105,12 @@ class Action
 
     Git::noMasterBranch();
 
-    if (Git::hasTag($package->version)) {
+    if (Git::hasTag($package->version))
+    {
       // Tag already exists
-    } else {
+    }
+    else
+    {
       Git::checkVersion($package);
       Git::noPartialCommit();
       Npm::noDeprecated($package);

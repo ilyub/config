@@ -19,32 +19,40 @@ class Git
    */
   public static function checkVersion(Package $package): void
   {
-    if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $package->version, $matches)) {
+    if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $package->version, $matches))
+    {
       $got1 = (int) $matches[1];
       $got2 = (int) $matches[2];
       $got3 = (int) $matches[3];
 
       $level = 0;
 
-      foreach (static::getCommits('.*', '%H:%s') as $commit) {
+      foreach (static::getCommits('.*', '%H:%s') as $commit)
+      {
         $commit = explode(':', $commit, 2);
 
-        if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1])) {
+        if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1]))
+        {
           $level = max($level, 1);
         }
 
-        if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1])) {
+        if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1]))
+        {
           $level = max($level, 2);
         }
 
-        if ($commit[1] === 'next' || $commit[1] === 'initial commit') {
-          foreach (static::getTags($commit[0]) as $tag) {
-            if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches)) {
+        if ($commit[1] === 'next' || $commit[1] === 'initial commit')
+        {
+          foreach (static::getTags($commit[0]) as $tag)
+          {
+            if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches))
+            {
               $expected1 = (int) $matches[1];
               $expected2 = (int) $matches[2];
               $expected3 = (int) $matches[3];
 
-              if ($got1 !== 0 && $expected1 !== 0) {
+              if ($got1 !== 0 && $expected1 !== 0)
+              {
                 switch ($level) {
                   case 0:
                     ++$expected3;
@@ -62,17 +70,24 @@ class Git
                     $expected2 = 0;
                     $expected3 = 0;
                 }
-              } elseif ($got1 === 0 && $expected1 === 0) {
+              }
+              elseif ($got1 === 0 && $expected1 === 0)
+              {
                 ++$expected3;
-              } else {
+              }
+              else
+              {
                 $expected1 = $got1;
                 $expected2 = $got2;
                 $expected3 = $got3;
               }
 
-              if ($expected1 === $got1 && $expected2 === $got2 && $expected3 === $got3) {
+              if ($expected1 === $got1 && $expected2 === $got2 && $expected3 === $got3)
+              {
                 // Valid
-              } else {
+              }
+              else
+              {
                 throw new BaseException('Expecting version to be '.$expected1.'.'.$expected2.'.'.$expected3);
               }
             }
@@ -141,7 +156,8 @@ class Git
    */
   public static function noMasterBranch(): void
   {
-    if (in_array('* master', Sys::execute('git branch'))) {
+    if (in_array('* master', Sys::execute('git branch')))
+    {
       throw new BaseException('No master branch');
     }
   }
@@ -151,7 +167,8 @@ class Git
    */
   public static function noPartialCommit(): void
   {
-    if (Sys::execute('git ls-files --exclude-standard -m -o')) {
+    if (Sys::execute('git ls-files --exclude-standard -m -o'))
+    {
       throw new BaseException('No partial commit');
     }
   }

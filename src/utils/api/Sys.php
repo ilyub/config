@@ -5,13 +5,30 @@ class Sys
   /**
    * Executes command.
    */
-  public static function execute(string $command, string $description = null): array
-  {
+  public static function execute(
+    string $command,
+    string $description = null,
+    bool $interactive = false
+  ): array {
+    if ($interactive)
+    {
+      static::flushString($description.' ...');
+
+      $result = exec($command.' >nul 2>nul', $output, $code);
+
+      $status = $code || $result === false ? 'Failed' : 'OK';
+
+      static::flushString("\x1B[0G\x1B[1A".$description.' - '.$status);
+
+      return [];
+    }
+
     static::flushString($description);
 
     $result = exec($command, $output, $code);
 
-    if ($code || $result === false) {
+    if ($code || $result === false)
+    {
       throw new BaseException('Command failed: '.$command);
     }
 
@@ -38,7 +55,8 @@ class Sys
 
     $code = proc_close($process);
 
-    if ($code) {
+    if ($code)
+    {
       throw new BaseException('Command failed: '.$command);
     }
   }
@@ -48,10 +66,12 @@ class Sys
    */
   public static function flushString(string $str = null): void
   {
-    if ($str !== null) {
+    if ($str !== null)
+    {
       echo $str.PHP_EOL;
 
-      if (ob_get_level() > 0) {
+      if (ob_get_level() > 0)
+      {
         ob_flush();
       }
 
@@ -66,10 +86,12 @@ class Sys
   {
     $result = [];
 
-    foreach (static::scanDir($dir, $ignore) as $basename) {
+    foreach (static::scanDir($dir, $ignore) as $basename)
+    {
       array_push($result, $dir.'/'.$basename);
 
-      if (is_dir($dir.'/'.$basename)) {
+      if (is_dir($dir.'/'.$basename))
+      {
         array_push($result, ...static::scanDirDeep($dir.'/'.$basename));
       }
     }
@@ -85,10 +107,12 @@ class Sys
     $dirBackup = null;
     $dir = realpath(__DIR__);
 
-    while ($dir !== false && $dir !== $dirBackup) {
+    while ($dir !== false && $dir !== $dirBackup)
+    {
       $candidate = static::pathConcat($dir, '.ssh');
 
-      if (is_dir($candidate)) {
+      if (is_dir($candidate))
+      {
         return $candidate;
       }
 
