@@ -19,19 +19,19 @@
         },
         "build": {
           "enum": [
-            "tsc --project tsconfig-build.json",
+            "cf ./dist & tsc --project tsconfig-build.json",
             "echo Skip build"
           ]
         },
         "build-doc": {
           "enum": [
-            "typedoc src",
+            "cf ./docs & typedoc src & cpy docs-static/* docs",
             "echo Skip build-doc"
           ]
         },
         "build-es": {
           "enum": [
-            "tsc --project tsconfig-build-es.json",
+            "cf ./es & tsc --project tsconfig-build-es.json",
             "echo Skip build-es"
           ]
         },
@@ -164,13 +164,13 @@
         },
         "test": {
           "enum": [
-            "jest",
+            "cf ./lcov-report & jest",
             "echo Skip test"
           ]
         },
         "test-fast": {
           "enum": [
-            "jest --config=jest.config.fast.js",
+            "cf ./lcov-report & jest --config=jest.config.fast.js",
             "echo Skip test-fast"
           ]
         },
