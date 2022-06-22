@@ -110,6 +110,7 @@
         "peerDependencies",
         "engines",
         "publishConfig",
+        "overrides",
         "assets",
         "babel",
         "bin",
