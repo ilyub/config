@@ -20,6 +20,7 @@ module.exports = {
     "camelcase": "off",
     "capitalized-comments": "off",
     "class-methods-use-this": ["warn", { enforceForClassFields: false }],
+    "complexity": ["warn", 25],
     "curly": ["error", "multi"],
     "func-names": ["warn", "never"],
     "func-style": ["warn", "declaration", { allowArrowFunctions: true }],
@@ -34,6 +35,7 @@ module.exports = {
       }
     ],
     "line-comment-position": ["warn", { ignorePattern: "NOSONAR" }],
+    "max-depth": ["warn", 5],
     "max-lines": ["warn", 1500],
     "max-lines-per-function": ["warn", 500],
     "max-params": ["warn", 5],
