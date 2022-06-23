@@ -152,7 +152,7 @@ class Git
   }
 
   /**
-   * Asserts no master branch.
+   * No master branch.
    */
   public static function noMasterBranch(): void
   {
@@ -163,7 +163,7 @@ class Git
   }
 
   /**
-   * Asserts no partial commit.
+   * No partial commit.
    */
   public static function noPartialCommit(): void
   {

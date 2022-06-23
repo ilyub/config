@@ -85,7 +85,7 @@ class Npm
   /**
    * No deprecated.
    */
-  public static function noDeprecated(Package $package, bool $interactive = false): void
+  public static function noDeprecated(Package $package): void
   {
     if (preg_match('`^\d+\.0\.0$`isuxDX', $package->version))
     {
@@ -104,13 +104,13 @@ class Npm
   }
 
   /**
-   * Asserts no vulnerabilities.
+   * No vulnerabilities.
    */
   public static function noVulnerabilities(Package $package, bool $interactive = false): void
   {
-    if ($package->hasScript('audit'))
+    if ($package->hasScript('npm:audit'))
     {
-      Sys::execute('npm run audit', 'Checking for vulnerablilties', $interactive);
+      Sys::execute('npm run npm:audit', 'Checking for vulnerablilties', $interactive);
     }
   }
 
@@ -137,13 +137,13 @@ class Npm
   }
 
   /**
-   * Runs "publish" script.
+   * Publishes package.
    */
   public static function publish(Package $package, bool $interactive = false): void
   {
-    if ($package->hasScript('publish'))
+    if ($package->hasScript('npm:publish'))
     {
-      Sys::execute('npm run publish', 'Publishing npm package', $interactive);
+      Sys::execute('npm run npm:publish', 'Publishing npm package', $interactive);
     }
   }
 
@@ -152,9 +152,9 @@ class Npm
    */
   public static function regenerateLockFile(Package $package, bool $interactive = false): void
   {
-    if ($package->hasScript('regenerate-lock-file'))
+    if ($package->hasScript('npm:regenerate-lock-file'))
     {
-      Sys::execute('npm run regenerate-lock-file', 'Regenerating lock file', $interactive);
+      Sys::execute('npm run npm:regenerate-lock-file', 'Regenerating lock file', $interactive);
     }
   }
 

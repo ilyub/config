@@ -8,9 +8,6 @@
             "php node_modules/@skylib/config/src/utils/add-tags.php"
           ]
         },
-        "audit": {
-          "const": "npm audit"
-        },
         "browserslist": {
           "enum": [
             "browserslist",
@@ -35,9 +32,6 @@
             "cf ./es & tsc --project tsconfig-build-es.json",
             "echo Skip build-es"
           ]
-        },
-        "clean-install": {
-          "const": "npm clean-install --no-audit --strict-peer-deps"
         },
         "clear-cache": {
           "const": "cf cache node_modules/.cache"
@@ -70,9 +64,6 @@
             "php node_modules/@skylib/config/src/utils/delete-tags.php"
           ]
         },
-        "install-deps": {
-          "const": "npm install --no-audit --strict-peer-deps"
-        },
         "lint": {
           "enum": [
             "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
@@ -90,6 +81,27 @@
             "set TIMING=1 & npm run lint --fix",
             "echo Skip lint-no-fix"
           ]
+        },
+        "npm:audit": {
+          "const": "npm audit"
+        },
+        "npm:clean-install": {
+          "const": "npm clean-install --no-audit --strict-peer-deps"
+        },
+        "npm:install": {
+          "const": "npm install --no-audit --strict-peer-deps"
+        },
+        "npm:publish": {
+          "enum": [
+            "publish-if-not-exists",
+            "echo Skip npm:publish"
+          ]
+        },
+        "npm:regenerate-lock-file": {
+          "const": "npm install --no-audit --package-lock-only --strict-peer-deps"
+        },
+        "npm:update": {
+          "const": "npm update --no-audit --strict-peer-deps & npm run prepare"
         },
         "package-json-lint": {
           "const": "npmPkgJsonLint ."
@@ -117,15 +129,6 @@
             "husky install src/git-hooks",
             "husky install node_modules/@skylib/config/src/git-hooks"
           ]
-        },
-        "publish": {
-          "enum": [
-            "publish-if-not-exists",
-            "echo Skip publish"
-          ]
-        },
-        "regenerate-lock-file": {
-          "const": "npm install --no-audit --package-lock-only --strict-peer-deps"
         },
         "serve": {
           "enum": [
@@ -181,9 +184,6 @@
             "echo Skip tsc"
           ]
         },
-        "update": {
-          "const": "npm update --no-audit --strict-peer-deps & npm run prepare"
-        },
         "update-package-check": {
           "const": "ncu --dep dev,peer,prod"
         },
@@ -191,7 +191,7 @@
           "const": "ncu --dep dev,peer,prod --upgrade"
         },
         "upgrade": {
-          "const": "npm run update-package-force & npm run install-deps"
+          "const": "npm run update-package-force & npm run npm:install"
         },
         "vue-tsc": {
           "enum": [
