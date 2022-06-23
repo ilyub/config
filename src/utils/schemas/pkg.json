@@ -182,7 +182,7 @@
           ]
         },
         "update": {
-          "const": "npm update --no-audit --strict-peer-deps"
+          "const": "npm update --no-audit --strict-peer-deps & npm run prepare"
         },
         "update-package-check": {
           "const": "ncu --dep dev,peer,prod"
