@@ -132,7 +132,7 @@ class Npm
   {
     if ($package->hasScript('php-cs-fixer'))
     {
-      Sys::execute('npm run php-cs-fixer', 'Linting with php-cs-fixer', $interactive);
+      Sys::execute('npm run php-cs-fixer', 'Formatting with php-cs-fixer', $interactive);
     }
   }
 
