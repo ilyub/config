@@ -26,6 +26,7 @@
         "build-doc": {
           "enum": [
             "cf ./docs & typedoc src & cpy docs-static/* docs",
+            "php chore/build-doc.php",
             "echo Skip build-doc"
           ]
         },
