@@ -57,19 +57,20 @@ class Action
   /**
    * Performs full check.
    */
-  public static function fullCheck(bool $interactive = false): void
+  public static function fullCheck(): void
   {
     $package = new Package();
 
-    Npm::noVulnerabilities($package, $interactive);
-    Npm::commitlint($package, $interactive);
-    Npm::configLint($package, $interactive);
-    Npm::packageJsonLint($package, $interactive);
-    Npm::tsc($package, $interactive);
-    Npm::vueTsc($package, $interactive);
-    Npm::lint($package, $interactive);
-    Npm::stylelint($package, $interactive);
-    Npm::stylelintHtml($package, $interactive);
+    Npm::noVulnerabilities($package, true);
+    Npm::commitlint($package, true);
+    Npm::configLint($package, true);
+    Npm::packageJsonLint($package, true);
+    Npm::tsc($package, true);
+    Npm::vueTsc($package, true);
+    Npm::lint($package, true);
+    Npm::stylelint($package, true);
+    Npm::stylelintHtml($package, true);
+    Npm::phpCsFixer($package, true);
   }
 
   /**
@@ -119,7 +120,15 @@ class Action
       Npm::buildDoc($package);
       Npm::phpCsFixer($package);
       Git::stageAll();
-      static::fullCheck();
+      Npm::noVulnerabilities($package);
+      Npm::commitlint($package);
+      Npm::configLint($package);
+      Npm::packageJsonLint($package);
+      Npm::tsc($package);
+      Npm::vueTsc($package);
+      Npm::lint($package);
+      Npm::stylelint($package);
+      Npm::stylelintHtml($package);
       Npm::test($package);
       Npm::publish($package);
     }
