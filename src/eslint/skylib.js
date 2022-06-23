@@ -92,24 +92,32 @@ module.exports = {
       "warn",
       {
         sources: [
-          { sourcePattern: "@sinonjs/fake-timers", type: "wildcard" },
           {
+            autoImportSource: "@sinonjs/fake-timers",
+            sourcePattern: "@sinonjs/fake-timers",
+            type: "wildcard"
+          },
+          {
+            autoImportSource: "@skylib/lodash-commonjs-es",
             localName: "_",
             sourcePattern: "@skylib/lodash-commonjs-es",
             type: "wildcard"
           },
           {
             altLocalNames: ["vueTestUtils"],
+            autoImportSource: "@vue/test-utils",
             sourcePattern: "@vue/test-utils",
             type: "wildcard"
           },
           {
+            autoImportSource: "minisearch",
             localName: "MiniSearch",
             sourcePattern: "minisearch",
             type: "default"
           },
           {
             altLocalNames: ["nodeFs"],
+            autoImportSource: "fs",
             sourcePattern: "fs",
             type: "default"
           },
@@ -120,27 +128,36 @@ module.exports = {
             type: "default"
           },
           {
+            autoImportSource: "jquery",
             localName: "$",
             sourcePattern: "jquery",
             type: "default"
           },
           {
             altLocalNames: ["nodePath"],
+            autoImportSource: "path",
             sourcePattern: "path",
             type: "default"
           },
-          { sourcePattern: "vscode", type: "wildcard" },
           {
+            autoImportSource: "vscode",
+            sourcePattern: "vscode",
+            type: "wildcard"
+          },
+          {
+            autoImportSource: "vue",
             localName: "Vue",
             sourcePattern: "vue",
             type: "default"
           },
           {
+            autoImportSource: "vuedraggable",
             localName: "VueDraggable",
             sourcePattern: "vuedraggable",
             type: "default"
           },
           {
+            autoImportSource: "vue-router",
             localName: "VueRouter",
             sourcePattern: "vue-router",
             type: "default"
