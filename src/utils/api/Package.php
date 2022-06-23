@@ -25,4 +25,25 @@ class Package
 
     return is_array($scripts) && array_key_exists($script, $scripts);
   }
+
+  /**
+   * Asserts no file dependencies.
+   */
+  public function noFileDependencies(): void
+  {
+    $dependencies = $this->config['dependencies'] ?? [];
+    $devDependencies = $this->config['devDependencies'] ?? [];
+    $peerDependencies = $this->config['peerDependencies'] ?? [];
+
+    foreach ([$dependencies, $devDependencies, $peerDependencies] as $deps)
+    {
+      foreach ($deps as $dep)
+      {
+        if (str_starts_with($dep, 'file:'))
+        {
+          throw new BaseException('No file dependencies');
+        }
+      }
+    }
+  }
 }
