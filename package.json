@@ -57,7 +57,7 @@
     "php-cs-fixer": "php-cs-fixer fix --verbose",
     "post-commit": "php src/utils/post-commit.php",
     "pre-commit": "php src/utils/pre-commit.php",
-    "prepare": "husky install src/git-hooks",
+    "prepare": "husky install",
     "serve": "echo Skip serve",
     "sonar": "sonar-scanner",
     "stylelint": "stylelint --fix --max-warnings 0 src/**/*.{css,scss}",

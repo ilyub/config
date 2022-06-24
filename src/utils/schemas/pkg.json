@@ -125,10 +125,7 @@
           ]
         },
         "prepare": {
-          "enum": [
-            "husky install src/git-hooks",
-            "husky install node_modules/@skylib/config/src/git-hooks"
-          ]
+          "const": "husky install"
         },
         "serve": {
           "enum": [
