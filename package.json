@@ -33,14 +33,10 @@
   "scripts": {
     "add-tags": "php src/utils/add-tags.php",
     "browserslist": "browserslist",
-    "build": "echo Skip build",
-    "build-doc": "echo Skip build-doc",
-    "build-es": "echo Skip build-es",
     "clear-cache": "cf cache node_modules/.cache",
     "commit-msg": "npm run commitlint",
     "commitlint": "commitlint --edit",
     "commitlint-all": "commitlint --config commitlint-all.config.js --from=",
-    "compile": "echo Skip compile",
     "config-lint": "node src/utils/config-lint.js",
     "delete-tags": "php src/utils/delete-tags.php",
     "full-check": "php src/utils/full-check.php",
@@ -58,7 +54,6 @@
     "post-commit": "php src/utils/post-commit.php",
     "pre-commit": "php src/utils/pre-commit.php",
     "prepare": "husky install",
-    "serve": "echo Skip serve",
     "sonar": "sonar-scanner",
     "stylelint": "stylelint --fix --max-warnings 0 src/**/*.{css,scss}",
     "stylelint-html": "stylelint --config .stylelintrc-html.js --fix --max-warnings 0 src/**/*.{html,php,vue}",
@@ -69,8 +64,7 @@
     "tsc": "tsc --noEmit",
     "update-package-check": "ncu --dep dev,peer,prod",
     "update-package-force": "ncu --dep dev,peer,prod --upgrade",
-    "upgrade": "npm run update-package-force & npm run npm:install",
-    "vue-tsc": "echo Skip vue-tsc"
+    "upgrade": "npm run update-package-force & npm run npm:install"
   },
   "peerDependencies": {
     "@commitlint/cli": ">=17",

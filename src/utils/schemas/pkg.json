@@ -12,23 +12,16 @@
           "const": "browserslist"
         },
         "build": {
-          "enum": [
-            "cf ./dist & tsc --project tsconfig-build.json",
-            "echo Skip build"
-          ]
+          "const": "cf ./dist & tsc --project tsconfig-build.json"
         },
         "build-doc": {
           "enum": [
             "cf ./docs & typedoc src & cpy docs-static/* docs",
-            "php chore/build-doc.php",
-            "echo Skip build-doc"
+            "php chore/build-doc.php"
           ]
         },
         "build-es": {
-          "enum": [
-            "cf ./es & tsc --project tsconfig-build-es.json",
-            "echo Skip build-es"
-          ]
+          "const": "cf ./es & tsc --project tsconfig-build-es.json"
         },
         "clear-cache": {
           "const": "cf cache node_modules/.cache"
@@ -45,8 +38,7 @@
         "compile": {
           "enum": [
             "quasar build",
-            "vsce package",
-            "echo Skip compile"
+            "vsce package"
           ]
         },
         "config-lint": {
@@ -62,22 +54,13 @@
           ]
         },
         "lint": {
-          "enum": [
-            "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}",
-            "echo Skip lint"
-          ]
+          "const": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "lint-fast": {
-          "enum": [
-            "npm run lint --config .eslintrc.fast.js",
-            "echo Skip lint-fast"
-          ]
+          "const": "npm run lint --config .eslintrc.fast.js"
         },
         "lint-no-fix": {
-          "enum": [
-            "set TIMING=1 & npm run lint --fix",
-            "echo Skip lint-no-fix"
-          ]
+          "const": "set TIMING=1 & npm run lint --fix"
         },
         "npm:audit": {
           "const": "npm audit"
@@ -89,10 +72,7 @@
           "const": "npm install --no-audit --strict-peer-deps"
         },
         "npm:publish": {
-          "enum": [
-            "publish-if-not-exists",
-            "echo Skip npm:publish"
-          ]
+          "const": "publish-if-not-exists"
         },
         "npm:regenerate-lock-file": {
           "const": "npm install --no-audit --package-lock-only --strict-peer-deps"
@@ -104,10 +84,7 @@
           "const": "npmPkgJsonLint ."
         },
         "php-cs-fixer": {
-          "enum": [
-            "php-cs-fixer fix --verbose",
-            "echo Skip php-cs-fixer"
-          ]
+          "const": "php-cs-fixer fix --verbose"
         },
         "post-commit": {
           "enum": [
@@ -125,58 +102,31 @@
           "const": "husky install"
         },
         "serve": {
-          "enum": [
-            "quasar dev",
-            "echo Skip serve"
-          ]
+          "const": "quasar dev"
         },
         "sonar": {
-          "enum": [
-            "sonar-scanner",
-            "echo Skip sonar"
-          ]
+          "const": "sonar-scanner"
         },
         "stylelint": {
-          "enum": [
-            "stylelint --fix --max-warnings 0 src/**/*.{css,scss}",
-            "echo Skip stylelint"
-          ]
+          "const": "stylelint --fix --max-warnings 0 src/**/*.{css,scss}"
         },
         "stylelint-html": {
-          "enum": [
-            "stylelint --config .stylelintrc-html.js --fix --max-warnings 0 src/**/*.{html,php,vue}",
-            "echo Skip stylelint-html"
-          ]
+          "const": "stylelint --config .stylelintrc-html.js --fix --max-warnings 0 src/**/*.{html,php,vue}"
         },
         "stylelint-html-no-fix": {
-          "enum": [
-            "stylelint --config .stylelintrc-html.js --max-warnings 0 src/**/*.{html,php,vue}",
-            "echo Skip stylelint-html-no-fix"
-          ]
+          "const": "stylelint --config .stylelintrc-html.js --max-warnings 0 src/**/*.{html,php,vue}"
         },
         "stylelint-no-fix": {
-          "enum": [
-            "stylelint --max-warnings 0 src/**/*.{css,scss}",
-            "echo Skip stylelint-no-fix"
-          ]
+          "const": "stylelint --max-warnings 0 src/**/*.{css,scss}"
         },
         "test": {
-          "enum": [
-            "cf ./lcov-report & jest",
-            "echo Skip test"
-          ]
+          "const": "cf ./lcov-report & jest"
         },
         "test-fast": {
-          "enum": [
-            "cf ./lcov-report & jest --config=jest.config.fast.js",
-            "echo Skip test-fast"
-          ]
+          "const": "cf ./lcov-report & jest --config=jest.config.fast.js"
         },
         "tsc": {
-          "enum": [
-            "tsc --noEmit",
-            "echo Skip tsc"
-          ]
+          "const": "tsc --noEmit"
         },
         "update-package-check": {
           "const": "ncu --dep dev,peer,prod"
@@ -188,10 +138,7 @@
           "const": "npm run update-package-force & npm run npm:install"
         },
         "vue-tsc": {
-          "enum": [
-            "vue-tsc --noEmit",
-            "echo Skip vue-tsc"
-          ]
+          "const": "vue-tsc --noEmit"
         }
       }
     }

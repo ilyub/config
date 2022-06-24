@@ -107,8 +107,7 @@ function requireItems() {
   files2.push(...requiredFiles);
 
   for (const { files, scripts } of requiredFilesByScript)
-    if (scripts.some(script => json.scripts[script] !== `echo Skip ${script}`))
-      files2.push(...files);
+    if (scripts.some(script => json.scripts[script])) files2.push(...files);
 
   for (const file of files1)
     if (ignoreFiles.has(file) || ignoreExtensions.has(path.extname(file)))
@@ -122,8 +121,9 @@ function requireItems() {
   for (const { files, scripts } of requiredFilesByScript)
     if (files.some(file => files1.includes(file)))
       for (const script of scripts)
-        if (json.scripts[script] === `echo Skip ${script}`)
-          result.push(`Missing "${script}" script`);
+        if (json.scripts[script]) {
+          // Valid
+        } else result.push(`Missing "${script}" script`);
 
   for (const file of files1)
     if (files2.includes(file)) {
