@@ -84,6 +84,8 @@ class Action
     {
       $package = new Package();
 
+      Git::rebaseMasterToDevelop();
+
       if (Git::hasTag($package->version))
       {
         // Tag already exists
@@ -91,10 +93,8 @@ class Action
       else
       {
         Git::addTag($package->version);
+        Git::pushTags();
       }
-
-      Git::pushTags();
-      // Git::rebaseMasterToDevelop();
     }
   }
 

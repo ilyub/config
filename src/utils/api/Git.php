@@ -194,7 +194,6 @@ class Git
    */
   public static function rebaseMasterToDevelop(): void
   {
-    Sys::execute('git add --refresh');
     Sys::execute('git checkout master');
     Sys::execute('git rebase develop');
     Sys::executeWithKey('git push', 'Pushing master');
