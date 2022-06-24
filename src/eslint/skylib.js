@@ -200,10 +200,46 @@ module.exports = {
       {
         rules: [
           {
+            filesToLint: ["./.eslintrc.rule-overrides.js"],
+            message: "Disabling rule is unsafe",
+            selector:
+              "Property[key.name=rules] > ObjectExpression > Property > Literal.value[value=off]",
+            subOptionsId: "eslintrc-no-disable"
+          },
+          {
+            filesToLint: ["./.eslintrc.js"],
+            message:
+              'Define extends in ".eslintrc.overrides.js", ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
+            selector: "Property > Identifier.key[name=extends]",
+            subOptionsId: "eslintrc-no-extends"
+          },
+          {
+            filesToLint: ["./.eslintrc.js"],
+            message:
+              'Define overrides in ".eslintrc.overrides.js", ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
+            selector: "Property > Identifier.key[name=overrides]",
+            subOptionsId: "eslintrc-no-overrides"
+          },
+          {
+            filesToLint: ["./.eslintrc.js", "./.eslintrc.overrides.js"],
+            message:
+              'Define rules in ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
+            selector: "Property > Identifier.key[name=rules]",
+            subOptionsId: "eslintrc-no-rules"
+          },
+          {
+            filesToLint: ["./.eslintrc.temp.js"],
+            message: "Temporary configuration",
+            selector:
+              "AssignmentExpression > ObjectExpression[properties.length>0]",
+            subOptionsId: "eslintrc-no-temp"
+          },
+          {
             filesToLint: [
               ".eslintrc.js",
               ".eslintrc.fast.js",
               ".eslintrc.overrides.js",
+              ".eslintrc.rule-overrides.js",
               ".eslintrc.temp.js",
               "./**/eslintrc.js",
               "./**/eslint/*.js"
@@ -212,33 +248,6 @@ module.exports = {
             selector:
               "Property[key.name=/^(extends|files)$/u] > ArrayExpression[elements.length=1]",
             subOptionsId: "eslintrc-no-unnecessary-array"
-          },
-          {
-            filesToLint: ["./.eslintrc.overrides.js"],
-            message: "Disabling rule is not allowed",
-            selector:
-              "Property[key.name=rules] > ObjectExpression > Property > Literal.value[value=off]",
-            subOptionsId: "eslintrc-overrides-no-disable"
-          },
-          {
-            filesToLint: ["./.eslintrc.overrides.js"],
-            message: 'Define extends in ".eslintrc.js" file',
-            selector: "Property > Identifier.key[name=extends]",
-            subOptionsId: "eslintrc-overrides-structure"
-          },
-          {
-            filesToLint: ["./.eslintrc.js"],
-            message:
-              'Define rules in ".eslintrc.overrides.js" or ".eslintrc.temp.js" file',
-            selector: "Property > Identifier.key[name=rules]",
-            subOptionsId: "eslintrc-structure"
-          },
-          {
-            filesToLint: ["./.eslintrc.temp.js"],
-            message: "Temporary configuration",
-            selector:
-              "AssignmentExpression > ObjectExpression[properties.length>0]",
-            subOptionsId: "eslintrc-temp-structure"
           },
           {
             message: "Identifier contains invalid character(s)",
