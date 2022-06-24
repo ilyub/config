@@ -137,10 +137,38 @@
         "upgrade": {
           "const": "npm run update-package-force & npm run npm:install"
         },
+        "vscode:prepublish": {
+          "const": "cf ./out & tsc --project tsconfig-compile.json"
+        },
         "vue-tsc": {
           "const": "vue-tsc --noEmit"
+        },
+        "watch": {
+          "const": "tsc -watch"
         }
-      }
+      },
+      "required": [
+        "add-tags",
+        "browserslist",
+        "clear-cache",
+        "commit-msg",
+        "commitlint",
+        "commitlint-all",
+        "config-lint",
+        "delete-tags",
+        "npm:audit",
+        "npm:clean-install",
+        "npm:install",
+        "npm:regenerate-lock-file",
+        "npm:update",
+        "package-json-lint",
+        "post-commit",
+        "pre-commit",
+        "prepare",
+        "update-package-check",
+        "update-package-force",
+        "upgrade"
+      ]
     }
   }
 }

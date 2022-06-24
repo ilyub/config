@@ -139,31 +139,7 @@
         "typings"
       ]
     ],
-    "prefer-scripts": [
-      "error",
-      [
-        "add-tags",
-        "browserslist",
-        "clear-cache",
-        "commit-msg",
-        "commitlint",
-        "commitlint-all",
-        "config-lint",
-        "delete-tags",
-        "npm:audit",
-        "npm:clean-install",
-        "npm:install",
-        "npm:regenerate-lock-file",
-        "npm:update",
-        "package-json-lint",
-        "post-commit",
-        "pre-commit",
-        "prepare",
-        "update-package-check",
-        "update-package-force",
-        "upgrade"
-      ]
-    ],
+    "prefer-scripts": "off",
     "prefer-tilde-version-dependencies": "off",
     "prefer-tilde-version-devDependencies": "off",
     "preferGlobal-type": "error",

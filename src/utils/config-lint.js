@@ -153,7 +153,7 @@ function validateJsonFile(name, schemaName) {
 
     return validator
       .validate(json, schema)
-      .errors.map(error => `Invalid config at ${error.property} (${name})`);
+      .errors.map(error => `Error at ${name}.json: ${error.stack}`);
   }
 
   return [];
