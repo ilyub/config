@@ -108,7 +108,7 @@ module.exports = {
         [/\.vue$/u.source]: "@vue/vue3-jest"
       },
       transformIgnorePatterns: [
-        "node_modules/(?!@skylib/quasar-extension|quasar)"
+        "node_modules/(?!@skylib/quasar-extension|is-obj|is-regexp|quasar|stringify-object)"
       ]
     }
   }
