@@ -11,6 +11,7 @@ const errors = [
   ...validateJsonFile("package", "pkg"),
   ...validateJsonFile("tsconfig", "tsc"),
   ...validateJsonFile("tsconfig-min", "tsc"),
+  ...validateJsonFile("tsconfig-compile", "tsc-compile"),
   ...validateJsonFile("tsconfig-build", "tsc-build"),
   ...validateJsonFile("tsconfig-build-es", "tsc-build-es"),
   ...validateJsonFile("tsconfig-typedoc", "tsc-typedoc")
@@ -29,7 +30,7 @@ if (errors.length > 0) throw new Error("Invalid config");
 function requireItems() {
   const ignoreExtensions = new Set([".bat", ".cache", ".info", ".ts", ".vsix"]);
 
-  const ignoreFiles = new Set(["composer.json"]);
+  const ignoreFiles = new Set(["composer.json", "tsconfig-compile.json"]);
 
   const requiredFiles = [
     ".browserslistrc",
