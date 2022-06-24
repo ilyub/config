@@ -98,7 +98,7 @@
           "const": "npm install --no-audit --package-lock-only --strict-peer-deps"
         },
         "npm:update": {
-          "const": "npm update --no-audit --strict-peer-deps & npm run prepare"
+          "const": "npm update --no-audit --strict-peer-deps"
         },
         "package-json-lint": {
           "const": "npmPkgJsonLint ."

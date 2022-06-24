@@ -52,7 +52,7 @@
     "npm:install": "npm install --no-audit --strict-peer-deps",
     "npm:publish": "publish-if-not-exists",
     "npm:regenerate-lock-file": "npm install --no-audit --package-lock-only --strict-peer-deps",
-    "npm:update": "npm update --no-audit --strict-peer-deps & npm run prepare",
+    "npm:update": "npm update --no-audit --strict-peer-deps",
     "package-json-lint": "npmPkgJsonLint .",
     "php-cs-fixer": "php-cs-fixer fix --verbose",
     "post-commit": "php src/utils/post-commit.php",
