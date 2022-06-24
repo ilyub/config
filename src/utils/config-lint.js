@@ -28,9 +28,24 @@ if (errors.length > 0) throw new Error("Invalid config");
  * @returns Errors.
  */
 function requireItems() {
-  const ignoreExtensions = new Set([".bat", ".cache", ".info", ".ts", ".vsix"]);
+  const ignoreExtensions = new Set([
+    ".bat",
+    ".cache",
+    ".info",
+    ".ts",
+    ".txt",
+    ".vsix"
+  ]);
 
-  const ignoreFiles = new Set(["composer.json", "tsconfig-compile.json"]);
+  const ignoreFiles = new Set([
+    ".postcssrc.js",
+    "babel.config.js",
+    "composer.json",
+    "quasar.conf.js",
+    "quasar.extensions.json",
+    "quasar.testing.json",
+    "tsconfig-compile.json"
+  ]);
 
   const requiredFiles = [
     ".browserslistrc",
@@ -55,9 +70,11 @@ function requireItems() {
         ".eslintrc.overrides.js",
         ".eslintrc.rule-overrides.js",
         ".eslintrc.temp.js",
-        ".prettierrc.js"
+        ".prettierrc.js",
+        "tsconfig.json",
+        "tsconfig-min.json"
       ],
-      scripts: ["lint", "lint-fast", "lint-no-fix"]
+      scripts: ["lint", "lint-fast", "lint-no-fix", "tsc"]
     },
     { files: [".php-cs-fixer.php"], scripts: ["php-cs-fixer"] },
     {
@@ -69,19 +86,8 @@ function requireItems() {
         "stylelint-no-fix"
       ]
     },
-    { files: ["tsconfig.json", "tsconfig-min.json"], scripts: ["tsc"] },
     { files: ["tsconfig-build.json"], scripts: ["build"] },
     { files: ["tsconfig-build-es.json"], scripts: ["build-es"] },
-    {
-      files: [
-        ".postcssrc.js",
-        "babel.config.js",
-        "quasar.conf.js",
-        "quasar.extensions.json",
-        "quasar.testing.json"
-      ],
-      scripts: ["serve", "vue-tsc"]
-    },
     {
       files: ["jest.config.js", "jest.config.fast.js"],
       scripts: ["test", "test-fast"]
