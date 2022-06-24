@@ -209,13 +209,6 @@ module.exports = {
           {
             filesToLint: ["./.eslintrc.js"],
             message:
-              'Define extends in ".eslintrc.overrides.js", ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
-            selector: "Property > Identifier.key[name=extends]",
-            subOptionsId: "eslintrc-no-extends"
-          },
-          {
-            filesToLint: ["./.eslintrc.js"],
-            message:
               'Define overrides in ".eslintrc.overrides.js", ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
             selector: "Property > Identifier.key[name=overrides]",
             subOptionsId: "eslintrc-no-overrides"
