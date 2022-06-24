@@ -94,7 +94,7 @@ class Action
       }
 
       Git::pushTags();
-      Git::rebaseMasterToDevelop();
+      // Git::rebaseMasterToDevelop();
     }
   }
 
