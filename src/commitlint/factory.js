@@ -46,6 +46,7 @@ module.exports = sources => {
     "eslint",
     "fix",
     "git",
+    "husky",
     "jest",
     "npm",
     "package",
