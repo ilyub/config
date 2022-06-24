@@ -53,6 +53,12 @@
             "php node_modules/@skylib/config/src/utils/delete-tags.php"
           ]
         },
+        "full-check": {
+          "const": "php src/utils/full-check.php"
+        },
+        "inspect": {
+          "const": "quasar inspect"
+        },
         "lint": {
           "const": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
