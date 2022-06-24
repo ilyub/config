@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "add-tags": "php src/utils/add-tags.php",
-    "browserslist": "echo Skip browserslist",
+    "browserslist": "browserslist",
     "build": "echo Skip build",
     "build-doc": "echo Skip build-doc",
     "build-es": "echo Skip build-es",

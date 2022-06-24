@@ -9,10 +9,7 @@
           ]
         },
         "browserslist": {
-          "enum": [
-            "browserslist",
-            "echo Skip browserslist"
-          ]
+          "const": "browserslist"
         },
         "build": {
           "enum": [
