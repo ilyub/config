@@ -61,16 +61,18 @@ class Action
   {
     $package = new Package();
 
-    Npm::noVulnerabilities($package, true);
-    Npm::commitlint($package, true);
-    Npm::configLint($package, true);
-    Npm::packageJsonLint($package, true);
-    Npm::tsc($package, true);
-    Npm::vueTsc($package, true);
-    Npm::lint($package, true);
-    Npm::stylelint($package, true);
-    Npm::stylelintHtml($package, true);
-    Npm::phpCsFixer($package, true);
+    $npm = new Npm($package);
+
+    $npm->noVulnerabilities(true);
+    $npm->commitlint(true);
+    $npm->configLint(true);
+    $npm->packageJsonLint(true);
+    $npm->tsc(true);
+    $npm->vueTsc(true);
+    $npm->lint(true);
+    $npm->stylelint(true);
+    $npm->stylelintHtml(true);
+    $npm->phpCsFixer(true);
   }
 
   /**
@@ -103,7 +105,7 @@ class Action
   {
     $package = new Package();
 
-    $package->noFileDependencies($package);
+    $package->noFileDependencies();
 
     Git::noMasterBranch();
 
@@ -113,26 +115,28 @@ class Action
     }
     else
     {
-      Git::checkVersion($package);
+      $npm = new Npm($package);
+
+      Git::checkVersion($package->version);
       Git::noPartialCommit();
-      Npm::noDeprecated($package);
-      Npm::regenerateLockFile($package);
-      Npm::build($package);
-      Npm::buildEs($package);
-      Npm::buildDoc($package);
-      Npm::phpCsFixer($package);
+      $npm->noDeprecated();
+      $npm->regenerateLockFile();
+      $npm->build();
+      $npm->buildEs();
+      $npm->buildDoc();
+      $npm->phpCsFixer();
       Git::stageAll();
-      Npm::noVulnerabilities($package);
-      Npm::commitlint($package);
-      Npm::configLint($package);
-      Npm::packageJsonLint($package);
-      Npm::tsc($package);
-      Npm::vueTsc($package);
-      Npm::lint($package);
-      Npm::stylelint($package);
-      Npm::stylelintHtml($package);
-      Npm::test($package);
-      Npm::publish($package);
+      $npm->noVulnerabilities();
+      $npm->commitlint();
+      $npm->configLint();
+      $npm->packageJsonLint();
+      $npm->tsc();
+      $npm->vueTsc();
+      $npm->lint();
+      $npm->stylelint();
+      $npm->stylelintHtml();
+      $npm->test();
+      $npm->publish();
     }
   }
 }

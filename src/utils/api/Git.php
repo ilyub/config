@@ -17,9 +17,9 @@ class Git
   /**
    * Checks version.
    */
-  public static function checkVersion(Package $package): void
+  public static function checkVersion(string $version): void
   {
-    if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $package->version, $matches))
+    if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $version, $matches))
     {
       $got1 = (int) $matches[1];
       $got2 = (int) $matches[2];
