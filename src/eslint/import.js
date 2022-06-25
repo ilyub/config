@@ -44,7 +44,6 @@ module.exports = {
           "@skylib/*/dist/test-utils",
           "@vue/test-utils/dist/types",
           "date-fns/locale/*",
-          "expect/build/matchers",
           "flag-icon-css/flags/*/*.svg",
           "jest-extended/all",
           "quasar/wrappers",
