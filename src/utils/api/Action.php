@@ -126,6 +126,7 @@ class Action
       $npm->buildDoc();
       $npm->phpCsFixer();
       Git::stageAll();
+      Git::noPartialCommit();
       $npm->noVulnerabilities();
       $npm->commitlint();
       $npm->configLint();
@@ -137,6 +138,8 @@ class Action
       $npm->stylelintHtml();
       $npm->test();
       $npm->publish();
+      Git::stageAll();
+      Git::noPartialCommit();
     }
   }
 }

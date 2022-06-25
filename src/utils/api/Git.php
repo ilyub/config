@@ -167,7 +167,7 @@ class Git
    */
   public static function noPartialCommit(): void
   {
-    if (Sys::execute('git ls-files --exclude-standard -m -o'))
+    if (Sys::execute('git ls-files --exclude-standard -mo'))
     {
       throw new BaseException('No partial commit');
     }
