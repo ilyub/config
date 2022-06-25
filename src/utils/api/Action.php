@@ -136,6 +136,7 @@ class Action
       $npm->stylelint();
       $npm->stylelintHtml();
       $npm->test();
+      Git::noPartialCommit();
       $npm->publish();
     }
   }
