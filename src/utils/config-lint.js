@@ -74,7 +74,13 @@ function requireItems() {
         "tsconfig.json",
         "tsconfig-min.json"
       ],
-      scripts: ["lint", "lint-fast", "lint-no-fix", "tsc"]
+      scripts: [
+        "lint",
+        "lint-fast",
+        "lint-no-fix",
+        "lint-no-fix-profile",
+        "tsc"
+      ]
     },
     { files: [".php-cs-fixer.php"], scripts: ["php-cs-fixer"] },
     {
