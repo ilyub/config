@@ -84,8 +84,6 @@ class Action
     {
       $package = new Package();
 
-      Git::rebaseMasterToDevelop();
-
       if (Git::hasTag($package->version))
       {
         // Tag already exists
@@ -95,6 +93,8 @@ class Action
         Git::addTag($package->version);
         Git::pushTags();
       }
+
+      Git::rebaseMasterToDevelop();
     }
   }
 
@@ -125,7 +125,6 @@ class Action
       $npm->buildEs();
       $npm->buildDoc();
       $npm->phpCsFixer();
-      Git::stageAll();
       Git::noPartialCommit();
       $npm->noVulnerabilities();
       $npm->commitlint();
@@ -138,8 +137,6 @@ class Action
       $npm->stylelintHtml();
       $npm->test();
       $npm->publish();
-      Git::stageAll();
-      Git::noPartialCommit();
     }
   }
 }
