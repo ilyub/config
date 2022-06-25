@@ -54,7 +54,10 @@
           ]
         },
         "full-check": {
-          "const": "php src/utils/full-check.php"
+          "enum": [
+            "php src/utils/full-check.php",
+            "php node_modules/@skylib/config/src/utils/full-check.php"
+          ]
         },
         "inspect": {
           "const": "quasar inspect"
