@@ -1,11 +1,5 @@
 {
   "rules": {
-    "valid-values-author": [
-      "error",
-      [
-        "Ilia Liubinskii <admin.phpdev@gmail.com> (https://github.com/ilyub)"
-      ]
-    ],
     "valid-values-license": [
       "error",
       [
