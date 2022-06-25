@@ -2,7 +2,10 @@ const { eslint } = require("..");
 
 module.exports = {
   overrides: [
-    { files: "*.{ts,vue}", rules: { "import/namespace": "off" } },
+    {
+      files: "*.{ts,vue}",
+      rules: { "import/namespace": "off", "import/no-unresolved": "off" }
+    },
     { files: "*.js", rules: { "import/no-commonjs": "off" } },
     {
       files: "*.vue",
