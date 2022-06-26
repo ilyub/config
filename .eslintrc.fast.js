@@ -1,4 +1,8 @@
 module.exports = {
   extends: ".eslintrc",
-  rules: { "prettier/prettier": "off" }
+  rules: {
+    "boundaries/element-types": "off",
+    "import/no-relative-parent-imports": "off",
+    "prettier/prettier": "off"
+  }
 };
