@@ -12,30 +12,22 @@ module.exports = {
       extends: "./eslintrc.chore",
       files: ["./*", "./__mocks__/**", "./tests/**"]
     },
+    { extends: "./eslintrc.mocks", files: "**/__mocks__/**" },
     { extends: "./eslintrc.tests", files: "./tests/**" },
+    { extends: "./eslintrc.test-utils", files: "./src/test-utils/**" },
+    { extends: "./eslintrc.allow-default-export", files: "*.d.ts" },
     {
-      extends: "./eslintrc.allow-default-export",
-      files: ["*.d.ts", "**/__mocks__/**"]
+      extends: [
+        "./eslintrc.skip-filename-check",
+        "./eslintrc.skip-only-export-check"
+      ],
+      files: "*.*.ts"
     },
     {
-      extends: "./eslintrc.allow-global-access",
-      files: ["**/__mocks__/**", "./src/test-utils/**", "./tests/**"]
-    },
-    { extends: "./eslintrc.allow-jest-shadow", files: "./jest.config.js" },
-    {
-      extends: "./eslintrc.allow-nodejs-modules",
-      files: ["**/__mocks__/**", "./*", "./src/test-utils/**", "./tests/**"]
-    },
-    {
-      extends: "./eslintrc.allow-unsafe-require",
-      files: ["**/__mocks__/**", "./*", "./src/test-utils/**", "./tests/**"]
-    },
-    {
-      extends: "./eslintrc.skip-only-export-check",
-      files: ["*.*.ts", "**/__mocks__/**"]
-    },
-    {
-      extends: "./eslintrc.skip-html-literal-check",
+      extends: [
+        "./eslintrc.allow-jest-shadow",
+        "./eslintrc.skip-html-literal-check"
+      ],
       files: "./jest.config.js"
     }
   ],
