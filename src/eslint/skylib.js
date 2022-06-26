@@ -113,6 +113,12 @@ module.exports = {
             type: "wildcard"
           },
           {
+            autoImportSource: "@vue/test-utils/dist/interfaces/wrapperLike",
+            localName: "WrapperLike",
+            sourcePattern: "@vue/test-utils/dist/interfaces/wrapperLike",
+            type: "default"
+          },
+          {
             autoImportSource: "minisearch",
             localName: "MiniSearch",
             sourcePattern: "minisearch",

@@ -46,6 +46,7 @@ module.exports = {
       {
         allow: [
           "@skylib/*/dist/test-utils",
+          "@vue/test-utils/dist/interfaces/wrapperLike",
           "@vue/test-utils/dist/types",
           "date-fns/locale/*",
           "flag-icon-css/flags/*/*.svg",
