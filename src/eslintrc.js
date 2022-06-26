@@ -8,14 +8,10 @@ module.exports = {
   },
   extends: "./eslint",
   overrides: [
-    {
-      extends: "./eslintrc.chore",
-      files: ["./*", "./__mocks__/**", "./tests/**"]
-    },
+    { extends: "./eslintrc.chore", files: ["./*", "./{__mocks__,tests}/**"] },
     { extends: "./eslintrc.mocks", files: "**/__mocks__/**" },
     { extends: "./eslintrc.tests", files: "./tests/**" },
     { extends: "./eslintrc.test-utils", files: "./src/test-utils/**" },
-    { extends: "./eslintrc.allow-default-export", files: "*.d.ts" },
     {
       extends: [
         "./eslintrc.skip-filename-check",
@@ -23,6 +19,8 @@ module.exports = {
       ],
       files: "*.*.ts"
     },
+    { extends: "./eslintrc.allow-default-export", files: "*.d.ts" },
+    { extends: "./eslintrc.skip-only-export-check", files: "index.ts" },
     {
       extends: [
         "./eslintrc.allow-jest-shadow",
