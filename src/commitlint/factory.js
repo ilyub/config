@@ -83,6 +83,10 @@ module.exports = sources => {
   function ignore(commit) {
     commit = commit.trimEnd();
 
+    // eslint-disable-next-line regexp/no-obscure-range -- Ok
+    if (/[A-Za-z][\d_]*[А-Яа-я]|[А-Яа-я][\d_]*[A-Za-z]/u.test(commit))
+      throw new Error("No language mixing");
+
     if (/^(?:initial commit|next|refactor|style)$/u.test(commit)) return true;
 
     if (/^(?:build|chore)\(deps-update\)$/u.test(commit)) return true;

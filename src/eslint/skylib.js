@@ -257,7 +257,7 @@ module.exports = {
             subOptionsId: "no-invalid-identifier"
           },
           {
-            message: "Avoid mixing characters from multiple languages",
+            message: "No language mixing",
             selector: [
               "Literal[value=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]",
               "TemplateLiteral[value.raw=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
