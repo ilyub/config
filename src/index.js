@@ -66,6 +66,9 @@ module.exports = {
       return Object.fromEntries(
         Object.keys(rules).map(rule => [`${prefix}/${rule}`, "warn"])
       );
+    },
+    skylib: {
+      readonliness: { ignoreTypes: ["^Promise$", "^Readonly", "^Writable"] }
     }
   },
   jest: {

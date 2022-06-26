@@ -1,4 +1,6 @@
-const ignoreTypes = ["^Promise$", "^Readonly", "^Writable"];
+const { eslint } = require("..");
+
+const ignoreTypes = eslint.skylib.readonliness.ignoreTypes;
 
 module.exports = {
   extends: "plugin:@skylib/eslint-plugin/all",
