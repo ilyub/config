@@ -26,9 +26,6 @@
         "clear-cache": {
           "const": "cf cache node_modules/.cache"
         },
-        "commit-msg": {
-          "const": "npm run commitlint"
-        },
         "commitlint": {
           "const": "commitlint --edit"
         },
@@ -58,6 +55,24 @@
             "php src/utils/full-check.php",
             "php node_modules/@skylib/config/src/utils/full-check.php"
           ]
+        },
+        "husky:commit-msg": {
+          "const": "npm run commitlint"
+        },
+        "husky:post-commit": {
+          "enum": [
+            "php src/utils/post-commit.php",
+            "php node_modules/@skylib/config/src/utils/post-commit.php"
+          ]
+        },
+        "husky:pre-commit": {
+          "enum": [
+            "php src/utils/pre-commit.php",
+            "php node_modules/@skylib/config/src/utils/pre-commit.php"
+          ]
+        },
+        "husky:unset-hooks": {
+          "const": "git config --unset core.hooksPath"
         },
         "inspect": {
           "const": "quasar inspect"
@@ -97,18 +112,6 @@
         },
         "php-cs-fixer": {
           "const": "php-cs-fixer fix --verbose"
-        },
-        "post-commit": {
-          "enum": [
-            "php src/utils/post-commit.php",
-            "php node_modules/@skylib/config/src/utils/post-commit.php"
-          ]
-        },
-        "pre-commit": {
-          "enum": [
-            "php src/utils/pre-commit.php",
-            "php node_modules/@skylib/config/src/utils/pre-commit.php"
-          ]
         },
         "prepare": {
           "const": "husky install"
@@ -163,19 +166,20 @@
         "add-tags",
         "browserslist",
         "clear-cache",
-        "commit-msg",
         "commitlint",
         "commitlint-all",
         "config-lint",
         "delete-tags",
+        "husky:commit-msg",
+        "husky:post-commit",
+        "husky:pre-commit",
+        "husky:unset-hooks",
         "npm:audit",
         "npm:clean-install",
         "npm:install",
         "npm:regenerate-lock-file",
         "npm:update",
         "package-json-lint",
-        "post-commit",
-        "pre-commit",
         "prepare",
         "update-package-check",
         "update-package-force",
