@@ -31,6 +31,7 @@ module.exports = {
     "import/max-dependencies": "off",
     "import/newline-after-import": "off",
     "import/no-anonymous-default-export": "off",
+    "import/no-deprecated": "off",
     "import/no-extraneous-dependencies": [
       "warn",
       {
