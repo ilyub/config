@@ -89,8 +89,8 @@
         "lint-no-fix-profile": {
           "const": "set TIMING=1 & npm run lint-no-fix"
         },
-        "npm:clean-install": {
-          "const": "npm clean-install --no-audit --strict-peer-deps"
+        "npm:install-clean": {
+          "const": "npm install-clean --no-audit --strict-peer-deps"
         },
         "npm:install": {
           "const": "npm install --no-audit --strict-peer-deps"
@@ -171,7 +171,7 @@
         "husky:post-commit",
         "husky:pre-commit",
         "husky:unset-hooks",
-        "npm:clean-install",
+        "npm:install-clean",
         "npm:install",
         "npm:regenerate-lock-file",
         "npm:update",
