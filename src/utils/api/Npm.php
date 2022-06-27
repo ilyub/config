@@ -98,7 +98,7 @@ class Npm
    */
   public function noVulnerabilities(bool $interactive = false): void
   {
-    static::run('npm:audit', 'Checking for vulnerablilties', $interactive);
+    Sys::execute('npm audit', 'Checking for vulnerablilties', $interactive);
   }
 
   /**
