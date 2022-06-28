@@ -4,8 +4,8 @@
       "properties": {
         "add-tags": {
           "enum": [
-            "php src/utils/add-tags.php",
-            "php node_modules/@skylib/config/src/utils/add-tags.php"
+            "php bin/add-tags.php",
+            "php node_modules/@skylib/config/bin/add-tags.php"
           ]
         },
         "browserslist": {
@@ -55,20 +55,20 @@
         },
         "config-lint": {
           "enum": [
-            "node src/utils/config-lint.js",
-            "node node_modules/@skylib/config/src/utils/config-lint.js"
+            "node bin/config-lint.js",
+            "node node_modules/@skylib/config/bin/config-lint.js"
           ]
         },
         "delete-tags": {
           "enum": [
-            "php src/utils/delete-tags.php",
-            "php node_modules/@skylib/config/src/utils/delete-tags.php"
+            "php bin/delete-tags.php",
+            "php node_modules/@skylib/config/bin/delete-tags.php"
           ]
         },
         "full-check": {
           "enum": [
-            "php src/utils/full-check.php",
-            "php node_modules/@skylib/config/src/utils/full-check.php"
+            "php bin/full-check.php",
+            "php node_modules/@skylib/config/bin/full-check.php"
           ]
         },
         "husky:commit-msg": {
@@ -76,14 +76,14 @@
         },
         "husky:post-commit": {
           "enum": [
-            "php src/utils/post-commit.php",
-            "php node_modules/@skylib/config/src/utils/post-commit.php"
+            "php bin/post-commit.php",
+            "php node_modules/@skylib/config/bin/post-commit.php"
           ]
         },
         "husky:pre-commit": {
           "enum": [
-            "php src/utils/pre-commit.php",
-            "php node_modules/@skylib/config/src/utils/pre-commit.php"
+            "php bin/pre-commit.php",
+            "php node_modules/@skylib/config/bin/pre-commit.php"
           ]
         },
         "husky:unset-hooks": {
@@ -99,7 +99,7 @@
           "const": "npm run lint --config .eslintrc.fast.js"
         },
         "lint-no-fix": {
-          "const": "eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,fixtures,src,tests}/**/*.{js,ts,vue}"
+          "const": "eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "lint-no-fix-profile": {
           "const": "set TIMING=1 & npm run lint-no-fix"

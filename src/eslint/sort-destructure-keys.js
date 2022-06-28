@@ -1,4 +1,4 @@
-const { eslint } = require("..");
+const { eslint } = require("../../api");
 
 module.exports = {
   plugins: ["sort-destructure-keys"],

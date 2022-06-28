@@ -1,4 +1,4 @@
-const { eslint } = require("..");
+const { eslint } = require("../../api");
 
 const ignoreTypes = eslint.skylib.readonliness.ignoreTypes;
 

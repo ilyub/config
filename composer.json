@@ -2,25 +2,10 @@
   "archive": {
     "exclude": [
       "*",
-      ".browserslistrc",
-      ".editorconfig",
-      ".eslintignore",
-      ".gitignore",
-      ".eslintrc.js",
-      ".eslintrc.fast.js",
-      ".eslintrc.overrides.js",
-      ".eslintrc.rule-overrides.js",
-      ".eslintrc.temp.js",
-      ".npmpackagejsonlintrc.json",
-      ".php-cs-fixer.php",
-      ".prettierrc.js",
-      ".stylelintrc.js",
-      ".stylelintrc-html.js",
-      "!composer.json",
-      "!composer.lock",
-      "!/src/core",
-      "!/src/php-cs-config.php",
-      "!/src/phpstan.neon"
+      ".*",
+      "!/composer.json",
+      "!/composer.lock",
+      "!/{api,src}/**/*.{php,neon}"
     ]
   },
   "authors": [

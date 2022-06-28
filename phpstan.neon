@@ -2,4 +2,6 @@ includes:
   - src/phpstan.neon
 parameters:
   paths:
+    - api
+    - bin
     - src

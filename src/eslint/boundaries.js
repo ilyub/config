@@ -1,4 +1,4 @@
-const { eslint } = require("..");
+const { eslint } = require("../../api");
 
 module.exports = {
   overrides: [
@@ -15,6 +15,16 @@ module.exports = {
   },
   settings: {
     "boundaries/elements": [
+      {
+        mode: "file",
+        pattern: "./api/**",
+        type: "api"
+      },
+      {
+        mode: "file",
+        pattern: "./bin/**",
+        type: "bin"
+      },
       {
         mode: "file",
         pattern: "./configs/**",

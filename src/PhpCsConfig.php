@@ -1,5 +1,7 @@
 <?php
 
+namespace Skylib\Config;
+
 class PhpCsConfig
 {
   /**

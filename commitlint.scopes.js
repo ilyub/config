@@ -1,1 +1,1 @@
-module.exports = { dirs: ["./src"] };
+module.exports = { dirs: ["./api", "./bin", "./src"], scopes: ["api", "bin"] };
