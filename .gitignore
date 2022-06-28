@@ -4,3 +4,4 @@ cache
 lcov.info
 lcov-report
 node_modules
+vendor

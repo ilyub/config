@@ -85,6 +85,16 @@ function requireItems() {
     { files: [".php-cs-fixer.php"], scripts: ["php-cs-fixer"] },
     { files: ["phpstan.neon"], scripts: ["phpstan"] },
     {
+      files: ["composer.json", "composer.lock"],
+      scripts: [
+        "composer:bump",
+        "composer:dump-autoload",
+        "composer:outdated",
+        "composer:reinstall",
+        "composer:update"
+      ]
+    },
+    {
       files: [".stylelintrc.js", ".stylelintrc-html.js"],
       scripts: [
         "stylelint",

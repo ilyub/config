@@ -38,6 +38,21 @@
             "vsce package"
           ]
         },
+        "composer:bump": {
+          "const": "composer bump"
+        },
+        "composer:dump-autoload": {
+          "const": "composer dump-autoload"
+        },
+        "composer:outdated": {
+          "const": "composer outdated"
+        },
+        "composer:reinstall": {
+          "const": "composer reinstall *"
+        },
+        "composer:update": {
+          "const": "composer update"
+        },
         "config-lint": {
           "enum": [
             "node src/utils/config-lint.js",
