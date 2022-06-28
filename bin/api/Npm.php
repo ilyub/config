@@ -127,7 +127,7 @@ class Npm
    */
   public function phpstan(bool $interactive = false): void
   {
-    static::run('phpstan', 'Linting with phpstan', $interactive);
+    static::run('phpstan-quiet', 'Linting with phpstan', $interactive);
   }
 
   /**

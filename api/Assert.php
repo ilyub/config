@@ -22,7 +22,7 @@ class Assert
   }
 
   /**
-   * Asserts that value is a string.
+   * Asserts that value is a resource.
    *
    * @param null|false|resource $value
    *

@@ -128,6 +128,9 @@
         "phpstan": {
           "const": "phpstan analyse -c phpstan.neon"
         },
+        "phpstan-quiet": {
+          "const": "phpstan analyse -c phpstan.neon --quiet"
+        },
         "prepare": {
           "const": "husky install"
         },

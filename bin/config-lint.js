@@ -83,7 +83,7 @@ function requireItems() {
       ]
     },
     { files: [".php-cs-fixer.php"], scripts: ["php-cs-fixer"] },
-    { files: ["phpstan.neon"], scripts: ["phpstan"] },
+    { files: ["phpstan.neon"], scripts: ["phpstan", "phpstan-quiet"] },
     {
       files: ["composer.json", "composer.lock"],
       scripts: [

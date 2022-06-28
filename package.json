@@ -62,6 +62,7 @@
     "package-json-lint": "npmPkgJsonLint .",
     "php-cs-fixer": "php-cs-fixer fix --verbose",
     "phpstan": "phpstan analyse -c phpstan.neon",
+    "phpstan-quiet": "phpstan analyse -c phpstan.neon --quiet",
     "prepare": "husky install",
     "sonar": "sonar-scanner",
     "stylelint": "stylelint --fix --max-warnings 0 src/**/*.{css,scss}",
