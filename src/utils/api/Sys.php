@@ -1,9 +1,14 @@
 <?php
 
+use core\Assert;
+use core\BaseException;
+
 class Sys
 {
   /**
    * Executes command.
+   *
+   * @return array<string>
    */
   public static function execute(
     string $command,
@@ -44,14 +49,14 @@ class Sys
 
     $keyPath = static::pathConcat(static::getKeysPath(), 'id_rsa');
 
-    $process = proc_open(
+    $process = Assert::resource(proc_open(
       $command,
       [],
       $pipes,
       null,
       ['GIT_SSH_COMMAND' => 'ssh -i "'.$keyPath.'"'],
       ['bypass_shell' => true]
-    );
+    ));
 
     $code = proc_close($process);
 
@@ -81,6 +86,10 @@ class Sys
 
   /**
    * Scans directory.
+   *
+   * @param array<string> $ignore
+   *
+   * @return array<string>
    */
   public static function scanDirDeep(string $dir, array $ignore = []): array
   {
@@ -125,17 +134,23 @@ class Sys
 
   /**
    * Concatenates paths.
+   *
+   * @param string $parts
    */
   protected static function pathConcat(...$parts): string
   {
-    return preg_replace('`[/\\\\]+`isuxDX', '/', implode('/', $parts));
+    return Assert::string(preg_replace('`[/\\\\]+`isuxDX', '/', implode('/', $parts)));
   }
 
   /**
    * Scans directory.
+   *
+   * @param array<string> $ignore
+   *
+   * @return array<string>
    */
   protected static function scanDir(string $dir, array $ignore = []): array
   {
-    return array_diff(scandir($dir), ['.', '..', ...$ignore]);
+    return array_diff(Assert::strings(scandir($dir)), ['.', '..', ...$ignore]);
   }
 }

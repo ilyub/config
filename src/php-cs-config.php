@@ -2,6 +2,9 @@
 
 class PhpCsConfig
 {
+  /**
+   * @var array<mixed>
+   */
   public static $rules = [
     '@PhpCsFixer' => true,
     'braces' => [

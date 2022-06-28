@@ -5,7 +5,7 @@
       "name": "Ilia Liubinskii"
     }
   ],
-  "description": "Config for commitlint, eslint, jest, php-cs-fixer, stylelint, typedoc, and typescript",
+  "description": "Config for commitlint, eslint, jest, npm-package-json-lint, php-cs-fixer, phpstan, stylelint, typedoc, and typescript",
   "homepage": "https://github.com/ilyub/config",
   "license": "ISC",
   "name": "ilyub/config",

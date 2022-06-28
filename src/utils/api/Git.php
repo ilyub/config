@@ -1,5 +1,7 @@
 <?php
 
+use core\BaseException;
+
 class Git
 {
   /**
@@ -117,6 +119,8 @@ class Git
 
   /**
    * Retrieves commits.
+   *
+   * @return array<string>
    */
   public static function getCommits(string $pattern, string $format): array
   {
@@ -133,6 +137,8 @@ class Git
 
   /**
    * Retrieves tags.
+   *
+   * @return array<string>
    */
   public static function getTags(string $commit = null): array
   {
@@ -146,7 +152,7 @@ class Git
   /**
    * Checks if tag exists.
    */
-  public static function hasTag($tag): bool
+  public static function hasTag(string $tag): bool
   {
     return in_array($tag, static::getTags());
   }

@@ -83,6 +83,7 @@ function requireItems() {
       ]
     },
     { files: [".php-cs-fixer.php"], scripts: ["php-cs-fixer"] },
+    { files: ["phpstan.neon"], scripts: ["phpstan"] },
     {
       files: [".stylelintrc.js", ".stylelintrc-html.js"],
       scripts: [

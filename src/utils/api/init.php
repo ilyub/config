@@ -1,11 +1,5 @@
 <?php
 
-set_error_handler(function (int $errno, string $errstr): void
-{
-  throw new BaseException('Error '.$errno.': '.$errstr);
-});
+include_once dirname(dirname(__DIR__)).'/php/init.php';
 
-spl_autoload_register(function (string $className): void
-{
-  include_once __DIR__.'/'.$className.'.php';
-});
+init(__DIR__);

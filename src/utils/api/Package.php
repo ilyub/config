@@ -1,9 +1,39 @@
 <?php
 
+use core\Assert;
+use core\BaseException;
+use core\Unknown;
+
 class Package
 {
-  public $config;
+  /**
+   * @var array<string>
+   */
+  public $dependencies;
+
+  /**
+   * @var array<string>
+   */
+  public $devDependencies;
+
+  /**
+   * @var string
+   */
   public $name;
+
+  /**
+   * @var array<string>
+   */
+  public $peerDependencies;
+
+  /**
+   * @var array<string>
+   */
+  public $scripts;
+
+  /**
+   * @var string
+   */
   public $version;
 
   /**
@@ -11,9 +41,16 @@ class Package
    */
   public function __construct()
   {
-    $this->config = Util::decodeJson(file_get_contents('package.json'), 'package.json');
-    $this->name = (string) $this->config['name'];
-    $this->version = (string) $this->config['version'];
+    $str = Assert::string(file_get_contents('package.json'));
+
+    $config = Unknown\Assert::array(Util::decodeJson($str, 'package.json'));
+
+    $this->name = Unknown\Assert::string($config['name']);
+    $this->version = Unknown\Assert::string($config['version']);
+    $this->dependencies = Unknown\Assert::strings($config['dependencies'] ?? []);
+    $this->devDependencies = Unknown\Assert::strings($config['devDependencies'] ?? []);
+    $this->peerDependencies = Unknown\Assert::strings($config['peerDependencies'] ?? []);
+    $this->scripts = Unknown\Assert::strings($config['scripts'] ?? []);
   }
 
   /**
@@ -21,9 +58,7 @@ class Package
    */
   public function hasScript(string $script): bool
   {
-    $scripts = $this->config['scripts'];
-
-    return is_array($scripts) && array_key_exists($script, $scripts);
+    return array_key_exists($script, $this->scripts);
   }
 
   /**
@@ -31,11 +66,7 @@ class Package
    */
   public function noFileDependencies(): void
   {
-    $dependencies = $this->config['dependencies'] ?? [];
-    $devDependencies = $this->config['devDependencies'] ?? [];
-    $peerDependencies = $this->config['peerDependencies'] ?? [];
-
-    foreach ([$dependencies, $devDependencies, $peerDependencies] as $deps)
+    foreach ([$this->dependencies, $this->devDependencies, $this->peerDependencies] as $deps)
     {
       foreach ($deps as $dep)
       {

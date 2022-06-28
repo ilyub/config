@@ -1,5 +1,7 @@
 <?php
 
+use core\BaseException;
+
 class Util
 {
   /**

@@ -89,11 +89,11 @@
         "lint-no-fix-profile": {
           "const": "set TIMING=1 & npm run lint-no-fix"
         },
-        "npm:install-clean": {
-          "const": "npm install-clean --no-audit --strict-peer-deps"
-        },
         "npm:install": {
           "const": "npm install --no-audit --strict-peer-deps"
+        },
+        "npm:install-clean": {
+          "const": "npm install-clean --no-audit --strict-peer-deps"
         },
         "npm:publish": {
           "const": "publish-if-not-exists"
@@ -109,6 +109,9 @@
         },
         "php-cs-fixer": {
           "const": "php-cs-fixer fix --verbose"
+        },
+        "phpstan": {
+          "const": "phpstan analyse -c phpstan.neon"
         },
         "prepare": {
           "const": "husky install"

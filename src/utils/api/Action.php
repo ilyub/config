@@ -1,5 +1,7 @@
 <?php
 
+use core\BaseException;
+
 class Action
 {
   /**
@@ -73,6 +75,7 @@ class Action
     $npm->stylelint(true);
     $npm->stylelintHtml(true);
     $npm->phpCsFixer(true);
+    $npm->phpstan(true);
   }
 
   /**
@@ -135,6 +138,7 @@ class Action
       $npm->lint();
       $npm->stylelint();
       $npm->stylelintHtml();
+      $npm->phpstan();
       $npm->test();
       Git::noPartialCommit();
       $npm->publish();

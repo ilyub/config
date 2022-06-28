@@ -1,5 +1,8 @@
 <?php
 
+use core\Assert;
+use core\BaseException;
+
 class Npm
 {
   /**
@@ -52,6 +55,8 @@ class Npm
 
   /**
    * Retrieves npm package versions.
+   *
+   * @return array<string>
    */
   public function getVersions(bool $interactive = false): array
   {
@@ -83,7 +88,7 @@ class Npm
       {
         if (is_file($path))
         {
-          $contents = file_get_contents($path);
+          $contents = Assert::string(file_get_contents($path));
           if (preg_match('`\*\s+@deprecated`isuxDX', $contents))
           {
             throw new BaseException('No deprecated');
@@ -115,6 +120,14 @@ class Npm
   public function phpCsFixer(bool $interactive = false): void
   {
     static::run('php-cs-fixer', 'Formatting with php-cs-fixer', $interactive);
+  }
+
+  /**
+   * Runs phpstan.
+   */
+  public function phpstan(bool $interactive = false): void
+  {
+    static::run('phpstan', 'Linting with phpstan', $interactive);
   }
 
   /**
@@ -158,18 +171,15 @@ class Npm
     {
       Sys::execute('npm run test', 'Testing');
 
-      if (file_exists('lcov-report/index.html'))
+      $coverage = Assert::string(file_get_contents('lcov-report/index.html'));
+
+      preg_match_all('`(\\d+)/(\\d+)`isuxDX', $coverage, $matches, PREG_SET_ORDER);
+
+      foreach ($matches as $match)
       {
-        $coverage = file_get_contents('lcov-report/index.html');
-
-        preg_match_all('`(\\d+)/(\\d+)`isuxDX', $coverage, $matches, PREG_SET_ORDER);
-
-        foreach ($matches as $match)
+        if ($match[1] !== $match[2])
         {
-          if ($match[1] !== $match[2])
-          {
-            throw new BaseException('Incomplete coverage');
-          }
+          throw new BaseException('Incomplete coverage');
         }
       }
     }
@@ -190,6 +200,10 @@ class Npm
   {
     static::run('vue-tsc', 'Linting with vue-tsc', $interactive);
   }
+
+  /**
+   * @var Package
+   */
   protected $package;
 
   /**
