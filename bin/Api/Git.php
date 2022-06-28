@@ -1,5 +1,7 @@
 <?php
 
+namespace Api;
+
 use Skylib\Config\BaseException;
 
 class Git

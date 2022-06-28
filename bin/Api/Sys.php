@@ -1,5 +1,7 @@
 <?php
 
+namespace Api;
+
 use Skylib\Config\Assert;
 use Skylib\Config\BaseException;
 
