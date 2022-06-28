@@ -16,32 +16,32 @@ module.exports = {
   settings: {
     "boundaries/elements": [
       {
-        mode: "file",
+        mode: "full",
         pattern: "./api/**",
         type: "api"
       },
       {
-        mode: "file",
+        mode: "full",
         pattern: "./bin/**",
         type: "bin"
       },
       {
-        mode: "file",
+        mode: "full",
         pattern: "./configs/**",
         type: "configs"
       },
       {
-        mode: "file",
+        mode: "full",
         pattern: "./fixtures/**",
         type: "fixtures"
       },
       {
-        mode: "file",
+        mode: "full",
         pattern: "./__mocks__/**",
         type: "mocks"
       },
       {
-        mode: "file",
+        mode: "full",
         pattern: "./tests/**",
         type: "tests"
       },
@@ -58,14 +58,14 @@ module.exports = {
           result.push(
             {
               capture: [...capture, "filename", "suffix", "ext"],
-              mode: "file",
-              pattern: [`./src/${directories}${part}().${part}`],
+              mode: "full",
+              pattern: `./src/${directories}${part}().${part}`,
               type: `src${index}`
             },
             {
               capture: [...capture, "filename", "suffix", "ext"],
-              mode: "file",
-              pattern: [`./src/${directories}${part}.${part}.${part}`],
+              mode: "full",
+              pattern: `./src/${directories}${part}.${part}.${part}`,
               type: `src${index}`
             }
           );
