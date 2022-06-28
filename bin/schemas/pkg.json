@@ -17,7 +17,7 @@
         "build-doc": {
           "enum": [
             "typedoc src & cpy docs-static/* docs",
-            "php chore/build-doc.php"
+            "php chore/build-doc.php & cpy docs-static/* docs"
           ]
         },
         "build-es": {

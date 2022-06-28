@@ -25,79 +25,24 @@ class Git
   {
     if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $version, $matches))
     {
-      $got1 = (int) $matches[1];
-      $got2 = (int) $matches[2];
-      $got3 = (int) $matches[3];
+      list('level' => $level, 'commit' => $commit) = static::findPreviousVersionCommit();
 
-      $level = 0;
+      $next = [(int) $matches[1], (int) $matches[2], $matches[3]];
 
-      foreach (static::getCommits('.*', '%H:%s') as $commit)
+      foreach (static::getTags($commit[0]) as $tag)
       {
-        $commit = explode(':', $commit, 2);
-
-        if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1]))
+        if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches))
         {
-          $level = max($level, 1);
-        }
+          $prev = [(int) $matches[1], (int) $matches[2], $matches[3]];
 
-        if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1]))
-        {
-          $level = max($level, 2);
-        }
-
-        if ($commit[1] === 'next' || $commit[1] === 'initial commit')
-        {
-          foreach (static::getTags($commit[0]) as $tag)
+          if (static::isValidNextVersion($next, $prev, $level))
           {
-            if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches))
-            {
-              $expected1 = (int) $matches[1];
-              $expected2 = (int) $matches[2];
-              $expected3 = (int) $matches[3];
-
-              if ($got1 !== 0 && $expected1 !== 0)
-              {
-                switch ($level) {
-                  case 0:
-                    ++$expected3;
-
-                    break;
-
-                  case 1:
-                    ++$expected2;
-                    $expected3 = 0;
-
-                    break;
-
-                  case 2:
-                    ++$expected1;
-                    $expected2 = 0;
-                    $expected3 = 0;
-                }
-              }
-              elseif ($got1 === 0 && $expected1 === 0)
-              {
-                ++$expected3;
-              }
-              else
-              {
-                $expected1 = $got1;
-                $expected2 = $got2;
-                $expected3 = $got3;
-              }
-
-              if ($expected1 === $got1 && $expected2 === $got2 && $expected3 === $got3)
-              {
-                // Valid
-              }
-              else
-              {
-                throw new BaseException('Expecting version to be '.$expected1.'.'.$expected2.'.'.$expected3);
-              }
-            }
+            // Valid
           }
-
-          break;
+          else
+          {
+            throw new BaseException('Expecting version to be '.$tag);
+          }
         }
       }
     }
@@ -206,5 +151,84 @@ class Git
     Sys::execute('git rebase develop');
     Sys::executeWithKey('git push', 'Pushing master');
     Sys::execute('git checkout develop');
+  }
+
+  /**
+   * Checks version.
+   *
+   * @return array{commit:string,level:0|1|2}
+   */
+  protected static function findPreviousVersionCommit(): array
+  {
+    $level = 0;
+
+    foreach (static::getCommits('.*', '%H:%s') as $commit)
+    {
+      $commit = explode(':', $commit, 2);
+
+      if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1]))
+      {
+        $level = max($level, 1);
+      }
+
+      if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1]))
+      {
+        $level = max($level, 2);
+      }
+
+      if ($commit[1] === 'next' || $commit[1] === 'initial commit')
+      {
+        return ['level' => $level, 'commit' => $commit[0]];
+      }
+    }
+
+    throw new BaseException('Could not find previous version commit');
+  }
+
+  /**
+   * Checks version.
+   *
+   * @param array<int> $next
+   * @param array<int> $prev
+   * @param 0|1|2      $level
+   */
+  protected static function isValidNextVersion(array $next, array $prev, int $level): bool
+  {
+    list($got1, $got2, $got3) = $next;
+
+    list($expected1, $expected2, $expected3) = $prev;
+
+    if ($got1 !== 0 && $expected1 !== 0)
+    {
+      switch ($level) {
+        case 0:
+          ++$expected3;
+
+          break;
+
+        case 1:
+          ++$expected2;
+          $expected3 = 0;
+
+          break;
+
+        case 2:
+          ++$expected1;
+          $expected2 = 0;
+          $expected3 = 0;
+      }
+    }
+    elseif ($got1 === 0 && $expected1 === 0)
+    {
+      ++$expected3;
+    }
+    else
+    {
+      $expected1 = $got1;
+      $expected2 = $got2;
+      $expected3 = $got3;
+    }
+
+    return $got1 === $expected1 && $got2 === $expected2 && $got3 === $expected3;
   }
 }
