@@ -1,7 +1,7 @@
 <?php
 
-use core\Assert;
-use core\BaseException;
+use Skylib\Config\Assert;
+use Skylib\Config\BaseException;
 
 class Npm
 {

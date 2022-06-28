@@ -1,8 +1,8 @@
 <?php
 
-namespace core\Unknown;
+namespace Skylib\Config\Unknown;
 
-use core\BaseException;
+use Skylib\Config\BaseException;
 
 class Assert
 {

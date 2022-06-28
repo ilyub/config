@@ -1,8 +1,8 @@
 <?php
 
-use core\Assert;
-use core\BaseException;
-use core\Unknown;
+use Skylib\Config\Assert;
+use Skylib\Config\BaseException;
+use Skylib\Config\Unknown;
 
 class Package
 {

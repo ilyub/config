@@ -1,6 +1,6 @@
 <?php
 
-use core\BaseException;
+use Skylib\Config\BaseException;
 
 class Util
 {
