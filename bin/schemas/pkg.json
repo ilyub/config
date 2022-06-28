@@ -93,16 +93,16 @@
           "const": "quasar inspect"
         },
         "lint": {
-          "const": "npm run lint-no-fix --fix"
+          "const": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "lint-fast": {
-          "const": "npm run lint --config .eslintrc.fast.js"
+          "const": "eslint --config .eslintrc.fast.js --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "lint-no-fix": {
           "const": "eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "lint-no-fix-profile": {
-          "const": "set TIMING=1 & npm run lint-no-fix"
+          "const": "set TIMING=1 & eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "npm:install": {
           "const": "npm install --no-audit --strict-peer-deps"
