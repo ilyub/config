@@ -82,16 +82,22 @@ function requireItems() {
         "tsc"
       ]
     },
-    { files: [".php-cs-fixer.php"], scripts: ["php-cs-fixer"] },
-    { files: ["phpstan.neon"], scripts: ["phpstan", "phpstan-quiet"] },
     {
-      files: ["composer.json", "composer.lock"],
+      files: [
+        ".php-cs-fixer.php",
+        "composer.json",
+        "composer.lock",
+        "phpstan.neon"
+      ],
       scripts: [
         "composer:bump",
         "composer:dump-autoload",
         "composer:outdated",
         "composer:reinstall",
-        "composer:update"
+        "composer:update",
+        "php-cs-fixer",
+        "phpstan",
+        "phpstan-quiet"
       ]
     },
     {
