@@ -123,13 +123,13 @@
           "const": "npmPkgJsonLint ."
         },
         "php-cs-fixer": {
-          "const": "php-cs-fixer fix --verbose"
+          "const": "php vendor/bin/php-cs-fixer fix --verbose"
         },
         "phpstan": {
-          "const": "phpstan analyse -c phpstan.neon"
+          "const": "php vendor/bin/phpstan analyse -c phpstan.neon"
         },
         "phpstan-quiet": {
-          "const": "phpstan analyse -c phpstan.neon --quiet"
+          "const": "php vendor/bin/phpstan analyse -c phpstan.neon --quiet"
         },
         "prepare": {
           "const": "husky install"
