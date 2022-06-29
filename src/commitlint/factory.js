@@ -153,14 +153,8 @@ module.exports = sources => {
       }
     }
   }
-};
 
-/**
- * Creates unique array.
- *
- * @param array - Array.
- * @returns Unique array.
- */
-function unique(array) {
-  return [...new Set(array).values()];
-}
+  function unique(array) {
+    return [...new Set(array).values()];
+  }
+};

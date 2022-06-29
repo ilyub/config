@@ -1,0 +1,165 @@
+{
+  "bindings": [
+    {
+      "files": [
+        ".eslintignore",
+        ".eslintrc.fast.js",
+        ".eslintrc.js",
+        ".eslintrc.overrides.js",
+        ".eslintrc.rule-overrides.js",
+        ".eslintrc.temp.js",
+        ".prettierrc.js",
+        "tsconfig-min.json",
+        "tsconfig.json"
+      ],
+      "scripts": [
+        "lint",
+        "lint-fast",
+        "lint-no-fix",
+        "lint-no-fix-profile",
+        "tsc"
+      ]
+    },
+    {
+      "files": [
+        ".php-cs-fixer.php",
+        "composer.json",
+        "composer.lock",
+        "phpstan.neon"
+      ],
+      "scripts": [
+        "composer:bump",
+        "composer:dump-autoload",
+        "composer:outdated",
+        "composer:reinstall",
+        "composer:update",
+        "php-cs-fixer",
+        "phpstan",
+        "phpstan-quiet"
+      ]
+    },
+    {
+      "files": [
+        ".stylelintrc-html.js",
+        ".stylelintrc.js"
+      ],
+      "scripts": [
+        "stylelint",
+        "stylelint-html",
+        "stylelint-html-no-fix",
+        "stylelint-no-fix"
+      ]
+    },
+    {
+      "files": [
+        "tsconfig-build.json"
+      ],
+      "scripts": [
+        "build"
+      ]
+    },
+    {
+      "files": [
+        "tsconfig-build-es.json"
+      ],
+      "scripts": [
+        "build-es"
+      ]
+    },
+    {
+      "files": [
+        "jest.config.fast.js",
+        "jest.config.js"
+      ],
+      "scripts": [
+        "test",
+        "test-fast"
+      ]
+    },
+    {
+      "files": [
+        "sonar-project.properties"
+      ],
+      "scripts": [
+        "sonar"
+      ]
+    },
+    {
+      "files": [
+        "tsconfig-typedoc.json",
+        "typedoc.json"
+      ],
+      "scripts": [
+        "build-doc"
+      ]
+    }
+  ],
+  "optionalFiles": [
+    ".postcssrc.js",
+    "babel.config.js",
+    "composer.json",
+    "quasar.conf.js",
+    "quasar.extensions.json",
+    "quasar.testing.json",
+    "tsconfig-compile.json"
+  ],
+  "optionalFilesByExtensions": [
+    ".bat",
+    ".cache",
+    ".info",
+    ".ts",
+    ".txt",
+    ".vsix"
+  ],
+  "optionalScripts": [
+    "vscode:prepublish",
+    "watch"
+  ],
+  "requiredFiles": [
+    ".browserslistrc",
+    ".editorconfig",
+    ".gitignore",
+    ".npmpackagejsonlintrc.json",
+    "README.md",
+    "commitlint-all.config.js",
+    "commitlint-all.scopes.js",
+    "commitlint.config.js",
+    "commitlint.scopes.js",
+    "package-lock.json",
+    "package.json",
+    "vscode.code-workspace"
+  ],
+  "requiredScripts": [
+    "add-tags",
+    "browserslist",
+    "clear-cache",
+    "commitlint",
+    "commitlint-all",
+    "config-lint",
+    "delete-tags",
+    "full-check",
+    "husky:commit-msg",
+    "husky:post-commit",
+    "husky:pre-commit",
+    "husky:unset-hooks",
+    "npm:install",
+    "npm:install-clean",
+    "npm:publish",
+    "npm:regenerate-lock-file",
+    "npm:update",
+    "package-json-lint",
+    "prepare",
+    "update-package-check",
+    "update-package-force",
+    "upgrade"
+  ],
+  "schemas": {
+    "package": "package",
+    "tsconfig": "tsconfig",
+    "tsconfig-build": "tsconfig-build",
+    "tsconfig-build-es": "tsconfig-build-es",
+    "tsconfig-compile": "tsconfig-compile",
+    "tsconfig-min": "tsconfig",
+    "tsconfig-typedoc": "tsconfig-typedoc"
+  }
+}

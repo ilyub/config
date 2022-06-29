@@ -51,14 +51,16 @@ class Sys
 
     $keyPath = static::pathConcat(static::getKeysPath(), 'id_rsa');
 
-    $process = Assert::resource(proc_open(
-      $command,
-      [],
-      $pipes,
-      null,
-      ['GIT_SSH_COMMAND' => 'ssh -i "'.$keyPath.'"'],
-      ['bypass_shell' => true]
-    ));
+    $process = Assert::resource(
+      proc_open(
+        $command,
+        [],
+        $pipes,
+        null,
+        ['GIT_SSH_COMMAND' => 'ssh -i "'.$keyPath.'"'],
+        ['bypass_shell' => true]
+      )
+    );
 
     $code = proc_close($process);
 

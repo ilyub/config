@@ -26,32 +26,18 @@ module.exports = environment => {
         this.global.clearImmediate ?? _clearImmediate;
       this.global.fetch = this.global.fetch ?? _fetch;
       this.global.setImmediate = this.global.setImmediate ?? _setImmediate;
+
+      function _clearImmediate(id) {
+        global.clearTimeout(id);
+      }
+
+      function _fetch() {
+        throw new Error("Not implemented");
+      }
+
+      function _setImmediate(callback) {
+        return global.setTimeout(callback, 0);
+      }
     }
   };
 };
-
-/**
- * Implements "clearTimeout" function.
- *
- * @param id - Id.
- */
-function _clearImmediate(id) {
-  global.clearTimeout(id);
-}
-
-/**
- * Implements "fetch" function.
- */
-function _fetch() {
-  throw new Error("Not implemented");
-}
-
-/**
- * Implements "setImmediate" function.
- *
- * @param callback - Callback.
- * @returns Id.
- */
-function _setImmediate(callback) {
-  return global.setTimeout(callback, 0);
-}

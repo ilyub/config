@@ -27,13 +27,13 @@ class Git
     {
       list('level' => $level, 'commit' => $commit) = static::findPreviousVersionCommit();
 
-      $next = [(int) $matches[1], (int) $matches[2], $matches[3]];
+      $next = [(int) $matches[1], (int) $matches[2], (int) $matches[3]];
 
-      foreach (static::getTags($commit[0]) as $tag)
+      foreach (static::getTags($commit) as $tag)
       {
         if (preg_match('`^(\\d+)\\.(\\d+)\\.(\\d+)$`', $tag, $matches))
         {
-          $prev = [(int) $matches[1], (int) $matches[2], $matches[3]];
+          $prev = [(int) $matches[1], (int) $matches[2], (int) $matches[3]];
 
           if (static::isValidNextVersion($next, $prev, $level))
           {
@@ -41,7 +41,7 @@ class Git
           }
           else
           {
-            throw new BaseException('Expecting version to be '.$tag);
+            throw new BaseException('Expecting version to be '.implode('.', $next));
           }
         }
       }
@@ -216,6 +216,11 @@ class Git
           ++$expected1;
           $expected2 = 0;
           $expected3 = 0;
+
+          break;
+
+        default:
+          throw new BaseException('Invalid level: '.$level);
       }
     }
     elseif ($got1 === 0 && $expected1 === 0)

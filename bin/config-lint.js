@@ -1,3 +1,14 @@
+const {
+  bindings,
+  optionalFiles,
+  optionalFilesByExtensions,
+  optionalScripts,
+  requiredFiles,
+  requiredScripts,
+  schemas
+  // eslint-disable-next-line import/extensions, import/no-internal-modules -- Ok
+} = require("./schemas/project.json");
+
 const fs = require("fs");
 
 const { Validator } = require("jsonschema");
@@ -6,178 +17,63 @@ const path = require("path");
 
 const validator = new Validator();
 
-const errors = [
-  ...requireItems(),
-  ...validateJsonFile("package", "pkg"),
-  ...validateJsonFile("tsconfig", "tsc"),
-  ...validateJsonFile("tsconfig-min", "tsc"),
-  ...validateJsonFile("tsconfig-compile", "tsc-compile"),
-  ...validateJsonFile("tsconfig-build", "tsc-build"),
-  ...validateJsonFile("tsconfig-build-es", "tsc-build-es"),
-  ...validateJsonFile("tsconfig-typedoc", "tsc-typedoc")
-];
+const actualFiles = fs
+  .readdirSync("./")
+  .filter(file => fs.lstatSync(`./${file}`).isFile());
 
-// eslint-disable-next-line no-console -- Ok
-for (const error of errors) console.error(error);
+const actualScripts = Object.keys(
+  JSON.parse(fs.readFileSync("./package.json")).scripts
+);
 
-if (errors.length > 0) throw new Error("Invalid config");
+for (const { files, scripts } of bindings)
+  if (
+    files.some(file => actualFiles.includes(file)) ||
+    scripts.some(script => actualScripts.includes(script))
+  ) {
+    requiredFiles.push(...files);
+    requiredScripts.push(...scripts);
+  }
 
-/**
- * Requires files.
- *
- * @returns Errors.
- */
-function requireItems() {
-  const ignoreExtensions = new Set([
-    ".bat",
-    ".cache",
-    ".info",
-    ".ts",
-    ".txt",
-    ".vsix"
-  ]);
+const errors = [];
 
-  const ignoreFiles = new Set([
-    ".postcssrc.js",
-    "babel.config.js",
-    "composer.json",
-    "quasar.conf.js",
-    "quasar.extensions.json",
-    "quasar.testing.json",
-    "tsconfig-compile.json"
-  ]);
+for (const file of actualFiles)
+  if (
+    requiredFiles.includes(file) ||
+    optionalFiles.includes(file) ||
+    optionalFilesByExtensions.includes(path.extname(file))
+  ) {
+    // Valid
+  } else errors.push(`Unknown "${file}" file`);
 
-  const requiredFiles = [
-    ".browserslistrc",
-    ".editorconfig",
-    ".gitignore",
-    ".npmpackagejsonlintrc.json",
-    "README.md",
-    "commitlint-all.config.js",
-    "commitlint-all.scopes.js",
-    "commitlint.config.js",
-    "commitlint.scopes.js",
-    "package.json",
-    "package-lock.json"
-  ];
+for (const file of requiredFiles)
+  if (actualFiles.includes(file)) {
+    // Valid
+  } else errors.push(`Missing "${file}" file`);
 
-  const requiredFilesByScript = [
-    {
-      files: [
-        ".eslintignore",
-        ".eslintrc.js",
-        ".eslintrc.fast.js",
-        ".eslintrc.overrides.js",
-        ".eslintrc.rule-overrides.js",
-        ".eslintrc.temp.js",
-        ".prettierrc.js",
-        "tsconfig.json",
-        "tsconfig-min.json"
-      ],
-      scripts: [
-        "lint",
-        "lint-fast",
-        "lint-no-fix",
-        "lint-no-fix-profile",
-        "tsc"
-      ]
-    },
-    {
-      files: [
-        ".php-cs-fixer.php",
-        "composer.json",
-        "composer.lock",
-        "phpstan.neon"
-      ],
-      scripts: [
-        "composer:bump",
-        "composer:dump-autoload",
-        "composer:outdated",
-        "composer:reinstall",
-        "composer:update",
-        "php-cs-fixer",
-        "phpstan",
-        "phpstan-quiet"
-      ]
-    },
-    {
-      files: [".stylelintrc.js", ".stylelintrc-html.js"],
-      scripts: [
-        "stylelint",
-        "stylelint-html",
-        "stylelint-html-no-fix",
-        "stylelint-no-fix"
-      ]
-    },
-    { files: ["tsconfig-build.json"], scripts: ["build"] },
-    { files: ["tsconfig-build-es.json"], scripts: ["build-es"] },
-    {
-      files: ["jest.config.js", "jest.config.fast.js"],
-      scripts: ["test", "test-fast"]
-    },
-    { files: ["sonar-project.properties"], scripts: ["sonar"] },
-    { files: ["tsconfig-typedoc.json", "typedoc.json"], scripts: ["build-doc"] }
-  ];
+for (const script of actualScripts)
+  if (requiredScripts.includes(script) || optionalScripts.includes(script)) {
+    // Valid
+  } else errors.push(`Unknown "${script}" script`);
 
-  const json = JSON.parse(fs.readFileSync("./package.json"));
+for (const script of requiredScripts)
+  if (actualScripts.includes(script)) {
+    // Valid
+  } else errors.push(`Missing "${script}" script`);
 
-  const files1 = fs
-    .readdirSync("./")
-    .filter(file => fs.lstatSync(`./${file}`).isFile());
-
-  const files2 = [];
-
-  files2.push(...requiredFiles);
-
-  for (const { files, scripts } of requiredFilesByScript)
-    if (scripts.some(script => json.scripts[script])) files2.push(...files);
-
-  for (const file of files1)
-    if (ignoreFiles.has(file) || ignoreExtensions.has(path.extname(file)))
-      files2.push(file);
-
-  files1.sort((x, y) => x > y);
-  files2.sort((x, y) => x > y);
-
-  const result = [];
-
-  for (const { files, scripts } of requiredFilesByScript)
-    if (files.some(file => files1.includes(file)))
-      for (const script of scripts)
-        if (json.scripts[script]) {
-          // Valid
-        } else result.push(`Missing "${script}" script`);
-
-  for (const file of files1)
-    if (files2.includes(file)) {
-      // Valid
-    } else result.push(`Unknown "${file}" file`);
-
-  for (const file of files2)
-    if (files1.includes(file)) {
-      // Valid
-    } else result.push(`Missing "${file}" file`);
-
-  return result;
-}
-
-/**
- * Validates JSON file.
- *
- * @param name - Name.
- * @param schemaName - Schema name.
- * @returns Errors.
- */
-function validateJsonFile(name, schemaName) {
+for (const [name, schemaName] of Object.entries(schemas))
   if (fs.existsSync(`./${name}.json`)) {
     const json = JSON.parse(fs.readFileSync(`./${name}.json`));
 
     const schema = require(`./schemas/${schemaName}.json`);
 
-    return validator
-      .validate(json, schema)
-      .errors.map(error => `Error at ${name}.json: ${error.stack}`);
+    errors.push(
+      ...validator
+        .validate(json, schema)
+        .errors.map(error => `Error at ${name}.json: ${error.stack}`)
+    );
   }
 
-  return [];
-}
+// eslint-disable-next-line no-console -- Ok
+for (const error of errors) console.error(error);
+
+if (errors.length > 0) throw new Error("Invalid config");

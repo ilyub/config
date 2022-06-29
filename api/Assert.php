@@ -2,6 +2,8 @@
 
 namespace Skylib\Config;
 
+use Skylib\Config\Unknown\Assert as Base;
+
 class Assert
 {
   /**
@@ -13,12 +15,7 @@ class Assert
    */
   public static function array(mixed $value): array
   {
-    if (is_array($value))
-    {
-      return $value;
-    }
-
-    throw new BaseException('Expecting array');
+    return Base::array($value);
   }
 
   /**
@@ -30,12 +27,7 @@ class Assert
    */
   public static function resource(mixed $value): mixed
   {
-    if (is_resource($value))
-    {
-      return $value;
-    }
-
-    throw new BaseException('Expecting string');
+    return Base::resource($value);
   }
 
   /**
@@ -45,12 +37,7 @@ class Assert
    */
   public static function string(mixed $value): string
   {
-    if (is_string($value))
-    {
-      return $value;
-    }
-
-    throw new BaseException('Expecting string');
+    return Base::string($value);
   }
 
   /**
@@ -62,11 +49,6 @@ class Assert
    */
   public static function strings(mixed $value): array
   {
-    if (is_array($value))
-    {
-      return $value;
-    }
-
-    throw new BaseException('Expecting array');
+    return Base::strings($value);
   }
 }

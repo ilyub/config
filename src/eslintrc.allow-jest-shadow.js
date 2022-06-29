@@ -3,7 +3,7 @@ module.exports = {
     "@typescript-eslint/no-shadow": [
       "warn",
       {
-        allow: ["event", "jest", "name"],
+        allow: ["Plugin", "event", "jest", "name"],
         builtinGlobals: true,
         hoist: "all",
         ignoreFunctionTypeParameterNameValueShadow: false,

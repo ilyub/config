@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "allowJs": true,
     "declaration": true,
     "declarationMap": true,
     "downlevelIteration": true,

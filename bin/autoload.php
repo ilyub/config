@@ -12,6 +12,6 @@ spl_autoload_register(function (string $className): void
   $className = str_replace('\\', '/', $className);
 
   include_once str_starts_with($className, 'Skylib/Config/')
-    ? dirname(__DIR__).'/api/'.substr($className, strlen('Skylib/Config/')).'.php'
+    ? dirname(__DIR__).'/api/'.substr($className, 14).'.php'
     : __DIR__.'/'.$className.'.php';
 });

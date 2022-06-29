@@ -64,7 +64,11 @@ class Npm
   {
     $name = $this->package->name;
 
-    $versions = Sys::execute('npm view '.$name.' versions --json', 'Retrieving npm versions', $interactive);
+    $versions = Sys::execute(
+      'npm view '.$name.' versions --json',
+      'Retrieving npm versions',
+      $interactive
+    );
     $versions = implode("\n", $versions);
     $versions = Util::decodeJson($versions, 'versions');
 

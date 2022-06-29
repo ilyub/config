@@ -16,8 +16,8 @@
         },
         "build-doc": {
           "enum": [
-            "typedoc src & cpy docs-static/* docs",
-            "php chore/build-doc.php & cpy docs-static/* docs"
+            "php chore/build-doc.php & cpy docs-static/* docs",
+            "typedoc src & cpy docs-static/* docs"
           ]
         },
         "build-es": {
@@ -120,7 +120,7 @@
           "const": "npm update --no-audit --strict-peer-deps"
         },
         "package-json-lint": {
-          "const": "npmPkgJsonLint ."
+          "const": "npmPkgJsonLint ./package.json"
         },
         "php-cs-fixer": {
           "const": "php vendor/bin/php-cs-fixer fix --verbose"
@@ -192,8 +192,8 @@
         "husky:post-commit",
         "husky:pre-commit",
         "husky:unset-hooks",
-        "npm:install-clean",
         "npm:install",
+        "npm:install-clean",
         "npm:regenerate-lock-file",
         "npm:update",
         "package-json-lint",
