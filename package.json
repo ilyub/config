@@ -59,7 +59,7 @@
     "npm:publish": "publish-if-not-exists",
     "npm:regenerate-lock-file": "npm install --no-audit --package-lock-only --strict-peer-deps",
     "npm:update": "npm update --no-audit --strict-peer-deps",
-    "package-json-lint": "npmPkgJsonLint .",
+    "package-json-lint": "npmPkgJsonLint ./package.json",
     "php-cs-fixer": "php vendor/bin/php-cs-fixer fix --verbose",
     "phpstan": "php vendor/bin/phpstan analyse -c phpstan.neon",
     "phpstan-quiet": "php vendor/bin/phpstan analyse -c phpstan.neon --quiet",

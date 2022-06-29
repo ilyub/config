@@ -1,11 +1,11 @@
 {
   "archive": {
     "exclude": [
-      "*",
-      ".*",
       "!/composer.json",
       "!/composer.lock",
-      "!/{api,bin,src}/**/*.{php,neon}"
+      "!/{api,bin,src}/**/*.{php,neon}",
+      "*",
+      ".*"
     ]
   },
   "authors": [
