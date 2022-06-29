@@ -50,7 +50,6 @@
     },
     "sort-json.settings.isCaseSensitive": true,
     "sortJSON.contextMenu": {
-      "sortJSON": false,
       "sortJSONReverse": false,
       "sortJSONKeyLength": false,
       "sortJSONKeyLengthReverse": false,
