@@ -1,6 +1,6 @@
 {
   "name": "@skylib/config",
-  "version": "3.12.0",
+  "version": "3.13.0",
   "private": false,
   "description": "Config for commitlint, eslint, jest, npm-package-json-lint, php-cs-fixer, phpstan, stylelint, typedoc, and typescript",
   "keywords": [
