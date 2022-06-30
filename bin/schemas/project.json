@@ -52,6 +52,18 @@
     },
     {
       "files": [
+        "quasar.conf.js",
+        "quasar.extensions.json",
+        "quasar.testing.json"
+      ],
+      "scripts": [
+        "inspect",
+        "serve",
+        "vue-tsc"
+      ]
+    },
+    {
+      "files": [
         "tsconfig-build.json"
       ],
       "scripts": [
@@ -98,9 +110,6 @@
     ".postcssrc.js",
     "babel.config.js",
     "composer.json",
-    "quasar.conf.js",
-    "quasar.extensions.json",
-    "quasar.testing.json",
     "tsconfig-compile.json"
   ],
   "optionalFilesByExtensions": [
@@ -112,6 +121,7 @@
     ".vsix"
   ],
   "optionalScripts": [
+    "compile",
     "vscode:prepublish",
     "watch"
   ],
