@@ -122,6 +122,7 @@
   ],
   "optionalScripts": [
     "compile",
+    "npm:publish",
     "vscode:prepublish",
     "watch"
   ],
@@ -154,7 +155,6 @@
     "husky:unset-hooks",
     "npm:install",
     "npm:install-clean",
-    "npm:publish",
     "npm:regenerate-lock-file",
     "npm:update",
     "package-json-lint",
