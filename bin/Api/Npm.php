@@ -88,9 +88,9 @@ class Npm
    */
   public function noDeprecated(): void
   {
-    if (preg_match('`^\d+\.0\.0$`isuxDX', $this->package->version))
+    if (preg_match('`^\d+\.0\.0$`isuxDX', $this->package->version) && file_exists(__DIR__.'/src'))
     {
-      foreach (Sys::scanDirDeep('src') as $path)
+      foreach (Sys::scanDirDeep(__DIR__.'/src') as $path)
       {
         if (is_file($path))
         {
