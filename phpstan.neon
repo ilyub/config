@@ -5,3 +5,4 @@ parameters:
     - api
     - bin
     - src
+  tmpDir: cache/phpstan
