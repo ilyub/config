@@ -23,9 +23,9 @@ class Sys
 
       $result = exec($command.' >nul 2>nul', $output, $code);
 
-      $status = $code || $result === false ? 'Failed' : 'OK';
+      $status = $code || $result === false ? static::RED.'Failed'.static::RESET : 'OK';
 
-      static::flushString("\x1B[0G\x1B[1A".$description.' - '.$status);
+      static::flushString(static::UP1LINE.$description.' - '.$status);
 
       return [];
     }
@@ -111,6 +111,12 @@ class Sys
 
     return $result;
   }
+
+  protected const COL0 = "\x1B[0G";
+  protected const GREEN = "\033[92m";
+  protected const RED = "\033[91m";
+  protected const RESET = "\033[0m";
+  protected const UP1LINE = "\x1B[1A";
 
   /**
    * Searches for keys folder.
