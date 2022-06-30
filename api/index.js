@@ -34,9 +34,13 @@ module.exports = {
           {
             allow: "{src1,src2,src3,src4,src5,src6,src7}",
             from: [
-              "{mocks,tests}",
-              ["{src2,src3,src4,src5,src6,src7}", { dir1: "test-utils" }],
-              ["{src1,src2,src3,src4,src5,src6,src7}", { filename: "index" }]
+              ["{src1,src2,src3,src4,src5,src6,src7}", { filename: "index" }],
+              ["src2", { dir1: "{__mocks__,test-utils}" }],
+              ["src3", { dir2: "__mocks__" }],
+              ["src4", { dir3: "__mocks__" }],
+              ["src5", { dir4: "__mocks__" }],
+              ["src6", { dir5: "__mocks__" }],
+              ["src7", { dir6: "__mocks__" }]
             ]
           },
           {
