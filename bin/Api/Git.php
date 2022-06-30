@@ -35,14 +35,7 @@ class Git
         {
           $prev = [(int) $matches[1], (int) $matches[2], (int) $matches[3]];
 
-          if (static::isValidNextVersion($next, $prev, $level))
-          {
-            // Valid
-          }
-          else
-          {
-            throw new BaseException('Expecting version to be '.implode('.', $next));
-          }
+          static::checkNextVersion($next, $prev, $level);
         }
       }
     }
@@ -156,43 +149,11 @@ class Git
   /**
    * Checks version.
    *
-   * @return array{commit:string,level:0|1|2}
-   */
-  protected static function findPreviousVersionCommit(): array
-  {
-    $level = 0;
-
-    foreach (static::getCommits('.*', '%H:%s') as $commit)
-    {
-      $commit = explode(':', $commit, 2);
-
-      if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1]))
-      {
-        $level = max($level, 1);
-      }
-
-      if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1]))
-      {
-        $level = max($level, 2);
-      }
-
-      if ($commit[1] === 'next' || $commit[1] === 'initial commit')
-      {
-        return ['level' => $level, 'commit' => $commit[0]];
-      }
-    }
-
-    throw new BaseException('Could not find previous version commit');
-  }
-
-  /**
-   * Checks version.
-   *
    * @param array<int> $next
    * @param array<int> $prev
    * @param 0|1|2      $level
    */
-  protected static function isValidNextVersion(array $next, array $prev, int $level): bool
+  protected static function checkNextVersion(array $next, array $prev, int $level): void
   {
     list($got1, $got2, $got3) = $next;
 
@@ -234,6 +195,45 @@ class Git
       $expected3 = $got3;
     }
 
-    return $got1 === $expected1 && $got2 === $expected2 && $got3 === $expected3;
+    if ($got1 === $expected1 && $got2 === $expected2 && $got3 === $expected3)
+    {
+      // Valid
+    }
+    else
+    {
+      throw new BaseException('Expecting version to be '.$expected1.'.'.$expected2.'.'.$expected3);
+    }
+  }
+
+  /**
+   * Checks version.
+   *
+   * @return array{commit:string,level:0|1|2}
+   */
+  protected static function findPreviousVersionCommit(): array
+  {
+    $level = 0;
+
+    foreach (static::getCommits('.*', '%H:%s') as $commit)
+    {
+      $commit = explode(':', $commit, 2);
+
+      if (preg_match('`^build\\(deps-major-update\\)|^feat|^revert`isuxDX', $commit[1]))
+      {
+        $level = max($level, 1);
+      }
+
+      if (preg_match('`^\\w+!:|^\\w+\\([^()]+\\)!:`isuxDX', $commit[1]))
+      {
+        $level = max($level, 2);
+      }
+
+      if ($commit[1] === 'next' || $commit[1] === 'initial commit')
+      {
+        return ['level' => $level, 'commit' => $commit[0]];
+      }
+    }
+
+    throw new BaseException('Could not find previous version commit');
   }
 }
