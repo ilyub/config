@@ -9,11 +9,11 @@ const {
   // eslint-disable-next-line import/extensions, import/no-internal-modules -- Ok
 } = require("./schemas/project.json");
 
-const fs = require("fs");
-
 const { Validator } = require("jsonschema");
 
-const path = require("path");
+const fs = require("node:fs");
+
+const path = require("node:path");
 
 const validator = new Validator();
 

@@ -1,7 +1,7 @@
 module.exports = sources => {
-  const fs = require("fs");
+  const fs = require("node:fs");
 
-  const path = require("path");
+  const path = require("node:path");
 
   const config = (() => {
     const result = { dirs: [], scopes: [] };

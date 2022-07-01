@@ -1,6 +1,6 @@
-const fs = require("fs");
+const fs = require("node:fs");
 
-const path = require("path");
+const path = require("node:path");
 
 module.exports = function (request, options) {
   const result = options.defaultResolver(request, options);
