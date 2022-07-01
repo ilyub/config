@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("node:fs");
 
 module.exports = {
   eslint: {
@@ -34,6 +34,7 @@ module.exports = {
           {
             allow: "{src1,src2,src3,src4,src5,src6,src7}",
             from: [
+              "{mocks,tests}",
               ["{src1,src2,src3,src4,src5,src6,src7}", { filename: "index" }],
               ["src2", { dir1: "{__mocks__,test-utils}" }],
               ["src3", { dir2: "__mocks__" }],
