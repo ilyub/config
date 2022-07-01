@@ -46,6 +46,8 @@
     "config-lint": "node bin/config-lint.js",
     "delete-tags": "php bin/delete-tags.php",
     "full-check": "php bin/full-check.php",
+    "git:unix": "git config --replace-all core.ignorecase false",
+    "git:windows": "git config --replace-all core.ignorecase true",
     "husky:commit-msg": "npm run commitlint",
     "husky:post-commit": "php bin/post-commit.php",
     "husky:pre-commit": "php bin/pre-commit.php",

@@ -71,6 +71,12 @@
             "php node_modules/@skylib/config/bin/full-check.php"
           ]
         },
+        "git:unix": {
+          "const": "git config --replace-all core.ignorecase false"
+        },
+        "git:windows": {
+          "const": "git config --replace-all core.ignorecase true"
+        },
         "husky:commit-msg": {
           "const": "npm run commitlint"
         },
@@ -179,29 +185,7 @@
         "watch": {
           "const": "tsc -watch"
         }
-      },
-      "required": [
-        "add-tags",
-        "browserslist",
-        "clear-cache",
-        "commitlint",
-        "commitlint-all",
-        "config-lint",
-        "delete-tags",
-        "husky:commit-msg",
-        "husky:post-commit",
-        "husky:pre-commit",
-        "husky:unset-hooks",
-        "npm:install",
-        "npm:install-clean",
-        "npm:regenerate-lock-file",
-        "npm:update",
-        "package-json-lint",
-        "prepare",
-        "update-package-check",
-        "update-package-force",
-        "upgrade"
-      ]
+      }
     }
   }
 }

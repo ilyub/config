@@ -149,6 +149,8 @@
     "config-lint",
     "delete-tags",
     "full-check",
+    "git:unix",
+    "git:windows",
     "husky:commit-msg",
     "husky:post-commit",
     "husky:pre-commit",
