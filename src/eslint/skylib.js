@@ -209,6 +209,18 @@ module.exports = {
       {
         rules: [
           {
+            message: "Call signature should be first",
+            selector:
+              "TSInterfaceBody > TSCallSignatureDeclaration:not(:first-child)",
+            subOptionsId: "prefer-call-signature-first"
+          },
+          {
+            message: "Construct signature should be first",
+            selector:
+              "TSInterfaceBody > TSConstructSignatureDeclaration:not(:first-child)",
+            subOptionsId: "prefer-construct-signature-first"
+          },
+          {
             filesToLint: ["./.eslintrc.rule-overrides.js"],
             message: "Disabling rule is unsafe",
             selector:
