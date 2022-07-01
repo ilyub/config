@@ -3,6 +3,7 @@
 namespace Actions;
 
 use Api\Git;
+use Throwable;
 
 class DeleteTags
 {
@@ -21,7 +22,17 @@ class DeleteTags
     foreach ($tags as $tag)
     {
       Git::deleteTag($tag);
-      Git::pushDeleteTag($tag);
+
+      try
+      {
+        Git::pushDeleteTag($tag);
+      }
+      catch (Throwable)
+      {
+      }
     }
   }
+
+  protected const RED = "\033[91m";
+  protected const RESET = "\033[0m";
 }
