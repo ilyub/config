@@ -1,5 +1,5 @@
-import { isBlock } from "typescript";
+import * as ts from "typescript";
 
 test("sample", () => {
-  expect(isBlock).toBeDefined();
+  expect(ts.isBlock).toBeDefined();
 });

@@ -35,13 +35,6 @@ module.exports = {
         "vue/match-component-file-name": "off",
         "vue/new-line-between-multi-line-property": "off",
         "vue/no-multiple-template-root": "off",
-        "vue/no-restricted-syntax": [
-          "warn",
-          {
-            message: "Unexpected empty line",
-            selector: "VElement[name=template] VText[value=/^\n\n/u]"
-          }
-        ],
         "vue/no-unused-properties": [
           "warn",
           {

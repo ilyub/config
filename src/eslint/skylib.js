@@ -49,16 +49,19 @@ module.exports = {
       {
         rules: [
           {
+            _id: "main",
             emptyLine: "always",
             next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSDeclareFunction, TSExportAssignment)",
             prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSDeclareFunction, TSExportAssignment)"
           },
           {
+            _id: "ExpressionStatement",
             emptyLine: "any",
             next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement",
             prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement"
           },
           {
+            _id: "ImportDeclaration",
             emptyLine: "any",
             next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ImportDeclaration",
             prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ImportDeclaration"
@@ -70,24 +73,34 @@ module.exports = {
       "warn",
       {
         rules: [
-          { selector: "ArrayExpression > .elements" },
-          { selector: "CallExpression > .arguments" },
-          { selector: "FunctionDeclaration > .params" },
-          { selector: "FunctionExpression > .params" },
-          { selector: "ImportDeclaration" },
-          { selector: "ObjectExpression > .properties" },
-          { selector: "TSDeclareFunction > .params" },
-          { selector: "TSFunctionType > .params" },
-          { selector: "TSInterfaceBody > .body" },
-          { selector: "TSTypeLiteral > .members" },
+          { _id: "ArrayExpression", selector: "ArrayExpression > .elements" },
+          { _id: "CallExpression", selector: "CallExpression > .arguments" },
           {
+            _id: "ExpressionStatement",
             averageLinesGte: 3,
             everyLinesGte: 2,
             selector:
               ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement",
             someHasDocComment: true,
             someLinesGte: 6
-          }
+          },
+          {
+            _id: "FunctionDeclaration",
+            selector: "FunctionDeclaration > .params"
+          },
+          {
+            _id: "FunctionExpression",
+            selector: "FunctionExpression > .params"
+          },
+          { _id: "ImportDeclaration", selector: "ImportDeclaration" },
+          {
+            _id: "ObjectExpression",
+            selector: "ObjectExpression > .properties"
+          },
+          { _id: "TSDeclareFunction", selector: "TSDeclareFunction > .params" },
+          { _id: "TSFunctionType", selector: "TSFunctionType > .params" },
+          { _id: "TSInterfaceBody", selector: "TSInterfaceBody > .body" },
+          { _id: "TSTypeLiteral", selector: "TSTypeLiteral > .members" }
         ]
       }
     ],
@@ -96,82 +109,112 @@ module.exports = {
       {
         sources: [
           {
-            autoImportSource: "@sinonjs/fake-timers",
-            sourcePattern: "@sinonjs/fake-timers",
+            _id: "@sinonjs/fake-timers",
+            autoImport: true,
+            source: "@sinonjs/fake-timers",
             type: "wildcard"
           },
           {
-            autoImportSource: "@skylib/lodash-commonjs-es",
+            _id: "@skylib/lodash-commonjs-es",
+            autoImport: true,
             localName: "_",
-            sourcePattern: "@skylib/lodash-commonjs-es",
+            source: "@skylib/lodash-commonjs-es",
             type: "wildcard"
           },
           {
+            _id: "@vue/test-utils",
             altLocalNames: ["vueTestUtils"],
-            autoImportSource: "@vue/test-utils",
-            sourcePattern: "@vue/test-utils",
+            autoImport: true,
+            source: "@vue/test-utils",
             type: "wildcard"
           },
           {
-            autoImportSource: "@vue/test-utils/dist/interfaces/wrapperLike",
+            _id: "@vue/test-utils",
+            autoImport: true,
             localName: "WrapperLike",
-            sourcePattern: "@vue/test-utils/dist/interfaces/wrapperLike",
+            source: "@vue/test-utils/dist/interfaces/wrapperLike",
             type: "default"
           },
           {
-            autoImportSource: "minisearch",
-            localName: "MiniSearch",
-            sourcePattern: "minisearch",
-            type: "default"
-          },
-          {
+            _id: "fs",
             altLocalNames: ["nodeFs"],
-            autoImportSource: "fs",
-            sourcePattern: "fs",
+            autoImport: true,
+            source: "fs",
             type: "default"
           },
           {
+            _id: "jest-extended/all",
             altLocalNames: ["jestExtendedMatchers"],
             localName: "matchers",
-            sourcePattern: "jest-extended/all",
+            source: "jest-extended/all",
             type: "default"
           },
           {
-            autoImportSource: "jquery",
+            _id: "jquery",
+            autoImport: true,
             localName: "$",
-            sourcePattern: "jquery",
+            source: "jquery",
             type: "default"
           },
           {
+            _id: "minisearch",
+            autoImport: true,
+            localName: "MiniSearch",
+            source: "minisearch",
+            type: "default"
+          },
+          {
+            _id: "path",
             altLocalNames: ["nodePath"],
-            autoImportSource: "path",
-            sourcePattern: "path",
+            autoImport: true,
+            source: "path",
             type: "default"
           },
           {
-            autoImportSource: "vscode",
-            sourcePattern: "vscode",
+            _id: "ts",
+            autoImport: true,
+            localName: "ts",
+            source: "typescript",
             type: "wildcard"
           },
           {
-            autoImportSource: "vue",
+            _id: "tsutils",
+            autoImport: true,
+            source: "tsutils",
+            type: "wildcard"
+          },
+          {
+            _id: "vscode",
+            autoImport: true,
+            source: "vscode",
+            type: "wildcard"
+          },
+          {
+            _id: "vue",
+            autoImport: true,
             localName: "Vue",
-            sourcePattern: "vue",
+            source: "vue",
             type: "default"
           },
           {
-            autoImportSource: "vuedraggable",
-            localName: "VueDraggable",
-            sourcePattern: "vuedraggable",
-            type: "default"
-          },
-          {
-            autoImportSource: "vue-router",
+            _id: "vue-router",
+            autoImport: true,
             localName: "VueRouter",
-            sourcePattern: "vue-router",
+            source: "vue-router",
             type: "default"
           },
-          { sourcePattern: "!@skylib/**", type: "default" }
+          {
+            _id: "vuedraggable",
+            autoImport: true,
+            localName: "VueDraggable",
+            source: "vuedraggable",
+            type: "default"
+          },
+          {
+            _id: "catch-all",
+            source: "!@skylib/**",
+            type: "default"
+          }
         ]
       }
     ],
@@ -180,6 +223,12 @@ module.exports = {
       {
         rules: [
           {
+            _id: "at-sign",
+            disallow: ["@", "@/**"],
+            filesToSkip: ["./tests/**"]
+          },
+          {
+            _id: "dot",
             disallow: [
               ".",
               "../src/**",
@@ -188,8 +237,7 @@ module.exports = {
               "../../../../src/**",
               "../../../../../src/**"
             ]
-          },
-          { disallow: ["@", "@/**"], filesToSkip: ["./tests/**"] }
+          }
         ]
       }
     ],
@@ -209,46 +257,47 @@ module.exports = {
       {
         rules: [
           {
-            message: "Call signature should be first",
-            selector:
-              "TSInterfaceBody > TSCallSignatureDeclaration:not(:first-child)",
-            subOptionsId: "prefer-call-signature-first"
+            _id: "consistent-array-type-name",
+            message: 'Array type name should end with "s"',
+            selector: "TSTypeAliasDeclaration > Identifier[name=/(?<!s)$/u]",
+            typeIs: "array"
           },
           {
-            message: "Construct signature should be first",
-            selector:
-              "TSInterfaceBody > TSConstructSignatureDeclaration:not(:first-child)",
-            subOptionsId: "prefer-construct-signature-first"
+            _id: "consistent-non-array-type-name",
+            message: 'Non-array type name may not end with "s"',
+            selector: "TSTypeAliasDeclaration > Identifier[name=/s$/u]",
+            typeIsNot: "array"
           },
           {
+            _id: "eslintrc-no-disable",
             filesToLint: ["./.eslintrc.rule-overrides.js"],
             message: "Disabling rule is unsafe",
             selector:
-              "Property[key.name=rules] > ObjectExpression > Property > Literal.value[value=off]",
-            subOptionsId: "eslintrc-no-disable"
+              "Property[key.name=rules] > ObjectExpression > Property > Literal.value[value=off]"
           },
           {
+            _id: "eslintrc-no-overrides",
             filesToLint: ["./.eslintrc.js"],
             message:
               'Define overrides in ".eslintrc.overrides.js", ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
-            selector: "Property > Identifier.key[name=overrides]",
-            subOptionsId: "eslintrc-no-overrides"
+            selector: "Property > Identifier.key[name=overrides]"
           },
           {
+            _id: "eslintrc-no-rules",
             filesToLint: ["./.eslintrc.js", "./.eslintrc.overrides.js"],
             message:
               'Define rules in ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
-            selector: "Property > Identifier.key[name=rules]",
-            subOptionsId: "eslintrc-no-rules"
+            selector: "Property > Identifier.key[name=rules]"
           },
           {
+            _id: "eslintrc-no-temp",
             filesToLint: ["./.eslintrc.temp.js"],
             message: "Temporary configuration",
             selector:
-              "AssignmentExpression > ObjectExpression[properties.length>0]",
-            subOptionsId: "eslintrc-no-temp"
+              "AssignmentExpression > ObjectExpression[properties.length>0]"
           },
           {
+            _id: "eslintrc-no-unnecessary-array",
             filesToLint: [
               ".eslintrc.js",
               ".eslintrc.fast.js",
@@ -260,106 +309,123 @@ module.exports = {
             ],
             message: "Unnecessary array",
             selector:
-              "Property[key.name=/^(extends|files)$/u] > ArrayExpression[elements.length=1]",
-            subOptionsId: "eslintrc-no-unnecessary-array"
+              "Property[key.name=/^(extends|files)$/u] > ArrayExpression[elements.length=1]"
           },
           {
+            _id: "no-invalid-identifier",
             message: "Identifier contains invalid character(s)",
-            selector: "Identifier[name=/[^$\\w]/u]",
-            subOptionsId: "no-invalid-identifier"
+            selector: "Identifier[name=/[^$\\w]/u]"
           },
           {
+            _id: "no-language-mixing",
             message: "No language mixing",
             selector: [
               "Literal[value=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]",
               "TemplateLiteral[value.raw=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
-            ],
-            subOptionsId: "no-language-mixing"
+            ]
           },
           {
-            message: 'Use arrow function instead of "this: void"',
-            selector:
-              "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]",
-            subOptionsId: "no-this-void"
-          },
-          {
+            _id: "no-optional-true-type",
             message: 'Prefer "boolean" type',
             selector:
-              "TSPropertySignature[optional=true] > .typeAnnotation > TSLiteralType.typeAnnotation > .literal[value=true]",
-            subOptionsId: "no-optional-true-type"
+              "TSPropertySignature[optional=true] > .typeAnnotation > TSLiteralType.typeAnnotation > .literal[value=true]"
           },
           {
+            _id: "no-this-void",
+            message: 'Use arrow function instead of "this: void"',
+            selector:
+              "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]"
+          },
+          {
+            _id: "no-underscore-export",
             message: "Underscore export is not allowed",
             selector: [
-              "ExportNamedDeclaration > FunctionDeclaration.declaration > Identifier.id[name=/^_/u]",
-              "ExportNamedDeclaration > VariableDeclaration.declaration > VariableDeclarator.declarations > Identifier.id[name=/^_/u]"
-            ],
-            subOptionsId: "no-underscore-export"
+              "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]",
+              "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
+            ]
           },
           {
+            _id: "no-unnecessary-break",
             message: 'Unnecessary "break" statement',
-            selector: "SwitchCase:last-child > BreakStatement.consequent",
-            subOptionsId: "no-unnecessary-break"
+            selector: "SwitchCase:last-child > BreakStatement.consequent"
           },
           {
+            _id: "no-unnecessary-initialization",
             message: "Unnecessary initialization",
             selector: [
               "PropertyDefinition > Identifier.value[name=undefined]",
               "VariableDeclarator > Identifier.init[name=undefined]"
-            ],
-            subOptionsId: "no-unnecessary-initialization"
+            ]
           },
           {
+            _id: "prefer-arrow-function-property",
             message: "Prefer arrow function",
-            selector: "Property > FunctionExpression.value",
-            subOptionsId: "prefer-arrow-function-property"
+            selector: "Property > FunctionExpression.value"
           },
           {
+            _id: "prefer-call-signature-first",
+            message: "Call signature should be first",
+            selector:
+              "TSInterfaceBody > TSCallSignatureDeclaration:not(:first-child)"
+          },
+          {
+            _id: "prefer-const-object",
+            message: 'Expecting "as const" object',
+            selector:
+              ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > ObjectExpression"
+          },
+          {
+            _id: "prefer-construct-signature-first",
+            message: "Construct signature should be first",
+            selector:
+              "TSInterfaceBody > TSConstructSignatureDeclaration:not(:first-child)"
+          },
+          {
+            _id: "prefer-jest-toBe",
             message: 'Prefer "toBe" matcher',
             selector:
-              "CallExpression[callee.property.name=toStrictEqual] > :matches(Literal, TemplateLiteral).arguments",
-            subOptionsId: "prefer-jest-toBe"
+              "CallExpression[callee.property.name=toStrictEqual] > .arguments",
+            typeIsOneOf: ["boolean", "number", "string"]
           },
           {
+            _id: "prefer-jest-toStrictEqual",
+            message: 'Prefer "toStrictEqual" matcher',
+            selector: "CallExpression[callee.property.name=toBe] > .arguments",
+            typeIsNoneOf: ["boolean", "number", "string"]
+          },
+          {
+            _id: "prefer-jest-toThrow-shorthand",
             message:
               'Prefer error message or "Error" as an argument of "toThrow" matcher',
             selector:
-              "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]",
-            subOptionsId: "prefer-jest-toThrow-shorthand"
+              "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]"
           },
           {
-            message: 'Prefer "toStrictEqual" matcher',
-            selector:
-              "CallExpression[callee.property.name=toBe] > :not(Literal, TemplateLiteral).arguments",
-            subOptionsId: "prefer-jest-toStrictEqual"
-          },
-          {
+            _id: "prefer-kebab-case-symbol-description",
             message: "Prefer kebab-case symbol description",
             selector:
-              "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])",
-            subOptionsId: "prefer-kebab-case-symbol-description"
+              "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
           },
           {
+            _id: "prefer-readonly-array",
+            message: "Prefer readonly array",
+            selector: ":not(TSTypeOperator[operator=readonly]) > TSArrayType"
+          },
+          {
+            _id: "prefer-readonly-property",
             filesToSkip: ["*.js"],
             message: "Prefer readonly property",
             selector: [
               ":matches(PropertyDefinition, TSPropertySignature)[readonly!=true]"
-            ],
-            subOptionsId: "prefer-readonly-property"
+            ]
           },
           {
+            _id: "prefer-static-method-arrow",
             message: "Prefer arrow function",
-            selector: "MethodDefinition[static=true]",
-            subOptionsId: "prefer-static-method-arrow"
+            selector: "MethodDefinition[static=true]"
           },
           {
-            filesToLint: ["./.prettierrc.js"],
-            message: "Expecting 4 options",
-            selector:
-              "AssignmentExpression > ObjectExpression.right[properties.length!=4]",
-            subOptionsId: "prettier-structure"
-          },
-          {
+            _id: "prettier-options",
             filesToLint: ["./.prettierrc.js"],
             message: "Invalid option",
             selector: [
@@ -367,20 +433,31 @@ module.exports = {
               "Property[key.name=endOfLine] > Literal.value[value!=lf]",
               "Property[key.name=quoteProps] > Literal.value[value!=preserve]",
               "Property[key.name=trailingComma] > Literal.value[value!=none]"
-            ],
-            subOptionsId: "prettier-options"
+            ]
           },
           {
+            _id: "prettier-structure",
+            filesToLint: ["./.prettierrc.js"],
+            message: "Expecting 4 options",
+            selector:
+              "AssignmentExpression > ObjectExpression.right[properties.length!=4]"
+          },
+          {
+            _id: "require-assign-to-var",
             message: 'Assign "require" to variable',
             selector:
-              ":not(ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]",
-            subOptionsId: "require-assign-to-var"
+              ":not(ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]"
           },
           {
+            _id: "restrict-chain-expression",
             message: "Prefer conditional expression",
             selector:
-              "LogicalExpression[operator=??][left.type=ChainExpression]",
-            subOptionsId: "restrict-chain-expression"
+              "LogicalExpression[operator=??][left.type=ChainExpression]"
+          },
+          {
+            _id: "vue-no-empty-lines",
+            message: "Unexpected empty line",
+            selector: "VElement[name=template] VText[value=/^\n\n/u]"
           }
         ]
       }
@@ -418,6 +495,21 @@ module.exports = {
         ],
         interfaces: ["callSignatures", "constructSignatures"],
         properties: ["function"]
+      }
+    ],
+    "@skylib/sort-array": [
+      "warn",
+      {
+        rules: [
+          {
+            _id: "skylib-eslint-plugin",
+            key: "_id",
+            selector:
+              "Property[key.value=/^@skylib/u] > ArrayExpression > ObjectExpression > Property[key.name=/^(?:overrides|rules|sources)$/u] > ArrayExpression",
+            sendToBottom: /^catch-all(?::|$)/u.source,
+            sendToTop: /^main(?::|$)/u.source
+          }
+        ]
       }
     ],
     "@skylib/sort-class-members": [
