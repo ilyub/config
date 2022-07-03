@@ -259,13 +259,14 @@ module.exports = {
           {
             _id: "consistent-array-type-name",
             message: 'Array type name should end with "s"',
-            selector: "TSTypeAliasDeclaration > Identifier[name=/(?<!s)$/u]",
+            selector:
+              "TSTypeAliasDeclaration > Identifier[name=/(?<![^s]s)$/u]",
             typeIs: "array"
           },
           {
             _id: "consistent-non-array-type-name",
             message: 'Non-array type name may not end with "s"',
-            selector: "TSTypeAliasDeclaration > Identifier[name=/s$/u]",
+            selector: "TSTypeAliasDeclaration > Identifier[name=/[^s]s$/u]",
             typeIsNot: "array"
           },
           {
@@ -409,7 +410,8 @@ module.exports = {
           {
             _id: "prefer-readonly-array",
             message: "Prefer readonly array",
-            selector: ":not(TSTypeOperator[operator=readonly]) > TSArrayType"
+            selector:
+              ":not(TSTypeOperator[operator=readonly]) > :matches(TSArrayType, TSTupleType)"
           },
           {
             _id: "prefer-readonly-property",
