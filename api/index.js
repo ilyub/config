@@ -73,6 +73,8 @@ module.exports = {
       );
     },
     skylib: {
+      // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
+      // fixme
       readonliness: { ignoreTypes: ["^Promise$", "^Readonly", "^Writable"] }
     }
   },
