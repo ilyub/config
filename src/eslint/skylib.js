@@ -264,13 +264,6 @@ module.exports = {
             typeIs: "array"
           },
           {
-            _id: "consistent-non-array-type-name",
-            message: 'Non-array type name may not end with "s"',
-            selector:
-              "TSTypeAliasDeclaration > Identifier[name=/(?:Array|[^s]s)$/u]",
-            typeIsNot: "array"
-          },
-          {
             _id: "eslintrc-no-disable",
             filesToLint: ["./.eslintrc.rule-overrides.js"],
             message: "Disabling rule is unsafe",
