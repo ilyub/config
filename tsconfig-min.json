@@ -34,6 +34,7 @@
     ".eslintrc.fast.js",
     ".eslintrc.overrides.js",
     ".eslintrc.rule-overrides.js",
+    ".eslintrc.synonyms.js",
     ".eslintrc.temp.js",
     ".postcssrc.js",
     ".prettierrc.js",

@@ -3,7 +3,6 @@ const { eslint } = require("../../api");
 const ignoreTypes = eslint.skylib.readonliness.ignoreTypes;
 
 module.exports = {
-  extends: "plugin:@skylib/eslint-plugin/all",
   overrides: [
     {
       files: "*.js",
@@ -43,13 +42,15 @@ module.exports = {
       }
     }
   ],
+  plugins: ["@skylib/eslint-plugin"],
   rules: {
+    ...eslint.getAllRules("@skylib/eslint-plugin"),
     "@skylib/consistent-empty-lines": [
       "warn",
       {
         rules: [
           {
-            _id: "main",
+            _id: "statement",
             emptyLine: "always",
             next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSDeclareFunction, TSExportAssignment)",
             prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSDeclareFunction, TSExportAssignment)"
@@ -218,26 +219,21 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/disallow-import": [
+    "@skylib/disallow-import": "off",
+    "@skylib/disallow-import/at-sign": [
+      "warn",
+      { disallow: ["@", "@/**"], filesToSkip: ["./tests/**"] }
+    ],
+    "@skylib/disallow-import/dot": [
       "warn",
       {
-        rules: [
-          {
-            _id: "at-sign",
-            disallow: ["@", "@/**"],
-            filesToSkip: ["./tests/**"]
-          },
-          {
-            _id: "dot",
-            disallow: [
-              ".",
-              "../src/**",
-              "../../src/**",
-              "../../../src/**",
-              "../../../../src/**",
-              "../../../../../src/**"
-            ]
-          }
+        disallow: [
+          ".",
+          "../src/**",
+          "../../src/**",
+          "../../../src/**",
+          "../../../../src/**",
+          "../../../../../src/**"
         ]
       }
     ],
@@ -252,210 +248,261 @@ module.exports = {
         ignoreTypes
       }
     ],
-    "@skylib/no-restricted-syntax": [
+    "@skylib/no-restricted-syntax": "off",
+    "@skylib/no-restricted-syntax/consistent-array-type-name": [
       "warn",
       {
-        rules: [
-          {
-            _id: "consistent-array-type-name",
-            message: 'Array type name should end with "s"',
-            selector:
-              "TSTypeAliasDeclaration > Identifier[name=/(?<!Array|[^s]s)$/u]",
-            typeIs: "array"
-          },
-          {
-            _id: "eslintrc-no-disable",
-            filesToLint: ["./.eslintrc.rule-overrides.js"],
-            message: "Disabling rule is unsafe",
-            selector:
-              "Property[key.name=rules] > ObjectExpression > Property > Literal.value[value=off]"
-          },
-          {
-            _id: "eslintrc-no-overrides",
-            filesToLint: ["./.eslintrc.js"],
-            message:
-              'Define overrides in ".eslintrc.overrides.js", ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
-            selector: "Property > Identifier.key[name=overrides]"
-          },
-          {
-            _id: "eslintrc-no-rules",
-            filesToLint: ["./.eslintrc.js", "./.eslintrc.overrides.js"],
-            message:
-              'Define rules in ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
-            selector: "Property > Identifier.key[name=rules]"
-          },
-          {
-            _id: "eslintrc-no-temp",
-            filesToLint: ["./.eslintrc.temp.js"],
-            message: "Temporary configuration",
-            selector:
-              "AssignmentExpression > ObjectExpression[properties.length>0]"
-          },
-          {
-            _id: "eslintrc-no-unnecessary-array",
-            filesToLint: [
-              ".eslintrc.js",
-              ".eslintrc.fast.js",
-              ".eslintrc.overrides.js",
-              ".eslintrc.rule-overrides.js",
-              ".eslintrc.temp.js",
-              "./**/eslintrc.js",
-              "./**/eslint/*.js"
-            ],
-            message: "Unnecessary array",
-            selector:
-              "Property[key.name=/^(extends|files)$/u] > ArrayExpression[elements.length=1]"
-          },
-          {
-            _id: "no-invalid-identifier",
-            message: "Identifier contains invalid character(s)",
-            selector: "Identifier[name=/[^$\\w]/u]"
-          },
-          {
-            _id: "no-language-mixing",
-            message: "No language mixing",
-            selector: [
-              "Literal[value=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]",
-              "TemplateLiteral[value.raw=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
-            ]
-          },
-          {
-            _id: "no-optional-true-type",
-            message: 'Prefer "boolean" type',
-            selector:
-              "TSPropertySignature[optional=true] > .typeAnnotation > TSLiteralType.typeAnnotation > .literal[value=true]"
-          },
-          {
-            _id: "no-this-void",
-            message: 'Use arrow function instead of "this: void"',
-            selector:
-              "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]"
-          },
-          {
-            _id: "no-underscore-export",
-            message: "Underscore export is not allowed",
-            selector: [
-              "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]",
-              "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
-            ]
-          },
-          {
-            _id: "no-unnecessary-break",
-            message: 'Unnecessary "break" statement',
-            selector: "SwitchCase:last-child > BreakStatement.consequent"
-          },
-          {
-            _id: "no-unnecessary-initialization",
-            message: "Unnecessary initialization",
-            selector: [
-              "PropertyDefinition > Identifier.value[name=undefined]",
-              "VariableDeclarator > Identifier.init[name=undefined]"
-            ]
-          },
-          {
-            _id: "prefer-arrow-function-property",
-            message: "Prefer arrow function",
-            selector: "Property > FunctionExpression.value"
-          },
-          {
-            _id: "prefer-call-signature-first",
-            message: "Call signature should be first",
-            selector:
-              "TSInterfaceBody > TSCallSignatureDeclaration:not(:first-child)"
-          },
-          {
-            _id: "prefer-const-object",
-            message: 'Expecting "as const" object',
-            selector:
-              ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > ObjectExpression"
-          },
-          {
-            _id: "prefer-construct-signature-first",
-            message: "Construct signature should be first",
-            selector:
-              "TSInterfaceBody > TSConstructSignatureDeclaration:not(:first-child)"
-          },
-          {
-            _id: "prefer-jest-toBe",
-            message: 'Prefer "toBe" matcher',
-            selector:
-              "CallExpression[callee.property.name=toStrictEqual] > .arguments",
-            typeIsOneOf: ["boolean", "number", "string"]
-          },
-          {
-            _id: "prefer-jest-toStrictEqual",
-            message: 'Prefer "toStrictEqual" matcher',
-            selector: "CallExpression[callee.property.name=toBe] > .arguments",
-            typeIsNoneOf: ["boolean", "number", "string"]
-          },
-          {
-            _id: "prefer-jest-toThrow-shorthand",
-            message:
-              'Prefer error message or "Error" as an argument of "toThrow" matcher',
-            selector:
-              "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]"
-          },
-          {
-            _id: "prefer-kebab-case-symbol-description",
-            message: "Prefer kebab-case symbol description",
-            selector:
-              "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
-          },
-          {
-            _id: "prefer-readonly-array",
-            message: "Prefer readonly array",
-            selector:
-              ":not(TSTypeOperator[operator=readonly]) > :matches(TSArrayType, TSTupleType)"
-          },
-          {
-            _id: "prefer-readonly-property",
-            filesToSkip: ["*.js"],
-            message: "Prefer readonly property",
-            selector: [
-              ":matches(PropertyDefinition, TSPropertySignature)[readonly!=true]"
-            ]
-          },
-          {
-            _id: "prefer-static-method-arrow",
-            message: "Prefer arrow function",
-            selector: "MethodDefinition[static=true]"
-          },
-          {
-            _id: "prettier-options",
-            filesToLint: ["./.prettierrc.js"],
-            message: "Invalid option",
-            selector: [
-              "Property[key.name=arrowParens] > Literal.value[value!=avoid]",
-              "Property[key.name=endOfLine] > Literal.value[value!=lf]",
-              "Property[key.name=quoteProps] > Literal.value[value!=preserve]",
-              "Property[key.name=trailingComma] > Literal.value[value!=none]"
-            ]
-          },
-          {
-            _id: "prettier-structure",
-            filesToLint: ["./.prettierrc.js"],
-            message: "Expecting 4 options",
-            selector:
-              "AssignmentExpression > ObjectExpression.right[properties.length!=4]"
-          },
-          {
-            _id: "require-assign-to-var",
-            message: 'Assign "require" to variable',
-            selector:
-              ":not(ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]"
-          },
-          {
-            _id: "restrict-chain-expression",
-            message: "Prefer conditional expression",
-            selector:
-              "LogicalExpression[operator=??][left.type=ChainExpression]"
-          },
-          {
-            _id: "vue-no-empty-lines",
-            message: "Unexpected empty line",
-            selector: "VElement[name=template] VText[value=/^\n\n/u]"
-          }
+        message: 'Array type name should end with "s"',
+        selector:
+          "TSTypeAliasDeclaration > Identifier[name=/(?<!Array|[^s]s)$/u]",
+        typeIs: "array"
+      }
+    ],
+    "@skylib/no-restricted-syntax/eslintrc-no-disable": [
+      "warn",
+      {
+        filesToLint: ["./.eslintrc.rule-overrides.js"],
+        message: "Disabling rule is unsafe",
+        selector:
+          "Property[key.name=rules] > ObjectExpression > Property > Literal.value[value=off]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/eslintrc-no-overrides": [
+      "warn",
+      {
+        filesToLint: ["./.eslintrc.js"],
+        message:
+          'Define overrides in ".eslintrc.overrides.js", ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
+        selector: "Property > Identifier.key[name=overrides]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/eslintrc-no-rules": [
+      "warn",
+      {
+        filesToLint: ["./.eslintrc.js", "./.eslintrc.overrides.js"],
+        message:
+          'Define rules in ".eslintrc.rule-overrides.js" or ".eslintrc.temp.js" file',
+        selector: "Property > Identifier.key[name=rules]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/eslintrc-no-temp": [
+      "warn",
+      {
+        filesToLint: ["./.eslintrc.temp.js"],
+        message: "Temporary configuration",
+        selector: "AssignmentExpression > ObjectExpression[properties.length>0]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/eslintrc-no-unnecessary-array": [
+      "warn",
+      {
+        filesToLint: [
+          ".eslintrc.js",
+          ".eslintrc.fast.js",
+          ".eslintrc.overrides.js",
+          ".eslintrc.rule-overrides.js",
+          ".eslintrc.synonyms.js",
+          ".eslintrc.temp.js",
+          "./**/eslintrc.js",
+          "./**/eslint/*.js"
+        ],
+        message: "Unnecessary array",
+        selector:
+          "Property[key.name=/^(extends|files)$/u] > ArrayExpression[elements.length=1]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-invalid-identifier": [
+      "warn",
+      {
+        message: "Identifier contains invalid character(s)",
+        selector: "Identifier[name=/[^$\\w]/u]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-language-mixing": [
+      "warn",
+      {
+        message: "No language mixing",
+        selector: [
+          "Literal[value=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]",
+          "TemplateLiteral[value.raw=/[A-Za-z][\\d_]*[А-Яа-я]|[А-Яа-я][\\d_]*[A-Za-z]/u]"
         ]
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-optional-true-type": [
+      "warn",
+      {
+        message: 'Prefer "boolean" type',
+        selector:
+          "TSPropertySignature[optional=true] > .typeAnnotation > TSLiteralType.typeAnnotation > .literal[value=true]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-this-void": [
+      "warn",
+      {
+        message: 'Use arrow function instead of "this: void"',
+        selector:
+          "Identifier[name=this][typeAnnotation.typeAnnotation.type=TSVoidKeyword]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-underscore-export": [
+      "warn",
+      {
+        message: "Underscore export is not allowed",
+        selector: [
+          "ExportNamedDeclaration > FunctionDeclaration > Identifier.id[name=/^_/u]",
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > Identifier.id[name=/^_/u]"
+        ]
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-unnecessary-break": [
+      "warn",
+      {
+        message: 'Unnecessary "break" statement',
+        selector: "SwitchCase:last-child > BreakStatement.consequent"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-unnecessary-initialization": [
+      "warn",
+      {
+        message: "Unnecessary initialization",
+        selector: [
+          "PropertyDefinition > Identifier.value[name=undefined]",
+          "VariableDeclarator > Identifier.init[name=undefined]"
+        ]
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-arrow-function-property": [
+      "warn",
+      {
+        message: "Prefer arrow function",
+        selector: "Property > FunctionExpression.value"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-call-signature-first": [
+      "warn",
+      {
+        message: "Call signature should be first",
+        selector:
+          "TSInterfaceBody > TSCallSignatureDeclaration:not(:first-child)"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-const-object": [
+      "warn",
+      {
+        message: 'Expecting "as const" object',
+        selector:
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > ObjectExpression"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-construct-signature-first": [
+      "warn",
+      {
+        message: "Construct signature should be first",
+        selector:
+          "TSInterfaceBody > TSConstructSignatureDeclaration:not(:first-child)"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-jest-toBe": [
+      "warn",
+      {
+        message: 'Prefer "toBe" matcher',
+        selector:
+          "CallExpression[callee.property.name=toStrictEqual] > .arguments",
+        typeIsOneOf: ["boolean", "number", "string"]
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-jest-toStrictEqual": [
+      "warn",
+      {
+        message: 'Prefer "toStrictEqual" matcher',
+        selector: "CallExpression[callee.property.name=toBe] > .arguments",
+        typeIsNoneOf: ["boolean", "number", "string"]
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-jest-toThrow-shorthand": [
+      "warn",
+      {
+        message:
+          'Prefer error message or "Error" as an argument of "toThrow" matcher',
+        selector:
+          "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-kebab-case-symbol-description": [
+      "warn",
+      {
+        message: "Prefer kebab-case symbol description",
+        selector:
+          "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-readonly-array": [
+      "warn",
+      {
+        message: "Prefer readonly array",
+        selector:
+          ":not(TSTypeOperator[operator=readonly]) > :matches(TSArrayType, TSTupleType)"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-readonly-property": [
+      "warn",
+      {
+        filesToSkip: ["*.js"],
+        message: "Prefer readonly property",
+        selector: [
+          ":matches(PropertyDefinition, TSPropertySignature)[readonly!=true]"
+        ]
+      }
+    ],
+    "@skylib/no-restricted-syntax/prefer-static-method-arrow": [
+      "warn",
+      {
+        message: "Prefer arrow function",
+        selector: "MethodDefinition[static=true]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/prettier-options": [
+      "warn",
+      {
+        filesToLint: ["./.prettierrc.js"],
+        message: "Invalid option",
+        selector: [
+          "Property[key.name=arrowParens] > Literal.value[value!=avoid]",
+          "Property[key.name=endOfLine] > Literal.value[value!=lf]",
+          "Property[key.name=quoteProps] > Literal.value[value!=preserve]",
+          "Property[key.name=trailingComma] > Literal.value[value!=none]"
+        ]
+      }
+    ],
+    "@skylib/no-restricted-syntax/prettier-structure": [
+      "warn",
+      {
+        filesToLint: ["./.prettierrc.js"],
+        message: "Expecting 4 options",
+        selector:
+          "AssignmentExpression > ObjectExpression.right[properties.length!=4]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/require-assign-to-var": [
+      "warn",
+      {
+        message: 'Assign "require" to variable',
+        selector:
+          ":not(ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/restrict-chain-expression": [
+      "warn",
+      {
+        message: "Prefer conditional expression",
+        selector: "LogicalExpression[operator=??][left.type=ChainExpression]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/vue-no-empty-lines": [
+      "warn",
+      {
+        message: "Unexpected empty line",
+        selector: "VElement[name=template] VText[value=/^\n\n/u]"
       }
     ],
     "@skylib/optional-property-style": [
@@ -493,19 +540,40 @@ module.exports = {
         properties: ["function"]
       }
     ],
-    "@skylib/sort-array": [
+    "@skylib/sort-array": "off",
+    "@skylib/sort-array/consistent-group-empty-lines": [
       "warn",
       {
-        rules: [
-          {
-            _id: "skylib-eslint-plugin",
-            key: "_id",
-            selector:
-              "Property[key.value=/^@skylib/u] > ArrayExpression > ObjectExpression > Property[key.name=/^(?:overrides|rules|sources)$/u] > ArrayExpression",
-            sendToBottom: /^catch-all(?::|$)/u.source,
-            sendToTop: /^main(?::|$)/u.source
-          }
-        ]
+        key: "_id",
+        selector:
+          "Property[key.value=@skylib/consistent-group-empty-lines] > ArrayExpression > ObjectExpression > Property[key.name=rules] > ArrayExpression"
+      }
+    ],
+    "@skylib/sort-array/consistent-import": [
+      "warn",
+      {
+        key: "_id",
+        selector:
+          "Property[key.value=@skylib/consistent-import] > ArrayExpression > ObjectExpression > Property[key.name=sources] > ArrayExpression",
+        sendToBottom: /^catch-all(?::|$)/u.source,
+        // eslint-disable-next-line no-warning-comments -- Fix for @skylib/eslint-plugin update
+        // fixme
+        sendToTop: /^$/u.source
+      }
+    ],
+    "@skylib/sort-array/optional-property-style": [
+      "warn",
+      {
+        key: "_id",
+        selector:
+          "Property[key.value=@skylib/optional-property-style] > ArrayExpression > ObjectExpression > Property[key.name=overrides] > ArrayExpression"
+      }
+    ],
+    "@skylib/sort-array/synonyms": [
+      "warn",
+      {
+        filesToLint: [".eslintrc.synonyms.js", "eslintrc.synonyms.js"],
+        selector: "ArrayExpression"
       }
     ],
     "@skylib/sort-class-members": [

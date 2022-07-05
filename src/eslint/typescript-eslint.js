@@ -80,7 +80,7 @@ module.exports = {
             selector: ["variable"]
           },
           {
-            custom: { match: true, regex: "^.{1,50}$" },
+            custom: { match: true, regex: "^.{1,80}$" },
             // eslint-disable-next-line unicorn/no-null -- Ok
             format: null,
             selector: ["objectLiteralProperty", "typeProperty"]

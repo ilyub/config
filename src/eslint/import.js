@@ -54,6 +54,8 @@ module.exports = {
           "quasar/wrappers",
           "ts-toolbelt/**",
           "typeface-roboto-multilang/*.css",
+          "/configs/eslintrc.synonyms",
+          "/src/eslintrc.synonyms",
           "/src/test-utils"
         ]
       }
