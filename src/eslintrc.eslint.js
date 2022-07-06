@@ -1,6 +1,6 @@
 module.exports = {
   rules: {
-    "@skylib/no-restricted-syntax/eslintrc-no-unnecessary-array": [
+    "@skylib/custom/eslintrc-no-unnecessary-array": [
       "warn",
       {
         message: "Unnecessary array",
