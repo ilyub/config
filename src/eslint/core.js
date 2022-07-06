@@ -1,15 +1,5 @@
 module.exports = {
   extends: "eslint:all",
-  overrides: [
-    {
-      files: "*.{ts,vue}",
-      rules: {
-        "consistent-return": "off",
-        "default-case": "off",
-        "no-undef": "off"
-      }
-    }
-  ],
   rules: {
     "array-callback-return": "off",
     "arrow-body-style": [
@@ -67,5 +57,15 @@ module.exports = {
         markers: ["/ <reference"]
       }
     ]
-  }
+  },
+  overrides: [
+    {
+      files: "*.{ts,vue}",
+      rules: {
+        "consistent-return": "off",
+        "default-case": "off",
+        "no-undef": "off"
+      }
+    }
+  ]
 };

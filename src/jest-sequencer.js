@@ -4,12 +4,9 @@ const fs = require("node:fs");
 
 const path = require("node:path");
 
-const slow = (() => {
-  if (fs.existsSync("./jest.slow.js"))
-    return require(fs.realpathSync("./jest.slow.js"));
-
-  return [];
-})();
+const slow = fs.existsSync("./jest.slow.js")
+  ? require(fs.realpathSync("./jest.slow.js"))
+  : [];
 
 module.exports = class extends Sequencer {
   /**

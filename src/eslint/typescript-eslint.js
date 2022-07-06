@@ -3,31 +3,8 @@ const { eslint } = require("../../api");
 module.exports = {
   overrides: [
     {
-      extends: "plugin:@typescript-eslint/all",
       files: "*.{js,ts,vue}",
-      overrides: [
-        {
-          files: "*.js",
-          rules: {
-            "@typescript-eslint/explicit-function-return-type": "off",
-            "@typescript-eslint/explicit-member-accessibility": "off",
-            "@typescript-eslint/no-implied-eval": "off",
-            "@typescript-eslint/no-require-imports": "off",
-            "@typescript-eslint/no-unsafe-argument": "off",
-            "@typescript-eslint/no-unsafe-assignment": "off",
-            "@typescript-eslint/no-unsafe-call": "off",
-            "@typescript-eslint/no-unsafe-member-access": "off",
-            "@typescript-eslint/no-unsafe-return": "off",
-            "@typescript-eslint/no-var-requires": "off",
-            "@typescript-eslint/restrict-template-expressions": "off",
-            "@typescript-eslint/strict-boolean-expressions": "off"
-          }
-        },
-        {
-          files: "*.d.ts",
-          rules: { "@typescript-eslint/no-unused-vars": "off" }
-        }
-      ],
+      extends: "plugin:@typescript-eslint/all",
       plugins: ["@typescript-eslint"],
       rules: {
         ...eslint.getAllRules("@typescript-eslint/eslint-plugin"),
@@ -37,10 +14,10 @@ module.exports = {
           {
             extendDefaults: false,
             types: {
+              "{}": "Not allowed",
               "Number": "Not allowed",
               "Object": "Not allowed",
-              "String": "Not allowed",
-              "{}": "Not allowed"
+              "String": "Not allowed"
             }
           }
         ],
@@ -65,7 +42,7 @@ module.exports = {
             custom: { match: true, regex: "^.{1,50}$" },
             format: ["camelCase"],
             leadingUnderscore: "allow",
-            selector: ["default"]
+            selector: "default"
           },
           {
             custom: { match: true, regex: "^.{1,50}$" },
@@ -77,7 +54,7 @@ module.exports = {
             custom: { match: true, regex: "^.{1,50}$" },
             format: ["camelCase", "PascalCase", "UPPER_CASE"],
             leadingUnderscore: "allow",
-            selector: ["variable"]
+            selector: "variable"
           },
           {
             custom: { match: true, regex: "^.{1,80}$" },
@@ -89,7 +66,7 @@ module.exports = {
             // eslint-disable-next-line unicorn/no-null -- Ok
             format: null,
             modifiers: ["requiresQuotes"],
-            selector: ["default"]
+            selector: "default"
           }
         ],
         "@typescript-eslint/no-empty-interface": [
@@ -123,6 +100,7 @@ module.exports = {
           }
         ],
         "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/non-nullable-type-assertion-style": "off",
         "@typescript-eslint/prefer-function-type": "off",
         "@typescript-eslint/prefer-optional-chain": "off",
         "@typescript-eslint/prefer-readonly-parameter-types": "off",
@@ -132,7 +110,30 @@ module.exports = {
         ],
         "@typescript-eslint/return-await": ["warn", "always"],
         "@typescript-eslint/switch-exhaustiveness-check": "off"
-      }
+      },
+      overrides: [
+        {
+          files: "*.js",
+          rules: {
+            "@typescript-eslint/explicit-function-return-type": "off",
+            "@typescript-eslint/explicit-member-accessibility": "off",
+            "@typescript-eslint/no-implied-eval": "off",
+            "@typescript-eslint/no-require-imports": "off",
+            "@typescript-eslint/no-unsafe-argument": "off",
+            "@typescript-eslint/no-unsafe-assignment": "off",
+            "@typescript-eslint/no-unsafe-call": "off",
+            "@typescript-eslint/no-unsafe-member-access": "off",
+            "@typescript-eslint/no-unsafe-return": "off",
+            "@typescript-eslint/no-var-requires": "off",
+            "@typescript-eslint/restrict-template-expressions": "off",
+            "@typescript-eslint/strict-boolean-expressions": "off"
+          }
+        },
+        {
+          files: "*.d.ts",
+          rules: { "@typescript-eslint/no-unused-vars": "off" }
+        }
+      ]
     }
   ]
 };

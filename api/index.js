@@ -57,7 +57,7 @@ module.exports = {
         ]
       }
     },
-    getAllRules: source => {
+    getAllRules: (source, filter = () => true) => {
       const prefix = (() => {
         if (source.endsWith("/eslint-plugin")) return source.slice(0, -14);
 
@@ -69,12 +69,17 @@ module.exports = {
       const { rules } = require(source);
 
       return Object.fromEntries(
-        Object.keys(rules).map(rule => [`${prefix}/${rule}`, "warn"])
+        Object.keys(rules)
+          .map(rule => `${prefix}/${rule}`)
+          .filter(filter)
+          .map(rule => [rule, "warn"])
       );
     },
     skylib: {
-      // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-plugin update
-      // fixme
+      /**
+       * @deprecated
+       */
+      // eslint-disable-next-line deprecation/deprecation -- Wait for major update
       readonliness: { ignoreTypes: ["^Promise$", "^Readonly", "^Writable"] }
     }
   },

@@ -1,50 +1,18 @@
 const { eslint } = require("../../api");
 
-const ignoreTypes = eslint.skylib.readonliness.ignoreTypes;
+const fs = require("node:fs");
+
+const rules = fs.existsSync("./.eslintrc.synonyms.js")
+  ? require(fs.realpathSync("./.eslintrc.synonyms.js"))
+  : [];
 
 module.exports = {
-  overrides: [
-    {
-      files: "*.js",
-      rules: {
-        "@skylib/array-callback-return-type": "off",
-        "@skylib/no-mutable-signature": "off",
-        "@skylib/no-unsafe-object-assignment": "off",
-        "@skylib/prefer-readonly": "off"
-      }
-    },
-    {
-      files: "*.vue",
-      rules: {
-        "@skylib/require-jsdoc": "off",
-        "@skylib/sort-keys": "off",
-        "@skylib/statements-order": [
-          "warn",
-          {
-            rootOrder: [
-              "ImportDeclaration",
-              "GlobalModuleDeclaration",
-              "Unknown",
-              "TypeDeclaration",
-              "FunctionDeclaration",
-              "ModuleDeclaration",
-              "ExportAllDeclaration",
-              "ExportDeclaration",
-              "ExportDefaultDeclaration",
-              "ExportTypeDeclaration",
-              "ExportFunctionDeclaration",
-              "ExportModuleDeclaration",
-              "ExportUnknown",
-              "JestTest"
-            ]
-          }
-        ]
-      }
-    }
-  ],
   plugins: ["@skylib/eslint-plugin"],
   rules: {
-    ...eslint.getAllRules("@skylib/eslint-plugin"),
+    ...eslint.getAllRules("@skylib/eslint-plugin", rule =>
+      /^[^/]+\/[^/]+$/u.test(rule)
+    ),
+    ...Object.fromEntries(rules.map(rule => [rule, "warn"])),
     "@skylib/consistent-empty-lines": [
       "warn",
       {
@@ -237,21 +205,11 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/no-mutable-signature": [
-      "warn",
-      {
-        ignoreClasses: true,
-        ignoreIdentifiers: [/^mutable/u.source],
-        ignoreInferredTypes: true,
-        ignoreInterfaces: true,
-        ignoreNumberSignature: true,
-        ignoreTypes
-      }
-    ],
     "@skylib/no-restricted-syntax": "off",
     "@skylib/no-restricted-syntax/consistent-array-type-name": [
       "warn",
       {
+        filesToSkip: ["*.js"],
         message: 'Array type name should end with "s"',
         selector:
           "TSTypeAliasDeclaration > Identifier[name=/(?<!Array|[^s]s)$/u]",
@@ -265,6 +223,15 @@ module.exports = {
         message: "Disabling rule is unsafe",
         selector:
           "Property[key.name=rules] > ObjectExpression > Property > Literal.value[value=off]"
+      }
+    ],
+    "@skylib/no-restricted-syntax/eslintrc-no-disable-no-disable": [
+      "warn",
+      {
+        filesToLint: ["./.eslintrc.rule-overrides.js"],
+        message: "Disabling rule is unsafe",
+        selector:
+          "Property[key.name=rules] > ObjectExpression > Property[key.value=@skylib/no-restricted-syntax/eslintrc-no-disable][value.value=off]"
       }
     ],
     "@skylib/no-restricted-syntax/eslintrc-no-overrides": [
@@ -293,22 +260,43 @@ module.exports = {
         selector: "AssignmentExpression > ObjectExpression[properties.length>0]"
       }
     ],
-    "@skylib/no-restricted-syntax/eslintrc-no-unnecessary-array": [
+    "@skylib/no-restricted-syntax/eslintrc-no-unnecessary-array": "off",
+    "@skylib/no-restricted-syntax/no-Object-assign-readonly": [
       "warn",
       {
-        filesToLint: [
-          ".eslintrc.js",
-          ".eslintrc.fast.js",
-          ".eslintrc.overrides.js",
-          ".eslintrc.rule-overrides.js",
-          ".eslintrc.synonyms.js",
-          ".eslintrc.temp.js",
-          "./**/eslintrc.js",
-          "./**/eslint/*.js"
-        ],
-        message: "Unnecessary array",
+        filesToSkip: ["*.js"],
+        message: "Do not assign to readonly object",
         selector:
-          "Property[key.name=/^(extends|files)$/u] > ArrayExpression[elements.length=1]"
+          "CallExpression[callee.object.name=Object][callee.property.name=assign] > Identifier.arguments",
+        typeIs: "readonly"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-anonymous-return": [
+      "warn",
+      {
+        checkReturnType: true,
+        filesToSkip: ["*.js"],
+        message: "Do not return anonymous object",
+        selector: ":function",
+        typeIs: "anonymous-object"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-distributed-function-properties": [
+      "warn",
+      {
+        filesToSkip: ["*.js"],
+        message: "Avoid distributed function properties definition",
+        selector:
+          "AssignmentExpression > MemberExpression.left > Identifier.object",
+        typeIs: "function"
+      }
+    ],
+    "@skylib/no-restricted-syntax/no-empty-interface": [
+      "warn",
+      {
+        message: "Empty interface is not allowed",
+        selector:
+          "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id"
       }
     ],
     "@skylib/no-restricted-syntax/no-invalid-identifier": [
@@ -391,7 +379,7 @@ module.exports = {
       {
         message: 'Expecting "as const" object',
         selector:
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator > ObjectExpression"
+          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator[id.typeAnnotation=undefined] > ObjectExpression"
       }
     ],
     "@skylib/no-restricted-syntax/prefer-construct-signature-first": [
@@ -405,6 +393,7 @@ module.exports = {
     "@skylib/no-restricted-syntax/prefer-jest-toBe": [
       "warn",
       {
+        filesToSkip: ["*.js"],
         message: 'Prefer "toBe" matcher',
         selector:
           "CallExpression[callee.property.name=toStrictEqual] > .arguments",
@@ -414,6 +403,7 @@ module.exports = {
     "@skylib/no-restricted-syntax/prefer-jest-toStrictEqual": [
       "warn",
       {
+        filesToSkip: ["*.js"],
         message: 'Prefer "toStrictEqual" matcher',
         selector: "CallExpression[callee.property.name=toBe] > .arguments",
         typeIsNoneOf: ["boolean", "number", "string"]
@@ -449,9 +439,8 @@ module.exports = {
       {
         filesToSkip: ["*.js"],
         message: "Prefer readonly property",
-        selector: [
+        selector:
           ":matches(PropertyDefinition, TSPropertySignature)[readonly!=true]"
-        ]
       }
     ],
     "@skylib/no-restricted-syntax/prefer-static-method-arrow": [
@@ -488,7 +477,7 @@ module.exports = {
       {
         message: 'Assign "require" to variable',
         selector:
-          ":not(ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]"
+          ":not(ConditionalExpression, ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]"
       }
     ],
     "@skylib/no-restricted-syntax/restrict-chain-expression": [
@@ -509,17 +498,6 @@ module.exports = {
       "warn",
       { classes: "undefined", interfaces: "optional" }
     ],
-    "@skylib/prefer-readonly": [
-      "warn",
-      {
-        ignoreClasses: true,
-        ignoreIdentifiers: [/^mutable/u.source],
-        ignoreInferredTypes: true,
-        ignoreInterfaces: true,
-        ignoreTypes
-      }
-    ],
-    "@skylib/prefer-readonly-props": "off",
     "@skylib/require-jsdoc": [
       "warn",
       {
@@ -541,6 +519,13 @@ module.exports = {
       }
     ],
     "@skylib/sort-array": "off",
+    "@skylib/sort-array/commitlint": [
+      "warn",
+      {
+        filesToLint: ["commitlint.scopes.js", "commitlint-all.scopes.js"],
+        selector: "ArrayExpression"
+      }
+    ],
     "@skylib/sort-array/consistent-group-empty-lines": [
       "warn",
       {
@@ -561,6 +546,7 @@ module.exports = {
         sendToTop: /^$/u.source
       }
     ],
+    "@skylib/sort-array/eslint": "off",
     "@skylib/sort-array/optional-property-style": [
       "warn",
       {
@@ -629,5 +615,66 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  overrides: [
+    {
+      files: "*.js",
+      rules: {
+        "@skylib/array-callback-return-type": "off",
+        "@skylib/no-mutable-signature": "off",
+        "@skylib/no-unsafe-object-assignment": "off",
+        "@skylib/prefer-readonly": "off"
+      }
+    },
+    {
+      files: "*.vue",
+      rules: {
+        "@skylib/require-jsdoc": "off",
+        "@skylib/sort-keys": [
+          "warn",
+          {
+            overrides: [
+              {
+                _id: "defineComponent",
+                customOrder: [
+                  "name",
+                  "functional",
+                  "components",
+                  "directives",
+                  "inheritAttrs",
+                  "props",
+                  "emits",
+                  "setup",
+                  "template"
+                ],
+                selector:
+                  "CallExpression[callee.name=defineComponent] > ObjectExpression"
+              }
+            ]
+          }
+        ],
+        "@skylib/statements-order": [
+          "warn",
+          {
+            rootOrder: [
+              "ImportDeclaration",
+              "GlobalModuleDeclaration",
+              "Unknown",
+              "TypeDeclaration",
+              "FunctionDeclaration",
+              "ModuleDeclaration",
+              "ExportAllDeclaration",
+              "ExportDeclaration",
+              "ExportDefaultDeclaration",
+              "ExportTypeDeclaration",
+              "ExportFunctionDeclaration",
+              "ExportModuleDeclaration",
+              "ExportUnknown",
+              "JestTest"
+            ]
+          }
+        ]
+      }
+    }
+  ]
 };

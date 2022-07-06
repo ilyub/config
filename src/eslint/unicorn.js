@@ -1,7 +1,6 @@
 const { eslint } = require("../../api");
 
 module.exports = {
-  overrides: [{ files: "*.js", rules: { "unicorn/prefer-module": "off" } }],
   plugins: ["unicorn"],
   rules: {
     ...eslint.getAllRules("eslint-plugin-unicorn"),
@@ -15,5 +14,6 @@ module.exports = {
     "unicorn/prefer-at": "off",
     "unicorn/prefer-string-replace-all": "off",
     "unicorn/prevent-abbreviations": "off"
-  }
+  },
+  overrides: [{ files: "*.js", rules: { "unicorn/prefer-module": "off" } }]
 };

@@ -1,8 +1,12 @@
 module.exports = {
   overrides: [
     {
-      extends: "./src/eslintrc.skip-html-literal-check",
-      files: "./api/index.js"
+      files: "./api/index.js",
+      extends: "./src/eslintrc.skip-html-literal-check"
+    },
+    {
+      files: ["./src/eslint/*", "./src/eslintrc.*.js", "./src/eslintrc.js"],
+      extends: "./src/eslintrc.eslint"
     }
   ]
 };

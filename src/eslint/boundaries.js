@@ -1,18 +1,7 @@
 const { eslint } = require("../../api");
 
 module.exports = {
-  overrides: [
-    { files: "./*", rules: { "boundaries/no-unknown-files": "off" } }
-  ],
   plugins: ["boundaries"],
-  rules: {
-    ...eslint.getAllRules("eslint-plugin-boundaries"),
-    "boundaries/element-types": [
-      "warn",
-      { default: "disallow", rules: eslint.boundaries.elementTypes.rules }
-    ],
-    "boundaries/no-private": "off"
-  },
   settings: {
     "boundaries/elements": [
       {
@@ -78,5 +67,14 @@ module.exports = {
         return result;
       })()
     ]
-  }
+  },
+  rules: {
+    ...eslint.getAllRules("eslint-plugin-boundaries"),
+    "boundaries/element-types": [
+      "warn",
+      { default: "disallow", rules: eslint.boundaries.elementTypes.rules }
+    ],
+    "boundaries/no-private": "off"
+  },
+  overrides: [{ files: "./*", rules: { "boundaries/no-unknown-files": "off" } }]
 };

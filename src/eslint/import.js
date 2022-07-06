@@ -1,21 +1,8 @@
 const { eslint } = require("../../api");
 
 module.exports = {
-  overrides: [
-    {
-      files: "*.{ts,vue}",
-      rules: { "import/namespace": "off", "import/no-unresolved": "off" }
-    },
-    { files: "*.js", rules: { "import/no-commonjs": "off" } },
-    {
-      files: "*.vue",
-      rules: {
-        "import/no-default-export": "off",
-        "import/no-named-export": "warn"
-      }
-    }
-  ],
   plugins: ["import"],
+  settings: { "import/resolver": { typescript: { project: "tsconfig.json" } } },
   rules: {
     ...eslint.getAllRules("eslint-plugin-import"),
     "import/dynamic-import-chunkname": [
@@ -89,5 +76,18 @@ module.exports = {
     "import/prefer-default-export": "off",
     "import/unambiguous": "off"
   },
-  settings: { "import/resolver": { typescript: { project: "tsconfig.json" } } }
+  overrides: [
+    {
+      files: "*.{ts,vue}",
+      rules: { "import/namespace": "off", "import/no-unresolved": "off" }
+    },
+    { files: "*.js", rules: { "import/no-commonjs": "off" } },
+    {
+      files: "*.vue",
+      rules: {
+        "import/no-default-export": "off",
+        "import/no-named-export": "warn"
+      }
+    }
+  ]
 };
