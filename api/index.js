@@ -2,61 +2,6 @@ const fs = require("node:fs");
 
 module.exports = {
   eslint: {
-    boundaries: {
-      elementTypes: {
-        /**
-         * Creates rules for "boundaries/element-types" rule.
-         *
-         * @param generator - Creates element matcher from filename.
-         * @param blocks - Blocks.
-         * @returns Rules.
-         */
-        createRules: (generator, ...blocks) => {
-          const result = [];
-
-          for (const [allowIndex, allowFilename] of blocks.entries())
-            for (const [fromIndex, fromFilename] of blocks.entries())
-              if (allowIndex < fromIndex)
-                result.push({
-                  allow: [generator(allowFilename)],
-                  from: [generator(fromFilename)]
-                });
-
-          return result;
-        },
-        rules: [
-          { allow: ["src2"], from: ["src1"] },
-          { allow: ["src3"], from: ["src2"] },
-          { allow: ["src4"], from: ["src3"] },
-          { allow: ["src5"], from: ["src4"] },
-          { allow: ["src6"], from: ["src5"] },
-          { allow: ["src7"], from: ["src6"] },
-          {
-            allow: "{src1,src2,src3,src4,src5,src6,src7}",
-            from: [
-              "{mocks,tests}",
-              ["{src1,src2,src3,src4,src5,src6,src7}", { filename: "index" }],
-              ["src2", { dir1: "{__mocks__,test-utils}" }],
-              ["src3", { dir2: "__mocks__" }],
-              ["src4", { dir3: "__mocks__" }],
-              ["src5", { dir4: "__mocks__" }],
-              ["src6", { dir5: "__mocks__" }],
-              ["src7", { dir6: "__mocks__" }]
-            ]
-          },
-          {
-            allow: [
-              [
-                "{src1,src2,src3,src4,src5,src6,src7}",
-                // eslint-disable-next-line no-template-curly-in-string -- Ok
-                { filename: "${filename}" }
-              ]
-            ],
-            from: "{src1,src2,src3,src4,src5,src6,src7}"
-          }
-        ]
-      }
-    },
     getAllRules: (source, filter = () => true) => {
       const prefix = (() => {
         if (source.endsWith("/eslint-plugin")) return source.slice(0, -14);
@@ -74,13 +19,6 @@ module.exports = {
           .filter(filter)
           .map(rule => [rule, "warn"])
       );
-    },
-    skylib: {
-      /**
-       * @deprecated
-       */
-      // eslint-disable-next-line deprecation/deprecation -- Wait for major update
-      readonliness: { ignoreTypes: ["^Promise$", "^Readonly", "^Writable"] }
     }
   },
   jest: {

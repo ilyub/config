@@ -1,6 +1,6 @@
 module.exports = {
   rules: {
-    "import/no-internal-modules": "off",
-    "import/no-relative-parent-imports": "off"
+    "@skylib/disallow-import/dots": "off",
+    "import/no-internal-modules": "off"
   }
 };

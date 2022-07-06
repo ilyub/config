@@ -22,6 +22,15 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "editor.unicodeHighlight.ambiguousCharacters": true,
+    "eslint.codeActionsOnSave.rules": [
+      "!@skylib/no-unsafe-object-assignment",
+      "!@typescript-eslint/no-misused-promises",
+      "!@typescript-eslint/no-unsafe-argument",
+      "!deprecation/deprecation",
+      "!import/extensions",
+      "!import/no-internal-modules",
+      "*"
+    ],
     "eslint.format.enable": true,
     "files.eol": "\n",
     "files.insertFinalNewline": true,

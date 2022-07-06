@@ -35,6 +35,7 @@ module.exports = [
   "@skylib/custom/vue-no-empty-lines",
   "@skylib/disallow-import/at-sign",
   "@skylib/disallow-import/dot",
+  "@skylib/disallow-import/dots",
   "@skylib/sort-array/commitlint",
   "@skylib/sort-array/consistent-group-empty-lines",
   "@skylib/sort-array/consistent-import",

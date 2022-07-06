@@ -481,19 +481,8 @@ module.exports = {
       "warn",
       { disallow: ["@", "@/**"], filesToSkip: ["./tests/**"] }
     ],
-    "@skylib/disallow-import/dot": [
-      "warn",
-      {
-        disallow: [
-          ".",
-          "../src/**",
-          "../../src/**",
-          "../../../src/**",
-          "../../../../src/**",
-          "../../../../../src/**"
-        ]
-      }
-    ],
+    "@skylib/disallow-import/dot": ["warn", { disallow: ["."] }],
+    "@skylib/disallow-import/dots": ["warn", { disallow: ["../**"] }],
     "@skylib/optional-property-style": [
       "warn",
       { classes: "undefined", interfaces: "optional" }

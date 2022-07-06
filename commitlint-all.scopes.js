@@ -1,1 +1,3 @@
-module.exports = { scopes: ["api", "getOptions", "git-hooks", "utils"] };
+module.exports = {
+  scopes: ["api", "boundaries", "getOptions", "git-hooks", "utils"]
+};

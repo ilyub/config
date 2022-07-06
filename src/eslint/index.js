@@ -1,7 +1,6 @@
 module.exports = {
   extends: [
     "./core",
-    "./boundaries",
     "./deprecation",
     "./es",
     "./escompat",

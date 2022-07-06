@@ -16,6 +16,8 @@ module.exports = {
     "import/exports-last": "off",
     "import/group-exports": "off",
     "import/max-dependencies": "off",
+    "import/named": "off",
+    "import/namespace": "off",
     "import/newline-after-import": "off",
     "import/no-anonymous-default-export": "off",
     "import/no-deprecated": "off",
@@ -49,10 +51,14 @@ module.exports = {
     ],
     "import/no-named-export": "off",
     "import/no-namespace": "off",
+    "import/no-relative-packages": "off",
+    "import/no-relative-parent-imports": "off",
+    "import/no-restricted-paths": "off",
     "import/no-unassigned-import": [
       "warn",
       { allow: ["**/*.css", "**/*.scss", "jest-extended", "reflect-metadata"] }
     ],
+    "import/no-unresolved": "off",
     "import/order": [
       "warn",
       {
@@ -78,10 +84,14 @@ module.exports = {
   },
   overrides: [
     {
-      files: "*.{ts,vue}",
-      rules: { "import/namespace": "off", "import/no-unresolved": "off" }
+      files: "*.js",
+      rules: {
+        "import/named": "warn",
+        "import/namespace": "warn",
+        "import/no-commonjs": "off",
+        "import/no-unresolved": "warn"
+      }
     },
-    { files: "*.js", rules: { "import/no-commonjs": "off" } },
     {
       files: "*.vue",
       rules: {
