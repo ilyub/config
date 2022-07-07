@@ -6,7 +6,7 @@ module.exports = {
     },
     {
       files: ["./src/eslint/*", "./src/eslintrc.*.js", "./src/eslintrc.js"],
-      extends: "./src/eslintrc.eslint"
+      extends: "./src/eslintrc.eslintrc"
     }
   ]
 };

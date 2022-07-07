@@ -2,11 +2,6 @@ module.exports = {
   extends: "eslint:all",
   rules: {
     "array-callback-return": "off",
-    "arrow-body-style": [
-      "warn",
-      "as-needed",
-      { requireReturnForObjectLiteral: true }
-    ],
     "camelcase": "off",
     "capitalized-comments": "off",
     "class-methods-use-this": ["warn", { enforceForClassFields: false }],

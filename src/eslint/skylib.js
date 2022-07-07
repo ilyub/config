@@ -253,14 +253,39 @@ module.exports = {
         typeIs: "readonly"
       }
     ],
-    "@skylib/custom/no-anonymous-return": [
+    "@skylib/custom/no-complex-type-in-call-expression": [
+      "warn",
+      {
+        filesToSkip: ["*.js"],
+        message: "Avoid complex inline types",
+        selector: "CallExpression",
+        typeIs: "complex"
+      }
+    ],
+    "@skylib/custom/no-complex-type-in-function-return": [
       "warn",
       {
         checkReturnType: true,
         filesToSkip: ["*.js"],
-        message: "Do not return anonymous object",
+        message: "Avoid complex inline types",
         selector: ":function",
-        typeIs: "anonymous-object"
+        typeIs: "complex"
+      }
+    ],
+    "@skylib/custom/no-complex-type-in-variable-declaration": [
+      "warn",
+      {
+        filesToSkip: ["*.js"],
+        message: "Avoid complex inline types",
+        selector: [
+          "ArrayPattern > Identifier",
+          "Identifier.id[typeAnnotation=undefined]",
+          "ObjectPattern > Property > Identifier.value"
+        ].map(
+          selector =>
+            `VariableDeclarator:not([init.type=TSAsExpression][init.typeAnnotation.typeName.name=const]) > ${selector}`
+        ),
+        typeIs: "complex"
       }
     ],
     "@skylib/custom/no-distributed-function-properties": [
@@ -324,6 +349,15 @@ module.exports = {
         ]
       }
     ],
+    "@skylib/custom/no-unnecessary-as-const": [
+      "warn",
+      {
+        filesToSkip: ["*.js"],
+        message: 'Unnecessary "as const"',
+        selector:
+          "VariableDeclarator[id.typeAnnotation] > TSAsExpression > TSTypeReference > Identifier[name=const]"
+      }
+    ],
     "@skylib/custom/no-unnecessary-break": [
       "warn",
       {
@@ -359,9 +393,17 @@ module.exports = {
     "@skylib/custom/prefer-const-object": [
       "warn",
       {
+        filesToSkip: ["*.js"],
         message: 'Expecting "as const" object',
-        selector:
-          ":matches(ExportNamedDeclaration, Program, TSModuleBlock) > VariableDeclaration > VariableDeclarator[id.typeAnnotation=undefined] > ObjectExpression"
+        selector: [
+          "ArrayPattern > Identifier",
+          "Identifier.id[typeAnnotation=undefined]",
+          "ObjectPattern > Property > Identifier.value"
+        ].map(
+          selector =>
+            `VariableDeclarator[init.type=/^(?:ArrayExpression|ObjectExpression)$/u] > ${selector}`
+        ),
+        typeIsOneOf: ["array", "object"]
       }
     ],
     "@skylib/custom/prefer-construct-signature-first": [
@@ -535,7 +577,7 @@ module.exports = {
         sendToTop: /^$/u.source
       }
     ],
-    "@skylib/sort-array/eslint": "off",
+    "@skylib/sort-array/eslintrc": "off",
     "@skylib/sort-array/optional-property-style": [
       "warn",
       {
@@ -618,6 +660,15 @@ module.exports = {
     {
       files: "*.vue",
       rules: {
+        "@skylib/custom/no-complex-type-in-function-return": [
+          "warn",
+          {
+            checkReturnType: true,
+            message: "Avoid complex inline types",
+            selector: ":not(Property[key.name=setup]) > :function",
+            typeIs: "complex"
+          }
+        ],
         "@skylib/require-jsdoc": "off",
         "@skylib/sort-keys": [
           "warn",

@@ -5,14 +5,14 @@ module.exports = {
       {
         message: "Unnecessary array",
         selector:
-          "Property[key.name=/^(extends|files|selector)$/u] > ArrayExpression[elements.length=1]"
+          "Property[key.name=/^(?:extends|files|selector)$/u] > ArrayExpression[elements.length=1]"
       }
     ],
-    "@skylib/sort-array/eslint": [
+    "@skylib/sort-array/eslintrc": [
       "warn",
       {
         selector:
-          "Property[key.name=/files|filesToLint|filesToSkip/u] > ArrayExpression"
+          "Property[key.name=/^(?:files|filesToLint|filesToSkip)$/u] > ArrayExpression"
       }
     ],
     "@skylib/sort-keys": [

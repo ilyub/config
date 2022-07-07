@@ -7,7 +7,9 @@ module.exports = [
   "@skylib/custom/eslintrc-no-temp",
   "@skylib/custom/eslintrc-no-unnecessary-array",
   "@skylib/custom/no-Object-assign-readonly",
-  "@skylib/custom/no-anonymous-return",
+  "@skylib/custom/no-complex-type-in-call-expression",
+  "@skylib/custom/no-complex-type-in-function-return",
+  "@skylib/custom/no-complex-type-in-variable-declaration",
   "@skylib/custom/no-distributed-function-properties",
   "@skylib/custom/no-empty-interface",
   "@skylib/custom/no-invalid-identifier",
@@ -15,6 +17,7 @@ module.exports = [
   "@skylib/custom/no-optional-true-type",
   "@skylib/custom/no-this-void",
   "@skylib/custom/no-underscore-export",
+  "@skylib/custom/no-unnecessary-as-const",
   "@skylib/custom/no-unnecessary-break",
   "@skylib/custom/no-unnecessary-initialization",
   "@skylib/custom/prefer-arrow-function-property",
@@ -39,7 +42,7 @@ module.exports = [
   "@skylib/sort-array/commitlint",
   "@skylib/sort-array/consistent-group-empty-lines",
   "@skylib/sort-array/consistent-import",
-  "@skylib/sort-array/eslint",
+  "@skylib/sort-array/eslintrc",
   "@skylib/sort-array/optional-property-style",
   "@skylib/sort-array/synonyms"
 ];

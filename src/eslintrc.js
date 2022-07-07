@@ -17,10 +17,13 @@ module.exports = {
     sourceType: "module"
   },
   overrides: [
-    { files: ["./*", "./{__mocks__,tests}/**"], extends: "./eslintrc.chore" },
+    {
+      files: ["./*", "./__mocks__/**", "./tests/**"],
+      extends: "./eslintrc.chore"
+    },
     { files: "**/__mocks__/**", extends: "./eslintrc.mocks" },
-    { files: "./tests/**", extends: "./eslintrc.tests" },
     { files: "./src/test-utils/**", extends: "./eslintrc.test-utils" },
+    { files: "./tests/**", extends: "./eslintrc.tests" },
     {
       files: "*.*.ts",
       extends: [
@@ -39,7 +42,7 @@ module.exports = {
         "./.eslintrc.synonyms.js",
         "./.eslintrc.temp.js"
       ],
-      extends: "./eslintrc.eslint"
+      extends: "./eslintrc.eslintrc"
     },
     {
       files: "./jest.config.js",
