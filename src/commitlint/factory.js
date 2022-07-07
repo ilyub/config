@@ -1,3 +1,5 @@
+/* eslint @skylib/sort-array: ["warn", {selector: "VariableDeclarator[id.name=/^(?:defaultScopes|types)$/u] > ArrayExpression" }] -- Ok */
+
 module.exports = sources => {
   const fs = require("node:fs");
 
@@ -30,7 +32,7 @@ module.exports = sources => {
     "test"
   ];
 
-  const scopes = unique([
+  const defaultScopes = [
     "auto-eslint",
     "auto-json",
     "auto-linebreaks",
@@ -59,8 +61,8 @@ module.exports = sources => {
     "recommended-eslint",
     "recommended-package-json-lint",
     "recommended-phpstan",
-    "recommended-stylelint",
     "recommended-sonar",
+    "recommended-stylelint",
     "refactor",
     "revert",
     "sonar",
@@ -68,6 +70,11 @@ module.exports = sources => {
     "stylelint",
     "typedoc",
     "typescript",
+    "vscode"
+  ];
+
+  const scopes = unique([
+    ...defaultScopes,
     ...config.scopes,
     ...scopesFromDirectories(config.dirs)
   ]);
