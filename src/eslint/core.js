@@ -55,7 +55,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: "*.{ts,vue}",
+      files: "!*.js",
       rules: {
         "consistent-return": "off",
         "default-case": "off",

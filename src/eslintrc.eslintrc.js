@@ -36,6 +36,12 @@ module.exports = {
               "AssignmentExpression[left.object.name=module][left.property.name=exports] > ObjectExpression",
               "Property[key.name=overrides] > ArrayExpression > ObjectExpression"
             ]
+          },
+          {
+            _id: "skylib",
+            customOrder: ["_id", "filesToLint", "filesToSkip"],
+            selector:
+              "Property[key.value=/^@skylib/u] > ArrayExpression > ObjectExpression"
           }
         ]
       }

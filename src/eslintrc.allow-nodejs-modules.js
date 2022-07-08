@@ -1,1 +1,1 @@
-module.exports = { rules: { "import/no-nodejs-modules": "off" } };
+module.exports = {};

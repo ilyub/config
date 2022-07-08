@@ -16,6 +16,7 @@
     "moduleResolution": "Node",
     "newLine": "lf",
     "noEmitOnError": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "target": "ES2017",

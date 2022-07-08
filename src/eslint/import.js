@@ -14,24 +14,19 @@ module.exports = {
     ],
     "import/export": "off",
     "import/exports-last": "off",
+    "import/extensions": "off",
     "import/group-exports": "off",
     "import/max-dependencies": "off",
-    "import/named": "off",
-    "import/namespace": "off",
     "import/newline-after-import": "off",
     "import/no-anonymous-default-export": "off",
+    "import/no-cycle": "off",
     "import/no-deprecated": "off",
-    "import/no-extraneous-dependencies": [
-      "warn",
-      {
-        bundledDependencies: false,
-        devDependencies: false,
-        optionalDependencies: false,
-        peerDependencies: true
-      }
-    ],
+    "import/no-duplicates": "off",
+    "import/no-extraneous-dependencies": "off",
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint update
+    // fixme
     "import/no-internal-modules": [
-      "warn",
+      "off",
       {
         allow: [
           "@skylib/*/dist/test-utils",
@@ -49,55 +44,33 @@ module.exports = {
         ]
       }
     ],
-    "import/no-named-export": "off",
     "import/no-namespace": "off",
+    "import/no-nodejs-modules": "off",
     "import/no-relative-packages": "off",
     "import/no-relative-parent-imports": "off",
     "import/no-restricted-paths": "off",
+    "import/no-self-import": "off",
     "import/no-unassigned-import": [
       "warn",
       { allow: ["**/*.css", "**/*.scss", "jest-extended", "reflect-metadata"] }
     ],
-    "import/no-unresolved": "off",
-    "import/order": [
-      "warn",
-      {
-        alphabetize: { caseInsensitive: false, order: "asc" },
-        groups: [
-          [
-            "builtin",
-            "external",
-            "index",
-            "internal",
-            "object",
-            "parent",
-            "sibling",
-            "unknown"
-          ],
-          "type"
-        ],
-        warnOnUnassignedImports: true
-      }
-    ],
+    "import/order": "off",
     "import/prefer-default-export": "off",
     "import/unambiguous": "off"
   },
   overrides: [
     {
-      files: "*.js",
+      files: "!*.js",
       rules: {
-        "import/named": "warn",
-        "import/namespace": "warn",
-        "import/no-commonjs": "off",
-        "import/no-unresolved": "warn"
+        "import/default": "off",
+        "import/named": "off",
+        "import/namespace": "off",
+        "import/no-named-as-default": "off",
+        "import/no-unresolved": "off"
       }
     },
-    {
-      files: "*.vue",
-      rules: {
-        "import/no-default-export": "off",
-        "import/no-named-export": "warn"
-      }
-    }
+    { files: "!*.vue", rules: { "import/no-named-export": "off" } },
+    { files: "*.js", rules: { "import/no-commonjs": "off" } },
+    { files: "*.vue", rules: { "import/no-default-export": "off" } }
   ]
 };

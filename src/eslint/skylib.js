@@ -13,6 +13,7 @@ module.exports = {
       /^[^/]+\/[^/]+$/u.test(rule)
     ),
     ...Object.fromEntries(rules.map(rule => [rule, "warn"])),
+    "@skylib/array-callback-return-type": ["warn", { filesToSkip: ["*.js"] }],
     "@skylib/consistent-empty-lines": [
       "warn",
       {
@@ -66,6 +67,7 @@ module.exports = {
             _id: "ObjectExpression",
             selector: "ObjectExpression > .properties"
           },
+          { _id: "ObjectPattern", selector: "ObjectPattern > .properties" },
           { _id: "TSDeclareFunction", selector: "TSDeclareFunction > .params" },
           { _id: "TSFunctionType", selector: "TSFunctionType > .params" },
           { _id: "TSInterfaceBody", selector: "TSInterfaceBody > .body" },
@@ -253,22 +255,23 @@ module.exports = {
         typeIs: "readonly"
       }
     ],
-    "@skylib/custom/no-complex-type-in-call-expression": [
-      "warn",
-      {
-        filesToSkip: ["*.js"],
-        message: "Avoid complex inline types",
-        selector: "CallExpression",
-        typeIs: "complex"
-      }
-    ],
     "@skylib/custom/no-complex-type-in-function-return": [
       "warn",
       {
+        filesToSkip: ["*.js", "*.vue"],
         checkReturnType: true,
-        filesToSkip: ["*.js"],
         message: "Avoid complex inline types",
         selector: ":function",
+        typeIs: "complex"
+      }
+    ],
+    "@skylib/custom/no-complex-type-in-function-return-vue": [
+      "warn",
+      {
+        filesToLint: ["*.vue"],
+        checkReturnType: true,
+        message: "Avoid complex inline types",
+        selector: ":not(Property[key.name=setup]) > :function",
         typeIs: "complex"
       }
     ],
@@ -519,12 +522,21 @@ module.exports = {
       }
     ],
     "@skylib/disallow-import": "off",
-    "@skylib/disallow-import/at-sign": [
+    "@skylib/disallow-import/no-at-sign": ["warn", { disallow: ["@", "@/**"] }],
+    "@skylib/disallow-import/no-extension": [
       "warn",
-      { disallow: ["@", "@/**"], filesToSkip: ["./tests/**"] }
+      { filesToLint: ["*.js"], disallow: ["*.{js,json,ts}"] }
     ],
-    "@skylib/disallow-import/dot": ["warn", { disallow: ["."] }],
-    "@skylib/disallow-import/dots": ["warn", { disallow: ["../**"] }],
+    "@skylib/disallow-import/no-index": ["warn", { disallow: ["."] }],
+    "@skylib/disallow-import/no-internal-modules": [
+      "warn",
+      { disallow: ["./*/**"] }
+    ],
+    "@skylib/disallow-import/no-relative-parent-imports": [
+      "warn",
+      { disallow: ["../**"] }
+    ],
+    "@skylib/no-unsafe-object-assignment": ["warn", { filesToSkip: ["*.js"] }],
     "@skylib/optional-property-style": [
       "warn",
       { classes: "undefined", interfaces: "optional" }
@@ -532,6 +544,7 @@ module.exports = {
     "@skylib/require-jsdoc": [
       "warn",
       {
+        filesToSkip: ["*.vue"],
         excludeSelectors: ["ClassDeclaration", "FunctionDeclaration"],
         includeSelectors: [
           ...[
@@ -625,9 +638,34 @@ module.exports = {
         ]
       }
     ],
+    "@skylib/sort-keys": [
+      "warn",
+      {
+        overrides: [
+          {
+            _id: "defineComponent",
+            customOrder: [
+              "name",
+              "functional",
+              "components",
+              "directives",
+              "inheritAttrs",
+              "props",
+              "emits",
+              "setup",
+              "template"
+            ],
+            filesToLint: ["*.vue"],
+            selector:
+              "CallExpression[callee.name=defineComponent] > ObjectExpression"
+          }
+        ]
+      }
+    ],
     "@skylib/statements-order": [
       "warn",
       {
+        filesToSkip: ["*.vue"],
         rootOrder: [
           "ImportDeclaration",
           "GlobalModuleDeclaration",
@@ -645,76 +683,28 @@ module.exports = {
           "JestTest"
         ]
       }
-    ]
-  },
-  overrides: [
-    {
-      files: "*.js",
-      rules: {
-        "@skylib/array-callback-return-type": "off",
-        "@skylib/no-mutable-signature": "off",
-        "@skylib/no-unsafe-object-assignment": "off",
-        "@skylib/prefer-readonly": "off"
-      }
-    },
-    {
-      files: "*.vue",
-      rules: {
-        "@skylib/custom/no-complex-type-in-function-return": [
-          "warn",
-          {
-            checkReturnType: true,
-            message: "Avoid complex inline types",
-            selector: ":not(Property[key.name=setup]) > :function",
-            typeIs: "complex"
-          }
-        ],
-        "@skylib/require-jsdoc": "off",
-        "@skylib/sort-keys": [
-          "warn",
-          {
-            overrides: [
-              {
-                _id: "defineComponent",
-                customOrder: [
-                  "name",
-                  "functional",
-                  "components",
-                  "directives",
-                  "inheritAttrs",
-                  "props",
-                  "emits",
-                  "setup",
-                  "template"
-                ],
-                selector:
-                  "CallExpression[callee.name=defineComponent] > ObjectExpression"
-              }
-            ]
-          }
-        ],
-        "@skylib/statements-order": [
-          "warn",
-          {
-            rootOrder: [
-              "ImportDeclaration",
-              "GlobalModuleDeclaration",
-              "Unknown",
-              "TypeDeclaration",
-              "FunctionDeclaration",
-              "ModuleDeclaration",
-              "ExportAllDeclaration",
-              "ExportDeclaration",
-              "ExportDefaultDeclaration",
-              "ExportTypeDeclaration",
-              "ExportFunctionDeclaration",
-              "ExportModuleDeclaration",
-              "ExportUnknown",
-              "JestTest"
-            ]
-          }
+    ],
+    "@skylib/statements-order/vue": [
+      "warn",
+      {
+        filesToLint: ["*.vue"],
+        rootOrder: [
+          "ImportDeclaration",
+          "GlobalModuleDeclaration",
+          "Unknown",
+          "TypeDeclaration",
+          "FunctionDeclaration",
+          "ModuleDeclaration",
+          "ExportAllDeclaration",
+          "ExportDeclaration",
+          "ExportDefaultDeclaration",
+          "ExportTypeDeclaration",
+          "ExportFunctionDeclaration",
+          "ExportModuleDeclaration",
+          "ExportUnknown",
+          "JestTest"
         ]
       }
-    }
-  ]
+    ]
+  }
 };

@@ -1,4 +1,5 @@
 <script lang="ts">
+// eslint-disable-next-line node/no-extraneous-import -- Ok
 import { defineComponent } from "vue";
 
 export default defineComponent({
