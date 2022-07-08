@@ -12,16 +12,16 @@
           "const": "browserslist"
         },
         "build": {
-          "const": "cf ./dist & tsc --project tsconfig-build.json"
+          "const": "cf ./dist && tsc --project tsconfig-build.json"
         },
         "build-doc": {
           "enum": [
-            "php chore/build-doc.php & cpy docs-static/* docs",
-            "typedoc src & cpy docs-static/* docs"
+            "php chore/build-doc.php && cpy docs-static/* docs",
+            "typedoc src && cpy docs-static/* docs"
           ]
         },
         "build-es": {
-          "const": "cf ./es & tsc --project tsconfig-build-es.json"
+          "const": "cf ./es && tsc --project tsconfig-build-es.json"
         },
         "clear-cache": {
           "const": "cf cache node_modules/.cache"
@@ -108,7 +108,7 @@
           "const": "eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "lint-no-fix-profile": {
-          "const": "set TIMING=1 & eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
+          "const": "set TIMING=1 && eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
         "npm:install": {
           "const": "npm install --no-audit --strict-peer-deps"
@@ -159,10 +159,10 @@
           "const": "stylelint --max-warnings 0 src/**/*.{css,scss}"
         },
         "test": {
-          "const": "cf ./lcov-report & jest"
+          "const": "cf ./lcov-report && jest"
         },
         "test-fast": {
-          "const": "cf ./lcov-report & jest --config=jest.config.fast.js"
+          "const": "cf ./lcov-report && jest --config=jest.config.fast.js"
         },
         "tsc": {
           "const": "tsc --noEmit"
@@ -174,10 +174,10 @@
           "const": "ncu --dep dev,peer,prod --upgrade"
         },
         "upgrade": {
-          "const": "npm run update-package-force & npm run npm:install"
+          "const": "npm run update-package-force && npm run npm:install"
         },
         "vscode:prepublish": {
-          "const": "cf ./out & tsc --project tsconfig-compile.json"
+          "const": "cf ./out && tsc --project tsconfig-compile.json"
         },
         "vue-tsc": {
           "const": "vue-tsc --noEmit"
