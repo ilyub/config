@@ -15,10 +15,7 @@
           "const": "cf ./dist && tsc --project tsconfig-build.json"
         },
         "build-doc": {
-          "enum": [
-            "php chore/build-doc.php && cpy docs-static/* docs",
-            "typedoc src && cpy docs-static/* docs"
-          ]
+          "const": "typedoc src && cpy docs-static/* docs"
         },
         "build-es": {
           "const": "cf ./es && tsc --project tsconfig-build-es.json"
