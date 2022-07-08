@@ -6,8 +6,7 @@ const {
   requiredFiles,
   requiredScripts,
   schemas
-  // eslint-disable-next-line import/extensions, import/no-internal-modules -- Ok
-} = require("./schemas/project.json");
+} = require("./schemas/project");
 
 const { Validator } = require("jsonschema");
 
