@@ -1,4 +1,5 @@
 module.exports = [
+  "@skylib/consistent-import/project",
   "@skylib/custom/consistent-array-type-name",
   "@skylib/custom/eslintrc-no-disable",
   "@skylib/custom/eslintrc-no-disable-no-disable",
@@ -40,6 +41,7 @@ module.exports = [
   "@skylib/disallow-import/no-extension",
   "@skylib/disallow-import/no-index",
   "@skylib/disallow-import/no-internal-modules",
+  "@skylib/disallow-import/no-nodejs-modules",
   "@skylib/disallow-import/no-relative-parent-imports",
   "@skylib/sort-array/commitlint",
   "@skylib/sort-array/consistent-group-empty-lines",

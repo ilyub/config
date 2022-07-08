@@ -1,5 +1,7 @@
 const { eslint } = require("../../api");
 
+const noShadow = eslint.rules["@typescript-eslint/no-shadow"];
+
 module.exports = {
   extends: "plugin:@typescript-eslint/all",
   plugins: ["@typescript-eslint"],
@@ -75,16 +77,7 @@ module.exports = {
     "@typescript-eslint/no-magic-numbers": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-redeclare": "off",
-    "@typescript-eslint/no-shadow": [
-      "warn",
-      {
-        allow: ["Plugin", "event", "name"],
-        builtinGlobals: true,
-        hoist: "all",
-        ignoreFunctionTypeParameterNameValueShadow: false,
-        ignoreTypeValueShadow: true
-      }
-    ],
+    "@typescript-eslint/no-shadow": ["warn", noShadow],
     "@typescript-eslint/no-type-alias": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",

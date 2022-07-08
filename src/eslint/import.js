@@ -23,27 +23,7 @@ module.exports = {
     "import/no-deprecated": "off",
     "import/no-duplicates": "off",
     "import/no-extraneous-dependencies": "off",
-    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint update
-    // fixme
-    "import/no-internal-modules": [
-      "off",
-      {
-        allow: [
-          "@skylib/*/dist/test-utils",
-          "@vue/test-utils/dist/interfaces/wrapperLike",
-          "@vue/test-utils/dist/types",
-          "date-fns/locale/*",
-          "flag-icon-css/flags/*/*.svg",
-          "jest-extended/all",
-          "quasar/wrappers",
-          "ts-toolbelt/**",
-          "typeface-roboto-multilang/*.css",
-          "/configs/eslintrc.synonyms",
-          "/src/eslintrc.synonyms",
-          "/src/test-utils"
-        ]
-      }
-    ],
+    "import/no-internal-modules": "off",
     "import/no-namespace": "off",
     "import/no-nodejs-modules": "off",
     "import/no-relative-packages": "off",

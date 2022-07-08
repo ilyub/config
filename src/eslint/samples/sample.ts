@@ -1,4 +1,6 @@
 import { deprecated } from "./deprecated";
+import fs from "node:fs";
+import path from "node:path";
 
 export const a = import(
   /* webpackChunkName: "dynamic/a" */
@@ -12,3 +14,5 @@ export const b = import(
 
 // eslint-disable-next-line deprecation/deprecation -- Ok
 deprecated();
+fs.existsSync("");
+path.basename("");

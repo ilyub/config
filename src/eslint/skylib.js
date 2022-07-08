@@ -6,6 +6,8 @@ const rules = fs.existsSync("./.eslintrc.synonyms.js")
   ? require(fs.realpathSync("./.eslintrc.synonyms.js"))
   : [];
 
+const consistentImport = eslint.rules["@skylib/consistent-import/project"];
+
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
   rules: {
@@ -110,7 +112,8 @@ module.exports = {
             _id: "fs",
             altLocalNames: ["nodeFs"],
             autoImport: true,
-            source: "fs",
+            localName: "fs",
+            source: "node:fs",
             type: "default"
           },
           {
@@ -138,7 +141,8 @@ module.exports = {
             _id: "path",
             altLocalNames: ["nodePath"],
             autoImport: true,
-            source: "path",
+            localName: "path",
+            source: "node:path",
             type: "default"
           },
           {
@@ -189,6 +193,7 @@ module.exports = {
         ]
       }
     ],
+    "@skylib/consistent-import/project": ["warn", consistentImport],
     "@skylib/custom": "off",
     "@skylib/custom/consistent-array-type-name": [
       "warn",
@@ -530,7 +535,27 @@ module.exports = {
     "@skylib/disallow-import/no-index": ["warn", { disallow: ["."] }],
     "@skylib/disallow-import/no-internal-modules": [
       "warn",
-      { disallow: ["./*/**"] }
+      {
+        allow: [
+          "./configs/eslintrc.synonyms",
+          "./src/eslintrc.synonyms",
+          "./src/test-utils",
+          "@skylib/*/dist/test-utils",
+          "@vue/test-utils/dist/interfaces/wrapperLike",
+          "@vue/test-utils/dist/types",
+          "date-fns/locale/*",
+          "flag-icon-css/flags/*/*.svg",
+          "jest-extended/all",
+          "quasar/wrappers",
+          "ts-toolbelt/**",
+          "typeface-roboto-multilang/*.css"
+        ],
+        disallow: ["./*/**", "@*/*/**", "[^@]*/**"]
+      }
+    ],
+    "@skylib/disallow-import/no-nodejs-modules": [
+      "warn",
+      { disallow: ["node:*"] }
     ],
     "@skylib/disallow-import/no-relative-parent-imports": [
       "warn",

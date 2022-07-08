@@ -5,7 +5,7 @@ module.exports = {
     "./eslintrc.allow-global-access",
     "./eslintrc.allow-nodejs-modules",
     "./eslintrc.allow-require",
-    "./eslintrc.allow-unsafe-require",
+    "./eslintrc.allow-require-unsafe",
     "./eslintrc.skip-filename-check",
     "./eslintrc.skip-html-literal-check"
   ],

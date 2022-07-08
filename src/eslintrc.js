@@ -46,10 +46,6 @@ module.exports = {
     sourceType: "module"
   },
   overrides: [
-    {
-      files: ["./*", "./__mocks__/**", "./tests/**"],
-      extends: "./eslintrc.chore"
-    },
     { files: "**/__mocks__/**", extends: "./eslintrc.mocks" },
     { files: "./src/test-utils/**", extends: "./eslintrc.test-utils" },
     { files: "./tests/**", extends: "./eslintrc.tests" },
@@ -75,7 +71,7 @@ module.exports = {
     {
       files: "./jest.config.js",
       extends: [
-        "./eslintrc.allow-jest-shadow",
+        "./eslintrc.allow-shadow-jest",
         "./eslintrc.skip-html-literal-check"
       ]
     }

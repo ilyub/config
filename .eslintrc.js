@@ -3,7 +3,7 @@ module.exports = {
     "./src/eslintrc",
     "./src/eslintrc.allow-nodejs-modules",
     "./src/eslintrc.allow-require",
-    "./src/eslintrc.allow-unsafe-require",
+    "./src/eslintrc.allow-require-unsafe",
     "./.eslintrc.overrides",
     "./.eslintrc.rule-overrides",
     "./.eslintrc.temp"
