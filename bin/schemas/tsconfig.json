@@ -55,7 +55,6 @@
         "enum": [
           "*.js",
           "*.ts",
-          ".eslintrc.fast.js",
           ".eslintrc.js",
           ".eslintrc.overrides.js",
           ".eslintrc.rule-overrides.js",

@@ -101,9 +101,6 @@
         "lint": {
           "const": "eslint --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },
-        "lint-fast": {
-          "const": "eslint --config .eslintrc.fast.js --fix --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
-        },
         "lint-no-fix": {
           "const": "eslint --max-warnings 0 --no-error-on-unmatched-pattern *.{js,ts} {__mocks__,configs,api,bin,fixtures,src,tests}/**/*.{js,ts,vue}"
         },

@@ -31,7 +31,6 @@
     "*.js",
     "*.ts",
     ".eslintrc.js",
-    ".eslintrc.fast.js",
     ".eslintrc.overrides.js",
     ".eslintrc.rule-overrides.js",
     ".eslintrc.synonyms.js",

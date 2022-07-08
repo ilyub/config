@@ -64,7 +64,6 @@ module.exports = {
     { files: "index.ts", extends: "./eslintrc.skip-only-export-check" },
     {
       files: [
-        "./.eslintrc.fast.js",
         "./.eslintrc.js",
         "./.eslintrc.overrides.js",
         "./.eslintrc.rule-overrides.js",

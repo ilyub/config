@@ -3,7 +3,6 @@
     {
       "files": [
         ".eslintignore",
-        ".eslintrc.fast.js",
         ".eslintrc.js",
         ".eslintrc.overrides.js",
         ".eslintrc.rule-overrides.js",
@@ -15,7 +14,6 @@
       ],
       "scripts": [
         "lint",
-        "lint-fast",
         "lint-no-fix",
         "lint-no-fix-profile",
         "tsc"
