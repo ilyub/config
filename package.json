@@ -119,6 +119,7 @@
     "eslint-plugin-sort-imports-requires": ">=1",
     "eslint-plugin-typescript-sort-keys": ">=2",
     "eslint-plugin-unicorn": ">=43",
+    "eslint-plugin-unused-imports": ">=2",
     "eslint-plugin-vue": ">=9",
     "eslint-plugin-vue-scoped-css": ">=2",
     "eslint-plugin-xss": ">=0",
