@@ -5,7 +5,7 @@ module.exports = {
       {
         message: "Unnecessary array",
         selector:
-          "Property[key.name=/^(?:extends|files|selector)$/u] > ArrayExpression[elements.length=1]"
+          "Property[key.name=/^(?:extends|files|selector|typeIsNoneOf|typeIsOneOf)$/u] > ArrayExpression[elements.length=1]"
       }
     ],
     "@skylib/sort-array/eslintrc": [
@@ -41,7 +41,13 @@ module.exports = {
             _id: "skylib",
             customOrder: ["_id", "filesToLint", "filesToSkip"],
             selector:
-              "Property[key.value=/^@skylib/u] > ArrayExpression > ObjectExpression"
+              "Property[key.value=/^@skylib\\u002F/u] > ArrayExpression > ObjectExpression"
+          },
+          {
+            _id: "skylib/disallow-import",
+            customOrder: ["disallow", "allow"],
+            selector:
+              "Property[key.value=/^@skylib\\u002Fdisallow-import\\u002F/u] > ArrayExpression > ObjectExpression"
           }
         ]
       }

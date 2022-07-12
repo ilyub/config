@@ -27,7 +27,8 @@ module.exports = {
     "./eslint/vue-scoped-css",
     "./eslint/xss",
     "./eslint/typescript-eslint",
-    "./eslint/prettier"
+    "./eslint/prettier",
+    "./eslint/unused-imports"
   ],
   env: {
     browser: true,

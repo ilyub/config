@@ -5,6 +5,7 @@ module.exports = {
   rules: {
     ...eslint.getAllRules("eslint-plugin-unicorn"),
     "unicorn/consistent-function-scoping": "off",
+    "unicorn/explicit-length-check": "off",
     "unicorn/filename-case": "off",
     "unicorn/no-array-callback-reference": "off",
     "unicorn/no-array-method-this-argument": "off",

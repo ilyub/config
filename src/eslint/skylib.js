@@ -109,6 +109,12 @@ module.exports = {
             type: "default"
           },
           {
+            _id: "estree",
+            autoImport: true,
+            source: "estree",
+            type: "wildcard"
+          },
+          {
             _id: "fs",
             altLocalNames: ["nodeFs"],
             autoImport: true,
@@ -331,6 +337,18 @@ module.exports = {
         ]
       }
     ],
+    "@skylib/custom/no-negated-condition": [
+      "warn",
+      {
+        message: "No negated condition",
+        selector: [
+          'IfStatement > BinaryExpression[operator="!=="]',
+          'IfStatement > UnaryExpression[operator="!"]',
+          'IfStatement > LogicalExpression > BinaryExpression.left[operator="!=="]',
+          'IfStatement > LogicalExpression > UnaryExpression.left[operator="!"]'
+        ]
+      }
+    ],
     "@skylib/custom/no-optional-true-type": [
       "warn",
       {
@@ -383,6 +401,20 @@ module.exports = {
         ]
       }
     ],
+    // eslint-disable-next-line no-warning-comments -- Wait for @skylib/eslint-config update
+    // fixme
+    "@skylib/custom/prefer-alias-for-array-type": [
+      "off",
+      {
+        filesToSkip: ["*.js"],
+        message: "Prefer alias for array type",
+        selector: [
+          "TSArrayType > .elementType[type!=TSAnyKeyword]",
+          "TSTypeReference[typeName.name=Array]",
+          "TSTypeReference[typeName.name=ReadonlyArray]"
+        ]
+      }
+    ],
     "@skylib/custom/prefer-arrow-function-property": [
       "warn",
       {
@@ -412,6 +444,14 @@ module.exports = {
             `VariableDeclarator[init.type=/^(?:ArrayExpression|ObjectExpression)$/u] > ${selector}`
         ),
         typeIsOneOf: ["array", "object"]
+      }
+    ],
+    "@skylib/custom/prefer-const-require": [
+      "warn",
+      {
+        message: 'Assign "require" to variable',
+        selector:
+          ":not(ConditionalExpression, ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]"
       }
     ],
     "@skylib/custom/prefer-construct-signature-first": [
@@ -461,9 +501,20 @@ module.exports = {
     "@skylib/custom/prefer-readonly-array": [
       "warn",
       {
+        filesToSkip: ["*.js"],
         message: "Prefer readonly array",
-        selector:
-          ":not(TSTypeOperator[operator=readonly]) > :matches(TSArrayType, TSTupleType)"
+        selector: [
+          ":not(.returnType):not(TSTypeOperator[operator=readonly]) > :matches(TSArrayType, TSTupleType)",
+          ":not(.returnType) > TSTypeReference > Identifier[name=Array]"
+        ]
+      }
+    ],
+    "@skylib/custom/prefer-readonly-map": [
+      "warn",
+      {
+        filesToSkip: ["*.js"],
+        message: "Prefer readonly map",
+        selector: ":not(.returnType) > TSTypeReference > Identifier[name=Map]"
       }
     ],
     "@skylib/custom/prefer-readonly-property": [
@@ -473,6 +524,14 @@ module.exports = {
         message: "Prefer readonly property",
         selector:
           ":matches(PropertyDefinition, TSPropertySignature)[readonly!=true]"
+      }
+    ],
+    "@skylib/custom/prefer-readonly-set": [
+      "warn",
+      {
+        filesToSkip: ["*.js"],
+        message: "Prefer readonly set",
+        selector: ":not(.returnType) > TSTypeReference > Identifier[name=Set]"
       }
     ],
     "@skylib/custom/prefer-static-method-arrow": [
@@ -504,12 +563,12 @@ module.exports = {
           "AssignmentExpression > ObjectExpression.right[properties.length!=4]"
       }
     ],
-    "@skylib/custom/require-assign-to-var": [
+    "@skylib/custom/require-class-member-typedef": [
       "warn",
       {
-        message: 'Assign "require" to variable',
+        message: "Expecting type annotation",
         selector:
-          ":not(ConditionalExpression, ReturnStatement, VariableDeclarator) > CallExpression > Identifier.callee[name=require]"
+          "PropertyDefinition[typeAnnotation=undefined][value=undefined]"
       }
     ],
     "@skylib/custom/restrict-chain-expression": [
@@ -530,17 +589,19 @@ module.exports = {
     "@skylib/disallow-import/no-at-sign": ["warn", { disallow: ["@", "@/**"] }],
     "@skylib/disallow-import/no-extension": [
       "warn",
-      { filesToLint: ["*.js"], disallow: ["*.{js,json,ts}"] }
+      { disallow: ["*.{js,json,ts}"], filesToLint: ["*.js"] }
     ],
     "@skylib/disallow-import/no-index": ["warn", { disallow: ["."] }],
     "@skylib/disallow-import/no-internal-modules": [
       "warn",
       {
+        disallow: ["./*/**", "@*/*/**", "[^@]*/**"],
         allow: [
           "./configs/eslintrc.synonyms",
           "./src/eslintrc.synonyms",
           "./src/test-utils",
           "@skylib/*/dist/test-utils",
+          "@typescript-eslint/utils/dist/ts-eslint",
           "@vue/test-utils/dist/interfaces/wrapperLike",
           "@vue/test-utils/dist/types",
           "date-fns/locale/*",
@@ -549,8 +610,7 @@ module.exports = {
           "quasar/wrappers",
           "ts-toolbelt/**",
           "typeface-roboto-multilang/*.css"
-        ],
-        disallow: ["./*/**", "@*/*/**", "[^@]*/**"]
+        ]
       }
     ],
     "@skylib/disallow-import/no-nodejs-modules": [
@@ -561,11 +621,13 @@ module.exports = {
       "warn",
       { disallow: ["../**"] }
     ],
+    "@skylib/no-negated-condition": "off",
     "@skylib/no-unsafe-object-assignment": ["warn", { filesToSkip: ["*.js"] }],
     "@skylib/optional-property-style": [
       "warn",
       { classes: "undefined", interfaces: "optional" }
     ],
+    "@skylib/prefer-alias-for-array-types": "off",
     "@skylib/require-jsdoc": [
       "warn",
       {
@@ -663,34 +725,9 @@ module.exports = {
         ]
       }
     ],
-    "@skylib/sort-keys": [
-      "warn",
-      {
-        overrides: [
-          {
-            _id: "defineComponent",
-            customOrder: [
-              "name",
-              "functional",
-              "components",
-              "directives",
-              "inheritAttrs",
-              "props",
-              "emits",
-              "setup",
-              "template"
-            ],
-            filesToLint: ["*.vue"],
-            selector:
-              "CallExpression[callee.name=defineComponent] > ObjectExpression"
-          }
-        ]
-      }
-    ],
     "@skylib/statements-order": [
       "warn",
       {
-        filesToSkip: ["*.vue"],
         rootOrder: [
           "ImportDeclaration",
           "GlobalModuleDeclaration",
@@ -705,31 +742,61 @@ module.exports = {
           "TypeDeclaration",
           "FunctionDeclaration",
           "ModuleDeclaration",
-          "JestTest"
-        ]
-      }
-    ],
-    "@skylib/statements-order/vue": [
-      "warn",
-      {
-        filesToLint: ["*.vue"],
-        rootOrder: [
-          "ImportDeclaration",
-          "GlobalModuleDeclaration",
-          "Unknown",
-          "TypeDeclaration",
-          "FunctionDeclaration",
-          "ModuleDeclaration",
-          "ExportAllDeclaration",
-          "ExportDeclaration",
-          "ExportDefaultDeclaration",
-          "ExportTypeDeclaration",
-          "ExportFunctionDeclaration",
-          "ExportModuleDeclaration",
-          "ExportUnknown",
           "JestTest"
         ]
       }
     ]
-  }
+  },
+  overrides: [
+    {
+      files: "*.vue",
+      rules: {
+        "@skylib/consistent-filename": ["warn", { format: "PascalCase" }],
+        "@skylib/sort-keys": [
+          "warn",
+          {
+            overrides: [
+              {
+                _id: "defineComponent",
+                customOrder: [
+                  "name",
+                  "functional",
+                  "components",
+                  "directives",
+                  "inheritAttrs",
+                  "props",
+                  "emits",
+                  "setup",
+                  "template"
+                ],
+                selector:
+                  "CallExpression[callee.name=defineComponent] > ObjectExpression"
+              }
+            ]
+          }
+        ],
+        "@skylib/statements-order": [
+          "warn",
+          {
+            rootOrder: [
+              "ImportDeclaration",
+              "GlobalModuleDeclaration",
+              "Unknown",
+              "TypeDeclaration",
+              "FunctionDeclaration",
+              "ModuleDeclaration",
+              "ExportAllDeclaration",
+              "ExportDeclaration",
+              "ExportDefaultDeclaration",
+              "ExportTypeDeclaration",
+              "ExportFunctionDeclaration",
+              "ExportModuleDeclaration",
+              "ExportUnknown",
+              "JestTest"
+            ]
+          }
+        ]
+      }
+    }
+  ]
 };
