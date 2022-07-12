@@ -38,7 +38,7 @@ module.exports = {
         ]
       },
       "@typescript-eslint/no-shadow": {
-        allow: ["Plugin", "event", "name"],
+        allow: ["Plugin", "ReadonlyMap", "ReadonlySet", "event", "name"],
         builtinGlobals: true,
         hoist: "all",
         ignoreFunctionTypeParameterNameValueShadow: false,
