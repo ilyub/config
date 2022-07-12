@@ -2,6 +2,7 @@
 
 namespace Api;
 
+use Skylib\Config\Assert;
 use Skylib\Config\BaseException;
 
 class Git
@@ -124,7 +125,7 @@ class Git
    */
   public static function pushDeleteTag(string $tag): void
   {
-    Sys::executeWithKey('git push --delete origin '.$tag, 'Deleting tag '.$tag);
+    static::executeWithKey('git push --delete origin '.$tag, 'Deleting tag '.$tag);
   }
 
   /**
@@ -132,7 +133,7 @@ class Git
    */
   public static function pushTags(): void
   {
-    Sys::executeWithKey('git push --tags origin', 'Pushing tags');
+    static::executeWithKey('git push --tags origin', 'Pushing tags');
   }
 
   /**
@@ -142,7 +143,7 @@ class Git
   {
     Sys::execute('git checkout master');
     Sys::execute('git rebase develop');
-    Sys::executeWithKey('git push', 'Pushing master');
+    static::executeWithKey('git push', 'Pushing master');
     Sys::execute('git checkout develop');
   }
 
@@ -206,6 +207,34 @@ class Git
   }
 
   /**
+   * Executes command.
+   */
+  protected static function executeWithKey(string $command, string $description = null): void
+  {
+    Sys::flushString($description);
+
+    $keyPath = Sys::pathConcat(static::getKeysPath(), 'id_rsa');
+
+    $process = Assert::resource(
+      proc_open(
+        $command,
+        [],
+        $pipes,
+        null,
+        ['GIT_SSH_COMMAND' => 'ssh -i "'.$keyPath.'"'],
+        ['bypass_shell' => true]
+      )
+    );
+
+    $code = proc_close($process);
+
+    if ($code)
+    {
+      throw new BaseException('Command failed: '.$command);
+    }
+  }
+
+  /**
    * Checks version.
    *
    * @return array{commit:string,level:0|1|2}
@@ -235,5 +264,29 @@ class Git
     }
 
     throw new BaseException('Could not find previous version commit');
+  }
+
+  /**
+   * Searches for keys folder.
+   */
+  protected static function getKeysPath(): string
+  {
+    $dirBackup = null;
+    $dir = realpath(__DIR__);
+
+    while ($dir !== false && $dir !== $dirBackup)
+    {
+      $candidate = Sys::pathConcat($dir, '.ssh');
+
+      if (is_dir($candidate))
+      {
+        return $candidate;
+      }
+
+      $dirBackup = $dir;
+      $dir = realpath(dirname($dir));
+    }
+
+    throw new BaseException('Missing keys folder');
   }
 }

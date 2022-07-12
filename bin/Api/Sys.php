@@ -43,34 +43,6 @@ class Sys
   }
 
   /**
-   * Executes command.
-   */
-  public static function executeWithKey(string $command, string $description = null): void
-  {
-    static::flushString($description);
-
-    $keyPath = static::pathConcat(static::getKeysPath(), 'id_rsa');
-
-    $process = Assert::resource(
-      proc_open(
-        $command,
-        [],
-        $pipes,
-        null,
-        ['GIT_SSH_COMMAND' => 'ssh -i "'.$keyPath.'"'],
-        ['bypass_shell' => true]
-      )
-    );
-
-    $code = proc_close($process);
-
-    if ($code)
-    {
-      throw new BaseException('Command failed: '.$command);
-    }
-  }
-
-  /**
    * Flushes string.
    */
   public static function flushString(string $str = null): void
@@ -86,6 +58,28 @@ class Sys
 
       flush();
     }
+  }
+
+  /**
+   * Concatenates paths.
+   *
+   * @param string $parts
+   */
+  public static function pathConcat(...$parts): string
+  {
+    return Assert::string(preg_replace('`[/\\\\]+`isuxDX', '/', implode('/', $parts)));
+  }
+
+  /**
+   * Scans directory.
+   *
+   * @param array<string> $ignore
+   *
+   * @return array<string>
+   */
+  public static function scanDir(string $dir, array $ignore = []): array
+  {
+    return array_diff(Assert::strings(scandir($dir)), ['.', '..', ...$ignore]);
   }
 
   /**
@@ -117,50 +111,4 @@ class Sys
   protected const RED = "\033[91m";
   protected const RESET = "\033[0m";
   protected const UP1LINE = "\x1B[1A";
-
-  /**
-   * Searches for keys folder.
-   */
-  protected static function getKeysPath(): string
-  {
-    $dirBackup = null;
-    $dir = realpath(__DIR__);
-
-    while ($dir !== false && $dir !== $dirBackup)
-    {
-      $candidate = static::pathConcat($dir, '.ssh');
-
-      if (is_dir($candidate))
-      {
-        return $candidate;
-      }
-
-      $dirBackup = $dir;
-      $dir = realpath(dirname($dir));
-    }
-
-    throw new BaseException('Missing keys folder');
-  }
-
-  /**
-   * Concatenates paths.
-   *
-   * @param string $parts
-   */
-  protected static function pathConcat(...$parts): string
-  {
-    return Assert::string(preg_replace('`[/\\\\]+`isuxDX', '/', implode('/', $parts)));
-  }
-
-  /**
-   * Scans directory.
-   *
-   * @param array<string> $ignore
-   *
-   * @return array<string>
-   */
-  protected static function scanDir(string $dir, array $ignore = []): array
-  {
-    return array_diff(Assert::strings(scandir($dir)), ['.', '..', ...$ignore]);
-  }
 }
