@@ -75,4 +75,4 @@ for (const [name, schemaName] of Object.entries(schemas))
 // eslint-disable-next-line no-console -- Ok
 for (const error of errors) console.error(error);
 
-if (errors.length > 0) throw new Error("Invalid config");
+if (errors.length) throw new Error("Invalid config");
