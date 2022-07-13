@@ -9,7 +9,6 @@ module.exports = [
   "@skylib/custom/eslintrc-no-unnecessary-array",
   "@skylib/custom/no-Object-assign-readonly",
   "@skylib/custom/no-complex-type-in-function-return",
-  "@skylib/custom/no-complex-type-in-function-return-vue",
   "@skylib/custom/no-complex-type-in-variable-declaration",
   "@skylib/custom/no-distributed-function-properties",
   "@skylib/custom/no-empty-interface",

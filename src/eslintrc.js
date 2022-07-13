@@ -34,7 +34,6 @@ module.exports = {
     browser: true,
     commonjs: true,
     es2022: true,
-    jest: true,
     node: true
   },
   parser: "vue-eslint-parser",
@@ -51,30 +50,12 @@ module.exports = {
     { files: "./src/test-utils/**", extends: "./eslintrc.test-utils" },
     { files: "./tests/**", extends: "./eslintrc.tests" },
     {
-      files: "*.*.ts",
-      extends: [
-        "./eslintrc.skip-filename-check",
-        "./eslintrc.skip-only-export-check"
-      ]
-    },
-    { files: "*.d.ts", extends: "./eslintrc.allow-default-export" },
-    { files: "index.ts", extends: "./eslintrc.skip-only-export-check" },
-    {
-      files: [
-        "./.eslintrc.js",
-        "./.eslintrc.overrides.js",
-        "./.eslintrc.rule-overrides.js",
-        "./.eslintrc.synonyms.js",
-        "./.eslintrc.temp.js"
-      ],
+      files: [".eslintrc.*.js", ".eslintrc.js", "eslintrc.*.js", "eslintrc.js"],
       extends: "./eslintrc.eslintrc"
     },
     {
       files: "./jest.config.js",
-      extends: [
-        "./eslintrc.allow-shadow-jest",
-        "./eslintrc.skip-html-literal-check"
-      ]
+      extends: "./eslintrc.skip-html-literal-check"
     }
   ]
 };

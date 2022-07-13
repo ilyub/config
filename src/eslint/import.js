@@ -24,6 +24,7 @@ module.exports = {
     "import/no-duplicates": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-internal-modules": "off",
+    "import/no-named-export": "off",
     "import/no-namespace": "off",
     "import/no-nodejs-modules": "off",
     "import/no-relative-packages": "off",
@@ -49,8 +50,14 @@ module.exports = {
         "import/no-unresolved": "off"
       }
     },
-    { files: "!*.vue", rules: { "import/no-named-export": "off" } },
     { files: "*.js", rules: { "import/no-commonjs": "off" } },
-    { files: "*.vue", rules: { "import/no-default-export": "off" } }
+    {
+      files: "*.vue",
+      rules: {
+        "import/no-default-export": "off",
+        "import/no-named-export": "warn"
+      }
+    },
+    { files: "*.d.ts", rules: { "import/no-default-export": "off" } }
   ]
 };

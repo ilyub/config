@@ -53,7 +53,7 @@ module.exports = {
         custom: { match: true, regex: "^.{1,50}$" },
         format: ["camelCase", "PascalCase", "UPPER_CASE"],
         leadingUnderscore: "allow",
-        selector: "variable"
+        selector: ["enumMember", "variable"]
       },
       {
         // eslint-disable-next-line unicorn/no-null -- Ok
