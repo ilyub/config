@@ -14,6 +14,7 @@ module.exports = [
   "@skylib/custom/no-empty-interface",
   "@skylib/custom/no-invalid-identifier",
   "@skylib/custom/no-language-mixing",
+  "@skylib/custom/no-literal-union-type",
   "@skylib/custom/no-negated-condition",
   "@skylib/custom/no-optional-true-type",
   "@skylib/custom/no-this-void",

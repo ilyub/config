@@ -39,6 +39,7 @@ module.exports = {
         rules: [
           { _id: "ArrayExpression", selector: "ArrayExpression > .elements" },
           { _id: "CallExpression", selector: "CallExpression > .arguments" },
+          { _id: "Enum", selector: "TSEnumMember" },
           {
             _id: "ExpressionStatement",
             averageLinesGte: 3,
@@ -471,7 +472,7 @@ module.exports = {
           "warn",
           {
             checkReturnType: true,
-            message: "Avoid complex inline types",
+            message: "Avoid complex anonymous types",
             selector: ":function",
             typeIs: "complex"
           }
@@ -479,7 +480,7 @@ module.exports = {
         "@skylib/custom/no-complex-type-in-variable-declaration": [
           "warn",
           {
-            message: "Avoid complex inline types",
+            message: "Avoid complex anonymous types",
             selector: [
               "ArrayPattern > Identifier",
               "Identifier.id[typeAnnotation=undefined]",
@@ -506,6 +507,14 @@ module.exports = {
             message: "Empty interface is not allowed",
             selector:
               "TSInterfaceDeclaration[body.body.length=0][extends=undefined] > .id"
+          }
+        ],
+        "@skylib/custom/no-literal-union-type": [
+          "warn",
+          {
+            message: "Use enum instead",
+            selector: "TSTypeAliasDeclaration > TSUnionType > TSLiteralType",
+            typeIs: "string"
           }
         ],
         "@skylib/custom/no-optional-true-type": [
@@ -565,8 +574,8 @@ module.exports = {
           {
             message: "Prefer readonly array",
             selector: [
-              ":not(.returnType):not(TSTypeOperator[operator=readonly]) > :matches(TSArrayType, TSTupleType)",
-              ":not(.returnType) > TSTypeReference > Identifier[name=Array]"
+              ":not(TSTypeOperator[operator=readonly]) > :matches(TSArrayType, TSTupleType)",
+              "TSTypeReference > Identifier[name=Array]"
             ]
           }
         ],
@@ -574,8 +583,7 @@ module.exports = {
           "warn",
           {
             message: "Prefer readonly map",
-            selector:
-              ":not(.returnType) > TSTypeReference > Identifier[name=Map]"
+            selector: "TSTypeReference > Identifier[name=Map]"
           }
         ],
         "@skylib/custom/prefer-readonly-property": [
@@ -590,8 +598,7 @@ module.exports = {
           "warn",
           {
             message: "Prefer readonly set",
-            selector:
-              ":not(.returnType) > TSTypeReference > Identifier[name=Set]"
+            selector: "TSTypeReference > Identifier[name=Set]"
           }
         ],
         "@skylib/custom/require-class-member-typedef": [
@@ -623,7 +630,7 @@ module.exports = {
           "warn",
           {
             checkReturnType: true,
-            message: "Avoid complex inline types",
+            message: "Avoid complex anonymous types",
             selector: ":not(Property[key.name=setup]) > :function",
             typeIs: "complex"
           }
