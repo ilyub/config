@@ -19,6 +19,12 @@ module.exports = {
             prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > :matches(:statement, TSDeclareFunction, TSExportAssignment)"
           },
           {
+            _id: "ExportNamedDeclaration",
+            emptyLine: "never",
+            next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExportNamedDeclaration[source]",
+            prev: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExportNamedDeclaration[source]"
+          },
+          {
             _id: "ExpressionStatement",
             emptyLine: "any",
             next: ":matches(BlockStatement, Program, SwitchCase, TSModuleBlock) > ExpressionStatement",
@@ -217,9 +223,9 @@ module.exports = {
         message: "No negated condition",
         selector: [
           'IfStatement > BinaryExpression[operator="!=="]',
-          'IfStatement > UnaryExpression[operator="!"]',
           'IfStatement > LogicalExpression > BinaryExpression.left[operator="!=="]',
-          'IfStatement > LogicalExpression > UnaryExpression.left[operator="!"]'
+          'IfStatement > LogicalExpression > UnaryExpression.left[operator="!"]',
+          'IfStatement > UnaryExpression[operator="!"]'
         ]
       }
     ],
@@ -286,7 +292,7 @@ module.exports = {
       {
         message: "Prefer kebab-case symbol description",
         selector:
-          "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^[\\d\\-a-z]+$/u])"
+          "CallExpression[callee.name=Symbol] > Literal.arguments:not([value=/^(?:[\\d\\-a-z]|__)+$/u])"
       }
     ],
     "@skylib/custom/prefer-static-method-arrow": [

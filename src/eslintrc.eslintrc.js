@@ -12,7 +12,7 @@ module.exports = {
       "warn",
       {
         selector:
-          "Property[key.name=/^(?:allow|disallow|files|filesToLint|filesToSkip)$/u] > ArrayExpression"
+          "Property[key.name=/^(?:allow|disallow|files|filesToLint|filesToSkip|selector)$/u] > ArrayExpression"
       }
     ],
     "@skylib/sort-keys": [
