@@ -29,11 +29,7 @@ module.exports = {
           source: `${pkg.name}/src/test-utils`,
           type: "wildcard"
         },
-        {
-          _id: "catch-all",
-          source: `${pkg.name}/**`,
-          type: "default"
-        }
+        { _id: "catch-all", source: `${pkg.name}/**`, type: "default" }
       ]
     },
     "@typescript-eslint/no-shadow": {

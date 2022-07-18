@@ -15,7 +15,7 @@ module.exports = {
       "warn",
       {
         message: "String argument is not allowed",
-        selector: "CallExpression[callee.property.name=toThrow] > Literal",
+        selector: "CallExpression[callee.property.name=toThrow] > .arguments",
         typeIs: "string"
       }
     ],

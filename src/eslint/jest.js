@@ -4,6 +4,7 @@ module.exports = {
   plugins: ["jest"],
   rules: {
     ...getAllRules("eslint-plugin-jest"),
+    "jest/max-expects": ["warn", { max: 1 }],
     "jest/no-hooks": "off",
     "jest/prefer-expect-assertions": [
       "warn",

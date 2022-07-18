@@ -39,6 +39,19 @@ module.exports = {
         ]
       }
     ],
+    "@skylib/consistent-filename": [
+      "warn",
+      {
+        overrides: [
+          {
+            _id: "classes",
+            format: "pascalCase",
+            match: true,
+            selector: "ClassDeclaration > Identifier.id"
+          }
+        ]
+      }
+    ],
     "@skylib/consistent-group-empty-lines": [
       "warn",
       {
@@ -190,11 +203,7 @@ module.exports = {
             source: "vuedraggable",
             type: "default"
           },
-          {
-            _id: "catch-all",
-            source: "!@skylib/**",
-            type: "default"
-          }
+          { _id: "catch-all", source: "!@skylib/**", type: "default" }
         ]
       }
     ],
@@ -356,6 +365,7 @@ module.exports = {
     ],
     "@skylib/match-filename": "off",
     "@skylib/no-negated-condition": "off",
+    "@skylib/object-format": ["warn", { maxLineLength: 80, maxObjectSize: 3 }],
     "@skylib/prefer-alias-for-array-types": "off",
     "@skylib/require-jsdoc": [
       "warn",
