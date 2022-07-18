@@ -1,11 +1,11 @@
-const { eslint } = require("../../api");
+const { getAllRules, rules } = require("./api");
 
-const consistentImport = eslint.rules["@skylib/consistent-import/project"];
+const consistentImport = rules["@skylib/consistent-import/project"];
 
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
   rules: {
-    ...eslint.getAllRules("@skylib/eslint-plugin", rule =>
+    ...getAllRules("@skylib/eslint-plugin", rule =>
       /^[^/]+\/[^/]+$/u.test(rule)
     ),
     "@skylib/consistent-empty-lines": [
@@ -199,6 +199,10 @@ module.exports = {
       }
     ],
     "@skylib/consistent-import/project": ["warn", consistentImport],
+    "@skylib/consistent-optional-props": [
+      "warn",
+      { classes: "undefined", interfaces: "optional" }
+    ],
     "@skylib/custom": "off",
     "@skylib/custom/no-invalid-identifier": [
       "warn",
@@ -340,13 +344,18 @@ module.exports = {
     ],
     "@skylib/disallow-import/no-relative-parent-imports": [
       "warn",
-      { disallow: ["../**"] }
+      {
+        disallow: [
+          "../**",
+          "../../**",
+          "../../../**",
+          "../../../../**",
+          "../../../../../**"
+        ]
+      }
     ],
+    "@skylib/match-filename": "off",
     "@skylib/no-negated-condition": "off",
-    "@skylib/optional-property-style": [
-      "warn",
-      { classes: "undefined", interfaces: "optional" }
-    ],
     "@skylib/prefer-alias-for-array-types": "off",
     "@skylib/require-jsdoc": [
       "warn",
@@ -389,15 +398,15 @@ module.exports = {
         sendToTop: /^$/u.source
       }
     ],
-    "@skylib/sort-array/eslintrc": "off",
-    "@skylib/sort-array/optional-property-style": [
+    "@skylib/sort-array/consistent-optional-props": [
       "warn",
       {
         key: "_id",
         selector:
-          "Property[key.value=@skylib/optional-property-style] > ArrayExpression > ObjectExpression > Property[key.name=overrides] > ArrayExpression"
+          "Property[key.value=@skylib/consistent-optional-props] > ArrayExpression > ObjectExpression > Property[key.name=overrides] > ArrayExpression"
       }
     ],
+    "@skylib/sort-array/eslintrc": "off",
     "@skylib/sort-class-members": [
       "warn",
       {
@@ -631,7 +640,7 @@ module.exports = {
     {
       files: "*.vue",
       rules: {
-        "@skylib/consistent-filename": ["warn", { format: "PascalCase" }],
+        "@skylib/consistent-filename": ["warn", { format: "pascalCase" }],
         "@skylib/custom/no-complex-type-in-function-return": [
           "warn",
           {

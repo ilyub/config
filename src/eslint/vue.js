@@ -1,4 +1,4 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   overrides: [
@@ -6,7 +6,7 @@ module.exports = {
       files: "*.vue",
       plugins: ["vue"],
       rules: {
-        ...eslint.getAllRules("eslint-plugin-vue"),
+        ...getAllRules("eslint-plugin-vue"),
         "vue/attributes-order": [
           "warn",
           {

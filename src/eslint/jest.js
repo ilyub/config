@@ -1,9 +1,9 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   plugins: ["jest"],
   rules: {
-    ...eslint.getAllRules("eslint-plugin-jest"),
+    ...getAllRules("eslint-plugin-jest"),
     "jest/no-hooks": "off",
     "jest/prefer-expect-assertions": [
       "warn",

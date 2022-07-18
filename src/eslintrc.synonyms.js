@@ -13,6 +13,7 @@ module.exports = [
   "@skylib/custom/no-distributed-function-properties",
   "@skylib/custom/no-empty-interface",
   "@skylib/custom/no-invalid-identifier",
+  "@skylib/custom/no-jest-toThrow-string",
   "@skylib/custom/no-language-mixing",
   "@skylib/custom/no-literal-union-type",
   "@skylib/custom/no-negated-condition",
@@ -30,7 +31,6 @@ module.exports = [
   "@skylib/custom/prefer-construct-signature-first",
   "@skylib/custom/prefer-jest-toBe",
   "@skylib/custom/prefer-jest-toStrictEqual",
-  "@skylib/custom/prefer-jest-toThrow-shorthand",
   "@skylib/custom/prefer-kebab-case-symbol-description",
   "@skylib/custom/prefer-readonly-array",
   "@skylib/custom/prefer-readonly-map",
@@ -51,7 +51,7 @@ module.exports = [
   "@skylib/sort-array/commitlint",
   "@skylib/sort-array/consistent-group-empty-lines",
   "@skylib/sort-array/consistent-import",
+  "@skylib/sort-array/consistent-optional-props",
   "@skylib/sort-array/eslintrc",
-  "@skylib/sort-array/optional-property-style",
   "@skylib/sort-array/synonyms"
 ];

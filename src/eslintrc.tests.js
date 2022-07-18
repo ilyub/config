@@ -11,6 +11,14 @@ module.exports = {
   ],
   env: { jest: true },
   rules: {
+    "@skylib/custom/no-jest-toThrow-string": [
+      "warn",
+      {
+        message: "String argument is not allowed",
+        selector: "CallExpression[callee.property.name=toThrow] > Literal",
+        typeIs: "string"
+      }
+    ],
     "@skylib/custom/prefer-jest-toBe": [
       "warn",
       {
@@ -26,15 +34,6 @@ module.exports = {
         message: 'Prefer "toStrictEqual" matcher',
         selector: "CallExpression[callee.property.name=toBe] > .arguments",
         typeIsNoneOf: ["boolean", "number", "string"]
-      }
-    ],
-    "@skylib/custom/prefer-jest-toThrow-shorthand": [
-      "warn",
-      {
-        message:
-          'Prefer error message or "Error" as an argument of "toThrow" matcher',
-        selector:
-          "CallExpression[callee.property.name=toThrow] > NewExpression.arguments[arguments.length=0]"
       }
     ],
     "@skylib/disallow-import/no-at-sign": "off",

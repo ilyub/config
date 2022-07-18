@@ -1,6 +1,6 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   plugins: ["github"],
-  rules: eslint.getAllRules("eslint-plugin-github")
+  rules: getAllRules("eslint-plugin-github")
 };

@@ -1,4 +1,4 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 const contexts = [
   "ArrowFunctionExpression",
@@ -16,7 +16,7 @@ const definedTags = ["jest-environment"];
 module.exports = {
   plugins: ["jsdoc"],
   rules: {
-    ...eslint.getAllRules("eslint-plugin-jsdoc"),
+    ...getAllRules("eslint-plugin-jsdoc"),
     "jsdoc/check-access": ["warn", { contexts }],
     "jsdoc/check-alignment": ["warn", { contexts }],
     "jsdoc/check-examples": "off",

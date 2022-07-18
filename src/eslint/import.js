@@ -1,10 +1,10 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   plugins: ["import"],
   settings: { "import/resolver": { typescript: { project: "tsconfig.json" } } },
   rules: {
-    ...eslint.getAllRules("eslint-plugin-import"),
+    ...getAllRules("eslint-plugin-import"),
     "import/dynamic-import-chunkname": [
       "warn",
       {

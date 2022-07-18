@@ -1,9 +1,9 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   plugins: ["node"],
   rules: {
-    ...eslint.getAllRules("eslint-plugin-node"),
+    ...getAllRules("eslint-plugin-node"),
     "node/callback-return": "off",
     "node/no-callback-literal": "off",
     "node/no-hide-core-modules": "off",

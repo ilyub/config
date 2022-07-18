@@ -1,10 +1,10 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   extends: "prettier",
   plugins: ["prettier"],
   rules: {
-    ...eslint.getAllRules("eslint-plugin-prettier"),
+    ...getAllRules("eslint-plugin-prettier"),
     "@typescript-eslint/quotes": ["warn", "double", { avoidEscape: true }],
     "curly": ["warn", "multi"],
     "quote-props": ["warn", "consistent-as-needed"],

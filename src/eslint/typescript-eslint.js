@@ -1,12 +1,12 @@
-const { eslint } = require("../../api");
+const { getAllRules, rules } = require("./api");
 
-const noShadow = eslint.rules["@typescript-eslint/no-shadow"];
+const noShadow = rules["@typescript-eslint/no-shadow"];
 
 module.exports = {
   extends: "plugin:@typescript-eslint/all",
   plugins: ["@typescript-eslint"],
   rules: {
-    ...eslint.getAllRules("@typescript-eslint/eslint-plugin"),
+    ...getAllRules("@typescript-eslint/eslint-plugin"),
     "@typescript-eslint/array-type": ["warn", { default: "array-simple" }],
     "@typescript-eslint/ban-types": [
       "warn",

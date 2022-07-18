@@ -1,9 +1,9 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   plugins: ["etc"],
   rules: {
-    ...eslint.getAllRules("eslint-plugin-etc"),
+    ...getAllRules("eslint-plugin-etc"),
     "etc/no-deprecated": "off",
     "etc/no-enum": "off",
     "etc/no-misused-generics": "off",

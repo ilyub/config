@@ -1,9 +1,10 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   plugins: ["unicorn"],
   rules: {
-    ...eslint.getAllRules("eslint-plugin-unicorn"),
+    ...getAllRules("eslint-plugin-unicorn"),
+    "unicorn/catch-error-name": ["warn", { name: "e" }],
     "unicorn/consistent-function-scoping": "off",
     "unicorn/explicit-length-check": "off",
     "unicorn/filename-case": "off",

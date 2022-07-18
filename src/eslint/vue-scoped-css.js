@@ -1,4 +1,4 @@
-const { eslint } = require("../../api");
+const { getAllRules } = require("./api");
 
 module.exports = {
   overrides: [
@@ -6,7 +6,7 @@ module.exports = {
       files: "*.vue",
       plugins: ["vue-scoped-css"],
       rules: {
-        ...eslint.getAllRules("eslint-plugin-vue-scoped-css"),
+        ...getAllRules("eslint-plugin-vue-scoped-css"),
         "vue-scoped-css/enforce-style-type": ["warn", { allows: ["module"] }],
         "vue-scoped-css/require-scoped": "off"
       }
