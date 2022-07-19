@@ -38,6 +38,27 @@ module.exports = {
     ],
     "@skylib/disallow-import/no-at-sign": "off",
     "@skylib/require-jsdoc": "off",
+    "@skylib/statements-order": [
+      "warn",
+      {
+        rootOrder: [
+          "ImportDeclaration",
+          "GlobalModuleDeclaration",
+          "ExportAllDeclaration",
+          "ExportDeclaration",
+          "ExportDefaultDeclaration",
+          "ExportUnknown",
+          "ExportTypeDeclaration",
+          "ExportFunctionDeclaration",
+          "ExportModuleDeclaration",
+          "TypeDeclaration",
+          "FunctionDeclaration",
+          "ModuleDeclaration",
+          "Unknown",
+          "JestTest"
+        ]
+      }
+    ],
     "@typescript-eslint/no-extraneous-class": "off",
     "eslint-comments/no-use": ["warn", { allow: ["eslint", "eslint-disable"] }],
     "max-classes-per-file": "off",
