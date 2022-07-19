@@ -107,9 +107,9 @@ class Npm
   /**
    * No vulnerabilities.
    */
-  public function noVulnerabilities(bool $interactive = false): void
+  public function noVulnerabilities(string $cmd, bool $interactive = false): void
   {
-    Sys::execute('npm audit', 'Checking for vulnerablilties', $interactive);
+    Sys::execute($cmd, 'Checking for vulnerablilties', $interactive);
   }
 
   /**

@@ -4,6 +4,7 @@ namespace Actions;
 
 use Api\Npm;
 use Api\Package;
+use Api\PreCommitConfig;
 
 class FullCheck
 {
@@ -13,10 +14,10 @@ class FullCheck
   public static function do(): void
   {
     $package = new Package();
-
+    $preCommitConfig = new PreCommitConfig();
     $npm = new Npm($package);
 
-    $npm->noVulnerabilities(true);
+    $npm->noVulnerabilities($preCommitConfig->audit, true);
     $npm->commitlint(true);
     $npm->configLint(true);
     $npm->packageJsonLint(true);

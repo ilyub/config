@@ -107,6 +107,7 @@
   ],
   "optionalFiles": [
     ".postcssrc.js",
+    ".pre-commit.json",
     "babel.config.js",
     "composer.json",
     "tsconfig-compile.json"

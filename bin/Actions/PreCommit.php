@@ -5,6 +5,7 @@ namespace Actions;
 use Api\Git;
 use Api\Npm;
 use Api\Package;
+use Api\PreCommitConfig;
 
 class PreCommit
 {
@@ -14,6 +15,7 @@ class PreCommit
   public static function do(): void
   {
     $package = new Package();
+    $preCommitConfig = new PreCommitConfig();
 
     $package->noFileDependencies();
 
@@ -36,7 +38,7 @@ class PreCommit
       $npm->buildDoc();
       $npm->phpCsFixer();
       Git::noPartialCommit();
-      $npm->noVulnerabilities();
+      $npm->noVulnerabilities($preCommitConfig->audit);
       $npm->commitlint();
       $npm->configLint();
       $npm->packageJsonLint();
