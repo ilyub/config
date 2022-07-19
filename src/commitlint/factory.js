@@ -56,6 +56,7 @@ module.exports = sources => {
     "perf",
     "php-cs",
     "phpstan",
+    "pre-commit",
     "readme",
     "recommended-config-lint",
     "recommended-eslint",
