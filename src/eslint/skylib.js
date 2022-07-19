@@ -335,6 +335,7 @@ module.exports = {
           "./src/eslintrc.synonyms",
           "./src/test-utils",
           "@skylib/*/dist/test-utils",
+          "@skylib/config/api",
           "@typescript-eslint/utils/dist/ts-eslint",
           "@vue/test-utils/dist/interfaces/wrapperLike",
           "@vue/test-utils/dist/types",
