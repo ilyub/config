@@ -48,6 +48,7 @@ module.exports = [
   "@skylib/disallow-import/no-internal-modules",
   "@skylib/disallow-import/no-nodejs-modules",
   "@skylib/disallow-import/no-relative-parent-imports",
+  "@skylib/match-filename/vue-component-name",
   "@skylib/sort-array/commitlint",
   "@skylib/sort-array/consistent-group-empty-lines",
   "@skylib/sort-array/consistent-import",

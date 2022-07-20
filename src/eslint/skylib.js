@@ -668,6 +668,14 @@ module.exports = {
             selector: "VElement[name=template] VText[value=/^\n\n/u]"
           }
         ],
+        "@skylib/match-filename/vue-component-name": [
+          "warn",
+          {
+            format: "kebabCase",
+            selector:
+              "CallExpression[callee.name=defineComponent] > ObjectExpression > Property[key.name=name] > Literal.value"
+          }
+        ],
         "@skylib/require-jsdoc": "off",
         "@skylib/sort-keys": [
           "warn",
