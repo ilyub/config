@@ -1,6 +1,4 @@
-const { getAllRules, rules } = require("./api");
-
-const noShadow = rules["@typescript-eslint/no-shadow"];
+const { getAllRules } = require("./api");
 
 module.exports = {
   extends: "plugin:@typescript-eslint/all",
@@ -14,6 +12,7 @@ module.exports = {
         extendDefaults: false,
         types: {
           "{}": "Not allowed",
+          "Function": "Not allowed",
           "Number": "Not allowed",
           "Object": "Not allowed",
           "String": "Not allowed"
@@ -79,7 +78,23 @@ module.exports = {
     ],
     "@typescript-eslint/no-magic-numbers": "off",
     "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/no-shadow": ["warn", noShadow],
+    "@typescript-eslint/no-shadow": [
+      "warn",
+      {
+        allow: [
+          "Plugin",
+          "ReadonlyMap",
+          "ReadonlySet",
+          "constructor",
+          "event",
+          "name"
+        ],
+        builtinGlobals: true,
+        hoist: "all",
+        ignoreFunctionTypeParameterNameValueShadow: false,
+        ignoreTypeValueShadow: true
+      }
+    ],
     "@typescript-eslint/no-type-alias": "off",
     "@typescript-eslint/no-unused-vars": [
       "warn",

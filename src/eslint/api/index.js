@@ -1,7 +1,3 @@
-const fs = require("node:fs");
-
-const pkg = require(fs.realpathSync("./package.json"));
-
 module.exports = {
   getAllRules: (source, filter = () => true) => {
     const prefix = (() => {
@@ -20,24 +16,5 @@ module.exports = {
         .filter(filter)
         .map(rule => [rule, "warn"])
     );
-  },
-  rules: {
-    "@skylib/consistent-import/project": {
-      sources: [
-        {
-          _id: "test-utils",
-          source: `${pkg.name}/src/test-utils`,
-          type: "wildcard"
-        },
-        { _id: "catch-all", source: `${pkg.name}/**`, type: "default" }
-      ]
-    },
-    "@typescript-eslint/no-shadow": {
-      allow: ["Plugin", "ReadonlyMap", "ReadonlySet", "event", "name"],
-      builtinGlobals: true,
-      hoist: "all",
-      ignoreFunctionTypeParameterNameValueShadow: false,
-      ignoreTypeValueShadow: true
-    }
   }
 };

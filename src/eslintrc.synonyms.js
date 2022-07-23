@@ -1,5 +1,4 @@
 module.exports = [
-  "@skylib/consistent-import/project",
   "@skylib/custom/consistent-array-type-name",
   "@skylib/custom/eslintrc-no-disable",
   "@skylib/custom/eslintrc-no-disable-no-disable",

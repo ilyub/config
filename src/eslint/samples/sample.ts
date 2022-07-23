@@ -15,6 +15,8 @@ export const b = import(
   "node:buffer"
 );
 
+export const constructor = 1;
+
 // eslint-disable-next-line deprecation/deprecation -- Ok
 deprecated();
 fs.existsSync("");

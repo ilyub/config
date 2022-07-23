@@ -4,7 +4,7 @@ module.exports = {
   plugins: ["sonarjs"],
   rules: {
     ...getAllRules("eslint-plugin-sonarjs"),
-    "sonarjs/cognitive-complexity": ["warn", 50],
+    "sonarjs/cognitive-complexity": ["warn", 100],
     "sonarjs/no-duplicate-string": "off",
     "sonarjs/no-identical-functions": ["warn", 10],
     "sonarjs/no-nested-switch": "off",

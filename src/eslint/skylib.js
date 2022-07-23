@@ -1,6 +1,8 @@
-const { getAllRules, rules } = require("./api");
+const fs = require("node:fs");
 
-const consistentImport = rules["@skylib/consistent-import/project"];
+const { getAllRules } = require("./api");
+
+const pkg = require(fs.realpathSync("./package.json"));
 
 module.exports = {
   plugins: ["@skylib/eslint-plugin"],
@@ -94,9 +96,35 @@ module.exports = {
       {
         sources: [
           {
+            _id: "./src/test-utils",
+            source: `${pkg.name}/src/test-utils`,
+            type: "wildcard"
+          },
+          {
             _id: "@sinonjs/fake-timers",
             autoImport: true,
             source: "@sinonjs/fake-timers",
+            type: "wildcard"
+          },
+          {
+            _id: "@skylib/facades/test-utils",
+            altLocalNames: ["facadesTestUtils"],
+            source: "@skylib/facades/src/test-utils",
+            sourcePattern: "@skylib/facades/{dist,es}/test-utils",
+            type: "wildcard"
+          },
+          {
+            _id: "@skylib/framework/test-utils",
+            altLocalNames: ["frameworkTestUtils"],
+            source: "@skylib/framework/src/test-utils",
+            sourcePattern: "@skylib/framework/{dist,es}/test-utils",
+            type: "wildcard"
+          },
+          {
+            _id: "@skylib/functions/test-utils",
+            altLocalNames: ["functionsTestUtils"],
+            source: "@skylib/functions/src/test-utils",
+            sourcePattern: "@skylib/functions/{dist,es}/test-utils",
             type: "wildcard"
           },
           {
@@ -104,6 +132,13 @@ module.exports = {
             autoImport: true,
             localName: "_",
             source: "@skylib/lodash-commonjs-es",
+            type: "wildcard"
+          },
+          {
+            _id: "@skylib/quasar-extension/test-utils",
+            altLocalNames: ["quasarTestUtils"],
+            source: "@skylib/quasar-extension/src/test-utils",
+            sourcePattern: "@skylib/quasar-extension/{dist,es}/test-utils",
             type: "wildcard"
           },
           {
@@ -203,11 +238,10 @@ module.exports = {
             source: "vuedraggable",
             type: "default"
           },
-          { _id: "catch-all", source: "!@skylib/**", type: "default" }
+          { _id: "catch-all", source: "**", type: "default" }
         ]
       }
     ],
-    "@skylib/consistent-import/project": ["warn", consistentImport],
     "@skylib/consistent-optional-props": [
       "warn",
       { classes: "undefined", interfaces: "optional" }
@@ -403,10 +437,7 @@ module.exports = {
         key: "_id",
         selector:
           "Property[key.value=@skylib/consistent-import] > ArrayExpression > ObjectExpression > Property[key.name=sources] > ArrayExpression",
-        sendToBottom: /^catch-all(?::|$)/u.source,
-        // eslint-disable-next-line no-warning-comments -- Fix for @skylib/eslint-plugin update
-        // fixme
-        sendToTop: /^$/u.source
+        sendToBottom: /^catch-all$/u.source
       }
     ],
     "@skylib/sort-array/consistent-optional-props": [
