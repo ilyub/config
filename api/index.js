@@ -1,12 +1,12 @@
 /* eslint-disable @skylib/disallow-import/no-relative-parent-imports -- Ok */
 
-const { getAllRules } = require("../src/eslint/api");
+const { getAllRules } = require("../src/eslintrc/plugins/api");
 
 const preset = require("../src/jest-preset");
 
-const skylib = require("../src/eslint/skylib");
+const skylib = require("../src/eslintrc/plugins/skylib");
 
-const tsEslint = require("../src/eslint/typescript-eslint");
+const tsEslint = require("../src/eslintrc/plugins/typescript-eslint");
 
 module.exports = {
   eslint: {

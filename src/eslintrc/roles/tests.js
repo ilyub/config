@@ -1,13 +1,13 @@
 module.exports = {
   extends: [
-    "./eslint/jest",
-    "./eslint/jest-extended",
-    "./eslintrc.allow-global-access",
-    "./eslintrc.allow-nodejs-modules",
-    "./eslintrc.allow-require",
-    "./eslintrc.allow-require-unsafe",
-    "./eslintrc.skip-filename-check",
-    "./eslintrc.skip-html-literal-check"
+    "../plugins/jest",
+    "../plugins/jest-extended",
+    "../options/allow-global-access",
+    "../options/allow-nodejs-modules",
+    "../options/allow-require",
+    "../options/allow-require-unsafe",
+    "../options/skip-filename-check",
+    "../options/skip-html-literal-check"
   ],
   env: { jest: true },
   rules: {
