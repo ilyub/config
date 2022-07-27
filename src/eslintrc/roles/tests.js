@@ -11,32 +11,7 @@ module.exports = {
   ],
   env: { jest: true },
   rules: {
-    "@skylib/custom/no-jest-toThrow-string": [
-      "warn",
-      {
-        message: "String argument is not allowed",
-        selector: "CallExpression[callee.property.name=toThrow] > .arguments",
-        typeIs: "string"
-      }
-    ],
-    "@skylib/custom/prefer-jest-toBe": [
-      "warn",
-      {
-        message: 'Prefer "toBe" matcher',
-        selector:
-          "CallExpression[callee.property.name=toStrictEqual] > .arguments",
-        typeIsOneOf: ["boolean", "number", "string"]
-      }
-    ],
-    "@skylib/custom/prefer-jest-toStrictEqual": [
-      "warn",
-      {
-        message: 'Prefer "toStrictEqual" matcher',
-        selector: "CallExpression[callee.property.name=toBe] > .arguments",
-        typeIsNoneOf: ["boolean", "number", "string"]
-      }
-    ],
-    "@skylib/disallow-import/no-at-sign": "off",
+    "@skylib/no-at-sign-import": "off",
     "@skylib/require-jsdoc": "off",
     "@skylib/statements-order": [
       "warn",

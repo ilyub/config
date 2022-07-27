@@ -1,3 +1,1 @@
-module.exports = {
-  rules: { "@skylib/disallow-import/no-nodejs-modules": "off" }
-};
+module.exports = { rules: { "@skylib/no-nodejs-modules-import": "off" } };

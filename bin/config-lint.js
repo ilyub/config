@@ -6,7 +6,6 @@ const {
   requiredFiles,
   requiredScripts,
   schemas
-  // eslint-disable-next-line @skylib/disallow-import/no-internal-modules -- Ok
 } = require("./schemas/project");
 
 const { Validator } = require("jsonschema");

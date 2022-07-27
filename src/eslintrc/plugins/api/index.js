@@ -16,5 +16,16 @@ module.exports = {
         .filter(filter)
         .map(rule => [rule, "warn"])
     );
+  },
+  selectors: {
+    arrayType: "TSArrayType, TSTupleType",
+    block: "BlockStatement, Program, SwitchCase, TSModuleBlock",
+    documentedBlock: "ExportNamedDeclaration, Program, TSModuleBlock",
+    function:
+      ":function, MethodDefinition, TSAbstractMethodDefinition, TSCallSignatureDeclaration, TSConstructSignatureDeclaration, TSDeclareFunction, TSFunctionType, TSMethodSignature",
+    functionExpression: "ArrowFunctionExpression, FunctionExpression",
+    method: "MethodDefinition, TSAbstractMethodDefinition",
+    property: "PropertyDefinition, TSPropertySignature",
+    statement: ":statement, TSDeclareFunction, TSExportAssignment"
   }
 };

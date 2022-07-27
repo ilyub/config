@@ -1,5 +1,3 @@
-/* eslint-disable @skylib/disallow-import/no-relative-parent-imports -- Ok */
-
 const { getAllRules } = require("../src/eslintrc/plugins/api");
 
 const preset = require("../src/jest-preset");

@@ -1,15 +1,6 @@
-const { getAllRules } = require("./api");
+const { getAllRules, selectors } = require("./api");
 
-const contexts = [
-  "ArrowFunctionExpression",
-  "FunctionDeclaration",
-  "FunctionExpression",
-  "TSCallSignatureDeclaration",
-  "TSConstructSignatureDeclaration",
-  "TSDeclareFunction",
-  "TSFunctionType",
-  "TSMethodSignature"
-];
+const contexts = [selectors.function];
 
 const definedTags = ["jest-environment"];
 
